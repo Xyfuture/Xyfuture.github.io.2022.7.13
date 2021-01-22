@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>vscode使用 on My New Hugo Site</title>
-    <link>http://example.org/categories/vscode%E4%BD%BF%E7%94%A8/</link>
+    <link>http://xyfuture.github.io/categories/vscode%E4%BD%BF%E7%94%A8/</link>
     <description>Recent content in vscode使用 on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/categories/vscode%E4%BD%BF%E7%94%A8/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://xyfuture.github.io/categories/vscode%E4%BD%BF%E7%94%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>vscode调试配置</title>
-      <link>http://example.org/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</link>
+      <link>http://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</guid>
+      <guid>http://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</guid>
       <description>vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。
  下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧
 下载地址：mingw

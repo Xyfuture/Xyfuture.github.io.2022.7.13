@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cpp on My New Hugo Site</title>
-    <link>http://example.org/tags/cpp/</link>
+    <link>http://xyfuture.github.io/tags/cpp/</link>
     <description>Recent content in cpp on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Mar 2020 22:46:29 +0000</lastBuildDate><atom:link href="http://example.org/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Mar 2020 22:46:29 +0000</lastBuildDate><atom:link href="http://xyfuture.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>c_with_python</title>
-      <link>http://example.org/posts/c-with-python/</link>
+      <link>http://xyfuture.github.io/posts/c-with-python/</link>
       <pubDate>Sun, 15 Mar 2020 22:46:29 +0000</pubDate>
       
-      <guid>http://example.org/posts/c-with-python/</guid>
+      <guid>http://xyfuture.github.io/posts/c-with-python/</guid>
       <description>最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用
  C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include&amp;lt;Python.h&amp;gt;就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译
 要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.
