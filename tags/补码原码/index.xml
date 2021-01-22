@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>补码原码 on My New Hugo Site</title>
+    <link>http://example.org/tags/%E8%A1%A5%E7%A0%81%E5%8E%9F%E7%A0%81/</link>
+    <description>Recent content in 补码原码 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://example.org/tags/%E8%A1%A5%E7%A0%81%E5%8E%9F%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计组-数字编码</title>
+      <link>http://example.org/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/</guid>
+      <description>计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次
+以下讨论的都是有符号数，无符号的数较为简单，不写了
+ 概念 真值 原码 补码 反码 移码 （机器数）
+定点数(定点整数 定点小数) 浮点数
+算数移位 逻辑移位
+定点数 定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。
+真值 真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（+ -）,是我们人看到的最为直观的数据，不是给机器看的。
+定点整数： +123 ，-321
+定点小数：+0.123，-0.321
+正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数
+原码 原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。
+原码组成： 符号部分+数值部分
+这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作
+正数： 0+真值
+负数： 1+真值
+原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用
+原码存在+0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0
+   真值 原码     +1001 01001   - 1100 11100   +0.1101 0.1101   -0.1011 1.1011    补码 补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。</description>
+    </item>
+    
+  </channel>
+</rss>

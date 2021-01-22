@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>贪心 on My New Hugo Site</title>
+    <link>http://example.org/tags/%E8%B4%AA%E5%BF%83/</link>
+    <description>Recent content in 贪心 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Mar 2020 16:48:35 +0000</lastBuildDate><atom:link href="http://example.org/tags/%E8%B4%AA%E5%BF%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Program_贪心</title>
+      <link>http://example.org/posts/program-%E8%B4%AA%E5%BF%83/</link>
+      <pubDate>Thu, 12 Mar 2020 16:48:35 +0000</pubDate>
+      
+      <guid>http://example.org/posts/program-%E8%B4%AA%E5%BF%83/</guid>
+      <description> 贪心算法是常用的算法,但是证明似乎比较麻烦.
+ 贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:
+ 如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法
+第一种的意思是贪心算法优于所有非贪心算法的情况,一般用数学归纳法证明,设计一个指标,在初始情况说明一下,到第n次说明一下,然后就证出来了 注意这个要求一点,就贪心算法是绝对最优的,没有算法能与之等价或者超过他,下面的情况是有算法可以与之等价,都是最优解
+第二种的意思是有多种算法都是最优的,然后贪心能与其中一种进行转化,得到等价的最优解,通常情况下我们假设一种最优解,然后说明贪心的结果能和最优解相互转换
+目前根据经验第二种方法用的多一些
+贪心例题  说实话没有啥好说的,还是看题吧
+ 区间调度问题 贪心准则 在这里结束时间是关键
+我们要找到当前所有相容子区间中结束时间最早的,然后选他,更新相容区间
+这里是最早结束的,不关心开始的情况
+证明 可用方法2
+设现在存在最优解,在第i个区间和贪心不同,那么最优解的结束时间一定小于贪心解,我们把最优解换成贪心解发现结束时间变早了,不影响后面的解,所以贪心解和最优解等价,因此贪心最优
+最小延时调度 贪心准则 将ddl排序,先放ddl最小的(最早ddl的)
+证明 区间选点 区间分数 </description>
+    </item>
+    
+  </channel>
+</rss>

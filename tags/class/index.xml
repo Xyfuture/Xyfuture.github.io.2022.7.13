@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>class on My New Hugo Site</title>
+    <link>http://example.org/tags/class/</link>
+    <description>Recent content in class on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Mar 2020 18:37:35 +0000</lastBuildDate><atom:link href="http://example.org/tags/class/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Program_week3_class</title>
+      <link>http://example.org/posts/%E7%A8%8B%E8%AE%BE-week3/</link>
+      <pubDate>Wed, 04 Mar 2020 18:37:35 +0000</pubDate>
+      
+      <guid>http://example.org/posts/%E7%A8%8B%E8%AE%BE-week3/</guid>
+      <description>DFS 记录节点状态
+ 可行性 最优化 记忆化搜索(就是标记走过的路)  贪心算法 证明   贪心算法最优,其他都比他差.
+  贪心算法和其他一样优,其他算法的结果可以转化为贪心算法
+  </description>
+    </item>
+    
+  </channel>
+</rss>

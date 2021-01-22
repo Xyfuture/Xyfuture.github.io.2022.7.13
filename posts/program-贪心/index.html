@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Program_贪心 | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, 贪心" />
+<meta name="description" content=" 贪心算法是常用的算法,但是证明似乎比较麻烦.
+ 贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:
+ 如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法
+第一种的意思是贪心算法优于所有非贪心算法的情况,一般用数学归纳法证明,设计一个指标,在初始情况说明一下,到第n次说明一下,然后就证出来了 注意这个要求一点,就贪心算法是绝对最优的,没有算法能与之等价或者超过他,下面的情况是有算法可以与之等价,都是最优解
+第二种的意思是有多种算法都是最优的,然后贪心能与其中一种进行转化,得到等价的最优解,通常情况下我们假设一种最优解,然后说明贪心的结果能和最优解相互转换
+目前根据经验第二种方法用的多一些
+贪心例题  说实话没有啥好说的,还是看题吧
+ 区间调度问题 贪心准则 在这里结束时间是关键
+我们要找到当前所有相容子区间中结束时间最早的,然后选他,更新相容区间
+这里是最早结束的,不关心开始的情况
+证明 可用方法2
+设现在存在最优解,在第i个区间和贪心不同,那么最优解的结束时间一定小于贪心解,我们把最优解换成贪心解发现结束时间变早了,不影响后面的解,所以贪心解和最优解等价,因此贪心最优
+最小延时调度 贪心准则 将ddl排序,先放ddl最小的(最早ddl的)
+证明 区间选点 区间分数 ">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/program-%E8%B4%AA%E5%BF%83/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Program_贪心" />
+<meta property="og:description" content=" 贪心算法是常用的算法,但是证明似乎比较麻烦.
+ 贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:
+ 如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法
+第一种的意思是贪心算法优于所有非贪心算法的情况,一般用数学归纳法证明,设计一个指标,在初始情况说明一下,到第n次说明一下,然后就证出来了 注意这个要求一点,就贪心算法是绝对最优的,没有算法能与之等价或者超过他,下面的情况是有算法可以与之等价,都是最优解
+第二种的意思是有多种算法都是最优的,然后贪心能与其中一种进行转化,得到等价的最优解,通常情况下我们假设一种最优解,然后说明贪心的结果能和最优解相互转换
+目前根据经验第二种方法用的多一些
+贪心例题  说实话没有啥好说的,还是看题吧
+ 区间调度问题 贪心准则 在这里结束时间是关键
+我们要找到当前所有相容子区间中结束时间最早的,然后选他,更新相容区间
+这里是最早结束的,不关心开始的情况
+证明 可用方法2
+设现在存在最优解,在第i个区间和贪心不同,那么最优解的结束时间一定小于贪心解,我们把最优解换成贪心解发现结束时间变早了,不影响后面的解,所以贪心解和最优解等价,因此贪心最优
+最小延时调度 贪心准则 将ddl排序,先放ddl最小的(最早ddl的)
+证明 区间选点 区间分数 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/program-%E8%B4%AA%E5%BF%83/" />
+<meta property="article:published_time" content="2020-03-12T16:48:35+00:00" />
+<meta property="article:modified_time" content="2020-03-12T16:48:35+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program_贪心"/>
+<meta name="twitter:description" content=" 贪心算法是常用的算法,但是证明似乎比较麻烦.
+ 贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:
+ 如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法
+第一种的意思是贪心算法优于所有非贪心算法的情况,一般用数学归纳法证明,设计一个指标,在初始情况说明一下,到第n次说明一下,然后就证出来了 注意这个要求一点,就贪心算法是绝对最优的,没有算法能与之等价或者超过他,下面的情况是有算法可以与之等价,都是最优解
+第二种的意思是有多种算法都是最优的,然后贪心能与其中一种进行转化,得到等价的最优解,通常情况下我们假设一种最优解,然后说明贪心的结果能和最优解相互转换
+目前根据经验第二种方法用的多一些
+贪心例题  说实话没有啥好说的,还是看题吧
+ 区间调度问题 贪心准则 在这里结束时间是关键
+我们要找到当前所有相容子区间中结束时间最早的,然后选他,更新相容区间
+这里是最早结束的,不关心开始的情况
+证明 可用方法2
+设现在存在最优解,在第i个区间和贪心不同,那么最优解的结束时间一定小于贪心解,我们把最优解换成贪心解发现结束时间变早了,不影响后面的解,所以贪心解和最优解等价,因此贪心最优
+最小延时调度 贪心准则 将ddl排序,先放ddl最小的(最早ddl的)
+证明 区间选点 区间分数 "/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Program_贪心",
+  "name": "Program_贪心",
+  "description": " 贪心算法是常用的算法,但是证明似乎比较麻烦.\n 贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:\n 如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法\n第一种的意思是贪 …",
+  "keywords": [
+    "Program", "贪心"
+  ],
+  "articleBody": " 贪心算法是常用的算法,但是证明似乎比较麻烦.\n 贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:\n 如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法\n第一种的意思是贪心算法优于所有非贪心算法的情况,一般用数学归纳法证明,设计一个指标,在初始情况说明一下,到第n次说明一下,然后就证出来了 注意这个要求一点,就贪心算法是绝对最优的,没有算法能与之等价或者超过他,下面的情况是有算法可以与之等价,都是最优解\n第二种的意思是有多种算法都是最优的,然后贪心能与其中一种进行转化,得到等价的最优解,通常情况下我们假设一种最优解,然后说明贪心的结果能和最优解相互转换\n目前根据经验第二种方法用的多一些\n贪心例题  说实话没有啥好说的,还是看题吧\n 区间调度问题 贪心准则 在这里结束时间是关键\n我们要找到当前所有相容子区间中结束时间最早的,然后选他,更新相容区间\n这里是最早结束的,不关心开始的情况\n证明 可用方法2\n设现在存在最优解,在第i个区间和贪心不同,那么最优解的结束时间一定小于贪心解,我们把最优解换成贪心解发现结束时间变早了,不影响后面的解,所以贪心解和最优解等价,因此贪心最优\n最小延时调度 贪心准则 将ddl排序,先放ddl最小的(最早ddl的)\n证明 区间选点 区间分数 ",
+  "wordCount" : "28",
+  "inLanguage": "en",
+  "datePublished": "2020-03-12T16:48:35Z",
+  "dateModified": "2020-03-12T16:48:35Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/program-%E8%B4%AA%E5%BF%83/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Program_贪心
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">March 12, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<blockquote>
+<p>贪心算法是常用的算法,但是证明似乎比较麻烦.</p>
+</blockquote>
+<h1 id="贪心的几个性质">贪心的几个性质<a hidden class="anchor" aria-hidden="true" href="#贪心的几个性质">#</a></h1>
+<p>贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:</p>
+<ol>
+<li>如何区分步骤,怎样划分一步,</li>
+<li>如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小</li>
+<li>每进行一步应该怎样更新数据得到下一步</li>
+</ol>
+<h1 id="贪心证明">贪心证明<a hidden class="anchor" aria-hidden="true" href="#贪心证明">#</a></h1>
+<p><img src="https://i.loli.net/2020/03/11/eNc6vfqFu2YSVHG.png" alt=""></p>
+<p>两种证法</p>
+<p>第一种的意思是贪心算法优于所有非贪心算法的情况,一般用数学归纳法证明,设计一个指标,在初始情况说明一下,到第n次说明一下,然后就证出来了
+注意这个要求一点,就贪心算法是绝对最优的,没有算法能与之等价或者超过他,下面的情况是有算法可以与之等价,都是最优解</p>
+<p>第二种的意思是有多种算法都是最优的,然后贪心能与其中一种进行转化,得到等价的最优解,通常情况下<strong>我们假设一种最优解,然后说明贪心的结果能和最优解相互转换</strong></p>
+<p>目前根据经验第二种方法用的多一些</p>
+<h1 id="贪心例题">贪心例题<a hidden class="anchor" aria-hidden="true" href="#贪心例题">#</a></h1>
+<blockquote>
+<p>说实话没有啥好说的,还是看题吧</p>
+</blockquote>
+<h2 id="区间调度问题">区间调度问题<a hidden class="anchor" aria-hidden="true" href="#区间调度问题">#</a></h2>
+<p><img src="https://i.loli.net/2020/03/12/RjPQCFS85Y3MEbK.png" alt=""></p>
+<h3 id="贪心准则">贪心准则<a hidden class="anchor" aria-hidden="true" href="#贪心准则">#</a></h3>
+<p>在这里结束时间是关键</p>
+<p><strong>我们要找到当前所有相容子区间中结束时间最早的,然后选他,更新相容区间</strong></p>
+<p>这里是最早结束的,不关心开始的情况</p>
+<h3 id="证明">证明<a hidden class="anchor" aria-hidden="true" href="#证明">#</a></h3>
+<p>可用方法2</p>
+<p>设现在存在最优解,在第i个区间和贪心不同,那么最优解的结束时间一定小于贪心解,我们把最优解换成贪心解发现结束时间变早了,不影响后面的解,所以贪心解和最优解等价,因此贪心最优</p>
+<h2 id="最小延时调度">最小延时调度<a hidden class="anchor" aria-hidden="true" href="#最小延时调度">#</a></h2>
+<p><img src="https://i.loli.net/2020/03/12/zlqNWrUspBZ8XQL.png" alt=""></p>
+<h3 id="贪心准则-1">贪心准则<a hidden class="anchor" aria-hidden="true" href="#贪心准则-1">#</a></h3>
+<p>将ddl排序,先放ddl最小的(最早ddl的)</p>
+<p><img src="https://i.loli.net/2020/03/12/TSnU2JjLZvGNtqH.png" alt=""></p>
+<h3 id="证明-1">证明<a hidden class="anchor" aria-hidden="true" href="#证明-1">#</a></h3>
+<p><img src="https://i.loli.net/2020/03/12/MbB4z3DHhmkPgdI.png" alt=""></p>
+<h2 id="区间选点">区间选点<a hidden class="anchor" aria-hidden="true" href="#区间选点">#</a></h2>
+<h2 id="区间分数">区间分数<a hidden class="anchor" aria-hidden="true" href="#区间分数">#</a></h2>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/%E8%B4%AA%E5%BF%83/">贪心</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

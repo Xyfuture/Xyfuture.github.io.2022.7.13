@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>四则运算 | My New Hugo Site</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/tags/%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+<link rel="alternate" type="application/rss&#43;xml" href="http://example.org/tags/%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/index.xml">
+
+
+<meta property="og:title" content="四则运算" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/tags/%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" />
+<meta property="og:updated_time" content="2020-03-02T14:16:35+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="四则运算"/>
+<meta name="twitter:description" content=""/>
+
+
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main"> 
+<header class="page-header">
+  <h1>四则运算</h1>
+</header>
+
+
+
+<article class="post-entry tag-entry"> 
+
+  <header class="entry-header">
+    <h2>
+      计组 四则运算
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>前言 ​	最近学完了整数的加减乘除四则运算,本质上还是根据最基础的数学定理用计算机模仿人的运算步骤,但是因为数值表示的原因,初看起来还是有点难懂的,因此总结一下.
+准备工作 ​	准备工作主要指数据的编码,尤其是补码的原理,这个在上一篇中有讲,补码核心的内容就是把负数用mod的方法转换为了正数,然后因为加上了一个数因此在符号位特殊标记一下.借助这个规则我们可以实现四则运算同时解决溢出问题,因此必须对补码有一个较为深刻的认识,否者只能死记硬背了.
+加法  加法和减法都是通过补码实现的,借助补码两者可以同一
+ 加法其实没有什么好说的,按照正常的规则补码直接加,得到的结果也是补码
+就是按照满2进1的规则来就行,符号位也要算上去,没什么好说的.注意一点是最后的这个mod XX这个意思是为了保持位数,比如8位&#43;8位我们不给出9位的答案,多的一位会被截断,这就引发了另一个问题就是溢出,8位的答案不能表达实际的答案,这个问题在减法中统一讨论.
+减法要转为加法进行处理 $$ A-B\ =\ A&#43;(-B) $$ 这个规则对于补码也是成立的 $$ [A]_补-[B]_补\ =\ [A]_补&#43;[-B]_补 $$ 因此我们将减数转换成他的相反数,规则在上一篇文章中也讲过,所有位(包括符号位)取反,再&#43;1,之后执行正常的加法就行了.
+溢出问题 溢出问题是非常重要和有趣的. 溢出的意思就是当前的数据位数没有办法表达当前的数据. 比如8位可以表示-128-127,但是当两个-128相加时得到的数(-256)就没法表示了,因此就溢出了,下面来说说溢出在补码上的表现
+溢出只发生在正数加正数和负数加负数时,当两个符号位相同时相加得到了一个不同的符号位就发生了溢出
+负数加负数 1000,0000 &#43;1111,1111 1,0111,1111 可以看到第8位发生了变换了,因此负数溢出,原理就是原本符号位上的1表示这个数是由负数加128而来的,两个负数相加时$128&#43;X_1&#43;128&#43;X_2(X_1,X_2&lt;0)$,如果这个数&gt;128则会进1,使符号位重新成为1,但是同时后面7位表示的也是$128&#43;X_1&#43;X_2$,因为多的128进位了,这样还是符合补码的原理的,但是没有两个数加起来不到128时说明后面7位还是$128&#43;X_1&#43;128&#43;X_2$这样要想的到原来的值需要加-256不符合补码原理.
+杂七杂八 符号位上的1表示的时后面数值位是128- 原数的绝对值得到的,符号位这个不能表示数值大小,能表示的是状态,后面的进位过来会改变符号位,不论怎么改,只要能按照规则转换回去就说明是对的,不必太过看重这个符号位.
+两个符号位 11.xxxx 00.xxxx 这种数有两个符号位,最终加减得到的结果有4种 00 ,11 正常情况,表述正数,负数 10 — 负溢出 01 — 正溢出
+乘法  乘法的原理建议先看竖式是怎么算的,本质上是乘法分配律  原码乘法 原码乘法就是数用原码进行表示,符号位单独讨论 直接看ppt吧,得到的数是补码,记得单独算符号位,最后加上 几个问题
+1.为什么是逻辑右移? 因为符号不在这里讨论,这里的0.x的0用来存进位(解决原本的溢出问题) 2.移动了几次? 乘数有几位就移动几次 3.得到的积? 得到积是两部分,一部分高位,一部分低位,占用两个寄存器 补码乘法  补码乘法较为复杂这里只介绍 Booth法...</p>
+  </section>
+  <footer class="entry-footer">March 2, 2020
+</footer>
+  <a class="entry-link" aria-label="post link to 计组 四则运算" href="http://example.org/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/"></a>
+</article>
+
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

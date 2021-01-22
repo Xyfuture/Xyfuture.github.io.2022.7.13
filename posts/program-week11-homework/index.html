@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Program-week10-homework | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, homework" />
+<meta name="description" content="week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1&#43;k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法
+code #include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std; int main() { float n; float m=200; float k; scanf(&#34;%f%f&#34;,&amp;n,&amp;k);//浮点  k = k/100;//小数  int i=1; float total = m; float salary = 0; while(salary-total&lt;0.000001) { salary =i*n;//收入  total = m*pow((1&#43;k),i-1);//房价  if(i&#43;&#43;&gt;21)//大于20年  break; } if(i&gt;21) printf(&#34;Impossible&#34;); else printf(&#34;%d&#34;,i-1); return 0; } 总结 难度不大,但是得理清楚年份之间的关系,第一年房价是原价
+B - 必做题11-2 题面 输入输出都是一个数字组成的矩阵
+解法 题目本身也是模拟,这个考察了数组的下标的运用,通过下标的转换实现数组的转换
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt; using namespace std; int n; int data[22][22]; int ans[22][22]; // int mid[22][22];  inline bool dec(int t,int i,int j) { if(t == 1) return data[i][j]!">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/program-week11-homework/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Program-week10-homework" />
+<meta property="og:description" content="week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1&#43;k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法
+code #include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std; int main() { float n; float m=200; float k; scanf(&#34;%f%f&#34;,&amp;n,&amp;k);//浮点  k = k/100;//小数  int i=1; float total = m; float salary = 0; while(salary-total&lt;0.000001) { salary =i*n;//收入  total = m*pow((1&#43;k),i-1);//房价  if(i&#43;&#43;&gt;21)//大于20年  break; } if(i&gt;21) printf(&#34;Impossible&#34;); else printf(&#34;%d&#34;,i-1); return 0; } 总结 难度不大,但是得理清楚年份之间的关系,第一年房价是原价
+B - 必做题11-2 题面 输入输出都是一个数字组成的矩阵
+解法 题目本身也是模拟,这个考察了数组的下标的运用,通过下标的转换实现数组的转换
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt; using namespace std; int n; int data[22][22]; int ans[22][22]; // int mid[22][22];  inline bool dec(int t,int i,int j) { if(t == 1) return data[i][j]!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/program-week11-homework/" />
+<meta property="article:published_time" content="2020-05-14T23:31:04+00:00" />
+<meta property="article:modified_time" content="2020-05-14T23:31:04+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week10-homework"/>
+<meta name="twitter:description" content="week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1&#43;k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法
+code #include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std; int main() { float n; float m=200; float k; scanf(&#34;%f%f&#34;,&amp;n,&amp;k);//浮点  k = k/100;//小数  int i=1; float total = m; float salary = 0; while(salary-total&lt;0.000001) { salary =i*n;//收入  total = m*pow((1&#43;k),i-1);//房价  if(i&#43;&#43;&gt;21)//大于20年  break; } if(i&gt;21) printf(&#34;Impossible&#34;); else printf(&#34;%d&#34;,i-1); return 0; } 总结 难度不大,但是得理清楚年份之间的关系,第一年房价是原价
+B - 必做题11-2 题面 输入输出都是一个数字组成的矩阵
+解法 题目本身也是模拟,这个考察了数组的下标的运用,通过下标的转换实现数组的转换
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt; using namespace std; int n; int data[22][22]; int ans[22][22]; // int mid[22][22];  inline bool dec(int t,int i,int j) { if(t == 1) return data[i][j]!"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Program-week10-homework",
+  "name": "Program-week10-homework",
+  "description": "week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法\ncode #include \u0026amp;lt;cstdio\u0026amp;gt;#include …",
+  "keywords": [
+    "Program", "homework"
+  ],
+  "articleBody": "week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法\ncode #include #include #include using namespace std; int main() { float n; float m=200; float k; scanf(\"%f%f\",\u0026n,\u0026k);//浮点  k = k/100;//小数  int i=1; float total = m; float salary = 0; while(salary-total0.000001) { salary =i*n;//收入  total = m*pow((1+k),i-1);//房价  if(i++21)//大于20年  break; } if(i21) printf(\"Impossible\"); else printf(\"%d\",i-1); return 0; } 总结 难度不大,但是得理清楚年份之间的关系,第一年房价是原价\nB - 必做题11-2 题面 输入输出都是一个数字组成的矩阵\n解法 题目本身也是模拟,这个考察了数组的下标的运用,通过下标的转换实现数组的转换\ncode #include #include #include #include  using namespace std; int n; int data[22][22]; int ans[22][22]; // int mid[22][22];  inline bool dec(int t,int i,int j) { if(t == 1) return data[i][j]!=ans[i][j]; //不动  else if(t==2) return data[n-j-1][i]!=ans[i][j]; //顺时针90  else if(t==3) return data[n-i-1][n-j-1]!=ans[i][j]; //顺时针180  else if(t==4) return data[j][n-i-1]!=ans[i][j]; //顺时针270  return true; } bool rotate(int t) //调用dec { for(int i=0;in;i++) for(int j=0;jn;j++) if(dec(t,i,j))//dec比较的是不等,一旦不等直接退出  return false; return true; } int main() { memset(data,0,sizeof(data)); memset(ans,0,sizeof(ans)); // memset(mid,0,sizeof(mid));  scanf(\"%d\",\u0026n); for(int i=0;in;i++) for(int j=0;jn;j++) scanf(\"%d\",\u0026data[i][j]); for(int i=0;in;i++) for(int j=0;jn;j++) scanf(\"%d\",\u0026ans[i][j]); for(int i=0;i4;i++) if(rotate(i+1))//四种旋转  { printf(\"%d\\n\",i); return 0; } printf(\"-1\\n\"); return 0; } 总结 本题考查数组的使用,通过下标的转换就能实现在不同方向上对数组矩阵的遍历\nC - 必做题11-3 题面 经典凯撒密码\n解法 将读入的字符一个一个进行判断是大写字母,ascii-5转换为明文输出,不是大写字母直接输出\ncode #include #include #include #include #include #include  using namespace std; int main() { char data[202] ={0}; int t=0; while((data[t++] = getchar())!='\\n');//读取,也可以getline  for(int i=0;it-1;i++) { if(data[i]='A'\u0026\u0026data[i]'Z')//大写字母  printf(\"%c\",(data[i]+26-5-'A')%26+'A' ); else //其他  printf(\"%c\",data[i]); } return 0; } 总结 考察点主要在字符串读取和简易处理上\nD - 必做题11-4 题面 求取相同元素区间的长度\n解法 这个和之前一个求相同元素长度区间的类似,只不过这个需要判断两个区间长度\ncode #include #include #include using namespace std; int n; int data[1000005]; int main() { scanf(\"%d\",\u0026n); for(int i=0;in;i++) scanf(\"%d\",data+i); int siz e[3]={0,0,0};//记录一段中1和2的个数  int Max = 0;//输出的最大值  int pre = data[0];//前一个变量  for(int i=0;in;i++) if(data[i] == pre)//如果现在的等于前一个,计数增加  size[data[i]]++; else { int cur = size[1]size[2]?size[1]:size[2];//1-2 or 2-1交界点  if(curMax)//更新  Max = cur; pre = data[i];//新的pre  size[pre] = 1;//计数  } int cur = size[1]size[2]?size[1]:size[2]; if(curMax) Max = cur; printf(\"%d\\n\",Max*2); } 总结 似乎这类问题挺多的,之前写的版本可能会re,不要在for中使用while\nE - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过\n解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求\nans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为\n对第t类钞票 ans[j] = ans[j-data[t]] (逆序)\n然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票\ncode #include #include #include #include  using namespace std; int ans[100002]; int num[12]; int value[12]; int nnum[10002]; int nvalue[10002]; int split[12]; int ssum[12]; void init() { for(int i=0;i12;i++) { split[i]=1i; if(i==0) ssum[i] = 1; else ssum[i] = ssum[i-1]+split[i]; } } int main() { int n,m,p; init();//初始化二进制拆分数组  while(scanf(\"%d\",\u0026n)!=EOF) { memset(ans,128,sizeof(ans)); scanf(\"%d\",\u0026m); for(int i=1;im;i++) scanf(\"%d%d\",num+i,value+i); p=1; for(int i=1;im;i++) { int t=0; int temp=num[i];//将个数进行二进制拆分  while((temp1)0){//最多是2^x  t++; temp = temp1; } for(int s=0;st;s++)//拆分  nnum[p]=split[s],nvalue[p++]=value[i]; if(t==0)//剩下的  nnum[p] = num[i]; else nnum[p]=num[i]-ssum[t-1]; nvalue[p++]=value[i]; } ans[0] = 1;//提供0是可以的  for(int i=1;ip-1;i++)//一个一个钞票类型来  { for(int j=n;j=0;j--)//最多就是提供n  { // ans[j] = ans[j];  if(j-nnum[i]*nvalue[i]=0)//大于0,避免负数现金  if(ans[j-nnum[i]*nvalue[i]] == 1)//子情况能提供  ans[j] = 1; } } int cur=0; for(int i=n;i=0;i--) if(ans[i] == 1) { cur =i; break; } printf(\"%d\\n\",cur); } } 总结 这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）\n",
+  "wordCount" : "409",
+  "inLanguage": "en",
+  "datePublished": "2020-05-14T23:31:04Z",
+  "dateModified": "2020-05-14T23:31:04Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/program-week11-homework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Program-week10-homework
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">May 14, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="week11-homework">week11-homework<a hidden class="anchor" aria-hidden="true" href="#week11-homework">#</a></h1>
+<h2 id="a---必做题11-1httpsvjudgenetproblem计蒜客-t1065"><a href="https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-T1065">A - 必做题11-1</a><a hidden class="anchor" aria-hidden="true" href="#a---必做题11-1httpsvjudgenetproblem计蒜客-t1065">#</a></h2>
+<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/14/xr3MEeZvVwOFDjC.png" alt=""></p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<p>这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法</p>
+<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">float</span> n;
+    <span style="color:#66d9ef">float</span> m<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>;
+    <span style="color:#66d9ef">float</span> k;
+    scanf(<span style="color:#e6db74">&#34;%f%f&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>k);<span style="color:#75715e">//浮点
+</span><span style="color:#75715e"></span>    k <span style="color:#f92672">=</span> k<span style="color:#f92672">/</span><span style="color:#ae81ff">100</span>;<span style="color:#75715e">//小数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">float</span> total <span style="color:#f92672">=</span> m;
+    <span style="color:#66d9ef">float</span> salary <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>(salary<span style="color:#f92672">-</span>total<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0.000001</span>)
+    {
+        salary <span style="color:#f92672">=</span>i<span style="color:#f92672">*</span>n;<span style="color:#75715e">//收入
+</span><span style="color:#75715e"></span>        total <span style="color:#f92672">=</span> m<span style="color:#f92672">*</span>pow((<span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>k),i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);<span style="color:#75715e">//房价
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">++&gt;</span><span style="color:#ae81ff">21</span>)<span style="color:#75715e">//大于20年
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">break</span>;
+    }
+    <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">21</span>)
+        printf(<span style="color:#e6db74">&#34;Impossible&#34;</span>);
+    <span style="color:#66d9ef">else</span>
+        printf(<span style="color:#e6db74">&#34;%d&#34;</span>,i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>难度不大,但是得理清楚年份之间的关系,第一年房价是原价</p>
+<h2 id="b---必做题11-2httpsvjudgenetproblem计蒜客-t3176"><a href="https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-T3176">B - 必做题11-2</a><a hidden class="anchor" aria-hidden="true" href="#b---必做题11-2httpsvjudgenetproblem计蒜客-t3176">#</a></h2>
+<h3 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/14/c67wD98zqyoA2pR.png" alt="image-20200514234019695"></p>
+<p>输入输出都是一个数字组成的矩阵</p>
+<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<p>题目本身也是模拟,这个考察了数组的下标的运用,通过下标的转换实现数组的转换</p>
+<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n;
+<span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">22</span>][<span style="color:#ae81ff">22</span>];
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">22</span>][<span style="color:#ae81ff">22</span>];
+<span style="color:#75715e">// int mid[22][22];
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">dec</span>(<span style="color:#66d9ef">int</span> t,<span style="color:#66d9ef">int</span> i,<span style="color:#66d9ef">int</span> j)
+{
+    <span style="color:#66d9ef">if</span>(t <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">return</span> data[i][j]<span style="color:#f92672">!=</span>ans[i][j]; <span style="color:#75715e">//不动
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>)
+        <span style="color:#66d9ef">return</span> data[n<span style="color:#f92672">-</span>j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][i]<span style="color:#f92672">!=</span>ans[i][j];  <span style="color:#75715e">//顺时针90
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>)
+        <span style="color:#66d9ef">return</span> data[n<span style="color:#f92672">-</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][n<span style="color:#f92672">-</span>j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">!=</span>ans[i][j]; <span style="color:#75715e">//顺时针180
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>)
+        <span style="color:#66d9ef">return</span> data[j][n<span style="color:#f92672">-</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">!=</span>ans[i][j]; <span style="color:#75715e">//顺时针270
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">rotate</span>(<span style="color:#66d9ef">int</span> t)  <span style="color:#75715e">//调用dec
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>n;j<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">if</span>(dec(t,i,j))<span style="color:#75715e">//dec比较的是不等,一旦不等直接退出
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">return</span> true;
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    memset(data,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(data));
+    memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+    <span style="color:#75715e">// memset(mid,0,sizeof(mid));
+</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>n;j<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>data[i][j]);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>n;j<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>ans[i][j]);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">if</span>(rotate(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))<span style="color:#75715e">//四种旋转
+</span><span style="color:#75715e"></span>        {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,i);
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        }
+    printf(<span style="color:#e6db74">&#34;-1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<p>本题考查数组的使用,通过下标的转换就能实现在不同方向上对数组矩阵的遍历</p>
+<h2 id="c---必做题11-3httpsvjudgenetproblem计蒜客-t1111"><a href="https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-T1111">C - 必做题11-3</a><a hidden class="anchor" aria-hidden="true" href="#c---必做题11-3httpsvjudgenetproblem计蒜客-t1111">#</a></h2>
+<h3 id="题面-2">题面<a hidden class="anchor" aria-hidden="true" href="#题面-2">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/14/JlkDPV3mwMSNefj.png" alt="image-20200514234609345"></p>
+<p>经典凯撒密码</p>
+<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<p>将读入的字符一个一个进行判断是大写字母,ascii-5转换为明文输出,不是大写字母直接输出</p>
+<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">char</span> data[<span style="color:#ae81ff">202</span>] <span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>};
+    <span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>((data[t<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> getchar())<span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;\n&#39;</span>);<span style="color:#75715e">//读取,也可以getline
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">if</span>(data[i]<span style="color:#f92672">&gt;=</span><span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">&amp;&amp;</span>data[i]<span style="color:#f92672">&lt;=</span><span style="color:#e6db74">&#39;Z&#39;</span>)<span style="color:#75715e">//大写字母
+</span><span style="color:#75715e"></span>            printf(<span style="color:#e6db74">&#34;%c&#34;</span>,(data[i]<span style="color:#f92672">+</span><span style="color:#ae81ff">26</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5</span><span style="color:#f92672">-</span><span style="color:#e6db74">&#39;A&#39;</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">26</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;A&#39;</span> );
+        <span style="color:#66d9ef">else</span> <span style="color:#75715e">//其他
+</span><span style="color:#75715e"></span>            printf(<span style="color:#e6db74">&#34;%c&#34;</span>,data[i]);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+<p>考察点主要在字符串读取和简易处理上</p>
+<h2 id="d---必做题11-4httpsvjudgenetproblemcodeforces-1138a"><a href="https://vjudge.net/problem/CodeForces-1138A">D - 必做题11-4</a><a hidden class="anchor" aria-hidden="true" href="#d---必做题11-4httpsvjudgenetproblemcodeforces-1138a">#</a></h2>
+<h3 id="题面-3">题面<a hidden class="anchor" aria-hidden="true" href="#题面-3">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/14/2YnumKQszb5vBgA.png" alt=""></p>
+<p>求取相同元素区间的长度</p>
+<h3 id="解法-3">解法<a hidden class="anchor" aria-hidden="true" href="#解法-3">#</a></h3>
+<p>这个和之前一个求相同元素长度区间的类似,只不过这个需要判断两个区间长度</p>
+<h3 id="code-3">code<a hidden class="anchor" aria-hidden="true" href="#code-3">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> n;
+<span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">1000005</span>];
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,data<span style="color:#f92672">+</span>i);
+    <span style="color:#66d9ef">int</span> siz  e[<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};<span style="color:#75715e">//记录一段中1和2的个数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> Max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//输出的最大值
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> pre <span style="color:#f92672">=</span> data[<span style="color:#ae81ff">0</span>];<span style="color:#75715e">//前一个变量
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">if</span>(data[i] <span style="color:#f92672">==</span> pre)<span style="color:#75715e">//如果现在的等于前一个,计数增加
+</span><span style="color:#75715e"></span>            size[data[i]]<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">else</span> 
+        {
+            <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> size[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;</span>size[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">?</span>size[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">:</span>size[<span style="color:#ae81ff">2</span>];<span style="color:#75715e">//1-&gt;2 or 2-&gt;1交界点
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(cur<span style="color:#f92672">&gt;</span>Max)<span style="color:#75715e">//更新
+</span><span style="color:#75715e"></span>                Max <span style="color:#f92672">=</span> cur;
+            pre <span style="color:#f92672">=</span> data[i];<span style="color:#75715e">//新的pre
+</span><span style="color:#75715e"></span>            size[pre] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//计数
+</span><span style="color:#75715e"></span>        }
+    <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> size[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">&lt;</span>size[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">?</span>size[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">:</span>size[<span style="color:#ae81ff">2</span>];
+    <span style="color:#66d9ef">if</span>(cur<span style="color:#f92672">&gt;</span>Max)
+        Max <span style="color:#f92672">=</span> cur;
+    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,Max<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>);
+}
+</code></pre></div><h3 id="总结-3">总结<a hidden class="anchor" aria-hidden="true" href="#总结-3">#</a></h3>
+<p>似乎这类问题挺多的,之前写的版本可能会re,不要在for中使用while</p>
+<h2 id="e---选做题11-1-东东与-atmhttpsvjudgenetproblempoj-1276"><a href="https://vjudge.net/problem/POJ-1276">E - 选做题11-1 东东与 ATM</a><a hidden class="anchor" aria-hidden="true" href="#e---选做题11-1-东东与-atmhttpsvjudgenetproblempoj-1276">#</a></h2>
+<h3 id="题面-4">题面<a hidden class="anchor" aria-hidden="true" href="#题面-4">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/15/tOr4maQVojHGK23.png" alt=""></p>
+<p>这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过</p>
+<h3 id="解法-4">解法<a hidden class="anchor" aria-hidden="true" href="#解法-4">#</a></h3>
+<p>这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求</p>
+<p>ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为</p>
+<p>对第t类钞票 ans[j] = ans[j-data[t]] (逆序)</p>
+<p>然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票</p>
+<h3 id="code-4">code<a hidden class="anchor" aria-hidden="true" href="#code-4">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">100002</span>];
+<span style="color:#66d9ef">int</span> num[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">int</span> value[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">int</span> nnum[<span style="color:#ae81ff">10002</span>];
+<span style="color:#66d9ef">int</span> nvalue[<span style="color:#ae81ff">10002</span>];
+<span style="color:#66d9ef">int</span> split[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">int</span> ssum[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>()
+{
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">12</span>;i<span style="color:#f92672">++</span>)
+    {
+        split[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>i;
+        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+            ssum[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span> 
+            ssum[i] <span style="color:#f92672">=</span> ssum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>split[i];
+    }
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n,m,p;
+    init();<span style="color:#75715e">//初始化二进制拆分数组
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n)<span style="color:#f92672">!=</span>EOF)
+    {
+        memset(ans,<span style="color:#ae81ff">128</span>,<span style="color:#66d9ef">sizeof</span>(ans));  
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>m);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,num<span style="color:#f92672">+</span>i,value<span style="color:#f92672">+</span>i);
+        p<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">int</span> temp<span style="color:#f92672">=</span>num[i];<span style="color:#75715e">//将个数进行二进制拆分
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">while</span>((temp<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){<span style="color:#75715e">//最多是2^x
+</span><span style="color:#75715e"></span>                t<span style="color:#f92672">++</span>;
+                temp <span style="color:#f92672">=</span> temp<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;s<span style="color:#f92672">&lt;</span>t;s<span style="color:#f92672">++</span>)<span style="color:#75715e">//拆分
+</span><span style="color:#75715e"></span>                nnum[p]<span style="color:#f92672">=</span>split[s],nvalue[p<span style="color:#f92672">++</span>]<span style="color:#f92672">=</span>value[i];
+            <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//剩下的
+</span><span style="color:#75715e"></span>                nnum[p] <span style="color:#f92672">=</span> num[i];
+            <span style="color:#66d9ef">else</span> 
+                nnum[p]<span style="color:#f92672">=</span>num[i]<span style="color:#f92672">-</span>ssum[t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+            nvalue[p<span style="color:#f92672">++</span>]<span style="color:#f92672">=</span>value[i];
+        }
+        ans[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//提供0是可以的
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//一个一个钞票类型来
+</span><span style="color:#75715e"></span>        {   
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>n;j<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">--</span>)<span style="color:#75715e">//最多就是提供n
+</span><span style="color:#75715e"></span>            {
+                <span style="color:#75715e">// ans[j] = ans[j];
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">-</span>nnum[i]<span style="color:#f92672">*</span>nvalue[i]<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//大于0,避免负数现金
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span>(ans[j<span style="color:#f92672">-</span>nnum[i]<span style="color:#f92672">*</span>nvalue[i]] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)<span style="color:#75715e">//子情况能提供
+</span><span style="color:#75715e"></span>                        ans[j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+        <span style="color:#66d9ef">int</span> cur<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>n;i<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">--</span>)
+            <span style="color:#66d9ef">if</span>(ans[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+            {
+                cur <span style="color:#f92672">=</span>i;
+                <span style="color:#66d9ef">break</span>;
+            }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cur);
+    }
+}
+</code></pre></div><h3 id="总结-4">总结<a hidden class="anchor" aria-hidden="true" href="#总结-4">#</a></h3>
+<p>这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/homework/">homework</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

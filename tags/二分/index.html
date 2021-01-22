@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>二分 | My New Hugo Site</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/tags/%E4%BA%8C%E5%88%86/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+<link rel="alternate" type="application/rss&#43;xml" href="http://example.org/tags/%E4%BA%8C%E5%88%86/index.xml">
+
+
+<meta property="og:title" content="二分" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/tags/%E4%BA%8C%E5%88%86/" />
+<meta property="og:updated_time" content="2020-03-13T19:40:59+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="二分"/>
+<meta name="twitter:description" content=""/>
+
+
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main"> 
+<header class="page-header">
+  <h1>二分</h1>
+</header>
+
+
+
+<article class="post-entry tag-entry"> 
+
+  <header class="entry-header">
+    <h2>
+      Program-二分
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>二分算法是一种性能优秀的算法,常常用在有序的序列上
+二分分为三种,整数二分,浮点二分,答案二分
+ 整数二分 整数二分类似找数问题,在数组中找到指定元素开始的位置和结束的位置
+上述代码是找到第一个大于等于x的点,也就是x开始的位置.(有好几个连续的x就是最先的x的下标)
+下面是镜像算法,找出x结束的位置
+当然这个写法比较麻烦,也可以第一种写法一样把&lt;和=合在一起
+算法证明 这个证明有点意思,改天一定写写,用数学归纳法或者反正法都可以证明,把&lt;和=结合起来也挺秒的
+一些思想 运用条件很简单,只要上线性的,然后有序就行
+浮点二分 浮点二分是数学上的问题,这里不讨论很多,可以去看看零点定理,连续的函数在一个区间中有正有负,那么就是有零点,确定两个边界用零点存在定理算就完事了,注意精度的问题,建议是用固定的运算次数来保证精度
+答案二分  结合一个题说一下,这个应该是用的比较多的
+题目原题:POJ 3579
+ 答案如果是在一个区间内有序,我们就可以使用二分来查找
+题目 暴力肯定是不行,算出B全部值的复杂度是$n^2$数据范围不过
+但是我们注意到求中位数是从有序序列中找,因此可以二分找
+我们首先将这个X数组排序,排序之后生成的B和不排序的是等价的(因为绝对值),然后用这个X参与后续计算
+B的最小值肯定不小于0(不是B[1]-B[0]),最大值是B[n*(n-1)/2 -1]- B[0],因此我们就从这个区间中开始搜索,找到一个mid后问题就是判断和中位数关系,大于就缩小最大值,小于就提升最小值,一直这样下去直到最大值小于最小值(类似前面整数的操作,后面会再解释)
+问题来了,如何确定中位数,最简单的方法,两个for看看有多少个X[j]-X[i]小于等于mid(找出最后一个mid的位置),但是复杂度会超,因此用二分的方法看看有多少个元素.
+X[j]-X[i],对i的循环不变,对j用二分,从i&#43;1到n-1二分,这个过程中用到了整数二分中算法
+cur是找的目标,找到最后一个cur的位置,e中存的是再B中cur的位置(从1开始算)
+这样话我们直到中位数的位置,也知道mid的位置,就能知道mid是不是中位数,让我们再回到第一个二分,即便我们知道是不是中位数,我们也不写第一个二分
+这时我们观察B数组情况
+我们把这个数组假想成如图所示,X位置是中位数我们可以不构造一个函数(check)让大于等于中位数的mid返回一个0,让小于中位数的mid返回一个1,正是图中数组,这个数组熟悉啊,用整数二分中的方法,找到第一个0就能找到中位数了.
+因此魔改一下这个
+把a[mid]&gt;=x改为check函数,check(mid,target(中位数位置)),我们知道了怎么判断mid的位置,用它和中位数位置一比,大于返回个0,小于返回个1,这个就是check函数.
+最终max&lt;min会退出第一层二分就结束了,整个复杂度是两个二分加一个遍历
+详细证明 这个证明和整数二分有相似之处,主要是针对为什么替换为check函数是对的,改天有写吧...</p>
+  </section>
+  <footer class="entry-footer">March 13, 2020
+</footer>
+  <a class="entry-link" aria-label="post link to Program-二分" href="http://example.org/posts/program-%E4%BA%8C%E5%88%86/"></a>
+</article>
+
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

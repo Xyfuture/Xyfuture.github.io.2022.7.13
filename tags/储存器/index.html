@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>储存器 | My New Hugo Site</title>
+
+<meta name="keywords" content="" />
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/tags/%E5%82%A8%E5%AD%98%E5%99%A8/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+<link rel="alternate" type="application/rss&#43;xml" href="http://example.org/tags/%E5%82%A8%E5%AD%98%E5%99%A8/index.xml">
+
+
+<meta property="og:title" content="储存器" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/tags/%E5%82%A8%E5%AD%98%E5%99%A8/" />
+<meta property="og:updated_time" content="2020-03-09T08:02:36+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="储存器"/>
+<meta name="twitter:description" content=""/>
+
+
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main"> 
+<header class="page-header">
+  <h1>储存器</h1>
+</header>
+
+
+
+<article class="post-entry tag-entry"> 
+
+  <header class="entry-header">
+    <h2>
+      计组-存储器
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>储存器基础 存储器种类 这张图画的不错,一个要注意的点,主存储器(内存)分为RAM和ROM RAM: Random Access Memory 可读可写,存取时间与物理地址无关 ROM: Read Only Memory 只能读,但是读的时间也与物理地址无关
+主存储器  下面讲的都是主存储器,就是内存
+ 按照之前的理论,主存有MDR和MAR,两个重要的寄存器,MAR(Memory Address Register)用来存放访存的地址,访存指读或者写,MDR(Memory Data Register)访存的内容写在这里面.
+在这两个寄存器上有许多其他电路辅助访存,MAR上有译码器和驱动器,根据MAR中内容找到找到数据在存储体中实际的位置译码器将地址分开,驱动器给使能信号啥的,MDR有读写控制,用于决定是读是写
+一共有三种总线,地址总线,数据总线和控制总线,总线可以理解为并行接口,传输数据,地址总线和数据总线就不用说了,控制总线传输读写控制,芯片使能等控制信号
+大致可以理解为这样
+控制信号有点反直觉,只要上是上面加横杆的都代表低电平有效
+译码驱动  这里一直在说一个芯片,芯片中必然有最小存储单元,这个最小的单元一般是1位,但是存储芯片的字长是多位的,这就需要多个最小芯片位于一个地址,同时输出信息
+ 线选法 芯片按行分开,地址就是对应哪一行,译码器就将地址分析成一行,然后这一行的最小的单元就被选中,进行读写电路
+重合法 这是重合法的线路,首先我们将地址分为行地址和列地址,一行中有多个组,行地址代表选中这一行,列地址选定一组中的哪一个,因为有多个组因此可以输出指定字长的信号
+Intel 2114的例子
+可以看看这个,列地址有4位,代表一个组中最多就16个单位,行地址则有6位,代表有64行,然后数据总线是4位 ,因此有4组,这样整个的结构是64*64的.
+示意图如上
+时序 因为访存一次需要传输多种信号,因此我们需要定义好顺序,这个顺序是人为规定的,符合这个顺序的数据才能访存,否则无效.
+行地址和地址可能是分开的,下面展示一个示意图
+DRAM  Dynamic Random Access Memory 用电容的方式存储数据
+ 数据刷新 DRAM需要定时刷新,一共有三种常见的刷新方式
+集中刷新 过一段时间刷新所有单元
+一个周期刷新多少个单元是设计的问题,这里设计为了刷新一行的单元(反正是并行的)
+刷新期间不能访存,称为死区
+分散刷新 这种方式是访存一次就刷新一行,同时把刷新时间计算到访存中去,这样就没了死区问题,但是访存速度慢了
+异步刷新 访存几次然后刷新一行(不是刷新全部),结合上述两种方式的新方式
+还可以把刷新的时间设定在不访存的时候(指令译码阶段)这样就没有死区了.
+存储器与CPU连接 容量: 1K*4位 1K-&gt;存储单元个数(地址长度) 4-&gt;字长,一个单元的长度
+10条地址线,4条数据线就可以实现对这个存储器的访问.
+按字寻址 按字节寻址
+位扩展 1k*4 -&gt; 1k*8...</p>
+  </section>
+  <footer class="entry-footer">March 9, 2020
+</footer>
+  <a class="entry-link" aria-label="post link to 计组-存储器" href="http://example.org/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/"></a>
+</article>
+
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

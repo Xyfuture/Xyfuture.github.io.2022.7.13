@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Program-week14-homework | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, homework" />
+<meta name="description" content="week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略
+解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)
+对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)
+特殊情况:
+这个一开始没想到
+就是一天全部都要醒着,导致根本没有睡觉时间,应该输出个No,但是第一次的代码输出了Yes,然后没输出时间.
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;vector&gt;#include &lt;queue&gt;using namespace std; //使用环 struct timeSeg { int s;//存分钟数  int e; bool operator &lt; (timeSeg&amp; op) const //优先队列  {return s&lt;op.s;} bool operator &gt;(const timeSeg&amp; op) const {return s&gt;op.s;} timeSeg() {s=0;e=0;} timeSeg(int a,int b):s(a),e(b) {} }; priority_queue&lt;timeSeg,vector&lt;timeSeg&gt;,greater&lt;timeSeg&gt; &gt; timeTable;//这个存必须醒着的时间,按顺序排 vector&lt;timeSeg&gt; sp;//存输出结果,睡觉的时间 int A,B,N;//初始需要的三个参数 int weekTime;//连续醒的时间  bool process() { timeSeg firstTime = timeTable.">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/program-week14-homework/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Program-week14-homework" />
+<meta property="og:description" content="week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略
+解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)
+对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)
+特殊情况:
+这个一开始没想到
+就是一天全部都要醒着,导致根本没有睡觉时间,应该输出个No,但是第一次的代码输出了Yes,然后没输出时间.
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;vector&gt;#include &lt;queue&gt;using namespace std; //使用环 struct timeSeg { int s;//存分钟数  int e; bool operator &lt; (timeSeg&amp; op) const //优先队列  {return s&lt;op.s;} bool operator &gt;(const timeSeg&amp; op) const {return s&gt;op.s;} timeSeg() {s=0;e=0;} timeSeg(int a,int b):s(a),e(b) {} }; priority_queue&lt;timeSeg,vector&lt;timeSeg&gt;,greater&lt;timeSeg&gt; &gt; timeTable;//这个存必须醒着的时间,按顺序排 vector&lt;timeSeg&gt; sp;//存输出结果,睡觉的时间 int A,B,N;//初始需要的三个参数 int weekTime;//连续醒的时间  bool process() { timeSeg firstTime = timeTable." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/program-week14-homework/" />
+<meta property="article:published_time" content="2020-05-26T23:46:32+00:00" />
+<meta property="article:modified_time" content="2020-05-26T23:46:32+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week14-homework"/>
+<meta name="twitter:description" content="week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略
+解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)
+对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)
+特殊情况:
+这个一开始没想到
+就是一天全部都要醒着,导致根本没有睡觉时间,应该输出个No,但是第一次的代码输出了Yes,然后没输出时间.
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;vector&gt;#include &lt;queue&gt;using namespace std; //使用环 struct timeSeg { int s;//存分钟数  int e; bool operator &lt; (timeSeg&amp; op) const //优先队列  {return s&lt;op.s;} bool operator &gt;(const timeSeg&amp; op) const {return s&gt;op.s;} timeSeg() {s=0;e=0;} timeSeg(int a,int b):s(a),e(b) {} }; priority_queue&lt;timeSeg,vector&lt;timeSeg&gt;,greater&lt;timeSeg&gt; &gt; timeTable;//这个存必须醒着的时间,按顺序排 vector&lt;timeSeg&gt; sp;//存输出结果,睡觉的时间 int A,B,N;//初始需要的三个参数 int weekTime;//连续醒的时间  bool process() { timeSeg firstTime = timeTable."/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Program-week14-homework",
+  "name": "Program-week14-homework",
+  "description": "week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略\n解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)\n对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这 …",
+  "keywords": [
+    "Program", "homework"
+  ],
+  "articleBody": "week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略\n解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)\n对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)\n特殊情况:\n这个一开始没想到\n就是一天全部都要醒着,导致根本没有睡觉时间,应该输出个No,但是第一次的代码输出了Yes,然后没输出时间.\ncode #include #include #include #include #include using namespace std; //使用环 struct timeSeg { int s;//存分钟数  int e; bool operator  (timeSeg\u0026 op) const //优先队列  {return sop.s;} bool operator (const timeSeg\u0026 op) const {return sop.s;} timeSeg() {s=0;e=0;} timeSeg(int a,int b):s(a),e(b) {} }; priority_queuetimeSeg,vectortimeSeg,greatertimeSeg  timeTable;//这个存必须醒着的时间,按顺序排 vectortimeSeg sp;//存输出结果,睡觉的时间 int A,B,N;//初始需要的三个参数 int weekTime;//连续醒的时间  bool process() { timeSeg firstTime = timeTable.top();//循环的情况  weekTime = 0; while(!timeTable.empty()) { timeSeg nextTime;//两个醒时间段之间  timeSeg curTime = timeTable.top(); timeTable.pop(); if(!timeTable.empty()) nextTime=timeTable.top(); else { nextTime.s =firstTime.s+24*60;//两天的交接处  nextTime.e = firstTime.e+24*60; } weekTime+=curTime.e-curTime.s+1;//醒着的时间  if(weekTimeB*60)//超过了限制  return false; if(nextTime.s-curTime.e-1=A*60)//看看两个之间的空隙能不能睡觉  { weekTime = 0; sp.push_back(timeSeg(curTime.e+1,nextTime.s-1));//睡觉时间  } else weekTime+=nextTime.s-curTime.e-1;//不能睡,继续醒着  if(weekTimeB*60)//超过限制  return false; } if(sp.size()==0)//这个是针对一天都要醒着,(两天连续必然不行)  return false; return true; } void output() { printf(\"Yes\\n\");//输出结果  printf(\"%d\\n\",sp.size()); for(vectortimeSeg::iterator it=sp.begin();it!=sp.end();it++) { int s=(*it).s%(24*60); int e=(*it).e%(24*60); int a=s/60,b=s%60,c=e/60,d=e%60;//时间转换  printf(\"%02d:%02d-%02d:%02d\\n\",a,b,c,d); } } int main() { while(scanf(\"%d%d%d\",\u0026A,\u0026B,\u0026N)!=EOF) { weekTime=0; sp.clear(); while (!timeTable.empty()) timeTable.pop(); for(int i=0;iN;i++) { int a,b,c,d; scanf(\"%d:%d-%d:%d\",\u0026a,\u0026b,\u0026c,\u0026d); if(ac) c+=24; else if(a==c\u0026\u0026bd) c+=24; timeTable.push(timeSeg(a*60+b,c*60+d)); } if(N==0) { printf(\"Yes\\n1\\n00:00-23:59\\n\");//针对没有输入的情况  continue; } if(process()) output(); else printf(\"No\\n\"); } return 0; } 总结 这道题难点主要在于两天之间的交接,使用模的方法比较容易解决,但是有一个比较难想的特殊情况是每天都不能睡觉,这个会导致连续的情况,进而无法满足条件.\nweek14-homework A - Q老师与石头剪刀布（必做） 题面 还是剪刀石头布游戏,但是规则有些变化,因为要求求出一个制胜策略\n解法 首先这个道题每次比赛只有两种情况,赢或者不赢(包括输和平局),因此采取最简单的贪心策略,每次对方出一个招式,首先采取能赢它的方法,如果不能赢,通过标记位标记,最后输出时把标记输出为没有使用的招式\ncode #include #include #include #include #include using namespace std; //将三个字母转换为数字 int t; int n; int Q[3]; char data[200];//输出的数据 int c2i[200];//char to int char i2c[3];//int to char  void output() { for(int i=0;in;i++) { int data_temp = c2i[data[i]]; if(Q[(data_temp+1)%3]0)//+1就是能赢他的招式  { data[i] = i2c[(data_temp+1)%3]; Q[(data_temp+1)%3]--; } else data[i] = 'Z';//标志位  } int lose = 0; for(int i=0;i3;i++) lose+=Q[i];//计算总共输的次数  if((n-lose)*2=n)//赢得次数符合规定  { printf(\"YES\\n\"); for(int i=0;in;i++) if(data[i]=='Z')//标志位  { for(int j=0;j3;j++) if(Q[j]0)//输出第一个没有被用完的  { printf(\"%c\",i2c[j]); Q[j]--; break; } } else printf(\"%c\",data[i]); } else printf(\"NO\"); printf(\"\\n\"); } int main() { c2i['R']=0,c2i['P']=1,c2i['S']=2;//字符转换  i2c[0]='R',i2c[1]='P',i2c[2]='S'; scanf(\"%d\",\u0026t); for(int i=0;it;i++) { scanf(\"%d\",\u0026n); for(int i=0;i3;i++) scanf(\"%d\",Q+i); getchar(); for(int i=0;in;i++) scanf(\"%c\",data+i); output(); } } 总结 这道题升级了一下，需要输出每次操作，一开始设计的有点问题，把胜负判断和出拳策略分开了，导致出拳策略会出现问题（主要还是输和平局在这里一样，我那个方法下会使得输和平局的出拳是随机的，然后不对）。\nB - Q老师与十字叉（必做） 题面 这是一道画图的题,规则就是横竖方向上各画一条线,求一下最少需要画几个块\n解法 这道题一开始复杂度看错了,直接傻了,空间爆炸\n这里对总的数据量进行了控制,因此开数组还是能存下的,使用vector就没有空间的烦恼了\n策略还是贪心,找出一行和一列中最大黑色块的哪一行或者列(可能多个),然后遍历所有情况,减去重叠块后算出需要的最少块\ncode #include #include #include #include using namespace std; int col[50005];//一列中黑色块的个数 vectorchar board[50005];//棋盘 vectorint col_index;//最多黑色块的列号 vectorint row_index;//最多黑色块的行号  int main() { int q; scanf(\"%d\",\u0026q); for(int i=0;iq;i++) { col_index.clear(); row_index.clear(); int m,n; scanf(\"%d%d\",\u0026n,\u0026m); getchar(); for(int t=0;tm;t++) col[t] = 0; for(int t=0;tn;t++) board[t].clear(); int row_max=0,col_max=0;//最多黑色块数  for(int q=0;qn;q++)//一行一行遍历  { int black=0;//这一行中黑色块的个数  for(int p=0;pm;p++) { char temp; scanf(\"%c\",\u0026temp); board[q].push_back(temp); if(board[q][p] == '*') { black++; col[p]++; } } getchar(); if(black==row_max)//记录  row_index.push_back(q); if(blackrow_max) { row_max = black; row_index.clear();//发生改变后之前的就无效了  row_index.push_back(q); } } for(int t=0;tm;t++)//一列中最多的黑色块数  if(col[t] == col_max) col_index.push_back(t); else if(col[t]col_max) { col_index.clear(); col_max=col[t]; col_index.push_back(t); } int min_time = 10000000; for(auto p:col_index) for(auto q:row_index) { int cur=0; if(board[q][p]=='.')//判断重合点  cur = (n-col_max)+(m-row_max)-1; else cur = (n-col_max)+(m-row_max); if(min_timecur) min_time=cur; } printf(\"%d\\n\",min_time); } } C - Q老师的考验（必做） 题面 线性递推式+快速幂\n解法 矩阵快速幂+线性递推式\ncode\n#include #include #include #include using namespace std; struct matrix //矩阵 { int x[20][20]; int n;//维数  int mod;//模  matrix operator *(const matrix\u0026 t) const//乘法  { matrix ret(n,mod); for(int i=0;in;i++) for(int j=0;jn;j++) { ret.x[i][j] = 0; for(int k=0;kn;k++) ret.x[i][j]=(ret.x[i][j]+(1ll*x[i][k]*t.x[k][j])%mod)%mod;//保证取模  ret.x[i][j] = ret.x[i][j]%mod; } return ret; } matrix(int n,int mod):n(n),mod(mod) {memset(x,0,sizeof(x));} matrix(const matrix\u0026 t){memcpy(x,t.x,sizeof(x));n=t.n;mod=t.mod;} }; matrix pow(matrix\u0026 t,int time)//快速幂 { matrix ans(t.n,t.mod); for(int i=0;ians.n;i++) ans.x[i][i] = 1; while(time) { if(time\u00261) ans = ans*t; t=t*t; time = time1; } return ans; } int main() { int k,m; int a[10]; while(scanf(\"%d%d\",\u0026k,\u0026m)!=EOF) { for(int i=0;i10;i++) scanf(\"%d\",a+i); matrix temp(10,m); for(int i=0;i10;i++)//初始化矩阵  temp.x[0][i] = a[i]; for(int i=1;i10;i++) temp.x[i][i-1]=1; if(k10)//可以直接输出  { printf(\"%d\\n\",k); continue; } matrix t = pow(temp,k-9);//使用线性递推  int ans =0 ; for(int i=0;i10;i++) ans = (ans + t.x[0][i]*(9-i))%m;//运算最后的结果  printf(\"%d\\n\",ans); } } 总结 这类题得先看复杂度,根据复杂度可以判断使用什么算法,快速幂的复杂度在log级别速度很快.\n",
+  "wordCount" : "530",
+  "inLanguage": "en",
+  "datePublished": "2020-05-26T23:46:32Z",
+  "dateModified": "2020-05-26T23:46:32Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/program-week14-homework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Program-week14-homework
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">May 26, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="week14-模拟">week14-模拟<a hidden class="anchor" aria-hidden="true" href="#week14-模拟">#</a></h1>
+<h2 id="a---猫睡觉问题httpsvjudgenetproblemhdu-3700"><a href="https://vjudge.net/problem/HDU-3700">A - 猫睡觉问题</a><a hidden class="anchor" aria-hidden="true" href="#a---猫睡觉问题httpsvjudgenetproblemhdu-3700">#</a></h2>
+<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/31/XiVyC3oUI7PmM52.png" alt="image-20200531222815356.png"></p>
+<p>一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略</p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<p>这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)</p>
+<p>对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)</p>
+<p><strong>特殊情况:</strong></p>
+<p>这个一开始没想到</p>
+<p>就是一天全部都要醒着,导致根本没有睡觉时间,应该输出个No,但是第一次的代码输出了Yes,然后没输出时间.</p>
+<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#75715e">//使用环
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">timeSeg</span>
+{
+    <span style="color:#66d9ef">int</span> s;<span style="color:#75715e">//存分钟数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> e;
+    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (timeSeg<span style="color:#f92672">&amp;</span> op) <span style="color:#66d9ef">const</span> <span style="color:#75715e">//优先队列
+</span><span style="color:#75715e"></span>    {<span style="color:#66d9ef">return</span> s<span style="color:#f92672">&lt;</span>op.s;}
+    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">const</span> timeSeg<span style="color:#f92672">&amp;</span> op) <span style="color:#66d9ef">const</span>
+    {<span style="color:#66d9ef">return</span> s<span style="color:#f92672">&gt;</span>op.s;}
+    timeSeg()
+    {s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;e<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;}
+    timeSeg(<span style="color:#66d9ef">int</span> a,<span style="color:#66d9ef">int</span> b)<span style="color:#f92672">:</span>s(a),e(b)
+    {}
+};
+
+priority_queue<span style="color:#f92672">&lt;</span>timeSeg,vector<span style="color:#f92672">&lt;</span>timeSeg<span style="color:#f92672">&gt;</span>,greater<span style="color:#f92672">&lt;</span>timeSeg<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> timeTable;<span style="color:#75715e">//这个存必须醒着的时间,按顺序排
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span>timeSeg<span style="color:#f92672">&gt;</span> sp;<span style="color:#75715e">//存输出结果,睡觉的时间
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> A,B,N;<span style="color:#75715e">//初始需要的三个参数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> weekTime;<span style="color:#75715e">//连续醒的时间
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">process</span>()
+{
+    timeSeg firstTime <span style="color:#f92672">=</span> timeTable.top();<span style="color:#75715e">//循环的情况
+</span><span style="color:#75715e"></span>    weekTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>timeTable.empty())
+    {
+        timeSeg nextTime;<span style="color:#75715e">//两个醒时间段之间
+</span><span style="color:#75715e"></span>        timeSeg curTime <span style="color:#f92672">=</span> timeTable.top();
+        timeTable.pop();
+        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>timeTable.empty())
+            nextTime<span style="color:#f92672">=</span>timeTable.top();
+        <span style="color:#66d9ef">else</span> 
+        {
+            nextTime.s <span style="color:#f92672">=</span>firstTime.s<span style="color:#f92672">+</span><span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>;<span style="color:#75715e">//两天的交接处
+</span><span style="color:#75715e"></span>            nextTime.e <span style="color:#f92672">=</span> firstTime.e<span style="color:#f92672">+</span><span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>;
+        }
+        weekTime<span style="color:#f92672">+=</span>curTime.e<span style="color:#f92672">-</span>curTime.s<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//醒着的时间
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(weekTime<span style="color:#f92672">&gt;</span>B<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>)<span style="color:#75715e">//超过了限制
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> false;
+        <span style="color:#66d9ef">if</span>(nextTime.s<span style="color:#f92672">-</span>curTime.e<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;=</span>A<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>)<span style="color:#75715e">//看看两个之间的空隙能不能睡觉
+</span><span style="color:#75715e"></span>        {
+            weekTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            sp.push_back(timeSeg(curTime.e<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,nextTime.s<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));<span style="color:#75715e">//睡觉时间
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#66d9ef">else</span>
+            weekTime<span style="color:#f92672">+=</span>nextTime.s<span style="color:#f92672">-</span>curTime.e<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//不能睡,继续醒着
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(weekTime<span style="color:#f92672">&gt;</span>B<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>)<span style="color:#75715e">//超过限制
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> false;
+    }
+    <span style="color:#66d9ef">if</span>(sp.size()<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//这个是针对一天都要醒着,(两天连续必然不行)
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">return</span> true;
+} 
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">output</span>()
+{
+    printf(<span style="color:#e6db74">&#34;Yes</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);<span style="color:#75715e">//输出结果
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,sp.size());
+    <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span>timeSeg<span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>sp.begin();it<span style="color:#f92672">!=</span>sp.end();it<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">int</span> s<span style="color:#f92672">=</span>(<span style="color:#f92672">*</span>it).s<span style="color:#f92672">%</span>(<span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>);
+        <span style="color:#66d9ef">int</span> e<span style="color:#f92672">=</span>(<span style="color:#f92672">*</span>it).e<span style="color:#f92672">%</span>(<span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>);
+        <span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span>s<span style="color:#f92672">/</span><span style="color:#ae81ff">60</span>,b<span style="color:#f92672">=</span>s<span style="color:#f92672">%</span><span style="color:#ae81ff">60</span>,c<span style="color:#f92672">=</span>e<span style="color:#f92672">/</span><span style="color:#ae81ff">60</span>,d<span style="color:#f92672">=</span>e<span style="color:#f92672">%</span><span style="color:#ae81ff">60</span>;<span style="color:#75715e">//时间转换
+</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74">&#34;%02d:%02d-%02d:%02d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,a,b,c,d);
+    }
+}
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>A,<span style="color:#f92672">&amp;</span>B,<span style="color:#f92672">&amp;</span>N)<span style="color:#f92672">!=</span>EOF)
+    {
+        weekTime<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        sp.clear();
+        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>timeTable.empty())
+            timeTable.pop();
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>N;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> a,b,c,d;
+            scanf(<span style="color:#e6db74">&#34;%d:%d-%d:%d&#34;</span>,<span style="color:#f92672">&amp;</span>a,<span style="color:#f92672">&amp;</span>b,<span style="color:#f92672">&amp;</span>c,<span style="color:#f92672">&amp;</span>d);
+            <span style="color:#66d9ef">if</span>(a<span style="color:#f92672">&gt;</span>c)
+                c<span style="color:#f92672">+=</span><span style="color:#ae81ff">24</span>;
+            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(a<span style="color:#f92672">==</span>c<span style="color:#f92672">&amp;&amp;</span>b<span style="color:#f92672">&gt;</span>d)
+                c<span style="color:#f92672">+=</span><span style="color:#ae81ff">24</span>;
+            timeTable.push(timeSeg(a<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>b,c<span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">+</span>d));
+        }
+        <span style="color:#66d9ef">if</span>(N<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+        {
+            printf(<span style="color:#e6db74">&#34;Yes</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">00:00-23:59</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);<span style="color:#75715e">//针对没有输入的情况
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">continue</span>;
+        }
+        <span style="color:#66d9ef">if</span>(process())
+            output();
+        <span style="color:#66d9ef">else</span> 
+            printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>这道题难点主要在于两天之间的交接,使用模的方法比较容易解决,但是有一个比较难想的特殊情况是每天都不能睡觉,这个会导致连续的情况,进而无法满足条件.</p>
+<h1 id="week14-homework">week14-homework<a hidden class="anchor" aria-hidden="true" href="#week14-homework">#</a></h1>
+<h2 id="a---q老师与石头剪刀布必做httpsvjudgenetproblemcodeforces-1245b"><a href="https://vjudge.net/problem/CodeForces-1245B">A - Q老师与石头剪刀布（必做）</a><a hidden class="anchor" aria-hidden="true" href="#a---q老师与石头剪刀布必做httpsvjudgenetproblemcodeforces-1245b">#</a></h2>
+<h3 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/01/wFbrVy1cNMYKosQ.png" alt="image-20200601152945277"></p>
+<p>还是剪刀石头布游戏,但是规则有些变化,因为要求求出一个制胜策略</p>
+<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<p>首先这个道题每次比赛只有两种情况,赢或者不赢(包括输和平局),因此采取最简单的贪心策略,每次对方出一个招式,首先采取能赢它的方法,如果不能赢,通过标记位标记,最后输出时把标记输出为没有使用的招式</p>
+<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#75715e">//将三个字母转换为数字
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> t;
+<span style="color:#66d9ef">int</span> n;
+<span style="color:#66d9ef">int</span> Q[<span style="color:#ae81ff">3</span>];
+
+<span style="color:#66d9ef">char</span> data[<span style="color:#ae81ff">200</span>];<span style="color:#75715e">//输出的数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> c2i[<span style="color:#ae81ff">200</span>];<span style="color:#75715e">//char to int
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> i2c[<span style="color:#ae81ff">3</span>];<span style="color:#75715e">//int to char
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">output</span>()
+{
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">int</span> data_temp <span style="color:#f92672">=</span> c2i[data[i]];
+        <span style="color:#66d9ef">if</span>(Q[(data_temp<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//+1就是能赢他的招式
+</span><span style="color:#75715e"></span>        {
+            data[i] <span style="color:#f92672">=</span> i2c[(data_temp<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>];
+            Q[(data_temp<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>]<span style="color:#f92672">--</span>;
+        }
+        <span style="color:#66d9ef">else</span>
+            data[i] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Z&#39;</span>;<span style="color:#75715e">//标志位
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#66d9ef">int</span> lose <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;i<span style="color:#f92672">++</span>)
+        lose<span style="color:#f92672">+=</span>Q[i];<span style="color:#75715e">//计算总共输的次数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>((n<span style="color:#f92672">-</span>lose)<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;=</span>n)<span style="color:#75715e">//赢得次数符合规定
+</span><span style="color:#75715e"></span>    {
+        printf(<span style="color:#e6db74">&#34;YES</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">if</span>(data[i]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;Z&#39;</span>)<span style="color:#75715e">//标志位
+</span><span style="color:#75715e"></span>            {
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;j<span style="color:#f92672">++</span>)
+                    <span style="color:#66d9ef">if</span>(Q[j]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//输出第一个没有被用完的
+</span><span style="color:#75715e"></span>                    {
+                        printf(<span style="color:#e6db74">&#34;%c&#34;</span>,i2c[j]);
+                        Q[j]<span style="color:#f92672">--</span>;
+                        <span style="color:#66d9ef">break</span>;
+                    }
+            }
+            <span style="color:#66d9ef">else</span>
+                printf(<span style="color:#e6db74">&#34;%c&#34;</span>,data[i]);
+    }
+    <span style="color:#66d9ef">else</span>
+        printf(<span style="color:#e6db74">&#34;NO&#34;</span>);
+    printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    c2i[<span style="color:#e6db74">&#39;R&#39;</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,c2i[<span style="color:#e6db74">&#39;P&#39;</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,c2i[<span style="color:#e6db74">&#39;S&#39;</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;<span style="color:#75715e">//字符转换
+</span><span style="color:#75715e"></span>    i2c[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;R&#39;</span>,i2c[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;P&#39;</span>,i2c[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;S&#39;</span>;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>t);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>t;i<span style="color:#f92672">++</span>)
+    {
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,Q<span style="color:#f92672">+</span>i);
+        getchar();
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%c&#34;</span>,data<span style="color:#f92672">+</span>i);
+        output();
+    }
+}
+</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<p>这道题升级了一下，需要输出每次操作，一开始设计的有点问题，把胜负判断和出拳策略分开了，导致出拳策略会出现问题（主要还是输和平局在这里一样，我那个方法下会使得输和平局的出拳是随机的，然后不对）。</p>
+<h2 id="b---q老师与十字叉必做httpsvjudgenetproblemcodeforces-1194b"><a href="https://vjudge.net/problem/CodeForces-1194B">B - Q老师与十字叉（必做）</a><a hidden class="anchor" aria-hidden="true" href="#b---q老师与十字叉必做httpsvjudgenetproblemcodeforces-1194b">#</a></h2>
+<h3 id="题面-2">题面<a hidden class="anchor" aria-hidden="true" href="#题面-2">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/01/3ermkKLcuaC1EGd.png" alt="image-20200601153925213"></p>
+<p>这是一道画图的题,规则就是横竖方向上各画一条线,求一下最少需要画几个块</p>
+<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<p>这道题一开始复杂度看错了,直接傻了,空间爆炸</p>
+<p><img src="https://i.loli.net/2020/06/01/CEJ86NnLeksMbPI.png" alt="image-20200601154143569"></p>
+<p>这里对总的数据量进行了控制,因此开数组还是能存下的,使用vector就没有空间的烦恼了</p>
+<p>策略还是贪心,找出一行和一列中最大黑色块的哪一行或者列(可能多个),然后遍历所有情况,减去重叠块后算出需要的最少块</p>
+<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> col[<span style="color:#ae81ff">50005</span>];<span style="color:#75715e">//一列中黑色块的个数
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> board[<span style="color:#ae81ff">50005</span>];<span style="color:#75715e">//棋盘
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> col_index;<span style="color:#75715e">//最多黑色块的列号
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> row_index;<span style="color:#75715e">//最多黑色块的行号
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> q;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>q);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>q;i<span style="color:#f92672">++</span>)
+    {
+        col_index.clear();
+        row_index.clear();
+        <span style="color:#66d9ef">int</span> m,n;
+        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>m);
+        getchar();
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>m;t<span style="color:#f92672">++</span>)
+            col[t] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>n;t<span style="color:#f92672">++</span>)
+            board[t].clear();
+        <span style="color:#66d9ef">int</span> row_max<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,col_max<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//最多黑色块数
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> q<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;q<span style="color:#f92672">&lt;</span>n;q<span style="color:#f92672">++</span>)<span style="color:#75715e">//一行一行遍历
+</span><span style="color:#75715e"></span>        {   
+            <span style="color:#66d9ef">int</span> black<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//这一行中黑色块的个数
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> p<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;p<span style="color:#f92672">&lt;</span>m;p<span style="color:#f92672">++</span>)
+            {
+                <span style="color:#66d9ef">char</span> temp;
+                scanf(<span style="color:#e6db74">&#34;%c&#34;</span>,<span style="color:#f92672">&amp;</span>temp);
+                board[q].push_back(temp);
+                <span style="color:#66d9ef">if</span>(board[q][p] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;*&#39;</span>)
+                {
+                    black<span style="color:#f92672">++</span>;
+                    col[p]<span style="color:#f92672">++</span>;
+                }
+            }
+            getchar();
+            <span style="color:#66d9ef">if</span>(black<span style="color:#f92672">==</span>row_max)<span style="color:#75715e">//记录
+</span><span style="color:#75715e"></span>                row_index.push_back(q);
+            <span style="color:#66d9ef">if</span>(black<span style="color:#f92672">&gt;</span>row_max)
+            {
+                row_max <span style="color:#f92672">=</span> black;
+                row_index.clear();<span style="color:#75715e">//发生改变后之前的就无效了
+</span><span style="color:#75715e"></span>                row_index.push_back(q);
+            }
+        }
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>m;t<span style="color:#f92672">++</span>)<span style="color:#75715e">//一列中最多的黑色块数
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(col[t] <span style="color:#f92672">==</span> col_max)
+                col_index.push_back(t);
+            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(col[t]<span style="color:#f92672">&gt;</span>col_max)
+            {
+                col_index.clear();
+                col_max<span style="color:#f92672">=</span>col[t];
+                col_index.push_back(t);
+            }
+        <span style="color:#66d9ef">int</span> min_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> p:col_index)
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> q:row_index)
+            {
+                <span style="color:#66d9ef">int</span> cur<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">if</span>(board[q][p]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;.&#39;</span>)<span style="color:#75715e">//判断重合点
+</span><span style="color:#75715e"></span>                    cur <span style="color:#f92672">=</span> (n<span style="color:#f92672">-</span>col_max)<span style="color:#f92672">+</span>(m<span style="color:#f92672">-</span>row_max)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">else</span> 
+                    cur <span style="color:#f92672">=</span> (n<span style="color:#f92672">-</span>col_max)<span style="color:#f92672">+</span>(m<span style="color:#f92672">-</span>row_max);
+                <span style="color:#66d9ef">if</span>(min_time<span style="color:#f92672">&gt;</span>cur)
+                    min_time<span style="color:#f92672">=</span>cur;
+            }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,min_time);
+    }
+}
+</code></pre></div><h2 id="c---q老师的考验必做httpsvjudgenetproblemhdu-1757"><a href="https://vjudge.net/problem/HDU-1757">C - Q老师的考验（必做）</a><a hidden class="anchor" aria-hidden="true" href="#c---q老师的考验必做httpsvjudgenetproblemhdu-1757">#</a></h2>
+<h3 id="题面-3">题面<a hidden class="anchor" aria-hidden="true" href="#题面-3">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/01/VEmSfMcvUQLR5e1.png" alt="image-20200601155642813"></p>
+<p>线性递推式+快速幂</p>
+<p><img src="https://i.loli.net/2020/06/02/U6n4RAqtYMWc5XP.png" alt="8320BA217D9BBA25A60EF121D05EC4A2"></p>
+<h3 id="解法-3">解法<a hidden class="anchor" aria-hidden="true" href="#解法-3">#</a></h3>
+<p>矩阵快速幂+线性递推式</p>
+<p>code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">struct</span>  <span style="color:#a6e22e">matrix</span>  <span style="color:#75715e">//矩阵
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">int</span> x[<span style="color:#ae81ff">20</span>][<span style="color:#ae81ff">20</span>];
+    <span style="color:#66d9ef">int</span> n;<span style="color:#75715e">//维数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> mod;<span style="color:#75715e">//模
+</span><span style="color:#75715e"></span>    matrix <span style="color:#66d9ef">operator</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">const</span> matrix<span style="color:#f92672">&amp;</span> t) <span style="color:#66d9ef">const</span><span style="color:#75715e">//乘法
+</span><span style="color:#75715e"></span>    {
+        matrix <span style="color:#a6e22e">ret</span>(n,mod);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>n;j<span style="color:#f92672">++</span>)
+            {
+                ret.x[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;k<span style="color:#f92672">&lt;</span>n;k<span style="color:#f92672">++</span>)
+                    ret.x[i][j]<span style="color:#f92672">=</span>(ret.x[i][j]<span style="color:#f92672">+</span>(<span style="color:#ae81ff">1ll</span><span style="color:#f92672">*</span>x[i][k]<span style="color:#f92672">*</span>t.x[k][j])<span style="color:#f92672">%</span>mod)<span style="color:#f92672">%</span>mod;<span style="color:#75715e">//保证取模
+</span><span style="color:#75715e"></span>                ret.x[i][j] <span style="color:#f92672">=</span> ret.x[i][j]<span style="color:#f92672">%</span>mod;
+            }
+        <span style="color:#66d9ef">return</span> ret;
+    }
+    matrix(<span style="color:#66d9ef">int</span> n,<span style="color:#66d9ef">int</span> mod)<span style="color:#f92672">:</span>n(n),mod(mod)
+    {memset(x,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(x));}
+    matrix(<span style="color:#66d9ef">const</span> matrix<span style="color:#f92672">&amp;</span> t){memcpy(x,t.x,<span style="color:#66d9ef">sizeof</span>(x));n<span style="color:#f92672">=</span>t.n;mod<span style="color:#f92672">=</span>t.mod;}
+};
+
+matrix <span style="color:#a6e22e">pow</span>(matrix<span style="color:#f92672">&amp;</span> t,<span style="color:#66d9ef">int</span> time)<span style="color:#75715e">//快速幂
+</span><span style="color:#75715e"></span>{
+    matrix ans(t.n,t.mod);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>ans.n;i<span style="color:#f92672">++</span>)
+        ans.x[i][i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span>(time)
+    {
+        <span style="color:#66d9ef">if</span>(time<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>)
+            ans <span style="color:#f92672">=</span> ans<span style="color:#f92672">*</span>t;
+        t<span style="color:#f92672">=</span>t<span style="color:#f92672">*</span>t;
+        time <span style="color:#f92672">=</span> time<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> ans;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> k,m;
+    <span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">10</span>];
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>k,<span style="color:#f92672">&amp;</span>m)<span style="color:#f92672">!=</span>EOF)
+    {
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,a<span style="color:#f92672">+</span>i);
+        matrix temp(<span style="color:#ae81ff">10</span>,m);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//初始化矩阵
+</span><span style="color:#75715e"></span>            temp.x[<span style="color:#ae81ff">0</span>][i] <span style="color:#f92672">=</span> a[i];
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)
+            temp.x[i][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span>(k<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>)<span style="color:#75715e">//可以直接输出
+</span><span style="color:#75715e"></span>        {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,k);
+            <span style="color:#66d9ef">continue</span>;
+        }
+        matrix t <span style="color:#f92672">=</span> pow(temp,k<span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>);<span style="color:#75715e">//使用线性递推
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)
+            ans <span style="color:#f92672">=</span> (ans <span style="color:#f92672">+</span> t.x[<span style="color:#ae81ff">0</span>][i]<span style="color:#f92672">*</span>(<span style="color:#ae81ff">9</span><span style="color:#f92672">-</span>i))<span style="color:#f92672">%</span>m;<span style="color:#75715e">//运算最后的结果
+</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans);
+    }
+}
+</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+<p>这类题得先看复杂度,根据复杂度可以判断使用什么算法,快速幂的复杂度在log级别速度很快.</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/homework/">homework</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

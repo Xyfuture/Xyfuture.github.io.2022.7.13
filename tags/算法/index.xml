@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on My New Hugo Site</title>
+    <link>http://example.org/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Mar 2020 16:22:02 +0000</lastBuildDate><atom:link href="http://example.org/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>算法小结</title>
+      <link>http://example.org/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Mon, 09 Mar 2020 16:22:02 +0000</pubDate>
+      
+      <guid>http://example.org/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</guid>
+      <description>dijkstra 迪杰斯特拉算法是用于计算单点最短路,并且要求图是无负边权的.
+算法思路 从一个点开始,记录一个到其他所有点的数组,从这个数组中取出最近的一个点,更新那个数组,然后重复那个数组,每次取最短的点然后更新,直到所有点都被遍历.
+复杂度 节点数 v 边数 e
+邻接表
+$O(v^2)$ ($O(v^2+e)$)
+因为一共更新了n个点,每个点取的时候首先找最短的点(n的复杂度),同时取完了会找一遍所有的边
+邻接矩阵
+$O(v^2)$
+Prime Kruskal SPFA Floyd BFS BFS啥都能干&amp;hellip;
+算法思路 首先有一个vis数组,这个数组用来记录走过的点,然后开一个队列用来记录访问的元素.好了现在开始BFS,先将原点的vis标记,将这个点加入到队列,从队列中取出这个点,对这个点操作,然后访问这个点所有的邻接点,将没有被标记的点标记加入到队列中,重复队列的循环,直到队列空.
+复杂度 顶点数 v 边数 e
+邻接表
+$O(v+e)$
+每个点都被访问一次,访问时候v^2走一个函数,所有点就算v,然后有一个加入队列的for循环,这个循环总的合起来就是e,因此时v+e
+邻接矩阵
+$O(v^2)$
+两个for 都是v
+Question
+邻接表和邻接矩阵的复杂度看着似乎有点问题,不是一个量级,但是你要注意到e最大是v^2,所以还是一个量级的
+DFS 算法思想 DFS是递归的方法,首先标记自己,然后搜索所有没有被标记的点,对他们进行DFS,不能继续搜索就返回到上一级,直到所有都返回
+复杂度 和BFS相同
+邻接表
+$O(v+e)$
+注意点 DFS和BFS都需要注意剪枝的问题,不符合条件的情况一定不要继续访问,主要就是vis数组要标记好
+参考CSP卖菜问题</description>
+    </item>
+    
+    <item>
+      <title>Program-BFS</title>
+      <link>http://example.org/posts/program-week1-homework/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/program-week1-homework/</guid>
+      <description>程序设计思维 BFS 高维BFS csp2016 4 迷宫
+题目 问题描述 　小明在玩一个电脑游戏，游戏在一个n×m的方格图上进行，小明控制的角色开始的时候站在第一行第一列，目标是前往第n行第m列。 方格图上有一些方格是始终安全的，有一些在一段时间是危险的，如果小明控制的角色到达一个方格的时候方格是危险的，则小明输掉了游戏，如果小明的角色到达了第n行第m列，则小明过关。第一行第一列和第n行第m列永远都是安全的。 每个单位时间，小明的角色必须向上下左右四个方向相邻的方格中的一个移动一格。 经过很多次尝试，小明掌握了方格图的安全和危险的规律：每一个方格出现危险的时间一定是连续的。并且，小明还掌握了每个方格在哪段时间是危险的。 现在，小明想知道，自己最快经过几个时间单位可以达到第n行第m列过关。
+输入格式 　输入的第一行包含三个整数n, m, t，用一个空格分隔，表示方格图的行数n、列数m，以及方格图中有危险的方格数量。 接下来t行，每行4个整数r, c, a, b，表示第r行第c列的方格在第a个时刻到第b个时刻之间是危险的，包括a和b。游戏开始时的时刻为0。输入数据保证r和c不同时为1，而且当r为n时c不为m。一个方格只有一段时间是危险的（或者说不会出现两行拥有相同的r和c）。
+输出格式 　输出一个整数，表示小明最快经过几个时间单位可以过关。输入数据保证小明一定可以过关。
+样例输入 3 3 3 2 1 1 1 1 3 2 10 2 2 2 10
+样例输出 6
+样例说明 　第2行第1列时刻1是危险的，因此第一步必须走到第1行第2列。 第二步可以走到第1行第1列，第三步走到第2行第1列，后面经过第3行第1列、第3行第2列到达第3行第3列。
+评测用例规模与约定 前30%的评测用例满足：0 &amp;lt; n, m ≤ 10，0 ≤ t &amp;lt; 99。 所有评测用例满足：0 &amp;lt; n, m ≤ 100，0 ≤ t &amp;lt; 9999，1 ≤ r ≤ n，1 ≤ c ≤ m，0 ≤ a ≤ b ≤ 100。</description>
+    </item>
+    
+  </channel>
+</rss>

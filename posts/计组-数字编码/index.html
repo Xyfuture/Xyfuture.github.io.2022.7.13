@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>计组-数字编码 | My New Hugo Site</title>
+
+<meta name="keywords" content="进制转换, 补码原码" />
+<meta name="description" content="计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次
+以下讨论的都是有符号数，无符号的数较为简单，不写了
+ 概念 真值 原码 补码 反码 移码 （机器数）
+定点数(定点整数 定点小数) 浮点数
+算数移位 逻辑移位
+定点数 定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。
+真值 真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（&#43; -）,是我们人看到的最为直观的数据，不是给机器看的。
+定点整数： &#43;123 ，-321
+定点小数：&#43;0.123，-0.321
+正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数
+原码 原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。
+原码组成： 符号部分&#43;数值部分
+这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作
+正数： 0&#43;真值
+负数： 1&#43;真值
+原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用
+原码存在&#43;0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0
+   真值 原码     &#43;1001 01001   - 1100 11100   &#43;0.1101 0.1101   -0.1011 1.1011    补码 补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="计组-数字编码" />
+<meta property="og:description" content="计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次
+以下讨论的都是有符号数，无符号的数较为简单，不写了
+ 概念 真值 原码 补码 反码 移码 （机器数）
+定点数(定点整数 定点小数) 浮点数
+算数移位 逻辑移位
+定点数 定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。
+真值 真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（&#43; -）,是我们人看到的最为直观的数据，不是给机器看的。
+定点整数： &#43;123 ，-321
+定点小数：&#43;0.123，-0.321
+正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数
+原码 原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。
+原码组成： 符号部分&#43;数值部分
+这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作
+正数： 0&#43;真值
+负数： 1&#43;真值
+原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用
+原码存在&#43;0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0
+   真值 原码     &#43;1001 01001   - 1100 11100   &#43;0.1101 0.1101   -0.1011 1.1011    补码 补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计组-数字编码"/>
+<meta name="twitter:description" content="计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次
+以下讨论的都是有符号数，无符号的数较为简单，不写了
+ 概念 真值 原码 补码 反码 移码 （机器数）
+定点数(定点整数 定点小数) 浮点数
+算数移位 逻辑移位
+定点数 定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。
+真值 真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（&#43; -）,是我们人看到的最为直观的数据，不是给机器看的。
+定点整数： &#43;123 ，-321
+定点小数：&#43;0.123，-0.321
+正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数
+原码 原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。
+原码组成： 符号部分&#43;数值部分
+这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作
+正数： 0&#43;真值
+负数： 1&#43;真值
+原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用
+原码存在&#43;0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0
+   真值 原码     &#43;1001 01001   - 1100 11100   &#43;0.1101 0.1101   -0.1011 1.1011    补码 补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "计组-数字编码",
+  "name": "计组-数字编码",
+  "description": "计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次\n以下讨论的都是有符号数，无符号的数较为简单，不写了\n 概念 真值 原码 补码 反码 移码 （机器数）\n定点数(定点整数 定点小数) 浮点数\n算数移位 逻辑移位\n定点数 定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么 …",
+  "keywords": [
+    "进制转换", "补码原码"
+  ],
+  "articleBody": "计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次\n以下讨论的都是有符号数，无符号的数较为简单，不写了\n 概念 真值 原码 补码 反码 移码 （机器数）\n定点数(定点整数 定点小数) 浮点数\n算数移位 逻辑移位\n定点数 定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。\n真值 真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（+ -）,是我们人看到的最为直观的数据，不是给机器看的。\n定点整数： +123 ，-321\n定点小数：+0.123，-0.321\n正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数\n原码 原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。\n原码组成： 符号部分+数值部分\n这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作\n正数： 0+真值\n负数： 1+真值\n原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用\n原码存在+0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0\n   真值 原码     +1001 01001   - 1100 11100   +0.1101 0.1101   -0.1011 1.1011    补码 补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。\n部分推导：\n首先我们要明白取模的概念（下面以10进制为例）\n我们要建立一个mod16的系统所有数都要模16，因此实际上就0-15这16个数字，其他的无论正数还是负数都可以转换为0-15(加减16即可得到)\n例如 -10 – -10+16 = 6 18–18-16 = 2\n那么正数和负数之间的加法都可以用0-15进行\n例如 -2 + 3 = 1\n首先把所有数转换为0-15，-2–14,然后让这两个数相加得到的数继续mod16得到结果，（14+3）%16 =1，就是正确结果\n这是一个简单的原理，但是还有许多问题需要解决，比如溢出，范围，正负号等等，下面转为为char的表示\nchar是8位的，表示-128-127范围之间的数据，最高位是符号位，数值部分用到了7位，能表达$2^7$个数，因此我们采取mod $2^7$的方案,因为mod$2^7$正好是$0\\sim2^7-1$这$2^7$个数，正好能用数值部分的7位表达，这样的话我们把原码的正数和负数的数值部分都转换为mod$2^7$的数。\n因为我们只表示-128-127，因此正数直接不变，负数数值部分取反加一就行了，负数的取反加一是因为1000，0000 + x(负数) = 想要的数，x(数值部分取反)+x（数值） = 0111，1111 再+1就成了 1 000，0000了。\n通过上述的步骤我们得到了数值部分，符号部分直接正数为0 负数为1就行了(这个1可以理解为经过转化(+1000,0000)的)，至此补码已经得到了。\n运算过程中直接相加就完事了，后7位(数值部分)一直是mod $2^7$，如果发生进位是最有意思的\n正+正 负+负 如果进到符号位说明溢出\n正+负 永远不会溢出，进位说明正数比较大，直接让这个数变成正数了（符号位改变），后面数值部分根据mod原理还是对的，如果没进位，说明负数大，符号位还是1，数是负的，数值部分还是mod 的值，反向mod回去是真值\n正 - 正 怎么操作？\n其实先将后面的正数转换为负数再执行上面的加法，转换过程是所有位(包括符号位)取反加一(原理自己想，相反数+自身 = 0)\n好了前面说了这么多，总结为一句话补码是为了加减操作而生的\n转换\n正数： 和原码相同\n负数： 符号位为1 ，数值部分原码的数值部分取反加一\n   真值 原码 补码     +1001 01001 01001   - 1100 11100 10100   +0.1101 0.1101 0.1101   -0.1011 1.1011 1.0101    补码没有正负0之分，只有0000，0000表示0，1000，0000表示-128，这是因为-128不mod值是0，能配上数值部分，1表示是负的，经过mod处理的，这个-128没法再原码和反码中表示的\n反码 反码平时用的比较少，转换也非常简单\n正数：同原码相同\n负数：符号位置1，数值部分取反\n范围 原码，反码，补码都用于表示数据但是表示的范围并不是一样大的，同时定点数表示小数也是离散的，因此需要记录一下他们的范围\n如何计算？\n有两种方式，第一种是最简单的按照10进制的转换规则，计算一个等比数列的和。第二种是在1111的基础上加上1然后得到1，0000然后减去1就行了\n注意补码在负数上多一个，原码和补码中没有这个值\n总结 原码，补码，反码都是机器数，我们常用原码和补码，原码更加直观，补码方便计算机的运算，他们之间也有转换关系\n正数：原码，补码，反码完全相同\n负数：\n浮点数 朴素的数学表示 浮点数是基于科学计数法的 $$ N = S*r^j $$ N是实际的数，S是尾数，r是基数，j是阶数\n大致就这样，因为阶数可以变动所以小数点是不定位置的所以叫浮点数\n朴素的浮点数表示 朴素的浮点数比较随意，前半部是阶数，后半部分是尾数，都用上面说的定点数表示这里阶码和尾数可用原码，补码表示，比较乱，我盲猜机内统一用补码表示，不过现在应该没有这样的机器了，毕竟IEEE 754真香，一个注意的点是用补码范围会大一些，我们考试啥的用原码多\n浮点数的范围 看看就行\n规范化的浮点数 规范化要求尾数最高位必须是1，比如0.1xxx，这样的话统一了阶码，然后这样的话采取原码表示尾数，会缩小一定的范围。\nIEEE754 移码 移码用的比较少，主要是对阶\n操作所有数都加上一个统一的值，然后使所有负数都变成正数\n比如加上$2^{n-1}$, $2^{n-1}$有种简便方法，就是所有补码直接把符号位取反\n标准  参考：[百度百科]([https://baike.baidu.com/item/IEEE%20754/3869922](https://baike.baidu.com/item/IEEE 754/3869922))\n 1位符号8位阶码23位尾数\n尾数要求1.xxxx，1要省略，尾数用原码表示\n阶码是移码，要加127（$2^7-1$）\n除此之外还有一堆特殊值的规定可以参考百科\nIEEE 754是现在较为通用的浮点数表示标准，用这个就行了\n算数位移 一点点数学知识 算不上数学知识就是正数的二进制转换 $$ 110010=12^5+12^4+02^3+02^2+12^1+02^0 $$ 基于这个一位就相当于乘或除2，如果移除了1，就会丢失精度\n移位操作 算数位移是针对有符号的定点数的，一般是整数，算数位移可以理解为乘2和除2的操作，结合左右位移就能实现乘法和除法了\n这张图写的很好，注意一个点 符号位不变，正数永远是正数，负数永远是负数\n本身都是补0的，但是因为负数的反码和补码的规则导致会有变化。\n左移是*2，把1挤出去会发生溢出(原码)\n右移是÷，把1挤出去会丢失精度(原码)\n逻辑移位 逻辑移位针对无符号数，直接移动补零就ok了\n",
+  "wordCount" : "189",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      计组-数字编码
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="计组-数字编码">计组 数字编码<a hidden class="anchor" aria-hidden="true" href="#计组-数字编码">#</a></h1>
+<blockquote>
+<p>数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次</p>
+<p>以下讨论的都是<strong>有符号数</strong>，无符号的数较为简单，不写了</p>
+</blockquote>
+<h2 id="概念">概念<a hidden class="anchor" aria-hidden="true" href="#概念">#</a></h2>
+<p>真值 原码 补码 反码 移码 （机器数）</p>
+<p>定点数(定点整数 定点小数) 浮点数</p>
+<p>算数移位 逻辑移位</p>
+<h2 id="定点数">定点数<a hidden class="anchor" aria-hidden="true" href="#定点数">#</a></h2>
+<p>定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。</p>
+<h3 id="真值">真值<a hidden class="anchor" aria-hidden="true" href="#真值">#</a></h3>
+<p>真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（+ -）,是我们人看到的最为直观的数据，不是给机器看的。</p>
+<p>定点整数： +123 ，-321</p>
+<p>定点小数：+0.123，-0.321</p>
+<p>正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数</p>
+<h3 id="原码">原码<a hidden class="anchor" aria-hidden="true" href="#原码">#</a></h3>
+<p>原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。</p>
+<p>原码组成： 符号部分+数值部分</p>
+<p>这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作</p>
+<p>正数： 0+真值</p>
+<p>负数： 1+真值</p>
+<p>原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用</p>
+<p>原码存在+0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0</p>
+<table>
+<thead>
+<tr>
+<th>真值</th>
+<th>原码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+1001</td>
+<td>01001</td>
+</tr>
+<tr>
+<td>- 1100</td>
+<td>11100</td>
+</tr>
+<tr>
+<td>+0.1101</td>
+<td>0.1101</td>
+</tr>
+<tr>
+<td>-0.1011</td>
+<td>1.1011</td>
+</tr>
+</tbody>
+</table>
+<h3 id="补码">补码<a hidden class="anchor" aria-hidden="true" href="#补码">#</a></h3>
+<p>补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。</p>
+<p>部分推导：</p>
+<p>首先我们要明白取模的概念（下面以10进制为例）</p>
+<p>我们要建立一个mod16的系统所有数都要模16，因此实际上就0-15这16个数字，其他的无论正数还是负数都可以转换为0-15(加减16即可得到)</p>
+<p>例如 -10 &ndash;&gt; -10+16 = 6     18&ndash;&gt;18-16 = 2</p>
+<p>那么正数和负数之间的<strong>加法</strong>都可以用0-15进行</p>
+<p>例如 -2 + 3 = 1</p>
+<p>首先把所有数转换为0-15，-2&ndash;&gt;14,然后让这两个数相加得到的数继续mod16得到结果，（14+3）%16 =1，就是正确结果</p>
+<p>这是一个简单的原理，但是还有许多问题需要解决，比如溢出，范围，正负号等等，下面转为为char的表示</p>
+<p>char是8位的，表示-128-127范围之间的数据，最高位是符号位，数值部分用到了7位，能表达$2^7$个数，因此我们采取mod $2^7$的方案,因为mod$2^7$正好是$0\sim2^7-1$这$2^7$个数，正好能用数值部分的7位表达，这样的话我们把原码的正数和负数的数值部分都转换为mod$2^7$的数。</p>
+<p>因为我们只表示-128-127，因此正数直接不变，负数数值部分取反加一就行了，负数的取反加一是因为1000，0000 + x(负数) =  想要的数，x(数值部分取反)+x（数值） = 0111，1111 再+1就成了 1 000，0000了。</p>
+<p>通过上述的步骤我们得到了数值部分，符号部分直接正数为0 负数为1就行了(这个1可以理解为经过转化(+1000,0000)的)，至此补码已经得到了。</p>
+<p>运算过程中直接相加就完事了，后7位(数值部分)一直是mod $2^7$，如果发生进位是最有意思的</p>
+<p>正+正 负+负 如果进到符号位说明溢出</p>
+<p>正+负 永远不会溢出，进位说明正数比较大，直接让这个数变成正数了（符号位改变），后面数值部分根据mod原理还是对的，如果没进位，说明负数大，符号位还是1，数是负的，数值部分还是mod 的值，反向mod回去是真值</p>
+<p>正 - 正 怎么操作？</p>
+<p>其实先将后面的正数转换为负数再执行上面的加法，转换过程是所有位(包括符号位)取反加一(原理自己想，相反数+自身 = 0)</p>
+<p>好了前面说了这么多，总结为一句话补码是为了加减操作而生的</p>
+<p><strong>转换</strong></p>
+<p>正数： 和原码相同</p>
+<p>负数： 符号位为1 ，数值部分原码的数值部分取反加一</p>
+<table>
+<thead>
+<tr>
+<th>真值</th>
+<th>原码</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+1001</td>
+<td>01001</td>
+<td>01001</td>
+</tr>
+<tr>
+<td>- 1100</td>
+<td>11100</td>
+<td>10100</td>
+</tr>
+<tr>
+<td>+0.1101</td>
+<td>0.1101</td>
+<td>0.1101</td>
+</tr>
+<tr>
+<td>-0.1011</td>
+<td>1.1011</td>
+<td>1.0101</td>
+</tr>
+</tbody>
+</table>
+<p><strong>补码没有正负0之分</strong>，只有0000，0000表示0，1000，0000表示-128，这是因为-128不mod值是0，能配上数值部分，1表示是负的，经过mod处理的，这个-128没法再原码和反码中表示的</p>
+<h3 id="反码">反码<a hidden class="anchor" aria-hidden="true" href="#反码">#</a></h3>
+<p>反码平时用的比较少，转换也非常简单</p>
+<p>正数：同原码相同</p>
+<p>负数：符号位置1，数值部分取反</p>
+<h3 id="范围">范围<a hidden class="anchor" aria-hidden="true" href="#范围">#</a></h3>
+<p>原码，反码，补码都用于表示数据但是表示的范围并不是一样大的，同时定点数表示小数也是离散的，因此需要记录一下他们的范围</p>
+<p><img src="https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png" alt=""></p>
+<p>如何计算？</p>
+<p>有两种方式，第一种是最简单的按照10进制的转换规则，计算一个等比数列的和。第二种是在1111的基础上加上1然后得到1，0000然后减去1就行了</p>
+<p>注意补码在负数上多一个，原码和补码中没有这个值</p>
+<h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>原码，补码，反码都是机器数，我们常用原码和补码，原码更加直观，补码方便计算机的运算，他们之间也有转换关系</p>
+<p>正数：原码，补码，反码完全相同</p>
+<p>负数：</p>
+<p><img src="https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png" alt=""></p>
+<h2 id="浮点数">浮点数<a hidden class="anchor" aria-hidden="true" href="#浮点数">#</a></h2>
+<h3 id="朴素的数学表示">朴素的数学表示<a hidden class="anchor" aria-hidden="true" href="#朴素的数学表示">#</a></h3>
+<p>浮点数是基于科学计数法的
+$$
+N = S*r^j
+$$
+N是实际的数，S是尾数，r是基数，j是阶数</p>
+<p>大致就这样，因为阶数可以变动所以小数点是不定位置的所以叫浮点数</p>
+<h3 id="朴素的浮点数表示">朴素的浮点数表示<a hidden class="anchor" aria-hidden="true" href="#朴素的浮点数表示">#</a></h3>
+<p>朴素的浮点数比较随意，前半部是阶数，后半部分是尾数，都用上面说的定点数表示<img src="https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png" alt=""></p>
+<p>这里阶码和尾数可用原码，补码表示，比较乱，我盲猜机内统一用补码表示，不过现在应该没有这样的机器了，毕竟IEEE 754真香，一个注意的点是用补码范围会大一些，我们考试啥的用原码多</p>
+<h4 id="浮点数的范围">浮点数的范围<a hidden class="anchor" aria-hidden="true" href="#浮点数的范围">#</a></h4>
+<p><img src="https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png" alt=""></p>
+<p>看看就行</p>
+<h3 id="规范化的浮点数">规范化的浮点数<a hidden class="anchor" aria-hidden="true" href="#规范化的浮点数">#</a></h3>
+<p>规范化要求尾数最高位必须是1，比如0.1xxx，这样的话统一了阶码，然后这样的话采取原码表示尾数，会缩小一定的范围。</p>
+<p><img src="https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png" alt=""></p>
+<h3 id="ieee754">IEEE754<a hidden class="anchor" aria-hidden="true" href="#ieee754">#</a></h3>
+<h4 id="移码">移码<a hidden class="anchor" aria-hidden="true" href="#移码">#</a></h4>
+<p>移码用的比较少，主要是对阶</p>
+<p>操作所有数都加上一个统一的值，然后使所有负数都变成正数</p>
+<p>比如加上$2^{n-1}$, $2^{n-1}$有种简便方法，就是所有补码直接把符号位取反</p>
+<h4 id="标准">标准<a hidden class="anchor" aria-hidden="true" href="#标准">#</a></h4>
+<blockquote>
+<p>参考：[百度百科]([https://baike.baidu.com/item/IEEE%20754/3869922](<a href="https://baike.baidu.com/item/IEEE">https://baike.baidu.com/item/IEEE</a> 754/3869922))</p>
+</blockquote>
+<p>1位符号8位阶码23位尾数</p>
+<p>尾数要求1.xxxx，1要省略，<strong>尾数用原码表示</strong></p>
+<p>阶码是移码，要加127（$2^7-1$）</p>
+<p>除此之外还有一堆特殊值的规定可以参考百科</p>
+<p>IEEE 754是现在较为通用的浮点数表示标准，用这个就行了</p>
+<h2 id="算数位移">算数位移<a hidden class="anchor" aria-hidden="true" href="#算数位移">#</a></h2>
+<h3 id="一点点数学知识">一点点数学知识<a hidden class="anchor" aria-hidden="true" href="#一点点数学知识">#</a></h3>
+<p>算不上数学知识就是正数的二进制转换
+$$
+110010=1<em>2^5+1</em>2^4+0<em>2^3+0</em>2^2+1<em>2^1+0</em>2^0
+$$
+基于这个一位就相当于乘或除2，如果移除了1，就会丢失精度</p>
+<h3 id="移位操作">移位操作<a hidden class="anchor" aria-hidden="true" href="#移位操作">#</a></h3>
+<p>算数位移是针对有符号的定点数的，一般是整数，算数位移可以理解为乘2和除2的操作，结合左右位移就能实现乘法和除法了</p>
+<p><img src="https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png" alt=""></p>
+<p>这张图写的很好，注意一个点 <strong>符号位不变</strong>，正数永远是正数，负数永远是负数</p>
+<p>本身都是补0的，但是因为负数的反码和补码的规则导致会有变化。</p>
+<p>左移是*2，把1挤出去会发生溢出(原码)</p>
+<p>右移是÷，把1挤出去会丢失精度(原码)</p>
+<h2 id="逻辑移位">逻辑移位<a hidden class="anchor" aria-hidden="true" href="#逻辑移位">#</a></h2>
+<p>逻辑移位针对无符号数，直接移动补零就ok了</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">进制转换</a></li>
+      <li><a href="http://example.org/tags/%E8%A1%A5%E7%A0%81%E5%8E%9F%E7%A0%81/">补码原码</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

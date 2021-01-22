@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Program-month-simulate | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, homework" />
+<meta name="description" content="模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则
+ 1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了
+解法 这道题完全就是模拟，因此直接按照题意要求做就可以
+随从的存放使用vector，比较方便插入和删除随从
+随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除
+英雄和随从放在一起，但是在数组的0号下标
+最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;#include &lt;string&gt;#include &lt;cstring&gt;using namespace std; int n; vector&lt;pair&lt;int,int&gt; &gt; player[2];//0是先手，1是后手  void summon(int t)//加入随从 { int posi,hp,atk; cin&gt;&gt;posi&gt;&gt;atk&gt;&gt;hp; player[t].insert(player[t].begin()&#43;posi,make_pair(hp,atk)); } void attack(int t)//攻击 { int attacker,defender; cin&gt;&gt;attacker&gt;&gt;defender; player[t][attacker].first -= player[t^1][defender].second; player[t^1][defender].first -= player[t][attacker].second; if(defender!=0&amp;&amp;player[t^1][defender].first&lt;=0)//删除，不删英雄  player[t^1].erase(player[t^1].begin()&#43;defender); if(player[t][attacker].first&lt;=0) player[t].erase(player[t].begin()&#43;attacker); } void process(int t,string temp) { if(temp == &#34;summon&#34;) summon(t); else if (temp == &#34;attack&#34; ) attack(t); } int main() { cin&gt;&gt;n; for(int i=0;i&lt;=7;i&#43;&#43;) if(i==0) { player[0].">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/program-month-simulate/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Program-month-simulate" />
+<meta property="og:description" content="模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则
+ 1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了
+解法 这道题完全就是模拟，因此直接按照题意要求做就可以
+随从的存放使用vector，比较方便插入和删除随从
+随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除
+英雄和随从放在一起，但是在数组的0号下标
+最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;#include &lt;string&gt;#include &lt;cstring&gt;using namespace std; int n; vector&lt;pair&lt;int,int&gt; &gt; player[2];//0是先手，1是后手  void summon(int t)//加入随从 { int posi,hp,atk; cin&gt;&gt;posi&gt;&gt;atk&gt;&gt;hp; player[t].insert(player[t].begin()&#43;posi,make_pair(hp,atk)); } void attack(int t)//攻击 { int attacker,defender; cin&gt;&gt;attacker&gt;&gt;defender; player[t][attacker].first -= player[t^1][defender].second; player[t^1][defender].first -= player[t][attacker].second; if(defender!=0&amp;&amp;player[t^1][defender].first&lt;=0)//删除，不删英雄  player[t^1].erase(player[t^1].begin()&#43;defender); if(player[t][attacker].first&lt;=0) player[t].erase(player[t].begin()&#43;attacker); } void process(int t,string temp) { if(temp == &#34;summon&#34;) summon(t); else if (temp == &#34;attack&#34; ) attack(t); } int main() { cin&gt;&gt;n; for(int i=0;i&lt;=7;i&#43;&#43;) if(i==0) { player[0]." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/program-month-simulate/" />
+<meta property="article:published_time" content="2020-06-09T18:42:50+00:00" />
+<meta property="article:modified_time" content="2020-06-09T18:42:50+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-month-simulate"/>
+<meta name="twitter:description" content="模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则
+ 1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了
+解法 这道题完全就是模拟，因此直接按照题意要求做就可以
+随从的存放使用vector，比较方便插入和删除随从
+随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除
+英雄和随从放在一起，但是在数组的0号下标
+最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;#include &lt;string&gt;#include &lt;cstring&gt;using namespace std; int n; vector&lt;pair&lt;int,int&gt; &gt; player[2];//0是先手，1是后手  void summon(int t)//加入随从 { int posi,hp,atk; cin&gt;&gt;posi&gt;&gt;atk&gt;&gt;hp; player[t].insert(player[t].begin()&#43;posi,make_pair(hp,atk)); } void attack(int t)//攻击 { int attacker,defender; cin&gt;&gt;attacker&gt;&gt;defender; player[t][attacker].first -= player[t^1][defender].second; player[t^1][defender].first -= player[t][attacker].second; if(defender!=0&amp;&amp;player[t^1][defender].first&lt;=0)//删除，不删英雄  player[t^1].erase(player[t^1].begin()&#43;defender); if(player[t][attacker].first&lt;=0) player[t].erase(player[t].begin()&#43;attacker); } void process(int t,string temp) { if(temp == &#34;summon&#34;) summon(t); else if (temp == &#34;attack&#34; ) attack(t); } int main() { cin&gt;&gt;n; for(int i=0;i&lt;=7;i&#43;&#43;) if(i==0) { player[0]."/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Program-month-simulate",
+  "name": "Program-month-simulate",
+  "description": "模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则\n 1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了\n解法 这道题完全就是模拟，因此直接按照题意要求做就可以\n随从的存放使用vector，比较方便插入和删除随从\n随从根据血量和攻击力确 …",
+  "keywords": [
+    "Program", "homework"
+  ],
+  "articleBody": "模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则\n 1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了\n解法 这道题完全就是模拟，因此直接按照题意要求做就可以\n随从的存放使用vector，比较方便插入和删除随从\n随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除\n英雄和随从放在一起，但是在数组的0号下标\n最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平\ncode #include #include #include #include #include #include using namespace std; int n; vectorpairint,int  player[2];//0是先手，1是后手  void summon(int t)//加入随从 { int posi,hp,atk; cinposiatkhp; player[t].insert(player[t].begin()+posi,make_pair(hp,atk)); } void attack(int t)//攻击 { int attacker,defender; cinattackerdefender; player[t][attacker].first -= player[t^1][defender].second; player[t^1][defender].first -= player[t][attacker].second; if(defender!=0\u0026\u0026player[t^1][defender].first0)//删除，不删英雄  player[t^1].erase(player[t^1].begin()+defender); if(player[t][attacker].first0) player[t].erase(player[t].begin()+attacker); } void process(int t,string temp) { if(temp == \"summon\") summon(t); else if (temp == \"attack\" ) attack(t); } int main() { cinn; for(int i=0;i7;i++) if(i==0) { player[0].push_back(make_pair(30,0)); player[1].push_back(make_pair(30,0)); } else { player[0].push_back(make_pair(0,-1));//攻击力为-1区分  player[1].push_back(make_pair(0,-1)); } int temp_cnt =0 ; int choose = 0; string temp_str; for(int i=0;in;i++) { cintemp_str; if(temp_str == \"end\") choose++; else process(choose%2,temp_str); } if(player[0][0].first0)//输出胜负  cout\"-1\\n\"; else if(player[1][0].first0) cout\"1\\n\"; else cout\"0\\n\"; int cnt[2]={0,0}; for(int i=0;i2;i++)//输出hp  { coutplayer[i][0].first\"\\n\"; for(int j=1;jplayer[i].size();j++)//计算多少个存活的  if(player[i][j].first0\u0026\u0026player[i][j].second=0)//攻击力大于等于0  cnt[i]++; coutcnt[i]\" \"; for(int j=1;jplayer[i].size();j++) if(player[i][j].first0\u0026\u0026player[i][j].second=0)//输出随从  coutplayer[i][j].first\" \"; cout\"\\n\"; } return 0; } 总结 这道题难度不是很大，但是题面太长，容易抓不到关键信息，最后的约定非常重要，这里提供了很多信息。这道题一共交了2次第一次70，第一次因为初始化的问题出错，我把英雄的攻击力设为了-1，这导致英雄反击时随从的hp会出错，改了之后就过了\n元素选择器 题面 官方题面有点长，建议跳过\n题面还是CSP经典风格，非常长加上一堆没用的背景介绍\n简单的来说，现在给出一个BOM树，然后在这个树上按照给定的规则查询label和id，BOM树需要自己根据输入创建\n解法 首先明确题目中几个问题\n 多级匹配时除了最后一个，前面几个不要求严格的数据（匹配的序列只要是该节点所有父亲的一个子序列即可，不要求每一个都匹配） 题目中说多级匹配中只有一个格式（要么label，要么id）是错误的，评测中会出现label id同时存在的情况，因此写的时候要注意  解决方案：\n首先用一个数组存储顺序给出的每一行，存储其label和id。同时利用数组的下标使用vector按照给出的规则创建BOM树。创建树时使用栈存储每个节点的父节点（类似反向DFS），同时在新节点中记录其父节点\n检索时首先遍历数组匹配最后一个关键词（根据其是id还是label进行不同的判断），匹配到后，找到其父节点向前匹配，匹配规则是只要祖先中有待检索的关键词就行，祖先中可能有几个匹配不到的。\n单级和多级同理，只不过只匹配最后一个就行。\ncode #include #include #include #include #include #include #include #include using namespace std; struct node { string label;//div p 这类东西  string id;//id #xxxx  int father;//父节点位置  node(string l,string i,int f):label(l),id(i),father(f) {} node(){} }; node data[105];//存储所有元素 vectorint tree[105];//树结构 stackpairint,int  root;//创建树使用 int tot,cur;//创建树的下标 int m,n; vectorint ans;//答案  string temp_label,temp_id;//新节点的label和id string ops[105];//检索时所有的值 int getInfo()//获取一行的输入，存储id时加上# { string cur_label,cur_id; char tmp; int level =0 ; while((tmp=getchar())=='.')//计算.的个数 树的层级  level++; while(!(tmp=='\\n'||tmp == '#'))//存label  { if(tmp == ' ') { tmp = getchar(); continue; } cur_label+=tmp; tmp = getchar(); } while(tmp!='\\n')//存id  { if(tmp==' ') { tmp = getchar(); continue; } cur_id+=tmp; tmp=getchar(); } temp_label=cur_label; temp_id=cur_id; return level/2;//返回层级 } int getOp()//获取检索的对象 多级和一级的相同，都是存到ops中 { int cnt=0; char tmp; for(int i=0;i105;i++) ops[i].clear(); while((tmp=getchar())!='\\n') { if(tmp==' ') { cnt++; continue; } ops[cnt]+=tmp; } return cnt+1;//级数 } bool cmpStr(string\u0026 a,string\u0026 b)//不区分大小写比较 { if(a.length()!=b.length()) return false; int len = a.length(); for(int i=0;ilen;i++) if(tolower(a[i])!=tolower(b[i])) return false; return true; } void find(int temp_num)//检索 { ans.clear();//存储答案  for(int i=1;in;i++)//遍历整个树，从后向前找  { int flag =0;//最后一个是否相符  int num = temp_num-1; int cur = data[i].father; if(ops[temp_num-1][0] == '#')//比较最后一个  { if(data[i].id == ops[temp_num-1])//id  flag = 1; } else if(cmpStr(data[i].label,ops[temp_num-1]))//label  flag =1; if(flag)//最后一个匹配，向前找，看看是否满足  { while (num0\u0026\u0026cur0)//ops全部相符 or 找到树的根  { if(ops[num-1][0] == '#')//id  { if(ops[num-1] == data[cur].id)//匹配就移动ops的下标  num--; } else//label  { if(cmpStr(data[cur].label,ops[num-1])) num--; } cur = data[cur].father;//树向上一级查找  } if(num ==0 )//ops全部匹配  ans.push_back(i); } } } int main() { cinnm; getchar(); tot = 1; root.push(make_pair(-1,0));//用一个栈表示当前节点的父节点  for(int i=0;in;i++) { int level = getInfo(); while(root.top().first=level)//找到当前节点的父节点  root.pop(); pairint,int last = root.top(); data[tot] = node(temp_label,temp_id,last.second);//插入新节点，second是父节点的下标  tree[last.second].push_back(tot);//树  root.push(make_pair(last.first+1,tot++));//维护root  } for(int i=0;im;i++) { int num = getOp(); find(num); int len = ans.size(); coutlen\" \";//输出个数  for(int t=0;tlen;t++) coutans[t]\" \";//那一行  cout\"\\n\"; } } 总结 这道题交了好几次，主要原因是解法中的两个问题，一开始我理解的完全不对（但是这样我还有80分，感觉数据出水了），最后看有人说最后两个点是id和label都有，我稍微改了一下过了，但是题目中明明说\n感觉还是题目说的不清楚，总感觉有些问题\n不过时间控制还不错，写了1h左右就有80分了，考试的时候感觉这个速度就可以，模拟题还是比较浪费时间\n",
+  "wordCount" : "419",
+  "inLanguage": "en",
+  "datePublished": "2020-06-09T18:42:50Z",
+  "dateModified": "2020-06-09T18:42:50Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/program-month-simulate/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Program-month-simulate
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">June 9, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="模拟">模拟<a hidden class="anchor" aria-hidden="true" href="#模拟">#</a></h1>
+<h2 id="炉石传说201609-3">炉石传说201609-3<a hidden class="anchor" aria-hidden="true" href="#炉石传说201609-3">#</a></h2>
+<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/09/ABPYhflZb9U2r3W.png" alt="image-20200609184738151"></p>
+<p>完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则</p>
+<ul>
+<li>1个英雄 7个随从</li>
+<li>一个回合三种操作</li>
+<li>添加随从，随从死亡都是顺移的</li>
+<li>攻击的规则是双方都掉血</li>
+</ul>
+<p>然后看看最后的约定就可以了</p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<p>这道题完全就是模拟，因此直接按照题意要求做就可以</p>
+<p>随从的存放使用vector，比较方便插入和删除随从</p>
+<p>随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除</p>
+<p>英雄和随从放在一起，但是在数组的0号下标</p>
+<p>最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平</p>
+<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> n;
+vector<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> player[<span style="color:#ae81ff">2</span>];<span style="color:#75715e">//0是先手，1是后手
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">summon</span>(<span style="color:#66d9ef">int</span> t)<span style="color:#75715e">//加入随从
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">int</span> posi,hp,atk;
+    cin<span style="color:#f92672">&gt;&gt;</span>posi<span style="color:#f92672">&gt;&gt;</span>atk<span style="color:#f92672">&gt;&gt;</span>hp;
+    player[t].insert(player[t].begin()<span style="color:#f92672">+</span>posi,make_pair(hp,atk));
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">attack</span>(<span style="color:#66d9ef">int</span> t)<span style="color:#75715e">//攻击
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">int</span> attacker,defender;
+    cin<span style="color:#f92672">&gt;&gt;</span>attacker<span style="color:#f92672">&gt;&gt;</span>defender;
+    player[t][attacker].first <span style="color:#f92672">-=</span> player[t<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>][defender].second;
+    player[t<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>][defender].first <span style="color:#f92672">-=</span> player[t][attacker].second;
+    <span style="color:#66d9ef">if</span>(defender<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>player[t<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>][defender].first<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//删除，不删英雄
+</span><span style="color:#75715e"></span>        player[t<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>].erase(player[t<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>].begin()<span style="color:#f92672">+</span>defender);
+    <span style="color:#66d9ef">if</span>(player[t][attacker].first<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>)
+        player[t].erase(player[t].begin()<span style="color:#f92672">+</span>attacker);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">process</span>(<span style="color:#66d9ef">int</span> t,string temp)
+{
+    <span style="color:#66d9ef">if</span>(temp <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;summon&#34;</span>)
+        summon(t);
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (temp <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;attack&#34;</span> )
+        attack(t);
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    cin<span style="color:#f92672">&gt;&gt;</span>n;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">7</span>;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+        {
+            player[<span style="color:#ae81ff">0</span>].push_back(make_pair(<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">0</span>));
+            player[<span style="color:#ae81ff">1</span>].push_back(make_pair(<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">0</span>));
+        }
+        <span style="color:#66d9ef">else</span>
+        {
+            player[<span style="color:#ae81ff">0</span>].push_back(make_pair(<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));<span style="color:#75715e">//攻击力为-1区分
+</span><span style="color:#75715e"></span>            player[<span style="color:#ae81ff">1</span>].push_back(make_pair(<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
+        }
+    <span style="color:#66d9ef">int</span> temp_cnt <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">int</span> choose <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    string temp_str;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+    {
+        cin<span style="color:#f92672">&gt;&gt;</span>temp_str;
+        <span style="color:#66d9ef">if</span>(temp_str <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;end&#34;</span>)
+            choose<span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">else</span> 
+            process(choose<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span>,temp_str);
+    }
+    <span style="color:#66d9ef">if</span>(player[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>].first<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//输出胜负
+</span><span style="color:#75715e"></span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;-1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(player[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>].first<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">0</span>)
+        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    <span style="color:#66d9ef">else</span> 
+        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;0</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    
+    <span style="color:#66d9ef">int</span> cnt[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">2</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//输出hp
+</span><span style="color:#75715e"></span>    {
+        cout<span style="color:#f92672">&lt;&lt;</span>player[i][<span style="color:#ae81ff">0</span>].first<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;</span>player[i].size();j<span style="color:#f92672">++</span>)<span style="color:#75715e">//计算多少个存活的
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(player[i][j].first<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>player[i][j].second<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//攻击力大于等于0
+</span><span style="color:#75715e"></span>                cnt[i]<span style="color:#f92672">++</span>;
+        cout<span style="color:#f92672">&lt;&lt;</span>cnt[i]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;</span>player[i].size();j<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">if</span>(player[i][j].first<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>player[i][j].second<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//输出随从
+</span><span style="color:#75715e"></span>                cout<span style="color:#f92672">&lt;&lt;</span>player[i][j].first<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;
+        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>这道题难度不是很大，但是题面太长，容易抓不到关键信息，最后的约定非常重要，这里提供了很多信息。这道题一共交了2次第一次70，第一次因为初始化的问题出错，我把英雄的攻击力设为了-1，这导致英雄反击时随从的hp会出错，改了之后就过了</p>
+<h2 id="元素选择器">元素选择器<a hidden class="anchor" aria-hidden="true" href="#元素选择器">#</a></h2>
+<h2 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h2>
+<p>官方题面有点长，建议跳过</p>
+<p><img src="http://118.190.20.162/RequireFile.do?fid=FH8TRMFr" alt="img"></p>
+<p><img src="http://118.190.20.162/RequireFile.do?fid=6tGGttRh" alt="img"></p>
+<p><img src="http://118.190.20.162/RequireFile.do?fid=3bTyJMHd" alt="img"></p>
+<p>题面还是CSP经典风格，非常长加上一堆没用的背景介绍</p>
+<p>简单的来说，现在给出一个BOM树，然后在这个树上按照给定的规则查询label和id，BOM树需要自己根据输入创建</p>
+<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<p>首先明确题目中几个问题</p>
+<ul>
+<li>多级匹配时除了最后一个，前面几个不要求严格的数据（匹配的序列只要是该节点所有父亲的一个子序列即可，不要求每一个都匹配）</li>
+<li>题目中说多级匹配中只有一个格式（要么label，要么id）是错误的，评测中会出现label id同时存在的情况，因此写的时候要注意</li>
+</ul>
+<p><strong>解决方案：</strong></p>
+<p>首先用一个数组存储顺序给出的每一行，存储其label和id。同时利用数组的下标使用vector按照给出的规则创建BOM树。创建树时使用栈存储每个节点的父节点（类似反向DFS），同时在新节点中记录其父节点</p>
+<p>检索时首先遍历数组匹配最后一个关键词（根据其是id还是label进行不同的判断），匹配到后，找到其父节点向前匹配，匹配规则是只要祖先中有待检索的关键词就行，祖先中可能有几个匹配不到的。</p>
+<p>单级和多级同理，只不过只匹配最后一个就行。</p>
+<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stack&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">node</span>
+{
+    string label;<span style="color:#75715e">//div p 这类东西
+</span><span style="color:#75715e"></span>    string id;<span style="color:#75715e">//id #xxxx
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> father;<span style="color:#75715e">//父节点位置
+</span><span style="color:#75715e"></span>    node(string l,string i,<span style="color:#66d9ef">int</span> f)<span style="color:#f92672">:</span>label(l),id(i),father(f)
+    {}
+    node(){}
+};
+
+node data[<span style="color:#ae81ff">105</span>];<span style="color:#75715e">//存储所有元素
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> tree[<span style="color:#ae81ff">105</span>];<span style="color:#75715e">//树结构
+</span><span style="color:#75715e"></span>stack<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> root;<span style="color:#75715e">//创建树使用
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> tot,cur;<span style="color:#75715e">//创建树的下标
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> m,n;
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> ans;<span style="color:#75715e">//答案
+</span><span style="color:#75715e"></span>
+string temp_label,temp_id;<span style="color:#75715e">//新节点的label和id
+</span><span style="color:#75715e"></span>string ops[<span style="color:#ae81ff">105</span>];<span style="color:#75715e">//检索时所有的值
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getInfo</span>()<span style="color:#75715e">//获取一行的输入，存储id时加上#
+</span><span style="color:#75715e"></span>{
+    string cur_label,cur_id;
+    <span style="color:#66d9ef">char</span> tmp;
+    <span style="color:#66d9ef">int</span> level <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">while</span>((tmp<span style="color:#f92672">=</span>getchar())<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;.&#39;</span>)<span style="color:#75715e">//计算.的个数 树的层级
+</span><span style="color:#75715e"></span>        level<span style="color:#f92672">++</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>(tmp<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;\n&#39;</span><span style="color:#f92672">||</span>tmp <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>))<span style="color:#75715e">//存label
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">if</span>(tmp <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span>)
+        {
+            tmp <span style="color:#f92672">=</span> getchar();
+            <span style="color:#66d9ef">continue</span>;
+        }
+        cur_label<span style="color:#f92672">+=</span>tmp;
+        tmp <span style="color:#f92672">=</span> getchar();
+    }
+    <span style="color:#66d9ef">while</span>(tmp<span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;\n&#39;</span>)<span style="color:#75715e">//存id
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">if</span>(tmp<span style="color:#f92672">==</span><span style="color:#e6db74">&#39; &#39;</span>)
+        {
+            tmp <span style="color:#f92672">=</span> getchar();
+            <span style="color:#66d9ef">continue</span>;
+        }
+        cur_id<span style="color:#f92672">+=</span>tmp;
+        tmp<span style="color:#f92672">=</span>getchar();
+    }
+    temp_label<span style="color:#f92672">=</span>cur_label;
+    temp_id<span style="color:#f92672">=</span>cur_id;
+    <span style="color:#66d9ef">return</span> level<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;<span style="color:#75715e">//返回层级
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getOp</span>()<span style="color:#75715e">//获取检索的对象 多级和一级的相同，都是存到ops中
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">int</span> cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">char</span> tmp;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">105</span>;i<span style="color:#f92672">++</span>)
+        ops[i].clear();
+    <span style="color:#66d9ef">while</span>((tmp<span style="color:#f92672">=</span>getchar())<span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;\n&#39;</span>)
+    {
+        <span style="color:#66d9ef">if</span>(tmp<span style="color:#f92672">==</span><span style="color:#e6db74">&#39; &#39;</span>)
+        {
+            cnt<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">continue</span>;
+        }
+        ops[cnt]<span style="color:#f92672">+=</span>tmp;
+    }
+    <span style="color:#66d9ef">return</span> cnt<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//级数
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">cmpStr</span>(string<span style="color:#f92672">&amp;</span> a,string<span style="color:#f92672">&amp;</span> b)<span style="color:#75715e">//不区分大小写比较
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">if</span>(a.length()<span style="color:#f92672">!=</span>b.length())
+        <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> a.length();
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>len;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">if</span>(tolower(a[i])<span style="color:#f92672">!=</span>tolower(b[i]))
+            <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">return</span> true;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">find</span>(<span style="color:#66d9ef">int</span> temp_num)<span style="color:#75715e">//检索
+</span><span style="color:#75715e"></span>{
+    ans.clear();<span style="color:#75715e">//存储答案
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//遍历整个树，从后向前找
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//最后一个是否相符
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> temp_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> data[i].father;
+        <span style="color:#66d9ef">if</span>(ops[temp_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>)<span style="color:#75715e">//比较最后一个
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">if</span>(data[i].id <span style="color:#f92672">==</span> ops[temp_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#75715e">//id
+</span><span style="color:#75715e"></span>                flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        }
+        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cmpStr(data[i].label,ops[temp_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))<span style="color:#75715e">//label
+</span><span style="color:#75715e"></span>            flag <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">if</span>(flag)<span style="color:#75715e">//最后一个匹配，向前找，看看是否满足
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">while</span> (num<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>cur<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//ops全部相符 or 找到树的根
+</span><span style="color:#75715e"></span>            {
+                <span style="color:#66d9ef">if</span>(ops[num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>)<span style="color:#75715e">//id
+</span><span style="color:#75715e"></span>                {
+                    <span style="color:#66d9ef">if</span>(ops[num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> data[cur].id)<span style="color:#75715e">//匹配就移动ops的下标
+</span><span style="color:#75715e"></span>                        num<span style="color:#f92672">--</span>;
+                }
+                <span style="color:#66d9ef">else</span><span style="color:#75715e">//label
+</span><span style="color:#75715e"></span>                {
+                    <span style="color:#66d9ef">if</span>(cmpStr(data[cur].label,ops[num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]))
+                        num<span style="color:#f92672">--</span>;
+                }
+                cur <span style="color:#f92672">=</span> data[cur].father;<span style="color:#75715e">//树向上一级查找
+</span><span style="color:#75715e"></span>            }
+            <span style="color:#66d9ef">if</span>(num <span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> )<span style="color:#75715e">//ops全部匹配
+</span><span style="color:#75715e"></span>                ans.push_back(i);
+        }
+    }
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    cin<span style="color:#f92672">&gt;&gt;</span>n<span style="color:#f92672">&gt;&gt;</span>m;
+    getchar();
+    tot <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    root.push(make_pair(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>));<span style="color:#75715e">//用一个栈表示当前节点的父节点
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">int</span> level <span style="color:#f92672">=</span> getInfo();
+        <span style="color:#66d9ef">while</span>(root.top().first<span style="color:#f92672">&gt;=</span>level)<span style="color:#75715e">//找到当前节点的父节点
+</span><span style="color:#75715e"></span>            root.pop();
+        pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> last <span style="color:#f92672">=</span> root.top();
+        data[tot] <span style="color:#f92672">=</span> node(temp_label,temp_id,last.second);<span style="color:#75715e">//插入新节点，second是父节点的下标
+</span><span style="color:#75715e"></span>        tree[last.second].push_back(tot);<span style="color:#75715e">//树
+</span><span style="color:#75715e"></span>        root.push(make_pair(last.first<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,tot<span style="color:#f92672">++</span>));<span style="color:#75715e">//维护root
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>m;i<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> getOp();
+        find(num);
+        <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> ans.size();
+        cout<span style="color:#f92672">&lt;&lt;</span>len<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;<span style="color:#75715e">//输出个数
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>len;t<span style="color:#f92672">++</span>)
+            cout<span style="color:#f92672">&lt;&lt;</span>ans[t]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34; &#34;</span>;<span style="color:#75715e">//那一行
+</span><span style="color:#75715e"></span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+    }
+}
+</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<p>这道题交了好几次，主要原因是解法中的两个问题，一开始我理解的完全不对（但是这样我还有80分，感觉数据出水了），最后看有人说最后两个点是id和label都有，我稍微改了一下过了，但是题目中明明说</p>
+<p><img src="https://i.loli.net/2020/06/09/JdnMPj2cATwDyk6.png" alt="image-20200609200403407"></p>
+<p>感觉还是题目说的不清楚，总感觉有些问题</p>
+<p>不过时间控制还不错，写了1h左右就有80分了，考试的时候感觉这个速度就可以，模拟题还是比较浪费时间</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/homework/">homework</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

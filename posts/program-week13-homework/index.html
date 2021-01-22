@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Program-week13-homework | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, homework" />
+<meta name="description" content="week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.
+首先核心就是 奇数&#43;奇数=偶数 偶数&#43;偶数=奇数 奇数&#43;偶数=奇数
+然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)
+解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k&#43;2)要求是偶数
+奇数情况前k-1个数是1,最后一个数(n-k&#43;1)要求是奇数
+如果这两种情况都不能满足那么说明不能满足
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std; int data; int k; int main() { int n; scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) { scanf(&#34;%d%d&#34;,&amp;data,&amp;k); if((data-2*k&#43;2)&gt;0&amp;&amp;(data-2*k&#43;2)%2==0)//偶数情况,需要判断大于0  { printf(&#34;YES\n&#34;); for(int t=0;t&lt;k-1;t&#43;&#43;)//先输出2  printf(&#34;2 &#34;); printf(&#34;%d\n&#34;,(data-2*k&#43;2));//最后一个偶数  } else if((data-k&#43;1)&gt;0&amp;&amp;(data-k&#43;1)%2==1)//奇数情况  { printf(&#34;YES\n&#34;); for(int t=0;t&lt;k-1;t&#43;&#43;)//先输出1  printf(&#34;1 &#34;); printf(&#34;%d\n&#34;,data-k&#43;1);//最后一个奇数  } else//不能满足  printf(&#34;NO\n&#34;); } } 总结 奇偶判断，感觉比较简单">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/program-week13-homework/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Program-week13-homework" />
+<meta property="og:description" content="week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.
+首先核心就是 奇数&#43;奇数=偶数 偶数&#43;偶数=奇数 奇数&#43;偶数=奇数
+然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)
+解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k&#43;2)要求是偶数
+奇数情况前k-1个数是1,最后一个数(n-k&#43;1)要求是奇数
+如果这两种情况都不能满足那么说明不能满足
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std; int data; int k; int main() { int n; scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) { scanf(&#34;%d%d&#34;,&amp;data,&amp;k); if((data-2*k&#43;2)&gt;0&amp;&amp;(data-2*k&#43;2)%2==0)//偶数情况,需要判断大于0  { printf(&#34;YES\n&#34;); for(int t=0;t&lt;k-1;t&#43;&#43;)//先输出2  printf(&#34;2 &#34;); printf(&#34;%d\n&#34;,(data-2*k&#43;2));//最后一个偶数  } else if((data-k&#43;1)&gt;0&amp;&amp;(data-k&#43;1)%2==1)//奇数情况  { printf(&#34;YES\n&#34;); for(int t=0;t&lt;k-1;t&#43;&#43;)//先输出1  printf(&#34;1 &#34;); printf(&#34;%d\n&#34;,data-k&#43;1);//最后一个奇数  } else//不能满足  printf(&#34;NO\n&#34;); } } 总结 奇偶判断，感觉比较简单" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/program-week13-homework/" />
+<meta property="article:published_time" content="2020-05-26T23:46:05+00:00" />
+<meta property="article:modified_time" content="2020-05-26T23:46:05+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week13-homework"/>
+<meta name="twitter:description" content="week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.
+首先核心就是 奇数&#43;奇数=偶数 偶数&#43;偶数=奇数 奇数&#43;偶数=奇数
+然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)
+解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k&#43;2)要求是偶数
+奇数情况前k-1个数是1,最后一个数(n-k&#43;1)要求是奇数
+如果这两种情况都不能满足那么说明不能满足
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std; int data; int k; int main() { int n; scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) { scanf(&#34;%d%d&#34;,&amp;data,&amp;k); if((data-2*k&#43;2)&gt;0&amp;&amp;(data-2*k&#43;2)%2==0)//偶数情况,需要判断大于0  { printf(&#34;YES\n&#34;); for(int t=0;t&lt;k-1;t&#43;&#43;)//先输出2  printf(&#34;2 &#34;); printf(&#34;%d\n&#34;,(data-2*k&#43;2));//最后一个偶数  } else if((data-k&#43;1)&gt;0&amp;&amp;(data-k&#43;1)%2==1)//奇数情况  { printf(&#34;YES\n&#34;); for(int t=0;t&lt;k-1;t&#43;&#43;)//先输出1  printf(&#34;1 &#34;); printf(&#34;%d\n&#34;,data-k&#43;1);//最后一个奇数  } else//不能满足  printf(&#34;NO\n&#34;); } } 总结 奇偶判断，感觉比较简单"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Program-week13-homework",
+  "name": "Program-week13-homework",
+  "description": "week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.\n首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数\n然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)\n解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k+2)要求是偶数\n奇数情况前k-1个数是1,最后一个 …",
+  "keywords": [
+    "Program", "homework"
+  ],
+  "articleBody": "week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.\n首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数\n然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)\n解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k+2)要求是偶数\n奇数情况前k-1个数是1,最后一个数(n-k+1)要求是奇数\n如果这两种情况都不能满足那么说明不能满足\ncode #include #include #include #include using namespace std; int data; int k; int main() { int n; scanf(\"%d\",\u0026n); for(int i=0;in;i++) { scanf(\"%d%d\",\u0026data,\u0026k); if((data-2*k+2)0\u0026\u0026(data-2*k+2)%2==0)//偶数情况,需要判断大于0  { printf(\"YES\\n\"); for(int t=0;tk-1;t++)//先输出2  printf(\"2 \"); printf(\"%d\\n\",(data-2*k+2));//最后一个偶数  } else if((data-k+1)0\u0026\u0026(data-k+1)%2==1)//奇数情况  { printf(\"YES\\n\"); for(int t=0;tk-1;t++)//先输出1  printf(\"1 \"); printf(\"%d\\n\",data-k+1);//最后一个奇数  } else//不能满足  printf(\"NO\\n\"); } } 总结 奇偶判断，感觉比较简单\nB - TT 的神秘任务2（必做） 题面 解法 这道题采用二分的方法,复杂度O(log n)\n二分的方法与之前课上的例题类似,二分查找第一个满足无法整除次数的数.\n这道题的两个数据范围都1e9开始,但是对于二分而言,最大值肯定是超了int了,因此使用long long\ncode #include #include #include #include #include using namespace std; long long n,k; bool findCount(long long num)//计算出num是第几个无法被n整除的数,同时比较其与指定个数的大小 { long long tt = num-(num/n); return tt=k; } int main() { int t; scanf(\"%d\",\u0026t); for(int m=0;mt;m++) { scanf(\"%lld%lld\",\u0026n,\u0026k); if(nk) { printf(\"%d\\n\",k); continue; } long long l=1;//会超int  long long r=LLONG_MAX; long long mid = (l+r)/2; long long ans = 0; while(r=l)//二分查找  { if(findCount(mid))//向左  { ans=mid; r=mid-1; } else //向右  l=mid+1; mid = (l+r)/2; } printf(\"%lld\\n\",ans); } } 总结 重新复习一下二分查找\nC - TT 的奖励（必做） 题面 解法 这道题采用dp的方法求解,复杂度大约为O(m)\n我们dp状态设为二维,dp[i][j]表示第i秒再第j个位置上能获得最大猫咪数\n初始状态dp[0][0..10] = 0.\n状态转移分为两种状态,第一个是在初始几秒,移动范围受限,这时只更新能够移动到的范围,第二种就是全局都能移动到\ndp[i][j] = max(dp[i-1][j],dp[i-1][j-1],dp[i-1][j+1])+data[i][j]\n同时处理好边界的关系,在0处和10处进行特判\ncode #include #include #include #include  using namespace std; int ans[100005][15];//存储dp结果 int data[100005][15];//存储每一秒当前位置上的猫数  int main() { int m; while(scanf(\"%d\",\u0026m)!=EOF) { if(m==0) return 0; memset(ans,0,sizeof(ans)); memset(data,0,sizeof(data)); int t=0; for(int i=0;im;i++) { int a,b; scanf(\"%d%d\",\u0026a,\u0026b); data[b][a]++;//计数  if(bt)//最大秒数  t=b; } for(int i=1;it;i++) { int l = 5-t0?0:5-t;//主要是因为一开始限制边界的范围  int r = 5+t10?10:5+t; for(int j=l;jr;j++) { if(j==0)//在0处和10处需要特判  ans[i][j] = max(ans[i-1][0],ans[i-1][1])+data[i][j]; else if(j==10) ans[i][j] = max(ans[i-1][9],ans[i-1][10])+data[i][j]; else ans[i][j] = max(max(ans[i-1][j],ans[i-1][j-1]),ans[i-1][j+1])+data[i][j];//转移方程  } } int cur_max=0; for(int i=0;i10;i++)//取最后一秒最大的值  if(ans[t][i]cur_max) cur_max = ans[t][i]; printf(\"%d\\n\",cur_max); } return 0; } 总结 注意一开始的移动范围，只能从中间开始。\n",
+  "wordCount" : "246",
+  "inLanguage": "en",
+  "datePublished": "2020-05-26T23:46:05Z",
+  "dateModified": "2020-05-26T23:46:05Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/program-week13-homework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Program-week13-homework
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">May 26, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="week13-homework">week13-homework<a hidden class="anchor" aria-hidden="true" href="#week13-homework">#</a></h1>
+<h2 id="a---tt-的神秘任务1必做httpsvjudgenetproblemcodeforces-1352b"><a href="https://vjudge.net/problem/CodeForces-1352B">A - TT 的神秘任务1（必做）</a><a hidden class="anchor" aria-hidden="true" href="#a---tt-的神秘任务1必做httpsvjudgenetproblemcodeforces-1352b">#</a></h2>
+<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/04/RwL7rM2IgGlaSkd.png" alt="image-20200526235147665"></p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<p>这道题考察了一些基本的数学知识.</p>
+<p>首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数</p>
+<p>然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)</p>
+<p>解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k+2)要求是偶数</p>
+<p>奇数情况前k-1个数是1,最后一个数(n-k+1)要求是奇数</p>
+<p>如果这两种情况都不能满足那么说明不能满足</p>
+<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> data;
+<span style="color:#66d9ef">int</span> k;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+    {
+        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>data,<span style="color:#f92672">&amp;</span>k);
+        <span style="color:#66d9ef">if</span>((data<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>k<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>(data<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>k<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//偶数情况,需要判断大于0
+</span><span style="color:#75715e"></span>        {
+            printf(<span style="color:#e6db74">&#34;YES</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;t<span style="color:#f92672">++</span>)<span style="color:#75715e">//先输出2
+</span><span style="color:#75715e"></span>                printf(<span style="color:#e6db74">&#34;2 &#34;</span>);
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,(data<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>k<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>));<span style="color:#75715e">//最后一个偶数
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((data<span style="color:#f92672">-</span>k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>(data<span style="color:#f92672">-</span>k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span><span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//奇数情况
+</span><span style="color:#75715e"></span>        {
+            printf(<span style="color:#e6db74">&#34;YES</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;t<span style="color:#f92672">++</span>)<span style="color:#75715e">//先输出1
+</span><span style="color:#75715e"></span>                printf(<span style="color:#e6db74">&#34;1 &#34;</span>);
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,data<span style="color:#f92672">-</span>k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);<span style="color:#75715e">//最后一个奇数
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#66d9ef">else</span><span style="color:#75715e">//不能满足
+</span><span style="color:#75715e"></span>            printf(<span style="color:#e6db74">&#34;NO</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    }
+}
+</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>奇偶判断，感觉比较简单</p>
+<h2 id="b---tt-的神秘任务2必做httpsvjudgenetproblemcodeforces-1352c"><a href="https://vjudge.net/problem/CodeForces-1352C">B - TT 的神秘任务2（必做）</a><a hidden class="anchor" aria-hidden="true" href="#b---tt-的神秘任务2必做httpsvjudgenetproblemcodeforces-1352c">#</a></h2>
+<h3 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/04/fa4clkqCHErIwmv.png" alt="image-20200527083657055"></p>
+<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<p>这道题采用二分的方法,复杂度O(log n)</p>
+<p>二分的方法与之前课上的例题类似,二分查找第一个满足无法整除次数的数.</p>
+<p>这道题的两个数据范围都1e9开始,但是对于二分而言,最大值肯定是超了int了,因此使用long long</p>
+<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> n,k;
+
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">findCount</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> num)<span style="color:#75715e">//计算出num是第几个无法被n整除的数,同时比较其与指定个数的大小
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> tt <span style="color:#f92672">=</span> num<span style="color:#f92672">-</span>(num<span style="color:#f92672">/</span>n);
+    <span style="color:#66d9ef">return</span> tt<span style="color:#f92672">&gt;=</span>k;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> t;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>t);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> m<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;m<span style="color:#f92672">&lt;</span>t;m<span style="color:#f92672">++</span>)
+    {
+        scanf(<span style="color:#e6db74">&#34;%lld%lld&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>k);
+        <span style="color:#66d9ef">if</span>(n<span style="color:#f92672">&gt;</span>k)
+        {
+            printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,k);
+            <span style="color:#66d9ef">continue</span>;
+        }
+        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> l<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//会超int
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> r<span style="color:#f92672">=</span>LLONG_MAX;
+        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> mid <span style="color:#f92672">=</span> (l<span style="color:#f92672">+</span>r)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+        <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">while</span>(r<span style="color:#f92672">&gt;=</span>l)<span style="color:#75715e">//二分查找
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">if</span>(findCount(mid))<span style="color:#75715e">//向左
+</span><span style="color:#75715e"></span>            {
+                ans<span style="color:#f92672">=</span>mid;
+                r<span style="color:#f92672">=</span>mid<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">else</span> <span style="color:#75715e">//向右
+</span><span style="color:#75715e"></span>                l<span style="color:#f92672">=</span>mid<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+            mid <span style="color:#f92672">=</span> (l<span style="color:#f92672">+</span>r)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+        }
+        printf(<span style="color:#e6db74">&#34;%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans);
+    }
+}
+</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<p>重新复习一下二分查找</p>
+<h2 id="c---tt-的奖励必做httpsvjudgenetproblemhdu-1176"><a href="https://vjudge.net/problem/HDU-1176">C - TT 的奖励（必做）</a><a hidden class="anchor" aria-hidden="true" href="#c---tt-的奖励必做httpsvjudgenetproblemhdu-1176">#</a></h2>
+<h3 id="题面-2">题面<a hidden class="anchor" aria-hidden="true" href="#题面-2">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/04/5VYIpDm7uOTPqrF.png" alt="image-20200527090040159"></p>
+<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<p>这道题采用dp的方法求解,复杂度大约为O(m)</p>
+<p>我们dp状态设为二维,dp[i][j]表示第i秒再第j个位置上能获得最大猫咪数</p>
+<p>初始状态dp[0][0..10] = 0.</p>
+<p>状态转移分为两种状态,第一个是在初始几秒,移动范围受限,这时只更新能够移动到的范围,第二种就是全局都能移动到</p>
+<p>dp[i][j] = max(dp[i-1][j],dp[i-1][j-1],dp[i-1][j+1])+data[i][j]</p>
+<p>同时处理好边界的关系,在0处和10处进行特判</p>
+<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">100005</span>][<span style="color:#ae81ff">15</span>];<span style="color:#75715e">//存储dp结果
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">100005</span>][<span style="color:#ae81ff">15</span>];<span style="color:#75715e">//存储每一秒当前位置上的猫数
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> m;
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>m)<span style="color:#f92672">!=</span>EOF)
+    {
+        <span style="color:#66d9ef">if</span>(m<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+        memset(data,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(data));
+        <span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>m;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> a,b;
+            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>a,<span style="color:#f92672">&amp;</span>b);
+            data[b][a]<span style="color:#f92672">++</span>;<span style="color:#75715e">//计数
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(b<span style="color:#f92672">&gt;</span>t)<span style="color:#75715e">//最大秒数
+</span><span style="color:#75715e"></span>                t<span style="color:#f92672">=</span>b;
+        }
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>t;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">-</span>t<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">?</span><span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span><span style="color:#f92672">-</span>t;<span style="color:#75715e">//主要是因为一开始限制边界的范围
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">int</span> r <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span><span style="color:#f92672">+</span>t<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">10</span><span style="color:#f92672">?</span><span style="color:#ae81ff">10</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span><span style="color:#f92672">+</span>t;
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>l;j<span style="color:#f92672">&lt;=</span>r;j<span style="color:#f92672">++</span>)
+            {
+                <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//在0处和10处需要特判
+</span><span style="color:#75715e"></span>                    ans[i][j] <span style="color:#f92672">=</span> max(ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>],ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>])<span style="color:#f92672">+</span>data[i][j];
+                <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">==</span><span style="color:#ae81ff">10</span>)
+                    ans[i][j] <span style="color:#f92672">=</span> max(ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">9</span>],ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">10</span>])<span style="color:#f92672">+</span>data[i][j];
+                <span style="color:#66d9ef">else</span>
+                    ans[i][j] <span style="color:#f92672">=</span> max(max(ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j],ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]),ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">+</span>data[i][j];<span style="color:#75715e">//转移方程
+</span><span style="color:#75715e"></span>            }
+        }
+        <span style="color:#66d9ef">int</span> cur_max<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//取最后一秒最大的值
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(ans[t][i]<span style="color:#f92672">&gt;</span>cur_max)
+                cur_max <span style="color:#f92672">=</span> ans[t][i];
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cur_max);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+<p>注意一开始的移动范围，只能从中间开始。</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/homework/">homework</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

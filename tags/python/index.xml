@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on My New Hugo Site</title>
+    <link>http://example.org/tags/python/</link>
+    <description>Recent content in python on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Mar 2020 22:46:29 +0000</lastBuildDate><atom:link href="http://example.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>c_with_python</title>
+      <link>http://example.org/posts/c-with-python/</link>
+      <pubDate>Sun, 15 Mar 2020 22:46:29 +0000</pubDate>
+      
+      <guid>http://example.org/posts/c-with-python/</guid>
+      <description>最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用
+ C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include&amp;lt;Python.h&amp;gt;就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译
+要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.
+python作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11
+conda conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样
+graphviz 这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素
+tkinter tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的
+要注意的几点
+tkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.
+tkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll
+conda base powershell 在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的
+C调用python参考 官方中文 确实有中文,但是感觉写的不怎么好
+转化为python变量 写的不错
+完整程序  给了不错的例子,包含大部分调用
+简介</description>
+    </item>
+    
+  </channel>
+</rss>

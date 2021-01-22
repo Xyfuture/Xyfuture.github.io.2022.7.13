@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Program-week12-homework | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, homework" />
+<meta name="description" content="week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了
+解法 简单的计数就行了
+一定要注意指针超界问题,这次就是因为这个原因被RE了
+code #include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) scanf(&#34;%d&#34;,data&#43;i); int pre=data[0]; int cnt =0 ; for(int i=0;i&lt;n;) { while(pre == data[i]) if(&#43;&#43;i&gt;n)//避免指针超界  break; cnt&#43;&#43;; pre = data[i]; } printf(&#34;%d&#34;,cnt); } 下面这个实现更好一些
+#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) scanf(&#34;%d&#34;,data&#43;i); int pre=data[0]; int cnt = 1;//因为最后一个不会被算入,提前&#43;1  for(int i=0;i&lt;n;i&#43;&#43;)//保证不越界  { if(pre == data[i]) continue ; else { cnt&#43;&#43;;//遇到新的&#43;1  pre =data[i]; } } printf(&#34;%d&#34;,cnt); } 总结 这题真的是不该错,实在是太简单了,一开始写的是对的,后来瞎改,把i&lt;n的条件给去掉了,导致一个点re">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/program-week12-homework/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Program-week12-homework" />
+<meta property="og:description" content="week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了
+解法 简单的计数就行了
+一定要注意指针超界问题,这次就是因为这个原因被RE了
+code #include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) scanf(&#34;%d&#34;,data&#43;i); int pre=data[0]; int cnt =0 ; for(int i=0;i&lt;n;) { while(pre == data[i]) if(&#43;&#43;i&gt;n)//避免指针超界  break; cnt&#43;&#43;; pre = data[i]; } printf(&#34;%d&#34;,cnt); } 下面这个实现更好一些
+#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) scanf(&#34;%d&#34;,data&#43;i); int pre=data[0]; int cnt = 1;//因为最后一个不会被算入,提前&#43;1  for(int i=0;i&lt;n;i&#43;&#43;)//保证不越界  { if(pre == data[i]) continue ; else { cnt&#43;&#43;;//遇到新的&#43;1  pre =data[i]; } } printf(&#34;%d&#34;,cnt); } 总结 这题真的是不该错,实在是太简单了,一开始写的是对的,后来瞎改,把i&lt;n的条件给去掉了,导致一个点re" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/program-week12-homework/" />
+<meta property="article:published_time" content="2020-05-14T23:31:30+00:00" />
+<meta property="article:modified_time" content="2020-05-14T23:31:30+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week12-homework"/>
+<meta name="twitter:description" content="week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了
+解法 简单的计数就行了
+一定要注意指针超界问题,这次就是因为这个原因被RE了
+code #include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) scanf(&#34;%d&#34;,data&#43;i); int pre=data[0]; int cnt =0 ; for(int i=0;i&lt;n;) { while(pre == data[i]) if(&#43;&#43;i&gt;n)//避免指针超界  break; cnt&#43;&#43;; pre = data[i]; } printf(&#34;%d&#34;,cnt); } 下面这个实现更好一些
+#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cstring&gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&#34;%d&#34;,&amp;n); for(int i=0;i&lt;n;i&#43;&#43;) scanf(&#34;%d&#34;,data&#43;i); int pre=data[0]; int cnt = 1;//因为最后一个不会被算入,提前&#43;1  for(int i=0;i&lt;n;i&#43;&#43;)//保证不越界  { if(pre == data[i]) continue ; else { cnt&#43;&#43;;//遇到新的&#43;1  pre =data[i]; } } printf(&#34;%d&#34;,cnt); } 总结 这题真的是不该错,实在是太简单了,一开始写的是对的,后来瞎改,把i&lt;n的条件给去掉了,导致一个点re"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Program-week12-homework",
+  "name": "Program-week12-homework",
+  "description": "week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了\n解法 简单的计数就行了\n一定要注意指针超界问题,这次就是因为这个原因被RE了\ncode #include \u0026amp;lt;cstdio\u0026amp;gt;#include \u0026amp;lt;iostream\u0026amp;gt;#include \u0026amp;lt;cstring\u0026amp;gt;using …",
+  "keywords": [
+    "Program", "homework"
+  ],
+  "articleBody": "week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了\n解法 简单的计数就行了\n一定要注意指针超界问题,这次就是因为这个原因被RE了\ncode #include #include #include using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(\"%d\",\u0026n); for(int i=0;in;i++) scanf(\"%d\",data+i); int pre=data[0]; int cnt =0 ; for(int i=0;in;) { while(pre == data[i]) if(++in)//避免指针超界  break; cnt++; pre = data[i]; } printf(\"%d\",cnt); } 下面这个实现更好一些\n#include #include #include using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(\"%d\",\u0026n); for(int i=0;in;i++) scanf(\"%d\",data+i); int pre=data[0]; int cnt = 1;//因为最后一个不会被算入,提前+1  for(int i=0;in;i++)//保证不越界  { if(pre == data[i]) continue ; else { cnt++;//遇到新的+1  pre =data[i]; } } printf(\"%d\",cnt); } 总结 这题真的是不该错,实在是太简单了,一开始写的是对的,后来瞎改,把iB - csp-m3-t2 题面 只在x和y轴方向上的连连看\n解法 这道题和上一道处理有相似的地方,就是求取元素相同的连续区间\n使用两个数组chess存储原始输入的棋盘,ans存储将对应元素置0后的新棋盘\n首先在x轴方向上一行一行的遍历整个chess,遇到连续3个及以上相同元素的地方直接将ans对应位置置0,其他位置和chess相同,保持不变\n然后在y轴上执行相同操作,但是如果ans[i][j] == 0 那么就不更新了ans了\ncode #include#include #include  using namespace std; int chess[40][40];//原始输入的棋盘 int ans[40][40];//输出答案的棋盘  int main() { memset(chess,0,sizeof(chess)); memset(ans,0,sizeof(ans)); int n,m; scanf(\"%d%d\",\u0026n,\u0026m); for(int i=0;in;i++) for(int j=0;jm;j++) scanf(\"%d\",\u0026chess[i][j]); for(int i=0;in;i++)//x轴方向  for(int j=0;jm;j++) { int be=j,ed =j; while(chess[i][be] == chess[i][ed+1])//其实这个地方也是可能会有RE的,不过因为输入没有0,所有无RE  ed++; if(ed-be+1=3)//连续位置改为0  for(int t=be;ted;t++) ans[i][t] = 0; else//原值  for(int t=be;ted;t++) ans[i][t] = chess[i][t]; j = ed;//更新新的起始位置  } for(int j=0;jm;j++) for(int i=0;in;i++) { int be = i,ed=i; while(chess[be][j] == chess[ed+1][j]) ed++; if(ed-be+1=3) for(int t=be;ted;t++) if(ans[t][j]) ans[t][j] = 0; else for(int t=be;ted;t++) if(ans[t][j])//只更新不是0的地方  ans[t][j] = chess[t][j]; i = ed; } for(int i=0;in;i++) { for(int j=0;jm;j++) printf(\"%d \",ans[i][j]); printf(\"\\n\"); } } 总结 这道题是简单的模拟,没有什么难度\nC - csp-m3-t4 题面 这道题还是挺绕的,首先它定义了两个东西\nDelicious和回文子串,Delicious要求串中所有元素都包含在回文子串中.\n问题求取的是大的串有多少个Delicious子串\n解法 这道题在赛场上直接想偏了,一开始看到了回文串,立即想到了dp,结果想了1h也没想明白怎么dp\n正解是求出不符合规则的,然后减去\n首先我们可以观察到ABBBBB……和AAAAAA….B是不符合Delicious规则的子串,实际上也只有两种形式不符合规则,因此我们先求出所有的子串有多少个,然后减去就可以了.\n求这两种形式的形式子串的数量和之前求相同元素区间是差不多的,\n首先求出每一个相同元素区间长度, AAAAABBBBAAAAA 分别是5 4 5 ,然后对于1个区间,其左右第一个元素必然是和它本身是不一样的,满足上述的两种形式,假设区间长度为t,则这个区间拥有2*t个不满足条件的子串\n最后,因为起始的区间和结束的区间没有左右元素,因此需要减去,其中AB BA会被去掉2次,需要加回来\ncode #include #include #include #include  using namespace std; long long sum[300005];//每一个区间的长度 string data;//输入的序列 int main() { memset(sum,0,sizeof(sum)); long long n; long long cnt=0,temp_cnt=0; long long repeat; scanf(\"%lld\",\u0026n); cindata; long long maxCount = (n-1)*n/2;//总子串个数  char cur=data[0]; int i=0,t=0; while(in) { while(cur == data[i]) if(++in)//避免re  break; else temp_cnt++;//+1  cur = data[i]; sum[t++] = temp_cnt;//这一个区间的长度  temp_cnt=0; } for(int j=0;jt;j++) cnt+=sum[j]*2;//总的不是delicious的子串数量  coutmaxCount-(cnt-sum[0]-sum[t-1]-(t-1))endl;//修正多去掉的 } 总结 这道题感觉还是有点难想,如果观察不到规律的话,很难想出使用减法来做,如果用暴力的话,只能拿前几个点的分\nweek12-homework A - 必做题 - 1 题面 统计一个数字出现的次数\n解法 使用类似桶排的思想(注意直接使用数组要看数据范围),data[i]表示i出现的次数\n也可以使用map,这样不用担心数据范围的问题\ncode #include #include #include using namespace std; int data[1000005];//计数  int main() { int n; while(scanf(\"%d\",\u0026n)!=EOF) { int cur = (n+1)/2;//计数条件  int ans = 0; memset(data,0,sizeof(data)); int temp; for(int i=0;in;i++) { scanf(\"%d\",\u0026temp); if(++data[temp]==cur)//计数  ans = temp; } printf(\"%d\\n\",ans);//输出结果  } return 0; } B - 必做题 - 2 题面 题面描述一个三维空间中的迷宫,然后找出最短路\n解法 这个是一个三维空间的BFS\n采取传统的BFS方法即可\n标记经过的点和记录到该点的最短距离可以复用地图的矩阵\ncode #include #include #include #include using namespace std; struct posi //三个方向上的坐标 { int z; int x; int y; bool operator == (const posi\u0026 op) const { return z==op.z\u0026\u0026x==op.x\u0026\u0026y==op.y; } }; posi startP,endP;//起始点和终点 int L,R,C;//三维空间的大小 int cubic[32][32][32];//存储三维空间的矩阵 int dirZ[]={1,-1,0,0,0,0};//6个方向 int dirX[]={0,0,1,-1,0,0}; int dirY[]={0,0,0,0,1,-1}; bool check(const posi cur)//检查是否能到达该点 { if(cur.z0||cur.z=L) return false; if(cur.x0||cur.x=R) return false; if(cur.y0||cur.y=C) return false; if(cubic[cur.z][cur.x][cur.y]!=0) return false; return true;//可以 } int bfs_dect() { queueposi q;//BFS队列  cubic[startP.z][startP.x][startP.y] = 1; q.push(startP); while(!q.empty()) { posi cur_posi=q.front(); q.pop(); for(int i=0;i6;i++)//6个方向上搜索  { posi newPoint = {cur_posi.z+dirZ[i],cur_posi.x+dirX[i],cur_posi.y+dirY[i]};//到达的点  if(check(newPoint))//检查能不能走  { cubic[newPoint.z][newPoint.x][newPoint.y] = cubic[cur_posi.z][cur_posi.x][cur_posi.y]+1;//能走的话首先标记(直接标记的最短路)  q.push(newPoint);//放入队列  if(newPoint == endP)//判断最终点  return cubic[newPoint.z][newPoint.x][newPoint.y]-1; } } } return -1;//找不到 } int main() { while (scanf(\"%d%d%d\",\u0026L,\u0026R,\u0026C)) { getchar(); if(L==0 \u0026\u0026R==0\u0026\u0026C==0) break; memset(cubic,0,sizeof(cubic)); char c; for(int i=0;iL;i++)//录入信息  { for(int j=0;jR;j++) { for(int t=0;tC;t++) { scanf(\"%c\",\u0026c); if(c=='S') startP = {i,j,t}; else if (c == '#') cubic[i][j][t] = 1; else if (c == 'E') endP = {i,j,t}; } getchar(); } getchar(); } int ans = bfs_dect(); if(ans == -1) printf(\"Trapped!\\n\"); else printf(\"Escaped in %d minute(s).\\n\",ans); } } 总结 这道题算是对以前简单复习\nBFS需要使用队列,经常忘记的是标记的问题,虽然说不标记也能求出来,但是时间必然会爆掉,一定要记得去标记走到过的点,同时标记时使用的数组可以复用,用来干一些其他的事情.\nC - 必做题 - 3 题面 题面意思很简单,一个序列中找出几组连续的数,是总和最大\n解法 这个是一道dp的题,需要使用滚动数组优化空间(否则超了空间了)\ndp[j][i]表示选j组到第i位置(必须选择这个)这j组最大值是多少,后续会优化掉j\n$dp[j][i]=max(dp[j][i-1]+data[i],max(dp[j-1][i-1])+data[i])$\n第一个的意思是都是第j组,i-1和i连续算是一组\n第二个的意思是从i开始新建一组,因此需要从j-1中取,取得是0~~i-1中最大的那一个\n因此我们能看出其实只需要两组数据就行,第j组和j-1组\n因此使用temp[i]表示第j-1组中到第i个位置(可以不包含)最大值\ntemp[i]的更新也是dp的方法 temp[i] = max(temp[i-1],dp[i])\ncode #include #include #include #include  using namespace std; int data[1000005];//原始数据 int ans[1000005];//最终答案 int temp_ans[1000005];//中间存储  int main() { int n,m; while(scanf(\"%d%d\",\u0026m,\u0026n)!=EOF) { memset(ans,0,sizeof(ans)); memset(temp_ans,0,sizeof(temp_ans)); for(int i=1;in;i++) scanf(\"%d\",data+i); int maxEle=0;//temp_ans更新的最大值  for(int i=1;im;i++)//组数  { maxEle = -100000000; for (int j = i; j n; j++)//第i租以j结尾的情况  { ans[j] = max(ans[j-1]+data[j],temp_ans[j-1]+data[j]);//续上前一个还是新开始一个  temp_ans[j-1] = maxEle;//滚动数组,用完了才更新,用的时候上是i-1组的数据,现在更新为第i组  maxEle = max(temp_ans[j-1],ans[j]);//更新temp_ans[j],是保持之前的还是新的  } } printf(\"%d\\n\",maxEle); } } 总结 这道题感觉有点难度,之前做的是简单的m为1的情况,这个直接扩展了m.\n扩展之后就需要多记录一维的信息.每次更新两维的信息.\n",
+  "wordCount" : "594",
+  "inLanguage": "en",
+  "datePublished": "2020-05-14T23:31:30Z",
+  "dateModified": "2020-05-14T23:31:30Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/program-week12-homework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Program-week12-homework
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">May 14, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="week12-csp">week12-CSP<a hidden class="anchor" aria-hidden="true" href="#week12-csp">#</a></h1>
+<h2 id="a---csp-m3-t1httpsvjudgenetproblemgym-270437l"><a href="https://vjudge.net/problem/Gym-270437L">A - csp-m3-t1</a><a hidden class="anchor" aria-hidden="true" href="#a---csp-m3-t1httpsvjudgenetproblemgym-270437l">#</a></h2>
+<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/15/XJvMkAsDYj3IwL1.png" alt=""></p>
+<p>这个求相同元素区间的个数,之前做过,但是还是做错了</p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<p>简单的计数就行了</p>
+<p>一定要注意指针超界问题,这次就是因为这个原因被RE了</p>
+<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+
+<span style="color:#66d9ef">int</span> data [<span style="color:#ae81ff">10000</span>];
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n;
+    memset(data,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(data));
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,data<span style="color:#f92672">+</span>i);
+    <span style="color:#66d9ef">int</span> pre<span style="color:#f92672">=</span>data[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ;
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;)
+    {
+        <span style="color:#66d9ef">while</span>(pre <span style="color:#f92672">==</span> data[i])
+            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">++</span>i<span style="color:#f92672">&gt;</span>n)<span style="color:#75715e">//避免指针超界
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">break</span>;
+        cnt<span style="color:#f92672">++</span>;
+        pre <span style="color:#f92672">=</span> data[i];
+    }
+    printf(<span style="color:#e6db74">&#34;%d&#34;</span>,cnt);
+}
+</code></pre></div><p>下面这个实现更好一些</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+
+<span style="color:#66d9ef">int</span> data [<span style="color:#ae81ff">10000</span>];
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n;
+    memset(data,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(data));
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,data<span style="color:#f92672">+</span>i);
+    <span style="color:#66d9ef">int</span> pre<span style="color:#f92672">=</span>data[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//因为最后一个不会被算入,提前+1
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//保证不越界
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">if</span>(pre <span style="color:#f92672">==</span> data[i])
+            <span style="color:#66d9ef">continue</span> ;
+        <span style="color:#66d9ef">else</span>
+        {
+            cnt<span style="color:#f92672">++</span>;<span style="color:#75715e">//遇到新的+1
+</span><span style="color:#75715e"></span>            pre <span style="color:#f92672">=</span>data[i];
+        }
+    }
+    printf(<span style="color:#e6db74">&#34;%d&#34;</span>,cnt);
+}
+</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>这题真的是不该错,实在是太简单了,一开始写的是对的,后来瞎改,把i&lt;n的条件给去掉了,导致一个点re</p>
+<h2 id="b---csp-m3-t2httpsvjudgenetproblemgym-270437n"><a href="https://vjudge.net/problem/Gym-270437N">B - csp-m3-t2</a><a hidden class="anchor" aria-hidden="true" href="#b---csp-m3-t2httpsvjudgenetproblemgym-270437n">#</a></h2>
+<h3 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/15/EMiVyYg2opreqnc.png" alt=""></p>
+<p>只在x和y轴方向上的连连看</p>
+<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<p>这道题和上一道处理有相似的地方,就是求取元素相同的连续区间</p>
+<p>使用两个数组chess存储原始输入的棋盘,ans存储将对应元素置0后的新棋盘</p>
+<p>首先在x轴方向上一行一行的遍历整个chess,遇到连续3个及以上相同元素的地方直接将ans对应位置置0,其他位置和chess相同,保持不变</p>
+<p>然后在y轴上执行相同操作,但是如果ans[i][j] == 0 那么就不更新了ans了</p>
+<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> chess[<span style="color:#ae81ff">40</span>][<span style="color:#ae81ff">40</span>];<span style="color:#75715e">//原始输入的棋盘
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">40</span>][<span style="color:#ae81ff">40</span>];<span style="color:#75715e">//输出答案的棋盘
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    memset(chess,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(chess));
+    memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+    <span style="color:#66d9ef">int</span> n,m;
+    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>m);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>m;j<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>chess[i][j]);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//x轴方向
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>m;j<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> be<span style="color:#f92672">=</span>j,ed <span style="color:#f92672">=</span>j;
+            <span style="color:#66d9ef">while</span>(chess[i][be] <span style="color:#f92672">==</span> chess[i][ed<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#75715e">//其实这个地方也是可能会有RE的,不过因为输入没有0,所有无RE
+</span><span style="color:#75715e"></span>                ed<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">if</span>(ed<span style="color:#f92672">-</span>be<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">3</span>)<span style="color:#75715e">//连续位置改为0
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span>be;t<span style="color:#f92672">&lt;=</span>ed;t<span style="color:#f92672">++</span>)
+                    ans[i][t] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">else</span><span style="color:#75715e">//原值
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span>be;t<span style="color:#f92672">&lt;=</span>ed;t<span style="color:#f92672">++</span>)
+                    ans[i][t] <span style="color:#f92672">=</span> chess[i][t];
+            j <span style="color:#f92672">=</span> ed;<span style="color:#75715e">//更新新的起始位置
+</span><span style="color:#75715e"></span>        }
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>m;j<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> be <span style="color:#f92672">=</span> i,ed<span style="color:#f92672">=</span>i;
+            <span style="color:#66d9ef">while</span>(chess[be][j] <span style="color:#f92672">==</span> chess[ed<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j])
+                ed<span style="color:#f92672">++</span>;
+            <span style="color:#66d9ef">if</span>(ed<span style="color:#f92672">-</span>be<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">3</span>)
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span>be;t<span style="color:#f92672">&lt;=</span>ed;t<span style="color:#f92672">++</span>)
+                    <span style="color:#66d9ef">if</span>(ans[t][j])
+                        ans[t][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">else</span> 
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span>be;t<span style="color:#f92672">&lt;=</span>ed;t<span style="color:#f92672">++</span>)
+                    <span style="color:#66d9ef">if</span>(ans[t][j])<span style="color:#75715e">//只更新不是0的地方
+</span><span style="color:#75715e"></span>                        ans[t][j] <span style="color:#f92672">=</span> chess[t][j];
+            i <span style="color:#f92672">=</span> ed;
+        }
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>m;j<span style="color:#f92672">++</span>)
+            printf(<span style="color:#e6db74">&#34;%d &#34;</span>,ans[i][j]);
+        printf(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    }
+}
+</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<p>这道题是简单的模拟,没有什么难度</p>
+<h2 id="c---csp-m3-t4httpsvjudgenetproblemgym-270437m"><a href="https://vjudge.net/problem/Gym-270437M">C - csp-m3-t4</a><a hidden class="anchor" aria-hidden="true" href="#c---csp-m3-t4httpsvjudgenetproblemgym-270437m">#</a></h2>
+<h3 id="题面-2">题面<a hidden class="anchor" aria-hidden="true" href="#题面-2">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/15/8tOD4EiHL3odCvW.png" alt=""></p>
+<p>这道题还是挺绕的,首先它定义了两个东西</p>
+<p>Delicious和回文子串,Delicious要求串中所有元素都包含在回文子串中.</p>
+<p>问题求取的是大的串有多少个Delicious子串</p>
+<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<p>这道题在赛场上直接想偏了,一开始看到了回文串,立即想到了dp,结果想了1h也没想明白怎么dp</p>
+<p>正解是求出不符合规则的,然后减去</p>
+<p>首先我们可以观察到ABBBBB&hellip;&hellip;和AAAAAA&hellip;.B是不符合Delicious规则的子串,实际上也只有两种形式不符合规则,因此我们先求出所有的子串有多少个,然后减去就可以了.</p>
+<p>求这两种形式的形式子串的数量和之前求相同元素区间是差不多的,</p>
+<p>首先求出每一个相同元素区间长度, AAAAABBBBAAAAA 分别是5 4 5 ,然后对于1个区间,其左右第一个元素必然是和它本身是不一样的,满足上述的两种形式,假设区间长度为t,则这个区间拥有2*t个不满足条件的子串</p>
+<p>最后,因为起始的区间和结束的区间没有左右元素,因此需要减去,其中AB BA会被去掉2次,需要加回来</p>
+<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> sum[<span style="color:#ae81ff">300005</span>];<span style="color:#75715e">//每一个区间的长度
+</span><span style="color:#75715e"></span>string data;<span style="color:#75715e">//输入的序列
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    
+    memset(sum,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(sum));
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> n;
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,temp_cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> repeat;
+    scanf(<span style="color:#e6db74">&#34;%lld&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+    cin<span style="color:#f92672">&gt;&gt;</span>data;
+    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> maxCount <span style="color:#f92672">=</span> (n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>n<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;<span style="color:#75715e">//总子串个数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> cur<span style="color:#f92672">=</span>data[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>(i<span style="color:#f92672">&lt;</span>n)
+    {
+        <span style="color:#66d9ef">while</span>(cur <span style="color:#f92672">==</span> data[i])
+            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">++</span>i<span style="color:#f92672">&gt;</span>n)<span style="color:#75715e">//避免re
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">break</span>;
+            <span style="color:#66d9ef">else</span> 
+                temp_cnt<span style="color:#f92672">++</span>;<span style="color:#75715e">//+1
+</span><span style="color:#75715e"></span>        cur <span style="color:#f92672">=</span> data[i];
+        sum[t<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> temp_cnt;<span style="color:#75715e">//这一个区间的长度
+</span><span style="color:#75715e"></span>        temp_cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    }
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>t;j<span style="color:#f92672">++</span>)
+        cnt<span style="color:#f92672">+=</span>sum[j]<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>;<span style="color:#75715e">//总的不是delicious的子串数量
+</span><span style="color:#75715e"></span>    cout<span style="color:#f92672">&lt;&lt;</span>maxCount<span style="color:#f92672">-</span>(cnt<span style="color:#f92672">-</span>sum[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">-</span>sum[t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">-</span>(t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#f92672">&lt;&lt;</span>endl;<span style="color:#75715e">//修正多去掉的
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+<p>这道题感觉还是有点难想,如果观察不到规律的话,很难想出使用减法来做,如果用暴力的话,只能拿前几个点的分</p>
+<h1 id="week12-homework">week12-homework<a hidden class="anchor" aria-hidden="true" href="#week12-homework">#</a></h1>
+<h2 id="a---必做题---1httpsvjudgenetproblemhdu-1029"><a href="https://vjudge.net/problem/HDU-1029">A - 必做题 - 1</a><a hidden class="anchor" aria-hidden="true" href="#a---必做题---1httpsvjudgenetproblemhdu-1029">#</a></h2>
+<h3 id="题面-3">题面<a hidden class="anchor" aria-hidden="true" href="#题面-3">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/04/OQaLfWKXMuTC35A.png" alt="image-20200604142440323"></p>
+<p>统计一个数字出现的次数</p>
+<h3 id="解法-3">解法<a hidden class="anchor" aria-hidden="true" href="#解法-3">#</a></h3>
+<p>使用类似桶排的思想(注意直接使用数组要看数据范围),data[i]表示i出现的次数</p>
+<p>也可以使用map,这样不用担心数据范围的问题</p>
+<h3 id="code-3">code<a hidden class="anchor" aria-hidden="true" href="#code-3">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">1000005</span>];<span style="color:#75715e">//计数
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n;
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n)<span style="color:#f92672">!=</span>EOF)
+    {
+        <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> (n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;<span style="color:#75715e">//计数条件
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        memset(data,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(data));
+        <span style="color:#66d9ef">int</span> temp;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        {
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>temp);
+            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">++</span>data[temp]<span style="color:#f92672">==</span>cur)<span style="color:#75715e">//计数
+</span><span style="color:#75715e"></span>                ans <span style="color:#f92672">=</span> temp;            
+        }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans);<span style="color:#75715e">//输出结果
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;    
+}
+</code></pre></div><h2 id="b---必做题---2httpsvjudgenetproblempoj-2251"><a href="https://vjudge.net/problem/POJ-2251">B - 必做题 - 2</a><a hidden class="anchor" aria-hidden="true" href="#b---必做题---2httpsvjudgenetproblempoj-2251">#</a></h2>
+<h3 id="题面-4">题面<a hidden class="anchor" aria-hidden="true" href="#题面-4">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/04/yikvJKShIz7VusF.png" alt="image-20200604143023866"></p>
+<p>题面描述一个三维空间中的迷宫,然后找出最短路</p>
+<h3 id="解法-4">解法<a hidden class="anchor" aria-hidden="true" href="#解法-4">#</a></h3>
+<p>这个是一个三维空间的BFS</p>
+<p>采取传统的BFS方法即可</p>
+<p>标记经过的点和记录到该点的最短距离可以复用地图的矩阵</p>
+<h3 id="code-4">code<a hidden class="anchor" aria-hidden="true" href="#code-4">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">posi</span> <span style="color:#75715e">//三个方向上的坐标
+</span><span style="color:#75715e"></span>{   
+    <span style="color:#66d9ef">int</span> z;
+    <span style="color:#66d9ef">int</span> x;
+    <span style="color:#66d9ef">int</span> y;
+    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">==</span> (<span style="color:#66d9ef">const</span> posi<span style="color:#f92672">&amp;</span> op) <span style="color:#66d9ef">const</span>
+    {
+        <span style="color:#66d9ef">return</span> z<span style="color:#f92672">==</span>op.z<span style="color:#f92672">&amp;&amp;</span>x<span style="color:#f92672">==</span>op.x<span style="color:#f92672">&amp;&amp;</span>y<span style="color:#f92672">==</span>op.y;
+    }
+};
+posi startP,endP;<span style="color:#75715e">//起始点和终点
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> L,R,C;<span style="color:#75715e">//三维空间的大小
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> cubic[<span style="color:#ae81ff">32</span>][<span style="color:#ae81ff">32</span>][<span style="color:#ae81ff">32</span>];<span style="color:#75715e">//存储三维空间的矩阵
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> dirZ[]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};<span style="color:#75715e">//6个方向
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> dirX[]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
+<span style="color:#66d9ef">int</span> dirY[]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
+<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">check</span>(<span style="color:#66d9ef">const</span> posi cur)<span style="color:#75715e">//检查是否能到达该点
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">if</span>(cur.z<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">||</span>cur.z<span style="color:#f92672">&gt;=</span>L)
+        <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">if</span>(cur.x<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">||</span>cur.x<span style="color:#f92672">&gt;=</span>R)
+        <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">if</span>(cur.y<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">||</span>cur.y<span style="color:#f92672">&gt;=</span>C)
+        <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">if</span>(cubic[cur.z][cur.x][cur.y]<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">return</span> false;
+    <span style="color:#66d9ef">return</span> true;<span style="color:#75715e">//可以
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">bfs_dect</span>()
+{
+    queue<span style="color:#f92672">&lt;</span>posi<span style="color:#f92672">&gt;</span> q;<span style="color:#75715e">//BFS队列
+</span><span style="color:#75715e"></span>    cubic[startP.z][startP.x][startP.y] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    q.push(startP);
+    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>q.empty())
+    {
+        posi cur_posi<span style="color:#f92672">=</span>q.front();
+        q.pop();
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">6</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//6个方向上搜索
+</span><span style="color:#75715e"></span>        {
+            posi newPoint <span style="color:#f92672">=</span> {cur_posi.z<span style="color:#f92672">+</span>dirZ[i],cur_posi.x<span style="color:#f92672">+</span>dirX[i],cur_posi.y<span style="color:#f92672">+</span>dirY[i]};<span style="color:#75715e">//到达的点
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(check(newPoint))<span style="color:#75715e">//检查能不能走
+</span><span style="color:#75715e"></span>            {
+                cubic[newPoint.z][newPoint.x][newPoint.y] <span style="color:#f92672">=</span> cubic[cur_posi.z][cur_posi.x][cur_posi.y]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//能走的话首先标记(直接标记的最短路)
+</span><span style="color:#75715e"></span>                q.push(newPoint);<span style="color:#75715e">//放入队列
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(newPoint <span style="color:#f92672">==</span> endP)<span style="color:#75715e">//判断最终点
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">return</span> cubic[newPoint.z][newPoint.x][newPoint.y]<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+            }
+        }
+    }    
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//找不到
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">while</span> (scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>L,<span style="color:#f92672">&amp;</span>R,<span style="color:#f92672">&amp;</span>C))
+    {
+        getchar();
+        <span style="color:#66d9ef">if</span>(L<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span>R<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>C<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">break</span>;
+        memset(cubic,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(cubic));
+        <span style="color:#66d9ef">char</span> c;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>L;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//录入信息
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>R;j<span style="color:#f92672">++</span>)
+            {
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span>C;t<span style="color:#f92672">++</span>)
+                {
+                    scanf(<span style="color:#e6db74">&#34;%c&#34;</span>,<span style="color:#f92672">&amp;</span>c);
+
+                    <span style="color:#66d9ef">if</span>(c<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;S&#39;</span>)
+                        startP <span style="color:#f92672">=</span> {i,j,t};
+                    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>)
+                        cubic[i][j][t] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;E&#39;</span>)
+                        endP <span style="color:#f92672">=</span> {i,j,t};
+                }
+                getchar();
+            }
+            getchar();
+        }
+        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> bfs_dect();
+        <span style="color:#66d9ef">if</span>(ans <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+            printf(<span style="color:#e6db74">&#34;Trapped!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+        <span style="color:#66d9ef">else</span> 
+            printf(<span style="color:#e6db74">&#34;Escaped in %d minute(s).</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans);
+    }
+}
+</code></pre></div><h3 id="总结-3">总结<a hidden class="anchor" aria-hidden="true" href="#总结-3">#</a></h3>
+<p>这道题算是对以前简单复习</p>
+<p>BFS需要使用队列,经常忘记的是标记的问题,虽然说不标记也能求出来,但是时间必然会爆掉,一定要记得去标记走到过的点,同时标记时使用的数组可以复用,用来干一些其他的事情.</p>
+<h2 id="c---必做题---3httpsvjudgenetproblemhdu-1024"><a href="https://vjudge.net/problem/HDU-1024">C - 必做题 - 3</a><a hidden class="anchor" aria-hidden="true" href="#c---必做题---3httpsvjudgenetproblemhdu-1024">#</a></h2>
+<h3 id="题面-5">题面<a hidden class="anchor" aria-hidden="true" href="#题面-5">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/04/rhuj3mQGdWkNMIn.png" alt="image-20200604144913018"></p>
+<p>题面意思很简单,一个序列中找出几组连续的数,是总和最大</p>
+<h3 id="解法-5">解法<a hidden class="anchor" aria-hidden="true" href="#解法-5">#</a></h3>
+<p>这个是一道dp的题,需要使用滚动数组优化空间(否则超了空间了)</p>
+<p>dp[j][i]表示选j组到第i位置(必须选择这个)这j组最大值是多少,后续会优化掉j</p>
+<p>$dp[j][i]=max(dp[j][i-1]+data[i],max(dp[j-1][i-1])+data[i])$</p>
+<p>第一个的意思是都是第j组,i-1和i连续算是一组</p>
+<p>第二个的意思是从i开始新建一组,因此需要从j-1中取,取得是0~~i-1中最大的那一个</p>
+<p>因此我们能看出其实只需要两组数据就行,第j组和j-1组</p>
+<p>因此使用temp[i]表示第j-1组中到第i个位置(可以不包含)最大值</p>
+<p>temp[i]的更新也是dp的方法 temp[i] = max(temp[i-1],dp[i])</p>
+<h3 id="code-5">code<a hidden class="anchor" aria-hidden="true" href="#code-5">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">1000005</span>];<span style="color:#75715e">//原始数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">1000005</span>];<span style="color:#75715e">//最终答案
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> temp_ans[<span style="color:#ae81ff">1000005</span>];<span style="color:#75715e">//中间存储
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n,m;
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>m,<span style="color:#f92672">&amp;</span>n)<span style="color:#f92672">!=</span>EOF)
+    {
+        memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+        memset(temp_ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(temp_ans));
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,data<span style="color:#f92672">+</span>i);
+
+        <span style="color:#66d9ef">int</span> maxEle<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//temp_ans更新的最大值
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//组数
+</span><span style="color:#75715e"></span>        {
+            maxEle <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100000000</span>;
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i; j <span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">++</span>)<span style="color:#75715e">//第i租以j结尾的情况
+</span><span style="color:#75715e"></span>            {
+                ans[j] <span style="color:#f92672">=</span> max(ans[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>data[j],temp_ans[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>data[j]);<span style="color:#75715e">//续上前一个还是新开始一个
+</span><span style="color:#75715e"></span>                temp_ans[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxEle;<span style="color:#75715e">//滚动数组,用完了才更新,用的时候上是i-1组的数据,现在更新为第i组
+</span><span style="color:#75715e"></span>                maxEle <span style="color:#f92672">=</span> max(temp_ans[j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],ans[j]);<span style="color:#75715e">//更新temp_ans[j],是保持之前的还是新的
+</span><span style="color:#75715e"></span>            }
+        }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,maxEle);
+    }
+}
+</code></pre></div><h3 id="总结-4">总结<a hidden class="anchor" aria-hidden="true" href="#总结-4">#</a></h3>
+<p>这道题感觉有点难度,之前做的是简单的m为1的情况,这个直接扩展了m.</p>
+<p>扩展之后就需要多记录一维的信息.每次更新两维的信息.</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/homework/">homework</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>

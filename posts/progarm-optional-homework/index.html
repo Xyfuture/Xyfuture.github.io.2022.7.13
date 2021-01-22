@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Progarm-optional-homework | My New Hugo Site</title>
+
+<meta name="keywords" content="Program, homework" />
+<meta name="description" content="week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过
+解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求
+ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为
+对第t类钞票 ans[j] = ans[j-data[t]] (逆序)
+然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;string&gt;#include &lt;cstring&gt; using namespace std; int ans[100002]; int num[12]; int value[12]; int nnum[10002]; int nvalue[10002]; int split[12]; int ssum[12]; void init() { for(int i=0;i&lt;12;i&#43;&#43;) { split[i]=1&lt;&lt;i; if(i==0) ssum[i] = 1; else ssum[i] = ssum[i-1]&#43;split[i]; } } int main() { int n,m,p; init();//初始化二进制拆分数组  while(scanf(&#34;%d&#34;,&amp;n)!=EOF) { memset(ans,128,sizeof(ans)); scanf(&#34;%d&#34;,&amp;m); for(int i=1;i&lt;=m;i&#43;&#43;) scanf(&#34;%d%d&#34;,num&#43;i,value&#43;i); p=1; for(int i=1;i&lt;=m;i&#43;&#43;) { int t=0; int temp=num[i];//将个数进行二进制拆分  while((temp&gt;&gt;1)&gt;0){//最多是2^x  t&#43;&#43;; temp = temp&gt;&gt;1; } for(int s=0;s&lt;t;s&#43;&#43;)//拆分  nnum[p]=split[s],nvalue[p&#43;&#43;]=value[i]; if(t==0)//剩下的  nnum[p] = num[i]; else nnum[p]=num[i]-ssum[t-1]; nvalue[p&#43;&#43;]=value[i]; } ans[0] = 1;//提供0是可以的  for(int i=1;i&lt;=p-1;i&#43;&#43;)//一个一个钞票类型来  { for(int j=n;j&gt;=0;j--)//最多就是提供n  { // ans[j] = ans[j];  if(j-nnum[i]*nvalue[i]&gt;=0)//大于0,避免负数现金  if(ans[j-nnum[i]*nvalue[i]] == 1)//子情况能提供  ans[j] = 1; } } int cur=0; for(int i=n;i&gt;=0;i--) if(ans[i] == 1) { cur =i; break; } printf(&#34;%d\n&#34;,cur); } } 总结 这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）">
+<meta name="author" content="">
+<link rel="canonical" href="http://example.org/posts/progarm-optional-homework/" />
+<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
+    as="style">
+
+<link rel="icon" href="http://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="http://example.org/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+<meta property="og:title" content="Progarm-optional-homework" />
+<meta property="og:description" content="week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过
+解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求
+ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为
+对第t类钞票 ans[j] = ans[j-data[t]] (逆序)
+然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;string&gt;#include &lt;cstring&gt; using namespace std; int ans[100002]; int num[12]; int value[12]; int nnum[10002]; int nvalue[10002]; int split[12]; int ssum[12]; void init() { for(int i=0;i&lt;12;i&#43;&#43;) { split[i]=1&lt;&lt;i; if(i==0) ssum[i] = 1; else ssum[i] = ssum[i-1]&#43;split[i]; } } int main() { int n,m,p; init();//初始化二进制拆分数组  while(scanf(&#34;%d&#34;,&amp;n)!=EOF) { memset(ans,128,sizeof(ans)); scanf(&#34;%d&#34;,&amp;m); for(int i=1;i&lt;=m;i&#43;&#43;) scanf(&#34;%d%d&#34;,num&#43;i,value&#43;i); p=1; for(int i=1;i&lt;=m;i&#43;&#43;) { int t=0; int temp=num[i];//将个数进行二进制拆分  while((temp&gt;&gt;1)&gt;0){//最多是2^x  t&#43;&#43;; temp = temp&gt;&gt;1; } for(int s=0;s&lt;t;s&#43;&#43;)//拆分  nnum[p]=split[s],nvalue[p&#43;&#43;]=value[i]; if(t==0)//剩下的  nnum[p] = num[i]; else nnum[p]=num[i]-ssum[t-1]; nvalue[p&#43;&#43;]=value[i]; } ans[0] = 1;//提供0是可以的  for(int i=1;i&lt;=p-1;i&#43;&#43;)//一个一个钞票类型来  { for(int j=n;j&gt;=0;j--)//最多就是提供n  { // ans[j] = ans[j];  if(j-nnum[i]*nvalue[i]&gt;=0)//大于0,避免负数现金  if(ans[j-nnum[i]*nvalue[i]] == 1)//子情况能提供  ans[j] = 1; } } int cur=0; for(int i=n;i&gt;=0;i--) if(ans[i] == 1) { cur =i; break; } printf(&#34;%d\n&#34;,cur); } } 总结 这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/progarm-optional-homework/" />
+<meta property="article:published_time" content="2020-06-11T14:37:00+00:00" />
+<meta property="article:modified_time" content="2020-06-11T14:37:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Progarm-optional-homework"/>
+<meta name="twitter:description" content="week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过
+解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求
+ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为
+对第t类钞票 ans[j] = ans[j-data[t]] (逆序)
+然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票
+code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;string&gt;#include &lt;cstring&gt; using namespace std; int ans[100002]; int num[12]; int value[12]; int nnum[10002]; int nvalue[10002]; int split[12]; int ssum[12]; void init() { for(int i=0;i&lt;12;i&#43;&#43;) { split[i]=1&lt;&lt;i; if(i==0) ssum[i] = 1; else ssum[i] = ssum[i-1]&#43;split[i]; } } int main() { int n,m,p; init();//初始化二进制拆分数组  while(scanf(&#34;%d&#34;,&amp;n)!=EOF) { memset(ans,128,sizeof(ans)); scanf(&#34;%d&#34;,&amp;m); for(int i=1;i&lt;=m;i&#43;&#43;) scanf(&#34;%d%d&#34;,num&#43;i,value&#43;i); p=1; for(int i=1;i&lt;=m;i&#43;&#43;) { int t=0; int temp=num[i];//将个数进行二进制拆分  while((temp&gt;&gt;1)&gt;0){//最多是2^x  t&#43;&#43;; temp = temp&gt;&gt;1; } for(int s=0;s&lt;t;s&#43;&#43;)//拆分  nnum[p]=split[s],nvalue[p&#43;&#43;]=value[i]; if(t==0)//剩下的  nnum[p] = num[i]; else nnum[p]=num[i]-ssum[t-1]; nvalue[p&#43;&#43;]=value[i]; } ans[0] = 1;//提供0是可以的  for(int i=1;i&lt;=p-1;i&#43;&#43;)//一个一个钞票类型来  { for(int j=n;j&gt;=0;j--)//最多就是提供n  { // ans[j] = ans[j];  if(j-nnum[i]*nvalue[i]&gt;=0)//大于0,避免负数现金  if(ans[j-nnum[i]*nvalue[i]] == 1)//子情况能提供  ans[j] = 1; } } int cur=0; for(int i=n;i&gt;=0;i--) if(ans[i] == 1) { cur =i; break; } printf(&#34;%d\n&#34;,cur); } } 总结 这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Progarm-optional-homework",
+  "name": "Progarm-optional-homework",
+  "description": "week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过\n解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求\nans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为\n对第t类钞票 ans[j] = ans[j-data[t]] (逆序)\n然 …",
+  "keywords": [
+    "Program", "homework"
+  ],
+  "articleBody": "week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过\n解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求\nans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为\n对第t类钞票 ans[j] = ans[j-data[t]] (逆序)\n然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票\ncode #include #include #include #include  using namespace std; int ans[100002]; int num[12]; int value[12]; int nnum[10002]; int nvalue[10002]; int split[12]; int ssum[12]; void init() { for(int i=0;i12;i++) { split[i]=1i; if(i==0) ssum[i] = 1; else ssum[i] = ssum[i-1]+split[i]; } } int main() { int n,m,p; init();//初始化二进制拆分数组  while(scanf(\"%d\",\u0026n)!=EOF) { memset(ans,128,sizeof(ans)); scanf(\"%d\",\u0026m); for(int i=1;im;i++) scanf(\"%d%d\",num+i,value+i); p=1; for(int i=1;im;i++) { int t=0; int temp=num[i];//将个数进行二进制拆分  while((temp1)0){//最多是2^x  t++; temp = temp1; } for(int s=0;st;s++)//拆分  nnum[p]=split[s],nvalue[p++]=value[i]; if(t==0)//剩下的  nnum[p] = num[i]; else nnum[p]=num[i]-ssum[t-1]; nvalue[p++]=value[i]; } ans[0] = 1;//提供0是可以的  for(int i=1;ip-1;i++)//一个一个钞票类型来  { for(int j=n;j=0;j--)//最多就是提供n  { // ans[j] = ans[j];  if(j-nnum[i]*nvalue[i]=0)//大于0,避免负数现金  if(ans[j-nnum[i]*nvalue[i]] == 1)//子情况能提供  ans[j] = 1; } } int cur=0; for(int i=n;i=0;i--) if(ans[i] == 1) { cur =i; break; } printf(\"%d\\n\",cur); } } 总结 这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）\nF - 选做题11-2 东东开车了 题面 这个也是一种背包，背包容量给定，选定能选的最大容量\n解法 这道题看起来像贪心，但是实际不是贪心，因为限制条件是选择的唱片必须听完，而且时长最长，比如车程4min，唱片 2 2 3，用贪心只能选3，dp会选 2 2\ndp[i][j]表示前i分钟，能选j个唱片\n$dp[i][j] = max(dp[i-data[j]][j-1]+data[j],data[i][j-1])$\n题目还要求存储选择了那些唱片，因此还需要一个数组保存选取的情况，使用choose[i][j]表示在第i分钟选不选择第j个唱片，然后按照dp的规则方向找回去\ncode #include #include #include #include #include using namespace std; int ans[22][10002];//存储时长 int data[10002];//唱片数据 int choose[22][10002];//选择情况 void output(int t,int l)//输出选了那些唱片 { if(t1) return ; if(choose[t][l] == 0)//没选  output(t-1,l); else { output(t-1,l-data[t]);//选了  printf(\"%d \",data[t]); } } int main() { int n,m; while(scanf(\"%d\",\u0026n)!=EOF) { memset(ans,128,sizeof(ans)); memset(choose,0,sizeof(choose)); scanf(\"%d\",\u0026m); for(int i=1;im;i++) scanf(\"%d\",data+i); data[0] = 0; ans[0][0] =0;//初始化  for(int i=1;im;i++)//n^2  for(int j=0;jn;j++) { ans[i][j] = ans[i-1][j]; if(j-data[i]=0)//有空位  if(ans[i-1][j]ans[i-1][j-data[i]]+1)//选择更大的  { choose[i][j] = 1; ans[i][j] = ans[i-1][j-data[i]]+1; } } int cur = 0; for(int i=n;i0;i--)//找到最大时间  if(ans[m][i]0) { cur = i ; break; } output(m,cur); printf(\"sum:%d\\n\",cur); } } 总结 01背包的小变形，这个只不过把重量和价值合二为一了。\nweek12 D - 选做题 - 1 题面 课上的ppt有中文版题面，就是给定一个括号序列，然后判断完全匹配的个数\n解法 区间DP\ndp[i][j]表示区间i到j（包含两个端点）内部最大的匹配数\n更新情况：\n如果data[i]与data[j]能够匹配 dp[i][j] = max(dp[i+1][j-1]+2,max(dp[i][t]+dp[t+1][j]))\n两者不匹配 dp[i][j] = max(dp[i][t]+dp[t+1][j])\n其中t为i到j之间的数字，然后范围从小到大开始更新\ncode #include #include #include #include #include using namespace std; string data; int length; int ans[105][105]; void getMax(int len) { memset(ans,0,sizeof(ans)); for(int i=1;ilen;i++) for(int j=0;j+ilen;j++) { if((data[j]=='('\u0026\u0026data[i+j]==')')||( data[j]=='[' \u0026\u0026 data[i+j]==']'))//左右端正好匹配，直接中间+2  if(j+1==j+i) ans[j][j+i] = 2; else ans[j][j+i] = ans[j+1][j+i-1]+2; int temp_max = 0;//其他情况  for(int t=j;tj+i-1;t++)//分成两段匹配，最大值为两者相加  if(ans[j][t]+ans[t+1][j+i]temp_max) temp_max = ans[j][t]+ans[t+1][j+i]; ans[j][j+i] = max(ans[j][j+i],temp_max); } } int main() { while(cindata) { if(data ==\"end\") break; memset(ans,0,sizeof(ans)); int length = data.length(); getMax(length); printf(\"%d\\n\",ans[0][length-1]); } } 总结 E - 选做题 - 2 题面 每个作业都有一个ddl和完成需要时间，超时会扣分，每个作业必须完成，问怎么安排作业使得总扣分最少。\n解法 这道题看起来有点眼熟，因为之前做过一个类似的贪心题，但是两者还是有区别的，这个要求必须全部完成，用之前的贪心方法不太行了，这道题需要使用状压DP完成。\n最多15种科目，因此一个int（32bit）可以通过状态压缩存下所有状态。\n我们这样设计状态dp[i]表示这i个(i为状态的合集)科目全部完成需要的最少扣分，这i个科目是从开始一直持续到结束的，中间没有停顿，也就是说我们能直接算出来这i个科目完成后新科目开始的时间，我们用一个数组存储这个时间。\n最后设计ans[i][j] j=0表示最小扣分，j=1表示i个科目全部完成需要的时间。\n状态转移方程\n$ans[j|(1«(m-1))][0] = ans[j][0]+max(0,ans[j][1]+need[m]-ddl[m]);$\n1«m-1 为新科目，看看它会不会被扣分，然后将扣分情况加上去\n题目还要求输出最终的顺序，这里使用类似dfs的前向数组，记录每一个状态最后一个是谁，然后递归求出前面的。\n字典序的排法由更新顺序给定，从小到大更新\ncode #include #include #include #include using namespace std; int ans[32780][2];//32780表示状态 string name[17];//每一个对应的科目名字 int ddl[17];//每一个ddl int need[17];//每一的需要完成时间 int path[32780];//记录路径  void output(int t)//递归输出 { if(t == 0) return ; int last = path[t];//当前这个  output(t^(1(last-1)));//前一个状态  coutname[last]\"\\n\"; } int main() { int t; scanf(\"%d\",\u0026t); for(int i=0;it;i++) { memset(ans,127,sizeof(ans)); int n; scanf(\"%d\",\u0026n); for(int j=1;jn;j++) { cinname[j]; cinddl[j]; cinneed[j]; } ans[0][0] = 0; ans[0][1] = 0; for(int j=0;j(1n);j++)//从外围开始  { for(int m=1;mn;m++)//每一个科目加入  { if(j\u00261(m-1))//已经在状态中，就不需要加入了  continue; if(ans[j|(1(m-1))][0]ans[j][0]+max(0,ans[j][1]+need[m]-ddl[m])) { ans[j|(1(m-1))][0] = ans[j][0]+max(0,ans[j][1]+need[m]-ddl[m]);//新的扣分  path[j|(1(m-1))] = m;//记录当前路径  } ans[j|(1(m-1))][1] = ans[j][1]+need[m];//总时间  } } coutans[(1n)-1][0]endl; output((1n)-1); } } 总结 状态压缩dp是对传统dp的改进，用一个数就能表示多种状态。\n更新时外面是总的所有状态的循环，然后内部是小状态一个一个添加。\nweek13 D - TT 的苹果树（选做） 题面 解法 树形dp\n整个结构是树形的，他要求摘了子节点的苹果后不能摘取父节点苹果，因此dp变成2维的，一个是摘了当前节点一个是不摘当前节点。题目中没有直接给出树结构（没有树根），因此采取自上而下记忆化DFS的方法，对每一个节点都DFS一次，一旦有结果直接返回\n状态：dp[i][j] j=0表示选择第i个节点最大值，j=1表示不选择第i个节点的最大值\n状态转移：\n$dp[i][0] = data[i]+\\sum dp[t][1]\\dp[i][1] = \\sum max(dp[t][0],dp[t][1])$\nt为i所有孩子,注意转移的时候有的孩子是负的，这个时候就不要加上去了\ncode #include #include #include #include #include using namespace std; int content[6005];//每个节点的值 vectorint Tree[6005];//孩子关系 int orgion[6005]; int n; int ans[6005][2];//结果  void dfs_check(int s) { if(ans[s][0]!=-100000000)//已经更新过了  return ; int c=0,uc=0;//选和不选的  for(vectorint::iterator it=Tree[s].begin();it!=Tree[s].end();it++)//遍历所有孩子  { if(ans[*it][0] == -100000000)//孩子是否已经更新  dfs_check(*it); int na=ans[*it][0]; int buNa = ans[*it][1]; if(buNa0)//注意有负的情况  c+=buNa; int temp_max=nabuNa?na:buNa; if(temp_max0) uc+=temp_max; } ans[s][0] = max(content[s]+c,content[s]);//选s  ans[s][1] = max(uc,0);//不选s } int main() { while(true) { memset(content,0,sizeof(content)); memset(orgion,0,sizeof(orgion)); scanf(\"%d\",\u0026n); if(n==0) return 0; for(int i=1;in;i++) { ans[i][0]=-100000000; ans[i][1]=-100000000; Tree[i].clear(); } for(int i=1;in;i++) scanf(\"%d\",content+i); for(int i=1;in;i++) { int a,b; scanf(\"%d%d\",\u0026a,\u0026b); orgion[a]=b; } for(int i=1;in;i++)//转换一下，其实没必要  Tree[orgion[i]].push_back(i); for(int i=1;in;i++) dfs_check(i); int cur_max = 0; for(int i=1;in;i++)//找到最大的  { if(cur_maxmax(ans[i][0],ans[i][1])) cur_max=max(ans[i][0],ans[i][1]); } printf(\"%d\\n\",cur_max); } return 0; } 总结 树状dp有一个麻烦的点是找根，不过这里直接自上而下没有找根。\nweek14 D - Q老师染砖（选做） 题面 染色问题，助教上课的时候有讲，每一格都能染4种颜色，但是最终求的是两个颜色均为偶数的时候的有多少种情况\n解法 这道题需要使用dp，同时使用矩阵快速幂和线性递推式进行优化\n首先普通的dp转移情况，分为三种情况，目标颜色均为偶数，目标颜色均为奇数，目标颜色一奇一偶。转移也是以这三个为基础\ndp[i][3] 0,1,2分别表示对应的全偶，1奇1偶，全奇。\n$dp[n][0] = 2dp[n-1][0]+dp[n-1][1]\\dp[n][1]=2(dp[n-1][0]+dp[n-1][1]+dp[n-1][2])\\dp[n][2] = 2dp[n-1][2]+dp[n-1][1]$\n转移矩阵为\n$2\\ 1\\ 0\\2\\ 2 \\ 2\\0\\ 1\\ 2$\ncode #include #include #include #include using namespace std; struct matrix //矩阵 { int x[3][3]; int mod;//每次取模的数  matrix operator *(const matrix\u0026 t) const//矩阵乘法  { matrix ret(mod); for(int i=0;i3;i++) for(int j=0;j3;j++) { ret.x[i][j] = 0; for(int k=0;k3;k++) ret.x[i][j]=(ret.x[i][j]+(1ll*x[i][k]*t.x[k][j])%mod)%mod; ret.x[i][j] = ret.x[i][j]%mod; } return ret; } matrix(int mod):mod(mod)//构造函数  {memset(x,0,sizeof(x));} matrix(const matrix\u0026 t){memcpy(x,t.x,sizeof(x));mod = t.mod;}//复制构造 }; matrix pow(matrix t,int time)//快速幂 { matrix ans(t.mod); for(int i=0;i3;i++) ans.x[i][i] = 1; while(time) { if(time\u00261) ans = ans*t;//乘上  t=t*t; time = time1; } return ans; } int main() { int t; scanf(\"%d\",\u0026t); matrix baseMatrix (10007); int temp[3][3]={2,1,0,2,2,2,0,1,2}; for(int i=0;i3;i++)//初始化矩阵  for(int j=0;j3;j++) baseMatrix.x[i][j] = temp[i][j]; int data[3] = {2,2,0};//为1时  for(int i=0;it;i++) { int n; scanf(\"%d\",\u0026n); matrix ansMatrix = pow(baseMatrix,n-1); int ans=0; for(int j=0;j3;j++)//最终结果  ans = (ans+ansMatrix.x[0][j]*data[j])%10007; ans = ans%10007; printf(\"%d\\n\",ans); } } 总结 这道题一定要看数据范围，因为通过数据范围可以推断出普通的线性dp复杂度不对，需要使用矩阵快速幂来加速dp的过程。\nweek15 B - ZJM 与生日礼物（选做） 题面 \n求问一组字符串中有没有一个是另一个前缀的情况\n解法 使用字典树来解决这个问题,字典树插入时顺着给定的顺序插入,如果最后一个节点后面还有节点,那么说明新插入的是字符串是原先字符串的前缀,如果插入的过程中遇到标记结束的位置,那么说明前面有字符串是新字符串的前缀.\ncode #include #include #include #include #define N 50000 #define M 2 using namespace std; struct Trie { int root,cnt; int child[N][M]; int flag[N]; Trie() { memset(child,-1,sizeof(child)); memset(flag,0,sizeof(flag)); root = 0; cnt = 0; } bool insert_search(char * data)//一次插入一个  { int cur = root; for(int i=0;data[i]!='\\0';i++)//一个一个插入树  { int next = data[i] -'0';//next  if (flag[cur] == 1)//树中有前缀  return true; if(child[cur][next]!=-1)//树的下一个位置  cur = child[cur][next]; else { flag[cur] = 0;//新建节点  child[cur][next] = ++cnt; cur = cnt; } } if(child[cur][0]!=-1||child[cur][1]!=-1||flag[cur] == 1)//新串是不是前面串的子串  return true; flag[cur] = 1; return false; } void clear() { memset(child,-1,sizeof(child)); memset(flag,0,sizeof(flag)); root = 0; cnt = 0; } }; int main() { char temp_str[200]; int cnt=1; int flag = 0; while(scanf(\"%s\",temp_str)!=EOF) { if(temp_str[0] !='9' ) { Trie tree; tree.insert_search(temp_str);//第一个  while(scanf(\"%s\",temp_str)!=EOF)//剩下的串  { if(temp_str[0]=='9') break; if(tree.insert_search(temp_str))//插入到字典树  { flag = 1; while(getchar()!='9') continue; break; } } tree.clear(); } if(flag == 0) printf(\"Set %d is immediately decodable\\n\",cnt++); else printf(\"Set %d is not immediately decodable\\n\",cnt++); flag = 0; } return 0; } 总结 这道题有多种解法,字典树可以解,按字典序排序后也可以暴力匹配,但是字典树复杂度更优一些,字典树是线性的复杂度,排序的复杂度O(nlogn m) n为子串个数,m为所有串的长度,暴力匹配时复杂度是O(m)\n",
+  "wordCount" : "890",
+  "inLanguage": "en",
+  "datePublished": "2020-06-11T14:37:00Z",
+  "dateModified": "2020-06-11T14:37:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://example.org/posts/progarm-optional-homework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My New Hugo Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://example.org/favicon.ico"
+    }
+  }
+}
+</script>
+
+
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        .theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://example.org/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
+            <span class="logo-switches">
+                <span class="theme-toggle" title="(Alt + T)">
+                    <a id="theme-toggle" accesskey="t">
+                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </a>
+                </span>
+                
+            </span>
+        </div>
+        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
+    </nav>
+</header>
+
+    <main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">
+      Progarm-optional-homework
+    </h1>
+    <div class="post-description">
+      
+    </div>
+    <div class="post-meta">June 11, 2020
+
+    </div>
+  </header> 
+
+  <div class="post-content">
+<h1 id="week11">week11<a hidden class="anchor" aria-hidden="true" href="#week11">#</a></h1>
+<h2 id="e---选做题11-1-东东与-atmhttpsvjudgenetproblempoj-1276"><a href="https://vjudge.net/problem/POJ-1276">E - 选做题11-1 东东与 ATM</a><a hidden class="anchor" aria-hidden="true" href="#e---选做题11-1-东东与-atmhttpsvjudgenetproblempoj-1276">#</a></h2>
+<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
+<p><img src="https://i.loli.net/2020/05/15/tOr4maQVojHGK23.png" alt=""></p>
+<p>这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过</p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<p>这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求</p>
+<p>ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为</p>
+<p>对第t类钞票 ans[j] = ans[j-data[t]] (逆序)</p>
+<p>然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票</p>
+<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">100002</span>];
+<span style="color:#66d9ef">int</span> num[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">int</span> value[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">int</span> nnum[<span style="color:#ae81ff">10002</span>];
+<span style="color:#66d9ef">int</span> nvalue[<span style="color:#ae81ff">10002</span>];
+<span style="color:#66d9ef">int</span> split[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">int</span> ssum[<span style="color:#ae81ff">12</span>];
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>()
+{
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">12</span>;i<span style="color:#f92672">++</span>)
+    {
+        split[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>i;
+        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+            ssum[i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">else</span> 
+            ssum[i] <span style="color:#f92672">=</span> ssum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>split[i];
+    }
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n,m,p;
+    init();<span style="color:#75715e">//初始化二进制拆分数组
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n)<span style="color:#f92672">!=</span>EOF)
+    {
+        memset(ans,<span style="color:#ae81ff">128</span>,<span style="color:#66d9ef">sizeof</span>(ans));  
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>m);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,num<span style="color:#f92672">+</span>i,value<span style="color:#f92672">+</span>i);
+        p<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+            <span style="color:#66d9ef">int</span> temp<span style="color:#f92672">=</span>num[i];<span style="color:#75715e">//将个数进行二进制拆分
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">while</span>((temp<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){<span style="color:#75715e">//最多是2^x
+</span><span style="color:#75715e"></span>                t<span style="color:#f92672">++</span>;
+                temp <span style="color:#f92672">=</span> temp<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>;
+            }
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> s<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;s<span style="color:#f92672">&lt;</span>t;s<span style="color:#f92672">++</span>)<span style="color:#75715e">//拆分
+</span><span style="color:#75715e"></span>                nnum[p]<span style="color:#f92672">=</span>split[s],nvalue[p<span style="color:#f92672">++</span>]<span style="color:#f92672">=</span>value[i];
+            <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//剩下的
+</span><span style="color:#75715e"></span>                nnum[p] <span style="color:#f92672">=</span> num[i];
+            <span style="color:#66d9ef">else</span> 
+                nnum[p]<span style="color:#f92672">=</span>num[i]<span style="color:#f92672">-</span>ssum[t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+            nvalue[p<span style="color:#f92672">++</span>]<span style="color:#f92672">=</span>value[i];
+        }
+        ans[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;<span style="color:#75715e">//提供0是可以的
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//一个一个钞票类型来
+</span><span style="color:#75715e"></span>        {   
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>n;j<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">--</span>)<span style="color:#75715e">//最多就是提供n
+</span><span style="color:#75715e"></span>            {
+                <span style="color:#75715e">// ans[j] = ans[j];
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">-</span>nnum[i]<span style="color:#f92672">*</span>nvalue[i]<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//大于0,避免负数现金
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span>(ans[j<span style="color:#f92672">-</span>nnum[i]<span style="color:#f92672">*</span>nvalue[i]] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)<span style="color:#75715e">//子情况能提供
+</span><span style="color:#75715e"></span>                        ans[j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+            }
+        }
+        <span style="color:#66d9ef">int</span> cur<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>n;i<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">--</span>)
+            <span style="color:#66d9ef">if</span>(ans[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+            {
+                cur <span style="color:#f92672">=</span>i;
+                <span style="color:#66d9ef">break</span>;
+            }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cur);
+    }
+}
+</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）</p>
+<h2 id="f---选做题11-2-东东开车了httpsvjudgenetproblemuva-624"><a href="https://vjudge.net/problem/UVA-624">F - 选做题11-2 东东开车了</a><a hidden class="anchor" aria-hidden="true" href="#f---选做题11-2-东东开车了httpsvjudgenetproblemuva-624">#</a></h2>
+<h3 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/11/flBQgXau6iVSUYm.png" alt="image-20200611204259453"></p>
+<p>这个也是一种背包，背包容量给定，选定能选的最大容量</p>
+<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<p>这道题看起来像贪心，但是实际不是贪心，因为限制条件是选择的唱片必须听完，而且时长最长，比如车程4min，唱片 2 2 3，用贪心只能选3，dp会选 2 2</p>
+<p>dp[i][j]表示前i分钟，能选j个唱片</p>
+<p>$dp[i][j] = max(dp[i-data[j]][j-1]+data[j],data[i][j-1])$</p>
+<p>题目还要求存储选择了那些唱片，因此还需要一个数组保存选取的情况，使用choose[i][j]表示在第i分钟选不选择第j个唱片，然后按照dp的规则方向找回去</p>
+<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">22</span>][<span style="color:#ae81ff">10002</span>];<span style="color:#75715e">//存储时长
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">10002</span>];<span style="color:#75715e">//唱片数据
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> choose[<span style="color:#ae81ff">22</span>][<span style="color:#ae81ff">10002</span>];<span style="color:#75715e">//选择情况
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">output</span>(<span style="color:#66d9ef">int</span> t,<span style="color:#66d9ef">int</span> l)<span style="color:#75715e">//输出选了那些唱片
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">if</span>(t<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">return</span> ;
+    <span style="color:#66d9ef">if</span>(choose[t][l] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)<span style="color:#75715e">//没选
+</span><span style="color:#75715e"></span>        output(t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,l);
+    <span style="color:#66d9ef">else</span>
+    {
+        output(t<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,l<span style="color:#f92672">-</span>data[t]);<span style="color:#75715e">//选了
+</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74">&#34;%d &#34;</span>,data[t]);
+    }
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> n,m;
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n)<span style="color:#f92672">!=</span>EOF)
+    {
+        memset(ans,<span style="color:#ae81ff">128</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+        memset(choose,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(choose));
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>m);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,data<span style="color:#f92672">+</span>i);
+        data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        ans[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//初始化
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//n^2
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;=</span>n;j<span style="color:#f92672">++</span>)
+            {
+                ans[i][j] <span style="color:#f92672">=</span> ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j];
+                <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">-</span>data[i]<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//有空位
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span>(ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j]<span style="color:#f92672">&lt;</span>ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span>data[i]]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//选择更大的
+</span><span style="color:#75715e"></span>                    {
+                        choose[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                        ans[i][j] <span style="color:#f92672">=</span> ans[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span>data[i]]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+                    }
+            }
+        <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>n;i<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">--</span>)<span style="color:#75715e">//找到最大时间
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(ans[m][i]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
+            {
+                cur <span style="color:#f92672">=</span> i ;
+                <span style="color:#66d9ef">break</span>;
+            }
+        output(m,cur);
+        printf(<span style="color:#e6db74">&#34;sum:%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cur);
+
+    }
+}
+</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<p>01背包的小变形，这个只不过把重量和价值合二为一了。</p>
+<h1 id="week12">week12<a hidden class="anchor" aria-hidden="true" href="#week12">#</a></h1>
+<h2 id="d---选做题---1httpsvjudgenetproblempoj-2955"><a href="https://vjudge.net/problem/POJ-2955">D - 选做题 - 1</a><a hidden class="anchor" aria-hidden="true" href="#d---选做题---1httpsvjudgenetproblempoj-2955">#</a></h2>
+<h3 id="题面-2">题面<a hidden class="anchor" aria-hidden="true" href="#题面-2">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/11/3NpMUHbKlLdkG9P.png" alt="image-20200611210342950"></p>
+<p>课上的ppt有中文版题面，就是给定一个括号序列，然后判断完全匹配的个数</p>
+<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<p>区间DP</p>
+<p>dp[i][j]表示区间i到j（包含两个端点）内部最大的匹配数</p>
+<p>更新情况：</p>
+<p>如果data[i]与data[j]能够匹配 dp[i][j] = max(dp[i+1][j-1]+2,max(dp[i][t]+dp[t+1][j]))</p>
+<p>两者不匹配 dp[i][j] = max(dp[i][t]+dp[t+1][j])</p>
+<p>其中t为i到j之间的数字，然后范围从小到大开始更新</p>
+<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+string data;
+<span style="color:#66d9ef">int</span> length;
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">105</span>][<span style="color:#ae81ff">105</span>];
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getMax</span>(<span style="color:#66d9ef">int</span> len)
+{
+    memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>len;i<span style="color:#f92672">++</span>)
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">+</span>i<span style="color:#f92672">&lt;</span>len;j<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">if</span>((data[j]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;(&#39;</span><span style="color:#f92672">&amp;&amp;</span>data[i<span style="color:#f92672">+</span>j]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;)&#39;</span>)<span style="color:#f92672">||</span>( data[j]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;[&#39;</span> <span style="color:#f92672">&amp;&amp;</span> data[i<span style="color:#f92672">+</span>j]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;]&#39;</span>))<span style="color:#75715e">//左右端正好匹配，直接中间+2
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">==</span>j<span style="color:#f92672">+</span>i)
+                    ans[j][j<span style="color:#f92672">+</span>i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+                <span style="color:#66d9ef">else</span> 
+                    ans[j][j<span style="color:#f92672">+</span>i] <span style="color:#f92672">=</span> ans[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">+</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>;
+            <span style="color:#66d9ef">int</span> temp_max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//其他情况
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span>j;t<span style="color:#f92672">&lt;=</span>j<span style="color:#f92672">+</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;t<span style="color:#f92672">++</span>)<span style="color:#75715e">//分成两段匹配，最大值为两者相加
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(ans[j][t]<span style="color:#f92672">+</span>ans[t<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">+</span>i]<span style="color:#f92672">&gt;</span>temp_max)
+                    temp_max <span style="color:#f92672">=</span> ans[j][t]<span style="color:#f92672">+</span>ans[t<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">+</span>i];
+            ans[j][j<span style="color:#f92672">+</span>i] <span style="color:#f92672">=</span> max(ans[j][j<span style="color:#f92672">+</span>i],temp_max);
+        }
+}
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">while</span>(cin<span style="color:#f92672">&gt;&gt;</span>data)
+    {
+        <span style="color:#66d9ef">if</span>(data <span style="color:#f92672">==</span><span style="color:#e6db74">&#34;end&#34;</span>)
+            <span style="color:#66d9ef">break</span>;
+        memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+        <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> data.length();
+        getMax(length);
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans[<span style="color:#ae81ff">0</span>][length<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+    }
+}
+</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+<h2 id="e---选做题---2httpsvjudgenetproblemhdu-1074"><a href="https://vjudge.net/problem/HDU-1074">E - 选做题 - 2</a><a hidden class="anchor" aria-hidden="true" href="#e---选做题---2httpsvjudgenetproblemhdu-1074">#</a></h2>
+<h3 id="题面-3">题面<a hidden class="anchor" aria-hidden="true" href="#题面-3">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/12/UmdpKbLweVCXTrO.png" alt="image-20200612092013068"></p>
+<p>每个作业都有一个ddl和完成需要时间，超时会扣分，每个作业必须完成，问怎么安排作业使得总扣分最少。</p>
+<h3 id="解法-3">解法<a hidden class="anchor" aria-hidden="true" href="#解法-3">#</a></h3>
+<p>这道题看起来有点眼熟，因为之前做过一个类似的贪心题，但是两者还是有区别的，这个要求必须全部完成，用之前的贪心方法不太行了，这道题需要使用状压DP完成。</p>
+<p>最多15种科目，因此一个int（32bit）可以通过状态压缩存下所有状态。</p>
+<p>我们这样设计状态dp[i]表示这i个(i为状态的合集)科目全部完成需要的最少扣分，这i个科目是从开始一直持续到结束的，中间没有停顿，也就是说我们能直接算出来这i个科目完成后新科目开始的时间，我们用一个数组存储这个时间。</p>
+<p>最后设计ans[i][j] j=0表示最小扣分，j=1表示i个科目全部完成需要的时间。</p>
+<p>状态转移方程</p>
+<p>$ans[j|(1&laquo;(m-1))][0] = ans[j][0]+max(0,ans[j][1]+need[m]-ddl[m]);$</p>
+<p>1&laquo;m-1 为新科目，看看它会不会被扣分，然后将扣分情况加上去</p>
+<p>题目还要求输出最终的顺序，这里使用类似dfs的前向数组，记录每一个状态最后一个是谁，然后递归求出前面的。</p>
+<p>字典序的排法由更新顺序给定，从小到大更新</p>
+<h3 id="code-3">code<a hidden class="anchor" aria-hidden="true" href="#code-3">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">32780</span>][<span style="color:#ae81ff">2</span>];<span style="color:#75715e">//32780表示状态
+</span><span style="color:#75715e"></span>string name[<span style="color:#ae81ff">17</span>];<span style="color:#75715e">//每一个对应的科目名字
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ddl[<span style="color:#ae81ff">17</span>];<span style="color:#75715e">//每一个ddl
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> need[<span style="color:#ae81ff">17</span>];<span style="color:#75715e">//每一的需要完成时间
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> path[<span style="color:#ae81ff">32780</span>];<span style="color:#75715e">//记录路径
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">output</span>(<span style="color:#66d9ef">int</span> t)<span style="color:#75715e">//递归输出
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">if</span>(t <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">return</span> ;
+    <span style="color:#66d9ef">int</span> last <span style="color:#f92672">=</span> path[t];<span style="color:#75715e">//当前这个
+</span><span style="color:#75715e"></span>    output(t<span style="color:#f92672">^</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(last<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)));<span style="color:#75715e">//前一个状态
+</span><span style="color:#75715e"></span>    cout<span style="color:#f92672">&lt;&lt;</span>name[last]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> t;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>t);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>t;i<span style="color:#f92672">++</span>)
+    {
+        memset(ans,<span style="color:#ae81ff">127</span>,<span style="color:#66d9ef">sizeof</span>(ans));
+        <span style="color:#66d9ef">int</span> n;
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;=</span>n;j<span style="color:#f92672">++</span>)
+        {
+            cin<span style="color:#f92672">&gt;&gt;</span>name[j];
+            cin<span style="color:#f92672">&gt;&gt;</span>ddl[j];
+            cin<span style="color:#f92672">&gt;&gt;</span>need[j];
+        }
+        ans[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        ans[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>n);j<span style="color:#f92672">++</span>)<span style="color:#75715e">//从外围开始
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> m<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;m<span style="color:#f92672">&lt;=</span>n;m<span style="color:#f92672">++</span>)<span style="color:#75715e">//每一个科目加入
+</span><span style="color:#75715e"></span>            {
+                <span style="color:#66d9ef">if</span>(j<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))<span style="color:#75715e">//已经在状态中，就不需要加入了
+</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">continue</span>;
+                <span style="color:#66d9ef">if</span>(ans[j<span style="color:#f92672">|</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&gt;</span>ans[j][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>max(<span style="color:#ae81ff">0</span>,ans[j][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>need[m]<span style="color:#f92672">-</span>ddl[m]))
+                {
+                    ans[j<span style="color:#f92672">|</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> ans[j][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>max(<span style="color:#ae81ff">0</span>,ans[j][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>need[m]<span style="color:#f92672">-</span>ddl[m]);<span style="color:#75715e">//新的扣分
+</span><span style="color:#75715e"></span>                    path[j<span style="color:#f92672">|</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))] <span style="color:#f92672">=</span> m;<span style="color:#75715e">//记录当前路径
+</span><span style="color:#75715e"></span>                }
+                ans[j<span style="color:#f92672">|</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> ans[j][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>need[m];<span style="color:#75715e">//总时间
+</span><span style="color:#75715e"></span>            }
+        }
+        cout<span style="color:#f92672">&lt;&lt;</span>ans[(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>n)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">&lt;&lt;</span>endl;
+        output((<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>n)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+    }
+}
+</code></pre></div><h3 id="总结-3">总结<a hidden class="anchor" aria-hidden="true" href="#总结-3">#</a></h3>
+<p>状态压缩dp是对传统dp的改进，用一个数就能表示多种状态。</p>
+<p>更新时外面是总的所有状态的循环，然后内部是小状态一个一个添加。</p>
+<h1 id="week13">week13<a hidden class="anchor" aria-hidden="true" href="#week13">#</a></h1>
+<h2 id="d---tt-的苹果树选做">D - TT 的苹果树（选做）<a hidden class="anchor" aria-hidden="true" href="#d---tt-的苹果树选做">#</a></h2>
+<h3 id="题面-4">题面<a hidden class="anchor" aria-hidden="true" href="#题面-4">#</a></h3>
+<p><img src="https://i.loli.net/2020/06/12/TjwhAYE3ls8HDIf.png" alt="image-20200612111842075"></p>
+<h3 id="解法-4">解法<a hidden class="anchor" aria-hidden="true" href="#解法-4">#</a></h3>
+<p>树形dp</p>
+<p>整个结构是树形的，他要求摘了子节点的苹果后不能摘取父节点苹果，因此dp变成2维的，一个是摘了当前节点一个是不摘当前节点。题目中没有直接给出树结构（没有树根），因此采取自上而下记忆化DFS的方法，对每一个节点都DFS一次，一旦有结果直接返回</p>
+<p>状态：dp[i][j] j=0表示选择第i个节点最大值，j=1表示不选择第i个节点的最大值</p>
+<p>状态转移：</p>
+<p>$dp[i][0] = data[i]+\sum dp[t][1]\dp[i][1] = \sum max(dp[t][0],dp[t][1])$</p>
+<p>t为i所有孩子,注意转移的时候有的孩子是负的，这个时候就不要加上去了</p>
+<h3 id="code-4">code<a hidden class="anchor" aria-hidden="true" href="#code-4">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">int</span> content[<span style="color:#ae81ff">6005</span>];<span style="color:#75715e">//每个节点的值
+</span><span style="color:#75715e"></span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> Tree[<span style="color:#ae81ff">6005</span>];<span style="color:#75715e">//孩子关系
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> orgion[<span style="color:#ae81ff">6005</span>];
+<span style="color:#66d9ef">int</span> n;
+<span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">6005</span>][<span style="color:#ae81ff">2</span>];<span style="color:#75715e">//结果
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs_check</span>(<span style="color:#66d9ef">int</span> s)
+{
+    <span style="color:#66d9ef">if</span>(ans[s][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">!=-</span><span style="color:#ae81ff">100000000</span>)<span style="color:#75715e">//已经更新过了
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> ;
+    <span style="color:#66d9ef">int</span> c<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,uc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//选和不选的
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it<span style="color:#f92672">=</span>Tree[s].begin();it<span style="color:#f92672">!=</span>Tree[s].end();it<span style="color:#f92672">++</span>)<span style="color:#75715e">//遍历所有孩子
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">if</span>(ans[<span style="color:#f92672">*</span>it][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">100000000</span>)<span style="color:#75715e">//孩子是否已经更新
+</span><span style="color:#75715e"></span>            dfs_check(<span style="color:#f92672">*</span>it);
+        <span style="color:#66d9ef">int</span> na<span style="color:#f92672">=</span>ans[<span style="color:#f92672">*</span>it][<span style="color:#ae81ff">0</span>];
+        <span style="color:#66d9ef">int</span> buNa <span style="color:#f92672">=</span> ans[<span style="color:#f92672">*</span>it][<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">if</span>(buNa<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//注意有负的情况
+</span><span style="color:#75715e"></span>            c<span style="color:#f92672">+=</span>buNa;
+        <span style="color:#66d9ef">int</span> temp_max<span style="color:#f92672">=</span>na<span style="color:#f92672">&gt;</span>buNa<span style="color:#f92672">?</span>na:buNa;
+        <span style="color:#66d9ef">if</span>(temp_max<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
+            uc<span style="color:#f92672">+=</span>temp_max;
+    }
+    ans[s][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> max(content[s]<span style="color:#f92672">+</span>c,content[s]);<span style="color:#75715e">//选s
+</span><span style="color:#75715e"></span>    ans[s][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> max(uc,<span style="color:#ae81ff">0</span>);<span style="color:#75715e">//不选s
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">while</span>(true)
+    {
+        memset(content,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(content));
+        memset(orgion,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(orgion));
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);        
+        <span style="color:#66d9ef">if</span>(n<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)
+        {
+            ans[i][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=-</span><span style="color:#ae81ff">100000000</span>;
+            ans[i][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=-</span><span style="color:#ae81ff">100000000</span>;
+            Tree[i].clear();
+        }
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)
+            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,content<span style="color:#f92672">+</span>i);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+        {
+            <span style="color:#66d9ef">int</span> a,b;
+            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>a,<span style="color:#f92672">&amp;</span>b);
+            orgion[a]<span style="color:#f92672">=</span>b;
+        }
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//转换一下，其实没必要
+</span><span style="color:#75715e"></span>            Tree[orgion[i]].push_back(i);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)
+            dfs_check(i);
+        <span style="color:#66d9ef">int</span> cur_max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//找到最大的
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">if</span>(cur_max<span style="color:#f92672">&lt;</span>max(ans[i][<span style="color:#ae81ff">0</span>],ans[i][<span style="color:#ae81ff">1</span>]))
+                cur_max<span style="color:#f92672">=</span>max(ans[i][<span style="color:#ae81ff">0</span>],ans[i][<span style="color:#ae81ff">1</span>]);
+        }
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cur_max);
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结-4">总结<a hidden class="anchor" aria-hidden="true" href="#总结-4">#</a></h3>
+<p>树状dp有一个麻烦的点是找根，不过这里直接自上而下没有找根。</p>
+<h1 id="week14">week14<a hidden class="anchor" aria-hidden="true" href="#week14">#</a></h1>
+<h2 id="d---q老师染砖选做httpsvjudgenetproblempoj-3734"><a href="https://vjudge.net/problem/POJ-3734">D - Q老师染砖（选做）</a><a hidden class="anchor" aria-hidden="true" href="#d---q老师染砖选做httpsvjudgenetproblempoj-3734">#</a></h2>
+<h3 id="题面-5">题面<a hidden class="anchor" aria-hidden="true" href="#题面-5">#</a></h3>
+<p><img src="https://s1.ax1x.com/2020/06/12/tOKUVH.png" alt="tOKUVH.png"></p>
+<p>染色问题，助教上课的时候有讲，每一格都能染4种颜色，但是最终求的是两个颜色均为偶数的时候的有多少种情况</p>
+<h3 id="解法-5">解法<a hidden class="anchor" aria-hidden="true" href="#解法-5">#</a></h3>
+<p>这道题需要使用dp，同时使用矩阵快速幂和线性递推式进行优化</p>
+<p>首先普通的dp转移情况，分为三种情况，目标颜色均为偶数，目标颜色均为奇数，目标颜色一奇一偶。转移也是以这三个为基础</p>
+<p>dp[i][3] 0,1,2分别表示对应的全偶，1奇1偶，全奇。</p>
+<p>$dp[n][0] = 2dp[n-1][0]+dp[n-1][1]\dp[n][1]=2(dp[n-1][0]+dp[n-1][1]+dp[n-1][2])\dp[n][2] = 2dp[n-1][2]+dp[n-1][1]$</p>
+<p>转移矩阵为</p>
+<p>$2\ 1\ 0\2\ 2 \ 2\0\ 1\ 2$</p>
+<h3 id="code-5">code<a hidden class="anchor" aria-hidden="true" href="#code-5">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">struct</span>  <span style="color:#a6e22e">matrix</span> <span style="color:#75715e">//矩阵
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">int</span> x[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">3</span>];
+    <span style="color:#66d9ef">int</span> mod;<span style="color:#75715e">//每次取模的数
+</span><span style="color:#75715e"></span>    matrix <span style="color:#66d9ef">operator</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">const</span> matrix<span style="color:#f92672">&amp;</span> t) <span style="color:#66d9ef">const</span><span style="color:#75715e">//矩阵乘法
+</span><span style="color:#75715e"></span>    {
+        matrix <span style="color:#a6e22e">ret</span>(mod);
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;i<span style="color:#f92672">++</span>)
+            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;j<span style="color:#f92672">++</span>)
+            {
+                ret.x[i][j] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;k<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;k<span style="color:#f92672">++</span>)
+                    ret.x[i][j]<span style="color:#f92672">=</span>(ret.x[i][j]<span style="color:#f92672">+</span>(<span style="color:#ae81ff">1ll</span><span style="color:#f92672">*</span>x[i][k]<span style="color:#f92672">*</span>t.x[k][j])<span style="color:#f92672">%</span>mod)<span style="color:#f92672">%</span>mod;
+                ret.x[i][j] <span style="color:#f92672">=</span> ret.x[i][j]<span style="color:#f92672">%</span>mod;
+            }
+        <span style="color:#66d9ef">return</span> ret;
+    }
+    matrix(<span style="color:#66d9ef">int</span> mod)<span style="color:#f92672">:</span>mod(mod)<span style="color:#75715e">//构造函数
+</span><span style="color:#75715e"></span>    {memset(x,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(x));}
+    matrix(<span style="color:#66d9ef">const</span> matrix<span style="color:#f92672">&amp;</span> t){memcpy(x,t.x,<span style="color:#66d9ef">sizeof</span>(x));mod <span style="color:#f92672">=</span> t.mod;}<span style="color:#75715e">//复制构造
+</span><span style="color:#75715e"></span>};
+
+matrix <span style="color:#a6e22e">pow</span>(matrix t,<span style="color:#66d9ef">int</span> time)<span style="color:#75715e">//快速幂
+</span><span style="color:#75715e"></span>{
+    matrix ans(t.mod);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;i<span style="color:#f92672">++</span>)
+        ans.x[i][i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">while</span>(time)
+    {
+        <span style="color:#66d9ef">if</span>(time<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>)
+            ans <span style="color:#f92672">=</span> ans<span style="color:#f92672">*</span>t;<span style="color:#75715e">//乘上
+</span><span style="color:#75715e"></span>        t<span style="color:#f92672">=</span>t<span style="color:#f92672">*</span>t;
+        time <span style="color:#f92672">=</span> time<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>;
+    }
+    <span style="color:#66d9ef">return</span> ans;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">int</span> t;
+    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>t);
+    matrix baseMatrix (<span style="color:#ae81ff">10007</span>);
+    <span style="color:#66d9ef">int</span> temp[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">3</span>]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>};
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//初始化矩阵 
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;j<span style="color:#f92672">++</span>)
+            baseMatrix.x[i][j] <span style="color:#f92672">=</span> temp[i][j];
+    <span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>};<span style="color:#75715e">//为1时
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>t;i<span style="color:#f92672">++</span>)
+    {
+        <span style="color:#66d9ef">int</span> n;
+        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+        matrix ansMatrix <span style="color:#f92672">=</span> pow(baseMatrix,n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">int</span> ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;j<span style="color:#f92672">++</span>)<span style="color:#75715e">//最终结果
+</span><span style="color:#75715e"></span>            ans <span style="color:#f92672">=</span> (ans<span style="color:#f92672">+</span>ansMatrix.x[<span style="color:#ae81ff">0</span>][j]<span style="color:#f92672">*</span>data[j])<span style="color:#f92672">%</span><span style="color:#ae81ff">10007</span>;
+        ans <span style="color:#f92672">=</span> ans<span style="color:#f92672">%</span><span style="color:#ae81ff">10007</span>;
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans);
+    }
+}
+</code></pre></div><h3 id="总结-5">总结<a hidden class="anchor" aria-hidden="true" href="#总结-5">#</a></h3>
+<p>这道题一定要看数据范围，因为通过数据范围可以推断出普通的线性dp复杂度不对，需要使用矩阵快速幂来加速dp的过程。</p>
+<h1 id="week15">week15<a hidden class="anchor" aria-hidden="true" href="#week15">#</a></h1>
+<h2 id="b---zjm-与生日礼物选做httpsvjudgenetproblemhdu-1305"><a href="https://vjudge.net/problem/HDU-1305">B - ZJM 与生日礼物（选做）</a><a hidden class="anchor" aria-hidden="true" href="#b---zjm-与生日礼物选做httpsvjudgenetproblemhdu-1305">#</a></h2>
+<h3 id="题面-6">题面<a hidden class="anchor" aria-hidden="true" href="#题面-6">#</a></h3>
+<p><a href="https://imgchr.com/i/tO1FwF"><img src="https://s1.ax1x.com/2020/06/12/tO1FwF.png" alt="tO1FwF.png"></a></p>
+<p>求问一组字符串中有没有一个是另一个前缀的情况</p>
+<h3 id="解法-6">解法<a hidden class="anchor" aria-hidden="true" href="#解法-6">#</a></h3>
+<p>使用字典树来解决这个问题,字典树插入时顺着给定的顺序插入,如果最后一个节点后面还有节点,那么说明新插入的是字符串是原先字符串的前缀,如果插入的过程中遇到标记结束的位置,那么说明前面有字符串是新字符串的前缀.</p>
+<h3 id="code-6">code<a hidden class="anchor" aria-hidden="true" href="#code-6">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define N 50000
+</span><span style="color:#75715e">#define M 2
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Trie</span>
+{
+    <span style="color:#66d9ef">int</span> root,cnt;
+    <span style="color:#66d9ef">int</span> child[N][M];
+    <span style="color:#66d9ef">int</span> flag[N];
+    Trie()
+    {
+        memset(child,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#66d9ef">sizeof</span>(child));
+        memset(flag,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(flag));
+        root <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    }
+    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">insert_search</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> data)<span style="color:#75715e">//一次插入一个
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> root;
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;data[i]<span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;\0&#39;</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//一个一个插入树
+</span><span style="color:#75715e"></span>        {
+            <span style="color:#66d9ef">int</span> next <span style="color:#f92672">=</span> data[i] <span style="color:#f92672">-</span><span style="color:#e6db74">&#39;0&#39;</span>;<span style="color:#75715e">//next
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (flag[cur] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)<span style="color:#75715e">//树中有前缀
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> true;
+            <span style="color:#66d9ef">if</span>(child[cur][next]<span style="color:#f92672">!=-</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//树的下一个位置
+</span><span style="color:#75715e"></span>                cur <span style="color:#f92672">=</span> child[cur][next];
+            <span style="color:#66d9ef">else</span>
+            {
+                flag[cur] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//新建节点
+</span><span style="color:#75715e"></span>                child[cur][next] <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>cnt;
+                cur <span style="color:#f92672">=</span> cnt;
+            }
+        }
+        <span style="color:#66d9ef">if</span>(child[cur][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">!=-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">||</span>child[cur][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">!=-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">||</span>flag[cur] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)<span style="color:#75715e">//新串是不是前面串的子串
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> true;
+        flag[cur] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">return</span> false;
+    }
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clear</span>()
+    {
+        memset(child,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#66d9ef">sizeof</span>(child));
+        memset(flag,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(flag));
+        root <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    }
+};
+
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+{
+    <span style="color:#66d9ef">char</span> temp_str[<span style="color:#ae81ff">200</span>];
+    <span style="color:#66d9ef">int</span> cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%s&#34;</span>,temp_str)<span style="color:#f92672">!=</span>EOF)
+    {
+        <span style="color:#66d9ef">if</span>(temp_str[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;9&#39;</span> )
+        {
+            Trie tree;
+            tree.insert_search(temp_str);<span style="color:#75715e">//第一个
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%s&#34;</span>,temp_str)<span style="color:#f92672">!=</span>EOF)<span style="color:#75715e">//剩下的串
+</span><span style="color:#75715e"></span>            {
+                <span style="color:#66d9ef">if</span>(temp_str[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;9&#39;</span>)
+                    <span style="color:#66d9ef">break</span>;
+                <span style="color:#66d9ef">if</span>(tree.insert_search(temp_str))<span style="color:#75715e">//插入到字典树
+</span><span style="color:#75715e"></span>                {
+                    flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+                    <span style="color:#66d9ef">while</span>(getchar()<span style="color:#f92672">!=</span><span style="color:#e6db74">&#39;9&#39;</span>)
+                        <span style="color:#66d9ef">continue</span>;
+                    <span style="color:#66d9ef">break</span>;
+                }
+            }
+            tree.clear();
+        }
+        <span style="color:#66d9ef">if</span>(flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+            printf(<span style="color:#e6db74">&#34;Set %d is immediately decodable</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cnt<span style="color:#f92672">++</span>);
+        <span style="color:#66d9ef">else</span>
+            printf(<span style="color:#e6db74">&#34;Set %d is not immediately decodable</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,cnt<span style="color:#f92672">++</span>);
+        flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h3 id="总结-6">总结<a hidden class="anchor" aria-hidden="true" href="#总结-6">#</a></h3>
+<p>这道题有多种解法,字典树可以解,按字典序排序后也可以暴力匹配,但是字典树复杂度更优一些,字典树是线性的复杂度,排序的复杂度O(nlogn m) n为子串个数,m为所有串的长度,暴力匹配时复杂度是O(m)</p>
+
+</div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://example.org/tags/program/">Program</a></li>
+      <li><a href="http://example.org/tags/homework/">homework</a></li>
+    </ul>
+  </footer>
+</article>
+    </main><footer class="footer">
+    <span>&copy; 2021 <a href="http://example.org/">My New Hugo Site</a></span>
+    <span>&middot;</span>
+    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
+    <span>&middot;</span>
+    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+
+
+<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<script>
+    window.onload = function () {
+        if (localStorage.getItem("menu-scroll-position")) {
+            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
+        }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.replaceState(null, null, `#${id}`);
+            }
+        });
+    });
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+    function menu_on_scroll() {
+        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
+    }
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+
+</body>
+
+</html>
