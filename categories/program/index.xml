@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Program on My New Hugo Site</title>
-    <link>http://xyfuture.github.io/categories/program/</link>
+    <link>https://xyfuture.github.io/categories/program/</link>
     <description>Recent content in Program on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Mar 2020 16:48:35 +0000</lastBuildDate><atom:link href="http://xyfuture.github.io/categories/program/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Mar 2020 16:48:35 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/categories/program/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Program_贪心</title>
-      <link>http://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</link>
+      <link>https://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</link>
       <pubDate>Thu, 12 Mar 2020 16:48:35 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</guid>
+      <guid>https://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</guid>
       <description> 贪心算法是常用的算法,但是证明似乎比较麻烦.
  贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:
  如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法

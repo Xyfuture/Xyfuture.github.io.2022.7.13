@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>原理 on My New Hugo Site</title>
-    <link>http://xyfuture.github.io/tags/%E5%8E%9F%E7%90%86/</link>
+    <link>https://xyfuture.github.io/tags/%E5%8E%9F%E7%90%86/</link>
     <description>Recent content in 原理 on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Feb 2020 20:18:29 +0000</lastBuildDate><atom:link href="http://xyfuture.github.io/tags/%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Feb 2020 20:18:29 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/tags/%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>计网-通信原理</title>
-      <link>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
+      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
       <pubDate>Sat, 29 Feb 2020 20:18:29 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
+      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
       <description>这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息
   参考: 奈奎斯特定理 傅立叶变换 带宽
  一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。

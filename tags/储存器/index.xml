@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>储存器 on My New Hugo Site</title>
-    <link>http://xyfuture.github.io/tags/%E5%82%A8%E5%AD%98%E5%99%A8/</link>
+    <link>https://xyfuture.github.io/tags/%E5%82%A8%E5%AD%98%E5%99%A8/</link>
     <description>Recent content in 储存器 on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Mar 2020 08:02:36 +0000</lastBuildDate><atom:link href="http://xyfuture.github.io/tags/%E5%82%A8%E5%AD%98%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Mar 2020 08:02:36 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/tags/%E5%82%A8%E5%AD%98%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>计组-存储器</title>
-      <link>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</link>
+      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</link>
       <pubDate>Mon, 09 Mar 2020 08:02:36 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</guid>
+      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</guid>
       <description>储存器基础 存储器种类 这张图画的不错,一个要注意的点,主存储器(内存)分为RAM和ROM RAM: Random Access Memory 可读可写,存取时间与物理地址无关 ROM: Read Only Memory 只能读,但是读的时间也与物理地址无关
 主存储器  下面讲的都是主存储器,就是内存
  按照之前的理论,主存有MDR和MAR,两个重要的寄存器,MAR(Memory Address Register)用来存放访存的地址,访存指读或者写,MDR(Memory Data Register)访存的内容写在这里面.

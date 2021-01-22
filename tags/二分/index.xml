@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>二分 on My New Hugo Site</title>
-    <link>http://xyfuture.github.io/tags/%E4%BA%8C%E5%88%86/</link>
+    <link>https://xyfuture.github.io/tags/%E4%BA%8C%E5%88%86/</link>
     <description>Recent content in 二分 on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Mar 2020 19:40:59 +0000</lastBuildDate><atom:link href="http://xyfuture.github.io/tags/%E4%BA%8C%E5%88%86/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Mar 2020 19:40:59 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/tags/%E4%BA%8C%E5%88%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Program-二分</title>
-      <link>http://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</link>
+      <link>https://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</link>
       <pubDate>Fri, 13 Mar 2020 19:40:59 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</guid>
+      <guid>https://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</guid>
       <description>二分算法是一种性能优秀的算法,常常用在有序的序列上
 二分分为三种,整数二分,浮点二分,答案二分
  整数二分 整数二分类似找数问题,在数组中找到指定元素开始的位置和结束的位置

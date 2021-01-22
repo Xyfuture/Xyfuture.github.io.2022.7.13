@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My New Hugo Site</title>
-    <link>http://xyfuture.github.io/posts/</link>
+    <link>https://xyfuture.github.io/posts/</link>
     <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jun 2020 14:37:00 +0000</lastBuildDate><atom:link href="http://xyfuture.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Jun 2020 14:37:00 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Progarm-optional-homework</title>
-      <link>http://xyfuture.github.io/posts/progarm-optional-homework/</link>
+      <link>https://xyfuture.github.io/posts/progarm-optional-homework/</link>
       <pubDate>Thu, 11 Jun 2020 14:37:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/progarm-optional-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/progarm-optional-homework/</guid>
       <description>week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过
 解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求
 ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为
@@ -23,10 +23,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-month-simulate</title>
-      <link>http://xyfuture.github.io/posts/program-month-simulate/</link>
+      <link>https://xyfuture.github.io/posts/program-month-simulate/</link>
       <pubDate>Tue, 09 Jun 2020 18:42:50 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-month-simulate/</guid>
+      <guid>https://xyfuture.github.io/posts/program-month-simulate/</guid>
       <description>模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则
  1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了
 解法 这道题完全就是模拟，因此直接按照题意要求做就可以
@@ -39,19 +39,19 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-week15-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week15-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week15-homework/</link>
       <pubDate>Tue, 09 Jun 2020 18:34:28 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week15-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week15-homework/</guid>
       <description>week15-homework B - ZJM 与生日礼物（选做） 题面 解法 </description>
     </item>
     
     <item>
       <title>Program-week16-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week16-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week16-homework/</link>
       <pubDate>Thu, 04 Jun 2020 23:25:32 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week16-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week16-homework/</guid>
       <description>week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数
 解法 直接把每一位分离,然后用个桶排就行了
 code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;cmath&amp;gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll temp)//统计 { memset(num,0,sizeof(num)); while(temp)//分离  { num[temp%10] ++; temp/=10; } int cnt=0; for(int i=0;i&amp;lt;10;i++) if(num[i]) cnt++;//只要有就计数  return cnt; } int main() { int cnt = 0; int n,k; ll cur; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;k); for(int i=0;i&amp;lt;n;i++) { scanf(&amp;#34;%lld&amp;#34;,&amp;amp;cur); if(getDif(cur)&amp;lt;k)//总个数  cnt++; } printf(&amp;#34;%d&amp;#34;,cnt); return 0; } 总结 题目难度不大,不过题目的描述有点坑,k本身最大就是10</description>
@@ -59,10 +59,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-week14-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week14-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week14-homework/</link>
       <pubDate>Tue, 26 May 2020 23:46:32 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week14-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week14-homework/</guid>
       <description>week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略
 解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)
 对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)
@@ -74,10 +74,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-week13-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week13-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week13-homework/</link>
       <pubDate>Tue, 26 May 2020 23:46:05 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week13-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week13-homework/</guid>
       <description>week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.
 首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数
 然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)
@@ -89,10 +89,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-week12-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week12-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week12-homework/</link>
       <pubDate>Thu, 14 May 2020 23:31:30 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week12-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week12-homework/</guid>
       <description>week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了
 解法 简单的计数就行了
 一定要注意指针超界问题,这次就是因为这个原因被RE了
@@ -102,10 +102,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &a
     
     <item>
       <title>Program-week10-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week11-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week11-homework/</link>
       <pubDate>Thu, 14 May 2020 23:31:04 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week11-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week11-homework/</guid>
       <description>week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法
 code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;using namespace std; int main() { float n; float m=200; float k; scanf(&amp;#34;%f%f&amp;#34;,&amp;amp;n,&amp;amp;k);//浮点  k = k/100;//小数  int i=1; float total = m; float salary = 0; while(salary-total&amp;lt;0.000001) { salary =i*n;//收入  total = m*pow((1+k),i-1);//房价  if(i++&amp;gt;21)//大于20年  break; } if(i&amp;gt;21) printf(&amp;#34;Impossible&amp;#34;); else printf(&amp;#34;%d&amp;#34;,i-1); return 0; } 总结 难度不大,但是得理清楚年份之间的关系,第一年房价是原价
 B - 必做题11-2 题面 输入输出都是一个数字组成的矩阵
@@ -115,10 +115,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-week9-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week9-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week9-homework/</link>
       <pubDate>Wed, 29 Apr 2020 21:28:23 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week9-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week9-homework/</guid>
       <description>week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看
 解法 命令分为两种操作和询问,对于操作类型来说有一个undo 的操作,因此要使用一个栈来记录所有的操作型指令用于恢复.
 首先我们设计文件树的存储(为啥用树?题目直接说了文件树 &amp;hellip; )
@@ -137,10 +137,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program-week10-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week10-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week10-homework/</link>
       <pubDate>Wed, 29 Apr 2020 21:28:09 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week10-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week10-homework/</guid>
       <description>week10-homework A - 签到题 题面 解法 直接m/n看看是不能整除,不整除,直接输出-1
 整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1
 code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt; using namespace std; int main() { int n,m; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); if(m%n!=0||n&amp;gt;m)//能整除  { printf(&amp;#34;-1\n&amp;#34;); return 0; } int t = m/n;//倍数  int i=0; while(t%2 == 0)//一直/2直到不能进行  { t/=2; i++; } while(t%3 == 0)//一直除3直到不能进行  { t/=3; i++; } if(t!=1)//除不尽  printf(&amp;#34;-1\n&amp;#34;); else //除尽  printf(&amp;#34;%d\n&amp;#34;,i); return 0; } 总结 问题不难,考虑除尽的情况即可
@@ -149,10 +149,10 @@ B - LIS &amp;amp; LCS 题面 解法 这是一道DP的模板题</description>
     
     <item>
       <title>Program-week8-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week8-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week8-homework/</link>
       <pubDate>Wed, 15 Apr 2020 09:09:31 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week8-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week8-homework/</guid>
       <description>homework A - 区间选点 II 题意 题面 题意很简单,就是给定一个区间,要求在每个区间内得取够给定个数的点(可以超过,但是不能少),问全局最少需要去多少个点
 解法 本道题要求使用差分约束来解
 差分约束首先要构建方程,找到用于一个表示X的量,这里使用一个数组dis,dis[i]代表从min到第i个点一共有多少个点(注意这里的min对应着题目中最小的区间端点),那么实际上我们求取的就是dis[max]的值(max代表给出的最大区间端点).
@@ -173,10 +173,10 @@ code #include&amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &am
     
     <item>
       <title>Program_week7_homework</title>
-      <link>http://xyfuture.github.io/posts/program-week7-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week7-homework/</link>
       <pubDate>Mon, 13 Apr 2020 22:55:21 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week7-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week7-homework/</guid>
       <description>week7-homework A - TT 的魔法猫 题意 题面 这道题就是求一个传递闭包,题目中给出胜负关系可以看成一对序偶,相互之间具有传递关系,给出基本的几个序偶,然后让求取改集合的传递闭包,然后看看闭包中有多少个元素
 解法 首先我们把这个输赢关系建成图,使用二维矩阵直接存储这个图,N个人代表矩阵大小是N*N,M个关系则代表图中有M条边,A B,代表A赢过B,建立一条A到B的边,如果B能到C则也有A到C的边
 将图按照给定的元素初始化后我们对这张图跑floyd-warshall.不过要把松弛条件改一下,不是最短路径了,而是只要能到达则将数组中对应的位置改为1.
@@ -187,10 +187,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &a
     
     <item>
       <title>Program-week6-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week6-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week6-homework/</link>
       <pubDate>Sat, 28 Mar 2020 22:38:31 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week6-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week6-homework/</guid>
       <description>week6-csp A - 掌握魔法の东东 II 题意 给定一组扑克牌,每张牌拥有两个属性,花色和大小,不存在完全相同的两张牌.首先取两张,了解其花色和大小,然后再取三张牌,问问总共的5张牌,在9种情况中各有多少
 解法 这道题有两种解法,一种思路是搜索,用DFS搜索一遍,每次在5张牌时判断目前的五张牌是什么情况,对应的情况计数增加.第二种解法是直接用排列组合的方式直接计算出每种情况的个数.
 这道题我是用第二种方法做的,首先写一个用于计算组合数的函数,用它来计算组合数.设牌的大小是1-n,花色有m种
@@ -200,10 +200,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &am
     
     <item>
       <title>Program-week5-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week5-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week5-homework/</link>
       <pubDate>Tue, 24 Mar 2020 21:39:07 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week5-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week5-homework/</guid>
       <description>week5-homework A-最大矩形 题意 给定一个直方图,求取直方图中规则的矩形的最大面积,其中直方图中间隔都是1,每个间隔的高度都是现场给定的.
 解法 使用单调栈
 对于每个间隔p,我们都在左边和右边找到第一个小于该间隔高度的间隔(如果相等则继续,不停止),在这两个边界之中,高度取p的高度建立的矩形是以p为高度的最大矩形,遍历一遍所有间隔就能获得整个图形中的最大矩形面积
@@ -213,10 +213,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &am
     
     <item>
       <title>c_with_python</title>
-      <link>http://xyfuture.github.io/posts/c-with-python/</link>
+      <link>https://xyfuture.github.io/posts/c-with-python/</link>
       <pubDate>Sun, 15 Mar 2020 22:46:29 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/c-with-python/</guid>
+      <guid>https://xyfuture.github.io/posts/c-with-python/</guid>
       <description>最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用
  C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include&amp;lt;Python.h&amp;gt;就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译
 要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.
@@ -236,10 +236,10 @@ C调用python参考 官方中文 确实有中文,但是感觉写的不怎么好
     
     <item>
       <title>Program-week4-homework</title>
-      <link>http://xyfuture.github.io/posts/program-week4-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week4-homework/</link>
       <pubDate>Sun, 15 Mar 2020 11:06:08 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week4-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week4-homework/</guid>
       <description>week3-CSP A-咕咕东的奇遇 题意 该题算是一个贪心问题,在一个环(26个数)上布置有序的数字,环上有一个指针,然后给定一个数字序列,要求转动圆环,使得指针指向给定的数字,要求总的转动的次数最少.题目中的不是数字而是字母,不过无所谓,ascii直接转换就行
 解法 我们使用贪心的方案,每一次都找到从当前位置到指定位置的最短路径,最短路径只有两种可能,顺时针转过去或者逆时针转过去.在环上本身就是mod26系统,因此让大数减小数是一种,小数加26减大数是另一种,那个小取那个
 code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;cstring&amp;gt;using namespace std; int main() { char s [10002];//数组开大 	memset(s,0,sizeof(s)); scanf(&amp;#34;%s&amp;#34;,s); int count=0;//总和 	int i = 0; char temp; int posi = 0; int maxShift = 0; while((temp=s[i])!=&amp;#39;\0&amp;#39;)//判断截止 	{ int cur = temp-&amp;#39;a&amp;#39;; if(cur&amp;gt;posi) { int left = cur- posi;//一种方向 	int right = posi+26 -cur;//另一种方向 	count+=(left&amp;gt;right? right:left);//取最小 	} if(cur&amp;lt;=posi) { int left = cur+26 - posi; int right = posi-cur; count+= (left&amp;gt;right?</description>
@@ -247,10 +247,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &a
     
     <item>
       <title>Program-二分</title>
-      <link>http://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</link>
+      <link>https://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</link>
       <pubDate>Fri, 13 Mar 2020 19:40:59 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</guid>
+      <guid>https://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</guid>
       <description>二分算法是一种性能优秀的算法,常常用在有序的序列上
 二分分为三种,整数二分,浮点二分,答案二分
  整数二分 整数二分类似找数问题,在数组中找到指定元素开始的位置和结束的位置
@@ -281,10 +281,10 @@ cur是找的目标,找到最后一个cur的位置,e中存的是再B中cur的位�
     
     <item>
       <title>Program_贪心</title>
-      <link>http://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</link>
+      <link>https://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</link>
       <pubDate>Thu, 12 Mar 2020 16:48:35 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</guid>
+      <guid>https://xyfuture.github.io/posts/program-%E8%B4%AA%E5%BF%83/</guid>
       <description> 贪心算法是常用的算法,但是证明似乎比较麻烦.
  贪心的几个性质 贪心的核心思想是找到当前最优解,然后迭代,每一步都是当前的最优解,最终由局部最优达到全局的最优,因此我们需要关注几个东西:
  如何区分步骤,怎样划分一步, 如何选择一步的最优解,选择一个贪心指标,使这个值最大或者最小 每进行一步应该怎样更新数据得到下一步  贪心证明 两种证法
@@ -303,10 +303,10 @@ cur是找的目标,找到最后一个cur的位置,e中存的是再B中cur的位�
     
     <item>
       <title>算法小结</title>
-      <link>http://xyfuture.github.io/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</link>
+      <link>https://xyfuture.github.io/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Mon, 09 Mar 2020 16:22:02 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</guid>
+      <guid>https://xyfuture.github.io/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</guid>
       <description>dijkstra 迪杰斯特拉算法是用于计算单点最短路,并且要求图是无负边权的.
 算法思路 从一个点开始,记录一个到其他所有点的数组,从这个数组中取出最近的一个点,更新那个数组,然后重复那个数组,每次取最短的点然后更新,直到所有点都被遍历.
 复杂度 节点数 v 边数 e
@@ -336,10 +336,10 @@ $O(v+e)$
     
     <item>
       <title>计组-存储器</title>
-      <link>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</link>
+      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</link>
       <pubDate>Mon, 09 Mar 2020 08:02:36 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</guid>
+      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/</guid>
       <description>储存器基础 存储器种类 这张图画的不错,一个要注意的点,主存储器(内存)分为RAM和ROM RAM: Random Access Memory 可读可写,存取时间与物理地址无关 ROM: Read Only Memory 只能读,但是读的时间也与物理地址无关
 主存储器  下面讲的都是主存储器,就是内存
  按照之前的理论,主存有MDR和MAR,两个重要的寄存器,MAR(Memory Address Register)用来存放访存的地址,访存指读或者写,MDR(Memory Data Register)访存的内容写在这里面.
@@ -371,10 +371,10 @@ DRAM  Dynamic Random Access Memory 用电容的方式存储数据
     
     <item>
       <title>Program_week3_homework</title>
-      <link>http://xyfuture.github.io/posts/program-week3-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week3-homework/</link>
       <pubDate>Thu, 05 Mar 2020 22:40:33 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week3-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week3-homework/</guid>
       <description>week3-homework  本次作业的主要内容是DFS和贪心算法,贪心算法看似简单但是证明存在一定难度
  A 选数问题  ZJM友情客串
  题意 题面是英文,但是比较容易理解,就是说给了一堆正数,让你从正数中选出几个数,使得他们相加得到给定的数
@@ -386,10 +386,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program_week3_class</title>
-      <link>http://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/</link>
+      <link>https://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/</link>
       <pubDate>Wed, 04 Mar 2020 18:37:35 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/</guid>
+      <guid>https://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/</guid>
       <description>DFS 记录节点状态
  可行性 最优化 记忆化搜索(就是标记走过的路)  贪心算法 证明   贪心算法最优,其他都比他差.
   贪心算法和其他一样优,其他算法的结果可以转化为贪心算法
@@ -398,10 +398,10 @@ code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &a
     
     <item>
       <title>Program_week2_homework</title>
-      <link>http://xyfuture.github.io/posts/program-week2-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week2-homework/</link>
       <pubDate>Tue, 03 Mar 2020 20:39:59 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week2-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week2-homework/</guid>
       <description>week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.
  A-化学  原题: Gym 270437A
  题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]
@@ -412,10 +412,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &am
     
     <item>
       <title>计组 四则运算</title>
-      <link>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/</link>
+      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/</link>
       <pubDate>Mon, 02 Mar 2020 14:16:35 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/</guid>
+      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/</guid>
       <description>前言 ​	最近学完了整数的加减乘除四则运算,本质上还是根据最基础的数学定理用计算机模仿人的运算步骤,但是因为数值表示的原因,初看起来还是有点难懂的,因此总结一下.
 准备工作 ​	准备工作主要指数据的编码,尤其是补码的原理,这个在上一篇中有讲,补码核心的内容就是把负数用mod的方法转换为了正数,然后因为加上了一个数因此在符号位特殊标记一下.借助这个规则我们可以实现四则运算同时解决溢出问题,因此必须对补码有一个较为深刻的认识,否者只能死记硬背了.
 加法  加法和减法都是通过补码实现的,借助补码两者可以同一
@@ -433,10 +433,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &am
     
     <item>
       <title>计网-通信原理</title>
-      <link>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
+      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
       <pubDate>Sat, 29 Feb 2020 20:18:29 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
+      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
       <description>这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息
   参考: 奈奎斯特定理 傅立叶变换 带宽
  一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。
@@ -465,10 +465,10 @@ code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &am
     
     <item>
       <title>esp8266刷micro python及串口通信</title>
-      <link>http://xyfuture.github.io/posts/esp8226%E5%88%B7micropython/</link>
+      <link>https://xyfuture.github.io/posts/esp8226%E5%88%B7micropython/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/esp8226%E5%88%B7micropython/</guid>
+      <guid>https://xyfuture.github.io/posts/esp8226%E5%88%B7micropython/</guid>
       <description>esp8266刷micro python,并且串口通信  参考链接:
  实验室 有关串口通信   前言 esp8266是乐鑫公司推出的集wifi与mcu一体的芯片,性能比51内核强不少,同时价格较为便宜,得到了众多diy爱好者的追捧,同时不少低成本的智能家居产品也使用了该产品(米家台灯就是用的esp8266) nodemcu团队为esp8266设计了方便开发的pcb,同时他们为esp8266提供了lua开发环境(项目还在继续,但是人气没有那么高了)
 micro python是国外的项目,该项目将python解释器移植到了单片机上,该团队重写了python的许多模块使得python能够在单片机上运行,但是传统的x86模块并不能很好的运行(毕竟架构差异较大).micro python语法与python完全一致,因此可以快速开发.micro python团队将解释器移植到了esp8266上,因此我们可以在esp8266上使用micro python.
@@ -493,10 +493,10 @@ Flow contorl 选None
     
     <item>
       <title>HEXO安装</title>
-      <link>http://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</link>
+      <link>https://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</guid>
       <description>HEXO安装 安装过两次hexo,每次都会遇到许多问题,感觉软件版本的影响太大了,希望能有一天机器能自动处理所有的问题,而不是简单的报错
  参考链接 : codesheep hexo.io  csdn
  0. 前言 hexo是一个基于nodejs的博客框架,采取静态页面的方式,因此可以直接部署在github上省去一个域名.hexo使用markdown进行书写,对程序员来说还是比较方便的.
@@ -514,10 +514,10 @@ npm config set registry https://registry.npm.taobao.org npm config list #验证 
     
     <item>
       <title>Program-BFS</title>
-      <link>http://xyfuture.github.io/posts/program-week1-homework/</link>
+      <link>https://xyfuture.github.io/posts/program-week1-homework/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/program-week1-homework/</guid>
+      <guid>https://xyfuture.github.io/posts/program-week1-homework/</guid>
       <description>程序设计思维 BFS 高维BFS csp2016 4 迷宫
 题目 问题描述 　小明在玩一个电脑游戏，游戏在一个n×m的方格图上进行，小明控制的角色开始的时候站在第一行第一列，目标是前往第n行第m列。 方格图上有一些方格是始终安全的，有一些在一段时间是危险的，如果小明控制的角色到达一个方格的时候方格是危险的，则小明输掉了游戏，如果小明的角色到达了第n行第m列，则小明过关。第一行第一列和第n行第m列永远都是安全的。 每个单位时间，小明的角色必须向上下左右四个方向相邻的方格中的一个移动一格。 经过很多次尝试，小明掌握了方格图的安全和危险的规律：每一个方格出现危险的时间一定是连续的。并且，小明还掌握了每个方格在哪段时间是危险的。 现在，小明想知道，自己最快经过几个时间单位可以达到第n行第m列过关。
 输入格式 　输入的第一行包含三个整数n, m, t，用一个空格分隔，表示方格图的行数n、列数m，以及方格图中有危险的方格数量。 接下来t行，每行4个整数r, c, a, b，表示第r行第c列的方格在第a个时刻到第b个时刻之间是危险的，包括a和b。游戏开始时的时刻为0。输入数据保证r和c不同时为1，而且当r为n时c不为m。一个方格只有一段时间是危险的（或者说不会出现两行拥有相同的r和c）。
@@ -530,10 +530,10 @@ npm config set registry https://registry.npm.taobao.org npm config list #验证 
     
     <item>
       <title>vscode调试配置</title>
-      <link>http://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</link>
+      <link>https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</guid>
+      <guid>https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</guid>
       <description>vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。
  下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧
 下载地址：mingw
@@ -544,10 +544,10 @@ npm config set registry https://registry.npm.taobao.org npm config list #验证 
     
     <item>
       <title>计组-数字编码</title>
-      <link>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/</link>
+      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/</guid>
+      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/</guid>
       <description>计组 数字编码  数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次
 以下讨论的都是有符号数，无符号的数较为简单，不写了
  概念 真值 原码 补码 反码 移码 （机器数）

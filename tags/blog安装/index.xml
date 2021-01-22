@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>blog安装 on My New Hugo Site</title>
-    <link>http://xyfuture.github.io/tags/blog%E5%AE%89%E8%A3%85/</link>
+    <link>https://xyfuture.github.io/tags/blog%E5%AE%89%E8%A3%85/</link>
     <description>Recent content in blog安装 on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://xyfuture.github.io/tags/blog%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://xyfuture.github.io/tags/blog%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HEXO安装</title>
-      <link>http://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</link>
+      <link>https://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://xyfuture.github.io/posts/hexo%E5%AE%89%E8%A3%85/</guid>
       <description>HEXO安装 安装过两次hexo,每次都会遇到许多问题,感觉软件版本的影响太大了,希望能有一天机器能自动处理所有的问题,而不是简单的报错
  参考链接 : codesheep hexo.io  csdn
  0. 前言 hexo是一个基于nodejs的博客框架,采取静态页面的方式,因此可以直接部署在github上省去一个域名.hexo使用markdown进行书写,对程序员来说还是比较方便的.
