@@ -1,43 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>通信原理 on My New Hugo Site</title>
-    <link>https://xyfuture.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
-    <description>Recent content in 通信原理 on My New Hugo Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 29 Feb 2020 20:18:29 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>计网-通信原理</title>
-      <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
-      <pubDate>Sat, 29 Feb 2020 20:18:29 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
-      <description>这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息
-  参考: 奈奎斯特定理 傅立叶变换 带宽
- 一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。
-一个数字脉冲就是一个码元，我们用码元速率表示单位时间内信号波形的变换次数，即单位时间内通过信道传输的码元个数。若信号码元宽度为 T 秒，则码元速率 B 为：
-说简单一点就是码元的速度,每秒能传送多少个码元,一个码元就是最基本的单位
-比特率 比特率是实际的数据传输速率,即每秒传输多少个bit的数据,计算也非常简单,首先我们要知道一个码元对着几个bit, $log_2(k)$ 其中k为一个码元中状态的数量,比如一个码元可能有4种状态则其bit位为2.比特率是波特率乘上码元代表的比特位.
-比特率的单位是bit/s
-带宽 傅立叶变化 频域 傅立叶变换 这里就不多写了,简单的想成每个周期函数(波形)都能用多个正弦波和余弦波相加表达出来
-这里的正弦函数,余弦函数都是最简单的形式,初相为0
-频域 电磁波都有一定的频率,注意这里说的频率是正弦或者余弦波的频率(存疑),也就是任意一个波经过傅立叶变换后的正弦或者余弦的频率,当然一个普通波经过傅立叶变换后会占据多个频率
-带宽  带宽的概念有一定的歧义,我把课本和我认为的都写出来
- 我的理解(和网上的介绍差不多):
-一般信道都有一个最高的信号频率（注意不是波特率哦，频率是指每秒钟的周期数，而每个周期都会有几次电平变化。。恩，看到区别了吧）和最低的信号频率，只有在这两个频率之间的信号才能通过这个信道，这两个频率的差值就叫做这个信道的带宽，单位是Hz
-带宽这个值和频域是有关系,一个波的带宽可以简单理解为把这个波用傅立叶变换分解后正弦余弦的频率的范围.
-有一个误解说带宽指的是速率(比如100m的带宽),但这不是真正得带宽,这说的是比特率,真正得带宽是频率的范围.
-奈奎斯特定律 香农定律 奈奎斯特定律  注意奈奎斯特提出过好多定律,这里说的是有关传输速率的,不是奈奎斯特采样定律
- 1924年，奈奎斯特（Nyquist）就推导出在理想低通信道下的最高码元传输速率的公式：
-其中W是理想低通信道的带宽，单位为赫兹；K是一个码元可能取值的个数,C是比特率
-这么看这个式子是有点别扭的,我们可以这么看,假设我们设计好了比特率,也设计好了码元,这样就能推出占用的带宽了.
-根据奈奎斯特准则我们可以推断出： （1）给定了信道的带宽，则该信道的极限波特率就确定了，不可能超过这个极限波特率传输码元，除非改善该信道的带宽； （2）要想增加信道的比特传送率有两条途径，一方面可以增加该信道的带宽，另一方面可以选择更高的编码方式。
-香农定理 奈奎斯特假设的是理想的情况,但是实际上由许多的噪声,因此香农提出了香农定理,解决了噪声状态下的带宽问题.
-香农定理指出，在噪声与信号独立的高斯白噪信道中，假设信号的功率为S，噪声功率为N，信道通频带宽为W(Hz)，则该信道的信道容量C有:
-这里不具体讨论香农定理了.
-调制 基带 通带 基带 (baseband)  以下的内容不不够严谨,是我个人的理解</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>通信原理 - 标签 - Xyfuture&#39;s Home</title>
+        <link>https://xyfuture.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
+        <description>通信原理 - 标签 - Xyfuture&#39;s Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 29 Feb 2020 20:18:29 &#43;0000</lastBuildDate><atom:link href="https://xyfuture.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>计网-通信原理</title>
+    <link>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
+    <pubDate>Sat, 29 Feb 2020 20:18:29 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
+    <description><![CDATA[这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要]]></description>
+</item></channel>
 </rss>

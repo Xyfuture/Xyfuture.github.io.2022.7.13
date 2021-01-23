@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program-week10-homework - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="Program-week10-homework" />
+<meta property="og:description" content="week10-homework A - 签到题 题面 解法 直接m/n看看是不能整除,不整除,直接输出-1 整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1 code #include" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/program-week10-homework/" />
+<meta property="article:published_time" content="2020-04-29T21:28:09+00:00" />
+<meta property="article:modified_time" content="2020-04-29T21:28:09+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week10-homework"/>
+<meta name="twitter:description" content="week10-homework A - 签到题 题面 解法 直接m/n看看是不能整除,不整除,直接输出-1 整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1 code #include"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/program-week10-homework/" /><link rel="prev" href="http://example.org/posts_back/program-week8-homework/" /><link rel="next" href="http://example.org/posts_back/program-week9-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program-week10-homework",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/program-week10-homework\/"
+        },"genre": "posts_back","keywords": "Program, homework","wordcount":  3806 ,
+        "url": "http:\/\/example.org\/posts_back\/program-week10-homework\/","datePublished": "2020-04-29T21:28:09+00:00","dateModified": "2020-04-29T21:28:09+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Program-week10-homework</h1><div class="content" id="content"><h1 id="week10-homework">week10-homework</h1>
+<h2 id="a---签到题httpsvjudgenetproblemcodeforces-1141a"><a href="https://vjudge.net/problem/CodeForces-1141A" target="_blank" rel="noopener noreffer">A - 签到题</a></h2>
+<h3 id="题面">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/13/oWrKmnd8pHkwOzN.png"
+        data-srcset="https://i.loli.net/2020/05/13/oWrKmnd8pHkwOzN.png, https://i.loli.net/2020/05/13/oWrKmnd8pHkwOzN.png 1.5x, https://i.loli.net/2020/05/13/oWrKmnd8pHkwOzN.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/13/oWrKmnd8pHkwOzN.png"
+        title="https://i.loli.net/2020/05/13/oWrKmnd8pHkwOzN.png" /></p>
+<h3 id="解法">解法</h3>
+<p>直接m/n看看是不能整除,不整除,直接输出-1</p>
+<p>整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1</p>
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">m</span><span class="o">%</span><span class="n">n</span><span class="o">!=</span><span class="mi">0</span><span class="o">||</span><span class="n">n</span><span class="o">&gt;</span><span class="n">m</span><span class="p">)</span><span class="c1">//能整除
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">m</span><span class="o">/</span><span class="n">n</span><span class="p">;</span><span class="c1">//倍数
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">t</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//一直/2直到不能进行
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">t</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">t</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//一直除3直到不能进行
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">t</span><span class="o">/=</span><span class="mi">3</span><span class="p">;</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span><span class="c1">//除不尽
+</span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="c1">//除尽
+</span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
+<p>问题不难,考虑除尽的情况即可</p>
+<h2 id="b---lis--lcshttpsvjudgenetproblemgym-277140a"><a href="https://vjudge.net/problem/Gym-277140A" target="_blank" rel="noopener noreffer">B - LIS &amp; LCS</a></h2>
+<h3 id="题面-1">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/13/ImC1iALlYHBNZXf.png"
+        data-srcset="https://i.loli.net/2020/05/13/ImC1iALlYHBNZXf.png, https://i.loli.net/2020/05/13/ImC1iALlYHBNZXf.png 1.5x, https://i.loli.net/2020/05/13/ImC1iALlYHBNZXf.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/13/ImC1iALlYHBNZXf.png"
+        title="image-20200513115536949" /></p>
+<h3 id="解法-1">解法</h3>
+<p>这是一道DP的模板题</p>
+<p>对于LIS 最长上升子序列而言,使用1维dp即可</p>
+<p>$dp[j] = max(dp[i],\ (data[i]&lt;data[j],\ i&lt;j))+1$</p>
+<p>$dp[j]$表示序列中第j个位置,以data[j]结尾的字符的LIS,全局的最大值要从整个序列中取最大值</p>
+<p>对于LRS最长公共子序列,需要使用二维的DP,因为涉及到对两个区间的操作</p>
+<p>$dp[i][j]$表示第一个序列第i个位置和第二个序列第j个位置的最长公共子序列长度</p>
+<p>状态转移方程如下:</p>
+<p>$A[i] == B[j]\ \ \ \ dp[i][j] = dp[i-1][j-1]+1$
+$A[i]!=B[j]\ \ \ \ dp[i][j]=max(dp[i-1][j],dp[i][j-1])$</p>
+<p>初始化所有长度为0</p>
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="c1">// #include &lt;algorithm&gt;
+</span><span class="c1"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="c1">//最长上升子序列和最长公共子序列
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="mi">5005</span><span class="p">];</span><span class="c1">//两个序列原始信息
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="mi">5005</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">LIS</span><span class="p">[</span><span class="mi">5005</span><span class="p">];</span><span class="c1">//存储答案
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">LRS</span><span class="p">[</span><span class="mi">5005</span><span class="p">][</span><span class="mi">5005</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">findLIS</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">allMax</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//最长上升子序列
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">Max</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">&lt;</span><span class="n">temp</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">LIS</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">&gt;</span><span class="n">Max</span><span class="p">)</span><span class="c1">//状态转移方程
+</span><span class="c1"></span>                    <span class="n">Max</span> <span class="o">=</span> <span class="n">LIS</span><span class="p">[</span><span class="n">t</span><span class="p">];</span><span class="c1">//取比A[i]小的元素的最大值
+</span><span class="c1"></span>        <span class="n">LIS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Max</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//更新
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">Max</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;</span><span class="n">allMax</span><span class="p">)</span>
+            <span class="n">allMax</span> <span class="o">=</span> <span class="n">Max</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">allMax</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">findLRS</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">B</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">LRS</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">LRS</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//相同更新加1
+</span><span class="c1"></span>            <span class="k">else</span> 
+                <span class="n">LRS</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">LRS</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">t</span><span class="p">],</span><span class="n">LRS</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span><span class="c1">//矩阵上方或则左侧
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">LIS</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">LIS</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">LRS</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">LRS</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">A</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">B</span><span class="p">));</span><span class="c1">//初始化
+</span><span class="c1"></span>    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">A</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">B</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">maxELe</span> <span class="o">=</span> <span class="n">findLIS</span><span class="p">();</span>
+    <span class="n">findLRS</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">ans2</span> <span class="o">=</span> <span class="n">LRS</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">m</span><span class="p">];</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d %d&#34;</span><span class="p">,</span><span class="n">maxELe</span><span class="p">,</span><span class="n">ans2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
+<p>dp 四件套 状态表示 转移方程 初始条件 转移策略</p>
+<p>转移状态非常重要,LIS的状态表示没有直接给出要求的东西,但是能通过其他方法求取这个最大值,挺妙,得多想想</p>
+<h2 id="c---拿数问题-iihttpsvjudgenetproblemcodeforces-455a"><a href="https://vjudge.net/problem/CodeForces-455A" target="_blank" rel="noopener noreffer">C - 拿数问题 II</a></h2>
+<h3 id="题面-2">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/13/LAEqapWsrVHfM5w.png"
+        data-srcset="https://i.loli.net/2020/05/13/LAEqapWsrVHfM5w.png, https://i.loli.net/2020/05/13/LAEqapWsrVHfM5w.png 1.5x, https://i.loli.net/2020/05/13/LAEqapWsrVHfM5w.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/13/LAEqapWsrVHfM5w.png"
+        title="https://i.loli.net/2020/05/13/LAEqapWsrVHfM5w.png" /></p>
+<h3 id="解法-2">解法</h3>
+<p>这道题是对课上题目的小改,其实就是对一开始输入的系列进行一些处理,首先排个序,然后将所有相同的值合并,构造两个新序列,$pdata[i]$表示新序列对应位置的原始值,$process[i]$是原序列中$pdata[i]$的值的和(就是相当于把相同的值都加起来,然后保留加和和原本的值).</p>
+<p>然后开始dp,$dp[i]$表示到第i个位置,总和最大值是多少​.</p>
+<p>$pdata[i]==pdata[i-1]+1\ \ \ \ dp[i]=max(process[i]+dp[i-2],dp[i-1])$</p>
+<p>$pdata[i]!=pdata[i-1]+1\ \ \ \ dp[i]=process[i]+dp[i-1]$</p>
+<p>初始化为0,然后从小到大开始dp即可</p>
+<h3 id="code-2">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="n">data</span><span class="p">[</span><span class="mi">100005</span><span class="p">];</span><span class="c1">//原始数据
+</span><span class="c1"></span><span class="kt">long</span> <span class="kt">long</span> <span class="n">process</span><span class="p">[</span><span class="mi">100005</span><span class="p">];</span><span class="c1">//合并所有相同项后
+</span><span class="c1"></span><span class="kt">long</span> <span class="kt">long</span> <span class="n">ans</span><span class="p">[</span><span class="mi">100005</span><span class="p">];</span><span class="c1">//结果
+</span><span class="c1"></span><span class="kt">long</span> <span class="kt">long</span> <span class="n">pdata</span><span class="p">[</span><span class="mi">100005</span><span class="p">];</span><span class="c1">//process对应位置的原先的值
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">process</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">process</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">ans</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">pdata</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">pdata</span><span class="p">));</span><span class="c1">//初始化
+</span><span class="c1"></span>    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">n</span><span class="p">);</span><span class="c1">//排序
+</span><span class="c1"></span>    <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">sum</span><span class="o">+=</span><span class="n">data</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">pdata</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">=</span><span class="n">temp</span><span class="p">;</span><span class="c1">//原先的值
+</span><span class="c1"></span>        <span class="n">process</span><span class="p">[</span><span class="n">m</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span><span class="c1">//计算和
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">process</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="c1">//初始化
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">pdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">pdata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">process</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="k">else</span>
+        <span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">process</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">pdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">pdata</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="c1">//不能取前一个数
+</span><span class="c1"></span>            <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">process</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]);</span>
+        <span class="k">else</span><span class="c1">//能取前一个数,直接加
+</span><span class="c1"></span>            <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">process</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span><span class="n">ans</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+
+</code></pre></div><h3 id="总结-2">总结</h3>
+<p>这道题数据范围需要稍微注意一下,可能会超int,dp的规则相较于课上讲的其实变化不大,只不过需要多一步预处理.</p>
+<h1 id="csp-模拟">CSP-模拟</h1>
+<h2 id="a---签到题httpsvjudgenetproblematcoder-2041"><a href="https://vjudge.net/problem/AtCoder-2041" target="_blank" rel="noopener noreffer">A - 签到题</a></h2>
+<h3 id="题面-3">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/13/LuBieR152XMxVjz.png"
+        data-srcset="https://i.loli.net/2020/05/13/LuBieR152XMxVjz.png, https://i.loli.net/2020/05/13/LuBieR152XMxVjz.png 1.5x, https://i.loli.net/2020/05/13/LuBieR152XMxVjz.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/13/LuBieR152XMxVjz.png"
+        title="https://i.loli.net/2020/05/13/LuBieR152XMxVjz.png" /></p>
+<h3 id="解法-3">解法</h3>
+<p>这道题就是非常简单的判断最大最小值问题</p>
+<p>题目让切分图形,最简单的就是长宽高方向切分,那么一共有三种面,求出最小的那个面就可以了</p>
+<p>数据给到了1e9,用int会爆,因此用long long</p>
+<h3 id="code-3">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="c1">//数据范围用long long
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lld%lld%lld&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">||</span><span class="n">b</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">||</span><span class="n">c</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;0&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//找三个面最小的那一个
+</span><span class="c1"></span>    <span class="kt">long</span> <span class="kt">long</span> <span class="n">Min</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">c</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">Min</span><span class="o">&gt;</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">Min</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">Min</span><span class="o">&gt;</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">Min</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span><span class="n">Min</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-3">总结</h3>
+<p>难度不大,还是要关注一下数据范围,会超int</p>
+<h2 id="b---团-队-聚-会httpsvjudgenetproblempoj-1960"><a href="https://vjudge.net/problem/POJ-1960" target="_blank" rel="noopener noreffer">B - 团 队 聚 会</a></h2>
+<h3 id="题面-4">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/13/tWUm59dogr6XBsP.png"
+        data-srcset="https://i.loli.net/2020/05/13/tWUm59dogr6XBsP.png, https://i.loli.net/2020/05/13/tWUm59dogr6XBsP.png 1.5x, https://i.loli.net/2020/05/13/tWUm59dogr6XBsP.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/13/tWUm59dogr6XBsP.png"
+        title="image-20200513142515530" /></p>
+<p>题面稍微有点长,大致意思就是又一系列区间,要求求出没有不区间覆盖为部分(或者仅被一个区间覆盖)</p>
+<h3 id="解法-4">解法</h3>
+<p>题目本身很简单,但是因为区间的格式有点复杂,是一个确切的时间,因此要针对时间进行处理
+首先写一个时间结构体,这个结构体有6个变量,分别是年月日时分秒,用来对应输入的时间,然后写好比较函数</p>
+<p>然后写一个事件结构体event,包含两个时间点,一个起始时间,一个结束时间,然后两个时间点表示一段时间,这一段时间表示一个时间,用来存储输出的事件</p>
+<p>我们使用两个堆,一个堆allTime存储所有的时间点,就是每个人每个时间段的开始时间和结束时间,另一个是堆数组person,用来存储每个人的事件,堆中排序依据事件起始事件,用一个vector存储所有的空闲时间段</p>
+<p>编写事件处理函数,将每个人每个事件都存储为event,加入到对应的堆中,同时把每个时间也加入到allTime,</p>
+<p>然后从allTime中提出两个时间,组成一个event,检查这个event所有人是否有空,如果满足条件,满足条件就将这个event加入到vector中,一直重复到堆空</p>
+<p>检查过程就是先看看每个人堆顶的起始时间和待检测的结束时间关系,如果大于,则有空,如果小于,且待检测的开始时间晚于堆顶开始时间,待检测时间结束时间早于堆顶结束时间,则说明有事,如果堆顶结束时间早于待检测开始时间,弹出堆顶,继续检测</p>
+<p>最终所有有空的时间都到了vector中,我们要输出这个时间,这其中有连续的时间被分割成多个连续片段的情况,因此要先合并,然后检查合并后的时间长度是否大于1h,是就输出.</p>
+<h3 id="code-4">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">time</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">dataInfo</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="c1">//时间从年到秒
+</span><span class="c1"></span>    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">time</span><span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span> <span class="k">const</span> <span class="c1">//重载操作符 一定要是const
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>            
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">==</span> <span class="p">(</span><span class="k">const</span> <span class="n">time</span><span class="o">&amp;</span>  <span class="n">op</span><span class="p">)</span><span class="k">const</span> 
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">time</span><span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span><span class="k">const</span> 
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>  
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;=</span><span class="p">(</span><span class="k">const</span> <span class="n">time</span><span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span><span class="k">const</span> 
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">op</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>    
+    <span class="p">}</span>
+    <span class="c1">//起始写麻烦了,可以写一个然后调用
+</span><span class="c1"></span>    <span class="n">time</span><span class="p">(){};</span>
+    <span class="n">time</span><span class="p">(</span><span class="kt">int</span> <span class="n">year</span><span class="p">,</span><span class="kt">int</span> <span class="n">month</span><span class="p">,</span><span class="kt">int</span> <span class="n">day</span><span class="p">,</span><span class="kt">int</span> <span class="n">hour</span><span class="p">,</span><span class="kt">int</span> <span class="n">minute</span><span class="p">,</span><span class="kt">int</span> <span class="n">second</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">dataInfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">year</span><span class="p">;</span>
+        <span class="n">dataInfo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">month</span><span class="p">;</span>
+        <span class="n">dataInfo</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">day</span><span class="p">;</span>
+        <span class="n">dataInfo</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">hour</span><span class="p">;</span>
+        <span class="n">dataInfo</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">minute</span><span class="p">;</span>
+        <span class="n">dataInfo</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">second</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">event</span> 
+<span class="p">{</span> <span class="c1">//一个时间,包括起始时间和结束时间
+</span><span class="c1"></span>    <span class="n">time</span> <span class="n">startTime</span><span class="p">;</span>
+    <span class="n">time</span> <span class="n">endTime</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">event</span><span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span> <span class="k">const</span> 
+    <span class="p">{</span> <span class="k">return</span> <span class="n">startTime</span> <span class="o">&gt;</span> <span class="n">op</span><span class="p">.</span><span class="n">startTime</span><span class="p">;}</span>
+<span class="p">};</span>
+<span class="c1">//最小堆
+</span><span class="c1"></span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">time</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">time</span><span class="o">&gt;</span><span class="p">,</span><span class="n">greater</span><span class="o">&lt;</span><span class="n">time</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">allTime</span><span class="p">;</span><span class="c1">//所有时间点的数组
+</span><span class="c1"></span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">event</span><span class="p">,</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">event</span><span class="o">&gt;</span><span class="p">,</span><span class="n">greater</span><span class="o">&lt;</span><span class="n">event</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">person</span><span class="p">[</span><span class="mi">22</span><span class="p">];</span><span class="c1">//每个人的事件
+</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">event</span><span class="o">&gt;</span> <span class="n">freeTime</span><span class="p">;</span><span class="c1">//存储一小段一小段能开会的时间
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">perCnt</span><span class="p">;</span><span class="c1">//人数
+</span><span class="c1"></span>
+<span class="n">event</span> <span class="nf">readTime</span><span class="p">()</span><span class="c1">//读入一个时间
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">event</span> <span class="n">tempEvent</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">tempEvent</span><span class="p">.</span><span class="n">startTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">tempEvent</span><span class="p">.</span><span class="n">endTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">getchar</span><span class="p">()</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span><span class="c1">//去除后面没用的文字
+</span><span class="c1"></span>        <span class="k">continue</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">tempEvent</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">checkFree</span><span class="p">(</span><span class="kt">int</span> <span class="n">ptr</span><span class="p">,</span><span class="k">const</span> <span class="n">event</span><span class="o">&amp;</span> <span class="n">curTime</span><span class="p">)</span><span class="c1">//检查一个人在一个时间段是不是有空的
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span><span class="c1">//什么事都没了
+</span><span class="c1"></span>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">event</span> <span class="n">curEvent</span> <span class="o">=</span> <span class="n">person</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">top</span><span class="p">();</span><span class="c1">//最靠前的事
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">curTime</span><span class="p">.</span><span class="n">endTime</span> <span class="o">&lt;=</span> <span class="n">curEvent</span><span class="p">.</span><span class="n">startTime</span><span class="p">)</span><span class="c1">//当前没有事
+</span><span class="c1"></span>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">curEvent</span><span class="p">.</span><span class="n">startTime</span><span class="o">&lt;=</span><span class="n">curTime</span><span class="p">.</span><span class="n">startTime</span><span class="o">&amp;&amp;</span><span class="n">curTime</span><span class="p">.</span><span class="n">endTime</span><span class="o">&lt;=</span><span class="n">curEvent</span><span class="p">.</span><span class="n">endTime</span><span class="p">)</span><span class="c1">//当前有事
+</span><span class="c1"></span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">curEvent</span><span class="p">.</span><span class="n">endTime</span><span class="o">&lt;=</span><span class="n">curTime</span><span class="p">.</span><span class="n">startTime</span><span class="p">)</span><span class="c1">//当前的事已经干完了,取下一个事
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">person</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">checkFree</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="n">curTime</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">checkAllPerson</span><span class="p">()</span><span class="c1">//检查所有人的时间情况
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">event</span> <span class="n">curEvent</span><span class="p">;</span><span class="c1">//当前时间段
+</span><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">allTime</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="c1">//时间点不空
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">curEvent</span><span class="p">.</span><span class="n">startTime</span> <span class="o">=</span> <span class="n">allTime</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+        <span class="n">allTime</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">allTime</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="n">curEvent</span><span class="p">.</span><span class="n">endTime</span> <span class="o">=</span> <span class="n">allTime</span><span class="p">.</span><span class="n">top</span><span class="p">();</span><span class="c1">//取两个时间点组成一个时间片段,检查时间片段内是否能开会
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">curEvent</span><span class="p">.</span><span class="n">startTime</span> <span class="o">==</span> <span class="n">curEvent</span><span class="p">.</span><span class="n">endTime</span><span class="p">)</span><span class="c1">//无效时间片段
+</span><span class="c1"></span>        	<span class="k">continue</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">perCnt</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">cnt</span><span class="o">+=</span><span class="n">checkFree</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">curEvent</span><span class="p">);</span><span class="c1">//有空人的个数
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">&gt;=</span><span class="n">perCnt</span><span class="o">-</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">cnt</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span><span class="c1">//能开会
+</span><span class="c1"></span>            <span class="n">freeTime</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">curEvent</span><span class="p">);</span><span class="c1">//将开会时间片段放入freeTime
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">printMin</span><span class="p">(</span><span class="k">const</span> <span class="n">time</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="c1">//输出时间的每一个小段
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">t</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&amp;&amp;</span><span class="n">t</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;0%d&#34;</span><span class="p">,</span><span class="n">t</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;00&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">printTime</span><span class="p">(</span><span class="k">const</span> <span class="n">time</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span><span class="c1">//输出时间
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">printMin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">);</span>
+    <span class="n">printMin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">);</span>
+    <span class="n">printMin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">);</span>
+    <span class="n">printMin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;:&#34;</span><span class="p">);</span>
+    <span class="n">printMin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;:&#34;</span><span class="p">);</span>
+    <span class="n">printMin</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">bool</span> <span class="nf">checkLimit</span><span class="p">(</span><span class="n">time</span> <span class="n">s</span><span class="p">,</span><span class="n">time</span> <span class="n">e</span><span class="p">)</span><span class="c1">//检查时间段下限,时间要超过1h
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">time</span> <span class="n">newTime</span> <span class="p">;</span>
+    <span class="kt">int</span> <span class="n">t</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">24</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">31</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">&gt;=</span><span class="mi">13</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+            	<span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+            	<span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+			<span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+        	<span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+        	<span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> 
+    	<span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">t</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+    <span class="n">newTime</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">dataInfo</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">newTime</span><span class="o">&lt;=</span><span class="n">e</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">output</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">event</span> <span class="n">startEvent</span><span class="p">;</span>
+    <span class="n">event</span> <span class="n">endEvent</span><span class="p">;</span>
+    <span class="n">time</span> <span class="n">st</span><span class="p">;</span>
+    <span class="n">time</span> <span class="n">et</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//没有可用时间标置
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">freeTime</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">freeTime</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">startTime</span><span class="p">;</span>
+        <span class="n">et</span> <span class="o">=</span> <span class="n">freeTime</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">endTime</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">freeTime</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="c1">//多个时间段可能是连着的,需要合成一个
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">et</span> <span class="o">==</span> <span class="n">freeTime</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="n">startTime</span><span class="p">)</span><span class="c1">//头尾相连
+</span><span class="c1"></span>                <span class="n">et</span><span class="o">=</span><span class="n">freeTime</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">].</span><span class="n">endTime</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">checkLimit</span><span class="p">(</span><span class="n">st</span><span class="p">,</span><span class="n">et</span><span class="p">))</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//有可用时间
+</span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;appointment possible from &#34;</span><span class="p">);</span>
+        <span class="n">printTime</span><span class="p">(</span><span class="n">st</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34; to &#34;</span><span class="p">);</span>
+        <span class="n">printTime</span><span class="p">(</span><span class="n">et</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+    	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;no appointment possible</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span> 
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">t</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//输出格式
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">perCnt</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">c</span><span class="o">&lt;</span><span class="n">perCnt</span><span class="p">;</span><span class="n">c</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">person</span><span class="p">[</span><span class="n">c</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span> 
+            	<span class="n">person</span><span class="p">[</span><span class="n">c</span><span class="p">].</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">allTime</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+            <span class="n">allTime</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">freeTime</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="c1">//清空
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">endCheck</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">time</span> <span class="n">rbegin</span><span class="p">(</span><span class="mi">1800</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//总的开始时间
+</span><span class="c1"></span>        <span class="n">time</span> <span class="n">rend</span><span class="p">(</span><span class="mi">2200</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="c1">//总的结束时间
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">perCnt</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">m</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">m</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">event</span> <span class="n">tempEve</span> <span class="o">=</span> <span class="n">readTime</span><span class="p">();</span>
+                <span class="n">person</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">push</span><span class="p">(</span><span class="n">tempEve</span><span class="p">);</span><span class="c1">//每个人的事件
+</span><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">tempEve</span><span class="p">.</span><span class="n">endTime</span> <span class="o">==</span> <span class="n">rend</span><span class="p">)</span>
+                    <span class="n">endCheck</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">allTime</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">tempEve</span><span class="p">.</span><span class="n">startTime</span><span class="p">);</span><span class="c1">//每一个时间点
+</span><span class="c1"></span>                <span class="n">allTime</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">tempEve</span><span class="p">.</span><span class="n">endTime</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">allTime</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="o">==</span><span class="n">rbegin</span><span class="p">))</span><span class="c1">//重复插入,其实不用管
+</span><span class="c1"></span>            <span class="n">allTime</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">rbegin</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">endCheck</span><span class="p">)</span>
+            <span class="n">allTime</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">rend</span><span class="p">);</span>
+        <span class="n">checkAllPerson</span><span class="p">();</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Scenario #%d:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">output</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-4">总结</h3>
+<p>这道题思路不麻烦,难的是代码的编写,这次写的非常丑,时间比较那里可以简化一下,同时可以把时间直接转换为秒,代码量更少.</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

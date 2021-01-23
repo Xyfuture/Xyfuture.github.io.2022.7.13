@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>计组 四则运算 - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="计组 四则运算" />
+<meta property="og:description" content="前言 ​ 最近学完了整数的加减乘除四则运算,本质上还是根据最基础的数学定理用计算机模仿人的运算步骤,但是因为数值表示的原因,初看起来还是有点难懂" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" />
+<meta property="article:published_time" content="2020-03-02T14:16:35+00:00" />
+<meta property="article:modified_time" content="2020-03-02T14:16:35+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计组 四则运算"/>
+<meta name="twitter:description" content="前言 ​ 最近学完了整数的加减乘除四则运算,本质上还是根据最基础的数学定理用计算机模仿人的运算步骤,但是因为数值表示的原因,初看起来还是有点难懂"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" /><link rel="prev" href="http://example.org/posts_back/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/" /><link rel="next" href="http://example.org/posts_back/program-week2-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计组 四则运算",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97\/"
+        },"genre": "posts_back","keywords": "计组, 四则运算","wordcount":  1999 ,
+        "url": "http:\/\/example.org\/posts_back\/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97\/","datePublished": "2020-03-02T14:16:35+00:00","dateModified": "2020-03-02T14:16:35+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">计组 四则运算</h1><div class="content" id="content"><h1 id="前言">前言</h1>
+<p>​		最近学完了整数的加减乘除四则运算,本质上还是根据最基础的数学定理用计算机模仿人的运算步骤,但是因为数值表示的原因,初看起来还是有点难懂的,因此总结一下.</p>
+<h1 id="准备工作">准备工作</h1>
+<p>​		准备工作主要指数据的编码,尤其是补码的原理,这个在上一篇中有讲,补码核心的内容就是把负数用mod的方法转换为了正数,然后因为加上了一个数因此在符号位特殊标记一下.借助这个规则我们可以实现四则运算同时解决溢出问题,因此必须对补码有一个较为深刻的认识,否者只能死记硬背了.</p>
+<h1 id="加法">加法</h1>
+<blockquote>
+<p>加法和减法都是通过补码实现的,借助补码两者可以同一</p>
+</blockquote>
+<p>加法其实没有什么好说的,按照正常的规则补码直接加,得到的结果也是补码</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/PdmACSpbwi6fIvU.png"
+        data-srcset="https://i.loli.net/2020/03/02/PdmACSpbwi6fIvU.png, https://i.loli.net/2020/03/02/PdmACSpbwi6fIvU.png 1.5x, https://i.loli.net/2020/03/02/PdmACSpbwi6fIvU.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/PdmACSpbwi6fIvU.png"
+        title="https://i.loli.net/2020/03/02/PdmACSpbwi6fIvU.png" /></p>
+<p>就是按照满2进1的规则来就行,符号位也要算上去,没什么好说的.注意一点是最后的这个<strong>mod XX</strong>这个意思是为了保持位数,比如8位+8位我们不给出9位的答案,多的一位会被截断,这就引发了另一个问题就是<strong>溢出</strong>,8位的答案不能表达实际的答案,这个问题在减法中统一讨论.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/lYnPb1FmO3qDSax.png"
+        data-srcset="https://i.loli.net/2020/03/02/lYnPb1FmO3qDSax.png, https://i.loli.net/2020/03/02/lYnPb1FmO3qDSax.png 1.5x, https://i.loli.net/2020/03/02/lYnPb1FmO3qDSax.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/lYnPb1FmO3qDSax.png"
+        title="https://i.loli.net/2020/03/02/lYnPb1FmO3qDSax.png" /></p>
+<!-- raw HTML omitted -->
+<p>减法要转为加法进行处理 
+$$
+A-B\ =\ A+(-B)
+$$
+这个规则对于补码也是成立的
+$$
+[A]_补-[B]_补\ =\ [A]_补+[-B]_补
+$$
+因此我们将减数转换成他的相反数,规则在上一篇文章中也讲过,<strong>所有位(包括符号位)取反,再+1</strong>,之后执行正常的加法就行了.</p>
+<h2 id="溢出问题">溢出问题</h2>
+<p>溢出问题是非常重要和有趣的.
+溢出的意思就是当前的数据位数没有办法表达当前的数据.
+比如8位可以表示-128-127,但是当两个-128相加时得到的数(-256)就没法表示了,因此就溢出了,下面来说说溢出在补码上的表现</p>
+<p><strong>溢出只发生在正数加正数和负数加负数时</strong>,当两个符号位相同时相加得到了一个不同的符号位就发生了溢出</p>
+<p>负数加负数
+1000,0000
++1111,1111
+1,0111,1111
+可以看到第8位发生了变换了,因此负数溢出,原理就是原本符号位上的1表示这个数是由负数加128而来的,两个负数相加时$128+X_1+128+X_2(X_1,X_2&lt;0)$,如果这个数&gt;128则会进1,使符号位重新成为1,但是同时后面7位表示的也是$128+X_1+X_2$,因为多的128进位了,这样还是符合补码的原理的,但是没有两个数加起来不到128时说明后面7位还是$128+X_1+128+X_2$这样要想的到原来的值需要加-256不符合补码原理.</p>
+<h4 id="杂七杂八">杂七杂八</h4>
+<p>符号位上的1表示的时后面数值位是128- 原数的绝对值得到的,符号位这个不能表示数值大小,能表示的是状态,后面的进位过来会改变符号位,不论怎么改,只要能按照规则转换回去就说明是对的,不必太过看重这个符号位.</p>
+<h3 id="两个符号位">两个符号位</h3>
+<p>11.xxxx 00.xxxx
+这种数有两个符号位,最终加减得到的结果有4种
+00 ,11 正常情况,表述正数,负数
+10  &mdash; 负溢出
+01  &mdash; 正溢出</p>
+<h1 id="乘法">乘法</h1>
+<blockquote>
+<p>乘法的原理建议先看竖式是怎么算的,本质上是乘法分配律
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/3kyMcV2dHE8GqXe.png"
+        data-srcset="https://i.loli.net/2020/03/02/3kyMcV2dHE8GqXe.png, https://i.loli.net/2020/03/02/3kyMcV2dHE8GqXe.png 1.5x, https://i.loli.net/2020/03/02/3kyMcV2dHE8GqXe.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/3kyMcV2dHE8GqXe.png"
+        title="https://i.loli.net/2020/03/02/3kyMcV2dHE8GqXe.png" /></p>
+</blockquote>
+<h2 id="原码乘法">原码乘法</h2>
+<p>原码乘法就是数用原码进行表示,<strong>符号位单独讨论</strong>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/iXvUqQJzwP3OBRe.png"
+        data-srcset="https://i.loli.net/2020/03/02/iXvUqQJzwP3OBRe.png, https://i.loli.net/2020/03/02/iXvUqQJzwP3OBRe.png 1.5x, https://i.loli.net/2020/03/02/iXvUqQJzwP3OBRe.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/iXvUqQJzwP3OBRe.png"
+        title="https://i.loli.net/2020/03/02/iXvUqQJzwP3OBRe.png" /></p>
+<p>直接看ppt吧,得到的数是补码,记得单独算符号位,最后加上
+<strong>几个问题</strong></p>
+<p>1.为什么是逻辑右移?   因为符号不在这里讨论,这里的0.x的0用来存进位(解决原本的溢出问题)
+2.移动了几次? 乘数有几位就移动几次
+3.得到的积? 得到积是两部分,一部分高位,一部分低位,占用两个寄存器
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/xu53HIXiOC1Gmcb.png"
+        data-srcset="https://i.loli.net/2020/03/02/xu53HIXiOC1Gmcb.png, https://i.loli.net/2020/03/02/xu53HIXiOC1Gmcb.png 1.5x, https://i.loli.net/2020/03/02/xu53HIXiOC1Gmcb.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/xu53HIXiOC1Gmcb.png"
+        title="https://i.loli.net/2020/03/02/xu53HIXiOC1Gmcb.png" /></p>
+<h2 id="补码乘法">补码乘法</h2>
+<blockquote>
+<p>补码乘法较为复杂这里只介绍 Booth法</p>
+</blockquote>
+<p>补码乘法统一了符号,直接带着符号运算,得到的结果就是带有符号的补码,<strong>补码使用两位的符号位</strong></p>
+<h4 id="booth法原理及运算">Booth法原理及运算</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/pAIkjNPO6eb4wm2.png"
+        data-srcset="https://i.loli.net/2020/03/02/pAIkjNPO6eb4wm2.png, https://i.loli.net/2020/03/02/pAIkjNPO6eb4wm2.png 1.5x, https://i.loli.net/2020/03/02/pAIkjNPO6eb4wm2.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/pAIkjNPO6eb4wm2.png"
+        title="https://i.loli.net/2020/03/02/pAIkjNPO6eb4wm2.png" /></p>
+<p>这个具体我也没推,看看最后一行的结论就行了,过程还是和原码的差不多,但是在细节上有些不同</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/HdKPjefqYZAuFNz.png"
+        data-srcset="https://i.loli.net/2020/03/02/HdKPjefqYZAuFNz.png, https://i.loli.net/2020/03/02/HdKPjefqYZAuFNz.png 1.5x, https://i.loli.net/2020/03/02/HdKPjefqYZAuFNz.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/HdKPjefqYZAuFNz.png"
+        title="https://i.loli.net/2020/03/02/HdKPjefqYZAuFNz.png" /></p>
+<p>上面是运算的方法,第三列是符加位,一开始是0,后来就是被挤掉的那一位了,每次符加位-最后一位,然后乘上乘数加到部分积上,<strong>所有的数都是补码</strong>,加减按照补码的规则来就行.最后一位是不移动的,因为移动的次数已经够了,每次的移动都是<strong>算数右移</strong>.</p>
+<h5 id="几个问题">几个问题</h5>
+<ol>
+<li>
+<p>为什么是两位的符号位? 这个是解决进位和符号的问题,溢出时为01,或10,然后右移,01-&gt;00,1,10-&gt;11,0及保存了进位又保存了符号</p>
+</li>
+<li>
+<p>为什么时<strong>算数右移</strong>? 因为带着符号位运算鸭</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/06/3rRB2eN6vUYLTGj.png"
+        data-srcset="https://i.loli.net/2020/03/06/3rRB2eN6vUYLTGj.png, https://i.loli.net/2020/03/06/3rRB2eN6vUYLTGj.png 1.5x, https://i.loli.net/2020/03/06/3rRB2eN6vUYLTGj.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/06/3rRB2eN6vUYLTGj.png"
+        title="https://i.loli.net/2020/03/06/3rRB2eN6vUYLTGj.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/jVbHayWiQ2c7KN3.png"
+        data-srcset="https://i.loli.net/2020/03/02/jVbHayWiQ2c7KN3.png, https://i.loli.net/2020/03/02/jVbHayWiQ2c7KN3.png 1.5x, https://i.loli.net/2020/03/02/jVbHayWiQ2c7KN3.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/jVbHayWiQ2c7KN3.png"
+        title="https://i.loli.net/2020/03/02/jVbHayWiQ2c7KN3.png" /></p>
+<h1 id="除法">除法</h1>
+<blockquote>
+<p>除法介绍的就更简单了,仅仅介绍小数的原码除法,有两种分别是回复余数和加减交替法
+基础原理:<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/ZnJ546sOtcouB12.png"
+        data-srcset="https://i.loli.net/2020/03/02/ZnJ546sOtcouB12.png, https://i.loli.net/2020/03/02/ZnJ546sOtcouB12.png 1.5x, https://i.loli.net/2020/03/02/ZnJ546sOtcouB12.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/ZnJ546sOtcouB12.png"
+        title="https://i.loli.net/2020/03/02/ZnJ546sOtcouB12.png" /></p>
+<p>每次比较(减法)然后上商,之后相减移位,一直到寄存器极限,剩下的就是余数</p>
+<p>基础约定:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/WZwcxdJ8uVHkY3L.png"
+        data-srcset="https://i.loli.net/2020/03/02/WZwcxdJ8uVHkY3L.png, https://i.loli.net/2020/03/02/WZwcxdJ8uVHkY3L.png 1.5x, https://i.loli.net/2020/03/02/WZwcxdJ8uVHkY3L.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/WZwcxdJ8uVHkY3L.png"
+        title="https://i.loli.net/2020/03/02/WZwcxdJ8uVHkY3L.png" /></p>
+<p><strong>X&lt;Y</strong>!!!!!,第一位是0没跑了,0.xxxx,后面根据符号的情况替换0</p>
+</blockquote>
+<h3 id="原码恢复余数">原码恢复余数</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/kOtCIDqK9pimlZs.png"
+        data-srcset="https://i.loli.net/2020/03/02/kOtCIDqK9pimlZs.png, https://i.loli.net/2020/03/02/kOtCIDqK9pimlZs.png 1.5x, https://i.loli.net/2020/03/02/kOtCIDqK9pimlZs.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/kOtCIDqK9pimlZs.png"
+        title="https://i.loli.net/2020/03/02/kOtCIDqK9pimlZs.png" /></p>
+<p>比较-&gt;相减或者保持-&gt;逻辑移位</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/ytEj8vrqwMZzOam.png"
+        data-srcset="https://i.loli.net/2020/03/02/ytEj8vrqwMZzOam.png, https://i.loli.net/2020/03/02/ytEj8vrqwMZzOam.png 1.5x, https://i.loli.net/2020/03/02/ytEj8vrqwMZzOam.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/ytEj8vrqwMZzOam.png"
+        title="https://i.loli.net/2020/03/02/ytEj8vrqwMZzOam.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/XLGHFTu83o49PQR.png"
+        data-srcset="https://i.loli.net/2020/03/02/XLGHFTu83o49PQR.png, https://i.loli.net/2020/03/02/XLGHFTu83o49PQR.png 1.5x, https://i.loli.net/2020/03/02/XLGHFTu83o49PQR.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/XLGHFTu83o49PQR.png"
+        title="https://i.loli.net/2020/03/02/XLGHFTu83o49PQR.png" /></p>
+<p>上图的比较方式是直接相减(补码运算),然后如果成了负的就恢复余数,否则继续进行</p>
+<p>可能存在的问题?</p>
+<ol>
+<li>为什么是逻辑左移? 因为没有符号位,同时因为加的是负数,负数的右移是要补1的</li>
+<li>循环次数? 这个是根据寄存器来的,寄存器能放几位就是几位的</li>
+<li>余数 余数记得乘上2的-n次方</li>
+</ol>
+<h3 id="加减交错">加减交错</h3>
+<p>加减交错解决了需要恢复余数的问题,如果减成了负余数那么后面直接加就行了,还能判断</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/02/jBLxCVyZW2lsOg7.png"
+        data-srcset="https://i.loli.net/2020/03/02/jBLxCVyZW2lsOg7.png, https://i.loli.net/2020/03/02/jBLxCVyZW2lsOg7.png 1.5x, https://i.loli.net/2020/03/02/jBLxCVyZW2lsOg7.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/02/jBLxCVyZW2lsOg7.png"
+        title="https://i.loli.net/2020/03/02/jBLxCVyZW2lsOg7.png" /></p>
+<p>如果该位上了0则 部分余数*2+除数,根据这个值判断下一位商,正的上1,负的上0,继续这个循环.</p>
+<p>这个余数要注意如果最后是负的要加上除数转换为正的.</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

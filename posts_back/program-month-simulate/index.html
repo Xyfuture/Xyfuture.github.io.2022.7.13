@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program-month-simulate - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="Program-month-simulate" />
+<meta property="og:description" content="模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则 1个英雄 7个随从 一个回合三种操作 添加随从，随" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/program-month-simulate/" />
+<meta property="article:published_time" content="2020-06-09T18:42:50+00:00" />
+<meta property="article:modified_time" content="2020-06-09T18:42:50+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-month-simulate"/>
+<meta name="twitter:description" content="模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则 1个英雄 7个随从 一个回合三种操作 添加随从，随"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/program-month-simulate/" /><link rel="prev" href="http://example.org/posts_back/program-week15-homework/" /><link rel="next" href="http://example.org/posts_back/progarm-optional-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program-month-simulate",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/program-month-simulate\/"
+        },"genre": "posts_back","keywords": "Program, homework","wordcount":  2515 ,
+        "url": "http:\/\/example.org\/posts_back\/program-month-simulate\/","datePublished": "2020-06-09T18:42:50+00:00","dateModified": "2020-06-09T18:42:50+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Program-month-simulate</h1><div class="content" id="content"><h1 id="模拟">模拟</h1>
+<h2 id="炉石传说201609-3">炉石传说201609-3</h2>
+<h3 id="题面">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/09/ABPYhflZb9U2r3W.png"
+        data-srcset="https://i.loli.net/2020/06/09/ABPYhflZb9U2r3W.png, https://i.loli.net/2020/06/09/ABPYhflZb9U2r3W.png 1.5x, https://i.loli.net/2020/06/09/ABPYhflZb9U2r3W.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/09/ABPYhflZb9U2r3W.png"
+        title="image-20200609184738151" /></p>
+<p>完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则</p>
+<ul>
+<li>1个英雄 7个随从</li>
+<li>一个回合三种操作</li>
+<li>添加随从，随从死亡都是顺移的</li>
+<li>攻击的规则是双方都掉血</li>
+</ul>
+<p>然后看看最后的约定就可以了</p>
+<h3 id="解法">解法</h3>
+<p>这道题完全就是模拟，因此直接按照题意要求做就可以</p>
+<p>随从的存放使用vector，比较方便插入和删除随从</p>
+<p>随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除</p>
+<p>英雄和随从放在一起，但是在数组的0号下标</p>
+<p>最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平</p>
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">player</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="c1">//0是先手，1是后手
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="nf">summon</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span><span class="c1">//加入随从
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">posi</span><span class="p">,</span><span class="n">hp</span><span class="p">,</span><span class="n">atk</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">posi</span><span class="o">&gt;&gt;</span><span class="n">atk</span><span class="o">&gt;&gt;</span><span class="n">hp</span><span class="p">;</span>
+    <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">insert</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">posi</span><span class="p">,</span><span class="n">make_pair</span><span class="p">(</span><span class="n">hp</span><span class="p">,</span><span class="n">atk</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">attack</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span><span class="c1">//攻击
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">attacker</span><span class="p">,</span><span class="n">defender</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">attacker</span><span class="o">&gt;&gt;</span><span class="n">defender</span><span class="p">;</span>
+    <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">attacker</span><span class="p">].</span><span class="n">first</span> <span class="o">-=</span> <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">][</span><span class="n">defender</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+    <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">][</span><span class="n">defender</span><span class="p">].</span><span class="n">first</span> <span class="o">-=</span> <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">attacker</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">defender</span><span class="o">!=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">][</span><span class="n">defender</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span><span class="c1">//删除，不删英雄
+</span><span class="c1"></span>        <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">].</span><span class="n">erase</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="o">^</span><span class="mi">1</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">defender</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">attacker</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">erase</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">attacker</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">,</span><span class="n">string</span> <span class="n">temp</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="s">&#34;summon&#34;</span><span class="p">)</span>
+        <span class="n">summon</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="s">&#34;attack&#34;</span> <span class="p">)</span>
+        <span class="n">attack</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">7</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+            <span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span><span class="c1">//攻击力为-1区分
+</span><span class="c1"></span>            <span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">temp_cnt</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="kt">int</span> <span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">temp_str</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">temp_str</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">temp_str</span> <span class="o">==</span> <span class="s">&#34;end&#34;</span><span class="p">)</span>
+            <span class="n">choose</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">else</span> 
+            <span class="n">process</span><span class="p">(</span><span class="n">choose</span><span class="o">%</span><span class="mi">2</span><span class="p">,</span><span class="n">temp_str</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span><span class="c1">//输出胜负
+</span><span class="c1"></span>        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="k">else</span> 
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;0</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    
+    <span class="kt">int</span> <span class="n">cnt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//输出hp
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//计算多少个存活的
+</span><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">first</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">second</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span><span class="c1">//攻击力大于等于0
+</span><span class="c1"></span>                <span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">first</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">second</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">)</span><span class="c1">//输出随从
+</span><span class="c1"></span>                <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
+<p>这道题难度不是很大，但是题面太长，容易抓不到关键信息，最后的约定非常重要，这里提供了很多信息。这道题一共交了2次第一次70，第一次因为初始化的问题出错，我把英雄的攻击力设为了-1，这导致英雄反击时随从的hp会出错，改了之后就过了</p>
+<h2 id="元素选择器">元素选择器</h2>
+<h2 id="题面-1">题面</h2>
+<p>官方题面有点长，建议跳过</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://118.190.20.162/RequireFile.do?fid=FH8TRMFr"
+        data-srcset="http://118.190.20.162/RequireFile.do?fid=FH8TRMFr, http://118.190.20.162/RequireFile.do?fid=FH8TRMFr 1.5x, http://118.190.20.162/RequireFile.do?fid=FH8TRMFr 2x"
+        data-sizes="auto"
+        alt="http://118.190.20.162/RequireFile.do?fid=FH8TRMFr"
+        title="img" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://118.190.20.162/RequireFile.do?fid=6tGGttRh"
+        data-srcset="http://118.190.20.162/RequireFile.do?fid=6tGGttRh, http://118.190.20.162/RequireFile.do?fid=6tGGttRh 1.5x, http://118.190.20.162/RequireFile.do?fid=6tGGttRh 2x"
+        data-sizes="auto"
+        alt="http://118.190.20.162/RequireFile.do?fid=6tGGttRh"
+        title="img" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="http://118.190.20.162/RequireFile.do?fid=3bTyJMHd"
+        data-srcset="http://118.190.20.162/RequireFile.do?fid=3bTyJMHd, http://118.190.20.162/RequireFile.do?fid=3bTyJMHd 1.5x, http://118.190.20.162/RequireFile.do?fid=3bTyJMHd 2x"
+        data-sizes="auto"
+        alt="http://118.190.20.162/RequireFile.do?fid=3bTyJMHd"
+        title="img" /></p>
+<p>题面还是CSP经典风格，非常长加上一堆没用的背景介绍</p>
+<p>简单的来说，现在给出一个BOM树，然后在这个树上按照给定的规则查询label和id，BOM树需要自己根据输入创建</p>
+<h3 id="解法-1">解法</h3>
+<p>首先明确题目中几个问题</p>
+<ul>
+<li>多级匹配时除了最后一个，前面几个不要求严格的数据（匹配的序列只要是该节点所有父亲的一个子序列即可，不要求每一个都匹配）</li>
+<li>题目中说多级匹配中只有一个格式（要么label，要么id）是错误的，评测中会出现label id同时存在的情况，因此写的时候要注意</li>
+</ul>
+<p><strong>解决方案：</strong></p>
+<p>首先用一个数组存储顺序给出的每一行，存储其label和id。同时利用数组的下标使用vector按照给出的规则创建BOM树。创建树时使用栈存储每个节点的父节点（类似反向DFS），同时在新节点中记录其父节点</p>
+<p>检索时首先遍历数组匹配最后一个关键词（根据其是id还是label进行不同的判断），匹配到后，找到其父节点向前匹配，匹配规则是只要祖先中有待检索的关键词就行，祖先中可能有几个匹配不到的。</p>
+<p>单级和多级同理，只不过只匹配最后一个就行。</p>
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">node</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">label</span><span class="p">;</span><span class="c1">//div p 这类东西
+</span><span class="c1"></span>    <span class="n">string</span> <span class="n">id</span><span class="p">;</span><span class="c1">//id #xxxx
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">father</span><span class="p">;</span><span class="c1">//父节点位置
+</span><span class="c1"></span>    <span class="n">node</span><span class="p">(</span><span class="n">string</span> <span class="n">l</span><span class="p">,</span><span class="n">string</span> <span class="n">i</span><span class="p">,</span><span class="kt">int</span> <span class="n">f</span><span class="p">)</span><span class="o">:</span><span class="n">label</span><span class="p">(</span><span class="n">l</span><span class="p">),</span><span class="n">id</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">father</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="p">{}</span>
+    <span class="n">node</span><span class="p">(){}</span>
+<span class="p">};</span>
+
+<span class="n">node</span> <span class="n">data</span><span class="p">[</span><span class="mi">105</span><span class="p">];</span><span class="c1">//存储所有元素
+</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">tree</span><span class="p">[</span><span class="mi">105</span><span class="p">];</span><span class="c1">//树结构
+</span><span class="c1"></span><span class="n">stack</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">root</span><span class="p">;</span><span class="c1">//创建树使用
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">tot</span><span class="p">,</span><span class="n">cur</span><span class="p">;</span><span class="c1">//创建树的下标
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span><span class="c1">//答案
+</span><span class="c1"></span>
+<span class="n">string</span> <span class="n">temp_label</span><span class="p">,</span><span class="n">temp_id</span><span class="p">;</span><span class="c1">//新节点的label和id
+</span><span class="c1"></span><span class="n">string</span> <span class="n">ops</span><span class="p">[</span><span class="mi">105</span><span class="p">];</span><span class="c1">//检索时所有的值
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">getInfo</span><span class="p">()</span><span class="c1">//获取一行的输入，存储id时加上#
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">string</span> <span class="n">cur_label</span><span class="p">,</span><span class="n">cur_id</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="k">while</span><span class="p">((</span><span class="n">tmp</span><span class="o">=</span><span class="n">getchar</span><span class="p">())</span><span class="o">==</span><span class="sc">&#39;.&#39;</span><span class="p">)</span><span class="c1">//计算.的个数 树的层级
+</span><span class="c1"></span>        <span class="n">level</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">tmp</span><span class="o">==</span><span class="sc">&#39;\n&#39;</span><span class="o">||</span><span class="n">tmp</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">))</span><span class="c1">//存label
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tmp</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cur_label</span><span class="o">+=</span><span class="n">tmp</span><span class="p">;</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span><span class="c1">//存id
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="o">==</span><span class="sc">&#39; &#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cur_id</span><span class="o">+=</span><span class="n">tmp</span><span class="p">;</span>
+        <span class="n">tmp</span><span class="o">=</span><span class="n">getchar</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">temp_label</span><span class="o">=</span><span class="n">cur_label</span><span class="p">;</span>
+    <span class="n">temp_id</span><span class="o">=</span><span class="n">cur_id</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">level</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="c1">//返回层级
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">getOp</span><span class="p">()</span><span class="c1">//获取检索的对象 多级和一级的相同，都是存到ops中
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">105</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">ops</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
+    <span class="k">while</span><span class="p">((</span><span class="n">tmp</span><span class="o">=</span><span class="n">getchar</span><span class="p">())</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="o">==</span><span class="sc">&#39; &#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ops</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span><span class="o">+=</span><span class="n">tmp</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">cnt</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="c1">//级数
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">cmpStr</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span><span class="c1">//不区分大小写比较
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">!=</span><span class="n">b</span><span class="p">.</span><span class="n">length</span><span class="p">())</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">tolower</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">!=</span><span class="n">tolower</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">temp_num</span><span class="p">)</span><span class="c1">//检索
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">ans</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="c1">//存储答案
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//遍历整个树，从后向前找
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//最后一个是否相符
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">temp_num</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">father</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ops</span><span class="p">[</span><span class="n">temp_num</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span><span class="c1">//比较最后一个
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">id</span> <span class="o">==</span> <span class="n">ops</span><span class="p">[</span><span class="n">temp_num</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="c1">//id
+</span><span class="c1"></span>                <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">cmpStr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">label</span><span class="p">,</span><span class="n">ops</span><span class="p">[</span><span class="n">temp_num</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="c1">//label
+</span><span class="c1"></span>            <span class="n">flag</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span><span class="c1">//最后一个匹配，向前找，看看是否满足
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">num</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">cur</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="c1">//ops全部相符 or 找到树的根
+</span><span class="c1"></span>            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ops</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span><span class="c1">//id
+</span><span class="c1"></span>                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">ops</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">id</span><span class="p">)</span><span class="c1">//匹配就移动ops的下标
+</span><span class="c1"></span>                        <span class="n">num</span><span class="o">--</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span><span class="c1">//label
+</span><span class="c1"></span>                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">cmpStr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">label</span><span class="p">,</span><span class="n">ops</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+                        <span class="n">num</span><span class="o">--</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">cur</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">father</span><span class="p">;</span><span class="c1">//树向上一级查找
+</span><span class="c1"></span>            <span class="p">}</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">==</span><span class="mi">0</span> <span class="p">)</span><span class="c1">//ops全部匹配
+</span><span class="c1"></span>                <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">tot</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">root</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span><span class="c1">//用一个栈表示当前节点的父节点
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">level</span> <span class="o">=</span> <span class="n">getInfo</span><span class="p">();</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">first</span><span class="o">&gt;=</span><span class="n">level</span><span class="p">)</span><span class="c1">//找到当前节点的父节点
+</span><span class="c1"></span>            <span class="n">root</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">last</span> <span class="o">=</span> <span class="n">root</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">tot</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">(</span><span class="n">temp_label</span><span class="p">,</span><span class="n">temp_id</span><span class="p">,</span><span class="n">last</span><span class="p">.</span><span class="n">second</span><span class="p">);</span><span class="c1">//插入新节点，second是父节点的下标
+</span><span class="c1"></span>        <span class="n">tree</span><span class="p">[</span><span class="n">last</span><span class="p">.</span><span class="n">second</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">tot</span><span class="p">);</span><span class="c1">//树
+</span><span class="c1"></span>        <span class="n">root</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">last</span><span class="p">.</span><span class="n">first</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tot</span><span class="o">++</span><span class="p">));</span><span class="c1">//维护root
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">getOp</span><span class="p">();</span>
+        <span class="n">find</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">ans</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">len</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span><span class="c1">//输出个数
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">ans</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="p">;</span><span class="c1">//那一行
+</span><span class="c1"></span>        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
+<p>这道题交了好几次，主要原因是解法中的两个问题，一开始我理解的完全不对（但是这样我还有80分，感觉数据出水了），最后看有人说最后两个点是id和label都有，我稍微改了一下过了，但是题目中明明说</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/09/JdnMPj2cATwDyk6.png"
+        data-srcset="https://i.loli.net/2020/06/09/JdnMPj2cATwDyk6.png, https://i.loli.net/2020/06/09/JdnMPj2cATwDyk6.png 1.5x, https://i.loli.net/2020/06/09/JdnMPj2cATwDyk6.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/09/JdnMPj2cATwDyk6.png"
+        title="image-20200609200403407" /></p>
+<p>感觉还是题目说的不清楚，总感觉有些问题</p>
+<p>不过时间控制还不错，写了1h左右就有80分了，考试的时候感觉这个速度就可以，模拟题还是比较浪费时间</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

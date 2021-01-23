@@ -1,270 +1,239 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>计网-通信原理 | My New Hugo Site</title>
-
-<meta name="keywords" content="计网, 原理, 通信原理" />
-<meta name="description" content="这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息
-  参考: 奈奎斯特定理 傅立叶变换 带宽
- 一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。
-一个数字脉冲就是一个码元，我们用码元速率表示单位时间内信号波形的变换次数，即单位时间内通过信道传输的码元个数。若信号码元宽度为 T 秒，则码元速率 B 为：
-说简单一点就是码元的速度,每秒能传送多少个码元,一个码元就是最基本的单位
-比特率 比特率是实际的数据传输速率,即每秒传输多少个bit的数据,计算也非常简单,首先我们要知道一个码元对着几个bit, $log_2(k)$ 其中k为一个码元中状态的数量,比如一个码元可能有4种状态则其bit位为2.比特率是波特率乘上码元代表的比特位.
-比特率的单位是bit/s
-带宽 傅立叶变化 频域 傅立叶变换 这里就不多写了,简单的想成每个周期函数(波形)都能用多个正弦波和余弦波相加表达出来
-这里的正弦函数,余弦函数都是最简单的形式,初相为0
-频域 电磁波都有一定的频率,注意这里说的频率是正弦或者余弦波的频率(存疑),也就是任意一个波经过傅立叶变换后的正弦或者余弦的频率,当然一个普通波经过傅立叶变换后会占据多个频率
-带宽  带宽的概念有一定的歧义,我把课本和我认为的都写出来
- 我的理解(和网上的介绍差不多):
-一般信道都有一个最高的信号频率（注意不是波特率哦，频率是指每秒钟的周期数，而每个周期都会有几次电平变化。。恩，看到区别了吧）和最低的信号频率，只有在这两个频率之间的信号才能通过这个信道，这两个频率的差值就叫做这个信道的带宽，单位是Hz
-带宽这个值和频域是有关系,一个波的带宽可以简单理解为把这个波用傅立叶变换分解后正弦余弦的频率的范围.
-有一个误解说带宽指的是速率(比如100m的带宽),但这不是真正得带宽,这说的是比特率,真正得带宽是频率的范围.
-奈奎斯特定律 香农定律 奈奎斯特定律  注意奈奎斯特提出过好多定律,这里说的是有关传输速率的,不是奈奎斯特采样定律
- 1924年，奈奎斯特（Nyquist）就推导出在理想低通信道下的最高码元传输速率的公式：
-其中W是理想低通信道的带宽，单位为赫兹；K是一个码元可能取值的个数,C是比特率
-这么看这个式子是有点别扭的,我们可以这么看,假设我们设计好了比特率,也设计好了码元,这样就能推出占用的带宽了.
-根据奈奎斯特准则我们可以推断出： （1）给定了信道的带宽，则该信道的极限波特率就确定了，不可能超过这个极限波特率传输码元，除非改善该信道的带宽； （2）要想增加信道的比特传送率有两条途径，一方面可以增加该信道的带宽，另一方面可以选择更高的编码方式。
-香农定理 奈奎斯特假设的是理想的情况,但是实际上由许多的噪声,因此香农提出了香农定理,解决了噪声状态下的带宽问题.
-香农定理指出，在噪声与信号独立的高斯白噪信道中，假设信号的功率为S，噪声功率为N，信道通频带宽为W(Hz)，则该信道的信道容量C有:
-这里不具体讨论香农定理了.
-调制 基带 通带 基带 (baseband)  以下的内容不不够严谨,是我个人的理解">
-<meta name="author" content="">
-<link rel="canonical" href="https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/" />
-<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
-    as="style">
-
-<link rel="icon" href="https://xyfuture.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://xyfuture.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://xyfuture.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://xyfuture.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://xyfuture.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.80.0" />
-
-
-<meta property="og:title" content="计网-通信原理" />
-<meta property="og:description" content="这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息
-  参考: 奈奎斯特定理 傅立叶变换 带宽
- 一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。
-一个数字脉冲就是一个码元，我们用码元速率表示单位时间内信号波形的变换次数，即单位时间内通过信道传输的码元个数。若信号码元宽度为 T 秒，则码元速率 B 为：
-说简单一点就是码元的速度,每秒能传送多少个码元,一个码元就是最基本的单位
-比特率 比特率是实际的数据传输速率,即每秒传输多少个bit的数据,计算也非常简单,首先我们要知道一个码元对着几个bit, $log_2(k)$ 其中k为一个码元中状态的数量,比如一个码元可能有4种状态则其bit位为2.比特率是波特率乘上码元代表的比特位.
-比特率的单位是bit/s
-带宽 傅立叶变化 频域 傅立叶变换 这里就不多写了,简单的想成每个周期函数(波形)都能用多个正弦波和余弦波相加表达出来
-这里的正弦函数,余弦函数都是最简单的形式,初相为0
-频域 电磁波都有一定的频率,注意这里说的频率是正弦或者余弦波的频率(存疑),也就是任意一个波经过傅立叶变换后的正弦或者余弦的频率,当然一个普通波经过傅立叶变换后会占据多个频率
-带宽  带宽的概念有一定的歧义,我把课本和我认为的都写出来
- 我的理解(和网上的介绍差不多):
-一般信道都有一个最高的信号频率（注意不是波特率哦，频率是指每秒钟的周期数，而每个周期都会有几次电平变化。。恩，看到区别了吧）和最低的信号频率，只有在这两个频率之间的信号才能通过这个信道，这两个频率的差值就叫做这个信道的带宽，单位是Hz
-带宽这个值和频域是有关系,一个波的带宽可以简单理解为把这个波用傅立叶变换分解后正弦余弦的频率的范围.
-有一个误解说带宽指的是速率(比如100m的带宽),但这不是真正得带宽,这说的是比特率,真正得带宽是频率的范围.
-奈奎斯特定律 香农定律 奈奎斯特定律  注意奈奎斯特提出过好多定律,这里说的是有关传输速率的,不是奈奎斯特采样定律
- 1924年，奈奎斯特（Nyquist）就推导出在理想低通信道下的最高码元传输速率的公式：
-其中W是理想低通信道的带宽，单位为赫兹；K是一个码元可能取值的个数,C是比特率
-这么看这个式子是有点别扭的,我们可以这么看,假设我们设计好了比特率,也设计好了码元,这样就能推出占用的带宽了.
-根据奈奎斯特准则我们可以推断出： （1）给定了信道的带宽，则该信道的极限波特率就确定了，不可能超过这个极限波特率传输码元，除非改善该信道的带宽； （2）要想增加信道的比特传送率有两条途径，一方面可以增加该信道的带宽，另一方面可以选择更高的编码方式。
-香农定理 奈奎斯特假设的是理想的情况,但是实际上由许多的噪声,因此香农提出了香农定理,解决了噪声状态下的带宽问题.
-香农定理指出，在噪声与信号独立的高斯白噪信道中，假设信号的功率为S，噪声功率为N，信道通频带宽为W(Hz)，则该信道的信道容量C有:
-这里不具体讨论香农定理了.
-调制 基带 通带 基带 (baseband)  以下的内容不不够严谨,是我个人的理解" />
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>计网-通信原理 - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="计网-通信原理" />
+<meta property="og:description" content="这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/" />
 <meta property="article:published_time" content="2020-02-29T20:18:29+00:00" />
 <meta property="article:modified_time" content="2020-02-29T20:18:29+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="计网-通信原理"/>
-<meta name="twitter:description" content="这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息
-  参考: 奈奎斯特定理 傅立叶变换 带宽
- 一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。
-一个数字脉冲就是一个码元，我们用码元速率表示单位时间内信号波形的变换次数，即单位时间内通过信道传输的码元个数。若信号码元宽度为 T 秒，则码元速率 B 为：
-说简单一点就是码元的速度,每秒能传送多少个码元,一个码元就是最基本的单位
-比特率 比特率是实际的数据传输速率,即每秒传输多少个bit的数据,计算也非常简单,首先我们要知道一个码元对着几个bit, $log_2(k)$ 其中k为一个码元中状态的数量,比如一个码元可能有4种状态则其bit位为2.比特率是波特率乘上码元代表的比特位.
-比特率的单位是bit/s
-带宽 傅立叶变化 频域 傅立叶变换 这里就不多写了,简单的想成每个周期函数(波形)都能用多个正弦波和余弦波相加表达出来
-这里的正弦函数,余弦函数都是最简单的形式,初相为0
-频域 电磁波都有一定的频率,注意这里说的频率是正弦或者余弦波的频率(存疑),也就是任意一个波经过傅立叶变换后的正弦或者余弦的频率,当然一个普通波经过傅立叶变换后会占据多个频率
-带宽  带宽的概念有一定的歧义,我把课本和我认为的都写出来
- 我的理解(和网上的介绍差不多):
-一般信道都有一个最高的信号频率（注意不是波特率哦，频率是指每秒钟的周期数，而每个周期都会有几次电平变化。。恩，看到区别了吧）和最低的信号频率，只有在这两个频率之间的信号才能通过这个信道，这两个频率的差值就叫做这个信道的带宽，单位是Hz
-带宽这个值和频域是有关系,一个波的带宽可以简单理解为把这个波用傅立叶变换分解后正弦余弦的频率的范围.
-有一个误解说带宽指的是速率(比如100m的带宽),但这不是真正得带宽,这说的是比特率,真正得带宽是频率的范围.
-奈奎斯特定律 香农定律 奈奎斯特定律  注意奈奎斯特提出过好多定律,这里说的是有关传输速率的,不是奈奎斯特采样定律
- 1924年，奈奎斯特（Nyquist）就推导出在理想低通信道下的最高码元传输速率的公式：
-其中W是理想低通信道的带宽，单位为赫兹；K是一个码元可能取值的个数,C是比特率
-这么看这个式子是有点别扭的,我们可以这么看,假设我们设计好了比特率,也设计好了码元,这样就能推出占用的带宽了.
-根据奈奎斯特准则我们可以推断出： （1）给定了信道的带宽，则该信道的极限波特率就确定了，不可能超过这个极限波特率传输码元，除非改善该信道的带宽； （2）要想增加信道的比特传送率有两条途径，一方面可以增加该信道的带宽，另一方面可以选择更高的编码方式。
-香农定理 奈奎斯特假设的是理想的情况,但是实际上由许多的噪声,因此香农提出了香农定理,解决了噪声状态下的带宽问题.
-香农定理指出，在噪声与信号独立的高斯白噪信道中，假设信号的功率为S，噪声功率为N，信道通频带宽为W(Hz)，则该信道的信道容量C有:
-这里不具体讨论香农定理了.
-调制 基带 通带 基带 (baseband)  以下的内容不不够严谨,是我个人的理解"/>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "计网-通信原理",
-  "name": "计网-通信原理",
-  "description": "这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息\n  参考: 奈奎斯特定理 傅立叶变换 带宽\n 一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率  …",
-  "keywords": [
-    "计网", "原理", "通信原理"
-  ],
-  "articleBody": " 这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息\n  参考: 奈奎斯特定理 傅立叶变换 带宽\n 一些概念  信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气 通信的通道，是信号传输的媒介  比特率 波特率 波特率 波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。\n一个数字脉冲就是一个码元，我们用码元速率表示单位时间内信号波形的变换次数，即单位时间内通过信道传输的码元个数。若信号码元宽度为 T 秒，则码元速率 B 为：\n说简单一点就是码元的速度,每秒能传送多少个码元,一个码元就是最基本的单位\n比特率 比特率是实际的数据传输速率,即每秒传输多少个bit的数据,计算也非常简单,首先我们要知道一个码元对着几个bit, $log_2(k)$ 其中k为一个码元中状态的数量,比如一个码元可能有4种状态则其bit位为2.比特率是波特率乘上码元代表的比特位.\n比特率的单位是bit/s\n带宽 傅立叶变化 频域 傅立叶变换 这里就不多写了,简单的想成每个周期函数(波形)都能用多个正弦波和余弦波相加表达出来\n这里的正弦函数,余弦函数都是最简单的形式,初相为0\n频域 电磁波都有一定的频率,注意这里说的频率是正弦或者余弦波的频率(存疑),也就是任意一个波经过傅立叶变换后的正弦或者余弦的频率,当然一个普通波经过傅立叶变换后会占据多个频率\n带宽  带宽的概念有一定的歧义,我把课本和我认为的都写出来\n 我的理解(和网上的介绍差不多):\n一般信道都有一个最高的信号频率（注意不是波特率哦，频率是指每秒钟的周期数，而每个周期都会有几次电平变化。。恩，看到区别了吧）和最低的信号频率，只有在这两个频率之间的信号才能通过这个信道，这两个频率的差值就叫做这个信道的带宽，单位是Hz\n带宽这个值和频域是有关系,一个波的带宽可以简单理解为把这个波用傅立叶变换分解后正弦余弦的频率的范围.\n有一个误解说带宽指的是速率(比如100m的带宽),但这不是真正得带宽,这说的是比特率,真正得带宽是频率的范围.\n奈奎斯特定律 香农定律 奈奎斯特定律  注意奈奎斯特提出过好多定律,这里说的是有关传输速率的,不是奈奎斯特采样定律\n 1924年，奈奎斯特（Nyquist）就推导出在理想低通信道下的最高码元传输速率的公式：\n其中W是理想低通信道的带宽，单位为赫兹；K是一个码元可能取值的个数,C是比特率\n这么看这个式子是有点别扭的,我们可以这么看,假设我们设计好了比特率,也设计好了码元,这样就能推出占用的带宽了.\n根据奈奎斯特准则我们可以推断出： （1）给定了信道的带宽，则该信道的极限波特率就确定了，不可能超过这个极限波特率传输码元，除非改善该信道的带宽； （2）要想增加信道的比特传送率有两条途径，一方面可以增加该信道的带宽，另一方面可以选择更高的编码方式。\n香农定理 奈奎斯特假设的是理想的情况,但是实际上由许多的噪声,因此香农提出了香农定理,解决了噪声状态下的带宽问题.\n香农定理指出，在噪声与信号独立的高斯白噪信道中，假设信号的功率为S，噪声功率为N，信道通频带宽为W(Hz)，则该信道的信道容量C有:\n这里不具体讨论香农定理了.\n调制 基带 通带 基带 (baseband)  以下的内容不不够严谨,是我个人的理解\n 基带简单的说就是用一定0和1(GND和VCC)直接表示计算机中的0和1\n基带有多种编码方式,这里只介绍NRZ和manchester及差分Manchester\n(这个图对应有点问题,上移一行) NRZ就不多说了,直接对应,Manchester是上升沿为0,下降沿为1\n差分曼彻斯特编码: 差分曼彻斯特编码在 每个时钟周期的中间都有一次电平跳变，这个跳变做同步之用。 在每个时钟周期的起始处：跳变则说明该比特是0，不跳变则说明该比特是1\n一个问题 课本上这里的定义说他是从0开始的,这是因为这样的方波经过傅立叶变换后频率是从零开始的一直增大到一定的数值\n基带也是符合奈奎斯特定理的,其带宽也可以算出来.\n通带 基带有许多问题,因此我们提出了通带的方案\n通带最简单的理解就是首先我们有一个载波频率,这个波就是单纯的正弦波,不能传递信息,但是我们通过一些系列骚操作(针对 振幅,频率,相位),将信号调制到载波上使其能够传输信息.\n常见的调制方法(编码方法)\n 幅移键控ASK(Amplitude Shift Keying) 不同的振幅表示0,1 频移键控FSK(Frequency Shift Keying) 两个或更多的频率表示0,1 相移键控PSK(Phase Shift Keying) 相邻的两个周期不同的相位+180表示0,1  这是三种最长常见的调制方式,这三种方式能组合形成更多的调制方式,使得一个码元能表达出更多的比特位\n星位图,前两个只是有相位变化(PSK),后两个是相位和振幅混合,能表示的更多一些.\n一个问题 为什么看着载波都是一个频率却能拥有带宽\n这个问题其实和前面的差不多,经过调制后已经不是单纯的正弦波了,经过傅立叶变换能分出很多正弦波,然后这些波的频率以载波的频率为中心左右扩散,因此通带也是拥有带宽的\n复用(Multiplexing)  to be continued\n 频分复用FDM FDM 用载波区分\nOFDM 正交频分多路复用\n时分复用TDM 静态时分复用 STDM\n多条路,不管这条路有没有数据都分给他时间片段,时间片是固定死的\n统计时分复用\n没数据就不给有数据就给\n码分复用CDMA 多个终端同时发送,根据码区分终端解码\n奈奎斯特采样定律  参考:百度百科-奈奎斯特 百度百科-PCM\n 前面说过奈奎斯特提出的通信速率的定理,这里说一下奈奎斯特的采样定律\n采样是指将模拟信号转换成数字信号,比如声音的模拟信号转换成数字的电信号的过程,奈奎斯特提出只需要按照模拟信号的频率的两倍的速率仅从采样就能获取完整的保留原始信号的信息.\n就PCM方式而言,我们需要每隔一段时间就测量一下当前的电压,然后用ADC将这个电压转化成数字,每次间隔的时间必须小于模拟信号的周期的1/2.\n​\n",
-  "wordCount" : "117",
-  "inLanguage": "en",
-  "datePublished": "2020-02-29T20:18:29Z",
-  "dateModified": "2020-02-29T20:18:29Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "My New Hugo Site",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://xyfuture.github.io/favicon.ico"
+<meta name="twitter:description" content="这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/" /><link rel="prev" href="https://xyfuture.github.io/posts/esp8226%E5%88%B7micropython/" /><link rel="next" href="https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计网-通信原理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86\/"
+        },"genre": "posts","keywords": "计网, 原理, 通信原理","wordcount":  2426 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/%E8%AE%A1%E7%BD%91-%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86\/","datePublished": "2020-02-29T20:18:29+00:00","dateModified": "2020-02-29T20:18:29+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
     }
-  }
-}
-</script>
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-
-
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        .theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://xyfuture.github.io/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
-            <span class="logo-switches">
-                <span class="theme-toggle" title="(Alt + T)">
-                    <a id="theme-toggle" accesskey="t">
-                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </a>
-                </span>
-                
-            </span>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
         </div>
-        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
-    </nav>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
 </header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">计网-通信原理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-29">2020-02-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2426 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#波特率">波特率</a></li>
+    <li><a href="#比特率">比特率</a></li>
+  </ul>
 
-    <main class="main">
+  <ul>
+    <li><a href="#傅立叶变换">傅立叶变换</a></li>
+    <li><a href="#频域">频域</a></li>
+    <li><a href="#带宽">带宽</a></li>
+  </ul>
 
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">
-      计网-通信原理
-    </h1>
-    <div class="post-description">
-      
-    </div>
-    <div class="post-meta">February 29, 2020
+  <ul>
+    <li><a href="#奈奎斯特定律">奈奎斯特定律</a></li>
+    <li><a href="#香农定理">香农定理</a></li>
+  </ul>
 
-    </div>
-  </header> 
+  <ul>
+    <li><a href="#基带-通带">基带 通带</a>
+      <ul>
+        <li><a href="#基带-baseband">基带 (baseband)</a></li>
+        <li><a href="#通带">通带</a></li>
+      </ul>
+    </li>
+  </ul>
 
-  <div class="post-content">
-<blockquote>
+  <ul>
+    <li><a href="#频分复用fdm">频分复用FDM</a>
+      <ul>
+        <li><a href="#fdm">FDM</a></li>
+        <li><a href="#ofdm">OFDM</a></li>
+      </ul>
+    </li>
+    <li><a href="#时分复用tdm">时分复用TDM</a></li>
+    <li><a href="#码分复用cdma">码分复用CDMA</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>这学期计网开幕暴击,通信原理是信息学院的课,涉及到大量的数学知识和物理知识,然而我连傅立叶变换都算不太好,深入的理解是不奢求了.但是总还是要理解一部分的,因此记录一下目前知道的信息</p>
 </blockquote>
 <blockquote>
-<p>参考: <a href="https://www.sohu.com/a/219750202_464086">奈奎斯特定理</a>  <a href="https://baijiahao.baidu.com/s?id=1636833728798493906">傅立叶变换</a> <a href="https://www.zhihu.com/question/23115645">带宽</a></p>
+<p>参考: <a href="https://www.sohu.com/a/219750202_464086" target="_blank" rel="noopener noreffer">奈奎斯特定理</a>  <a href="https://baijiahao.baidu.com/s?id=1636833728798493906" target="_blank" rel="noopener noreffer">傅立叶变换</a> <a href="https://www.zhihu.com/question/23115645" target="_blank" rel="noopener noreffer">带宽</a></p>
 </blockquote>
-<h1 id="一些概念">一些概念<a hidden class="anchor" aria-hidden="true" href="#一些概念">#</a></h1>
+<h1 id="一些概念">一些概念</h1>
 <ul>
 <li>信道: 相当物理介质,比如网线,一台网线就是一个信道,或者大气  通信的通道，是信号传输的媒介</li>
 </ul>
-<h1 id="比特率-波特率">比特率 波特率<a hidden class="anchor" aria-hidden="true" href="#比特率-波特率">#</a></h1>
-<h2 id="波特率">波特率<a hidden class="anchor" aria-hidden="true" href="#波特率">#</a></h2>
+<h1 id="比特率-波特率">比特率 波特率</h1>
+<h2 id="波特率">波特率</h2>
 <p>波特率（也称信息传送速率、码元速率、符号速率、或传码率），其定义为每秒钟传送码元的数目，码元速率的单位为 “波特”，常用符号“Baud” 表示，简写为“B”。</p>
 <p>一个数字脉冲就是一个码元，我们用码元速率表示单位时间内信号波形的变换次数，即单位时间内通过信道传输的码元个数。若信号码元宽度为 T 秒，则码元速率 B 为：</p>
-<p><img src="https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png"
+        data-srcset="https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png, https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png 1.5x, https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png"
+        title="https://i.loli.net/2020/02/29/NkbdEcUmyojteRJ.png" /></p>
 <p>说简单一点就是码元的速度,每秒能传送多少个码元,一个码元就是最基本的单位</p>
-<h2 id="比特率">比特率<a hidden class="anchor" aria-hidden="true" href="#比特率">#</a></h2>
+<h2 id="比特率">比特率</h2>
 <p>比特率是实际的数据传输速率,即每秒传输多少个bit的数据,计算也非常简单,首先我们要知道一个码元对着几个bit, $log_2(k)$ 其中k为一个码元中状态的数量,比如一个码元可能有4种状态则其bit位为2.比特率是波特率乘上码元代表的比特位.</p>
-<p><img src="https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg"
+        data-srcset="https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg, https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg 1.5x, https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg"
+        title="https://i.loli.net/2020/02/29/B2pUkP9zx8REVd4.jpg" /></p>
 <p>比特率的单位是bit/s</p>
-<h1 id="带宽-傅立叶变化-频域">带宽 傅立叶变化 频域<a hidden class="anchor" aria-hidden="true" href="#带宽-傅立叶变化-频域">#</a></h1>
-<h2 id="傅立叶变换">傅立叶变换<a hidden class="anchor" aria-hidden="true" href="#傅立叶变换">#</a></h2>
+<h1 id="带宽-傅立叶变化-频域">带宽 傅立叶变化 频域</h1>
+<h2 id="傅立叶变换">傅立叶变换</h2>
 <p>这里就不多写了,简单的想成每个周期函数(波形)都能用多个正弦波和余弦波相加表达出来</p>
-<p><img src="https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png" alt=""></p>
-<p><img src="https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png"
+        data-srcset="https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png, https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png 1.5x, https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png"
+        title="https://i.loli.net/2020/02/29/NcL1WqbVjYSrP28.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png"
+        data-srcset="https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png, https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png 1.5x, https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png"
+        title="https://i.loli.net/2020/02/29/MnWIwauCKyHVh4P.png" /></p>
 <p>这里的正弦函数,余弦函数都是最简单的形式,初相为0</p>
-<h2 id="频域">频域<a hidden class="anchor" aria-hidden="true" href="#频域">#</a></h2>
+<h2 id="频域">频域</h2>
 <p>电磁波都有一定的频率,注意这里说的频率是正弦或者余弦波的频率(<strong>存疑</strong>),也就是任意一个波经过傅立叶变换后的正弦或者余弦的频率,当然一个普通波经过傅立叶变换后会占据多个频率</p>
-<p><img src="https://i.loli.net/2020/02/29/wcNDJmy4gI3Ura1.png" alt="##"></p>
-<h2 id="带宽">带宽<a hidden class="anchor" aria-hidden="true" href="#带宽">#</a></h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/wcNDJmy4gI3Ura1.png"
+        data-srcset="https://i.loli.net/2020/02/29/wcNDJmy4gI3Ura1.png, https://i.loli.net/2020/02/29/wcNDJmy4gI3Ura1.png 1.5x, https://i.loli.net/2020/02/29/wcNDJmy4gI3Ura1.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/wcNDJmy4gI3Ura1.png"
+        title="##" /></p>
+<h2 id="带宽">带宽</h2>
 <blockquote>
 <p>带宽的概念有一定的歧义,我把课本和我认为的都写出来</p>
 </blockquote>
-<p><img src="https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png"
+        data-srcset="https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png, https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png 1.5x, https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png"
+        title="https://i.loli.net/2020/02/29/UiCVSjuX73rGe1H.png" /></p>
 <p>我的理解(和网上的介绍差不多):</p>
 <p>一般信道都有一个最高的信号频率（注意不是波特率哦，频率是指每秒钟的周期数，而每个周期都会有几次电平变化。。恩，看到区别了吧）和最低的信号频率，只有在这两个频率之间的信号才能通过这个信道，这两个频率的差值就叫做这个信道的带宽，单位是Hz</p>
 <p>带宽这个值和频域是有关系,一个波的带宽可以简单理解为把这个波用傅立叶变换分解后正弦余弦的频率的范围.</p>
 <p>有一个误解说带宽指的是速率(比如100m的带宽),但这不是真正得带宽,这说的是比特率,真正得带宽是频率的范围.</p>
-<h1 id="奈奎斯特定律-香农定律">奈奎斯特定律 香农定律<a hidden class="anchor" aria-hidden="true" href="#奈奎斯特定律-香农定律">#</a></h1>
-<h2 id="奈奎斯特定律">奈奎斯特定律<a hidden class="anchor" aria-hidden="true" href="#奈奎斯特定律">#</a></h2>
+<h1 id="奈奎斯特定律-香农定律">奈奎斯特定律 香农定律</h1>
+<h2 id="奈奎斯特定律">奈奎斯特定律</h2>
 <blockquote>
 <p>注意奈奎斯特提出过好多定律,这里说的是有关传输速率的,不是奈奎斯特采样定律</p>
 </blockquote>
 <p>1924年，奈奎斯特（Nyquist）就推导出在理想低通信道下的最高码元传输速率的公式：</p>
-<p><img src="https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png"
+        data-srcset="https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png, https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png 1.5x, https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png"
+        title="https://i.loli.net/2020/02/29/6NwhUqk32W4OnJg.png" /></p>
 <p>其中W是理想低通信道的带宽，单位为赫兹；K是一个码元可能取值的个数,C是比特率</p>
 <p>这么看这个式子是有点别扭的,我们可以这么看,假设我们设计好了比特率,也设计好了码元,这样就能推出占用的带宽了.</p>
 <p><strong>根据奈奎斯特准则我们可以推断出：</strong>
 （1）给定了信道的带宽，则该信道的极限波特率就确定了，不可能超过这个极限波特率传输码元，除非改善该信道的带宽；
 （2）要想增加信道的比特传送率有两条途径，一方面可以增加该信道的带宽，另一方面可以选择更高的编码方式。</p>
-<h2 id="香农定理">香农定理<a hidden class="anchor" aria-hidden="true" href="#香农定理">#</a></h2>
+<h2 id="香农定理">香农定理</h2>
 <p>奈奎斯特假设的是理想的情况,但是实际上由许多的噪声,因此香农提出了香农定理,解决了噪声状态下的带宽问题.</p>
 <p>香农定理指出，在噪声与信号独立的高斯白噪信道中，假设信号的功率为S，噪声功率为N，信道通频带宽为W(Hz)，则该信道的信道容量C有:</p>
-<p><img src="https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png"
+        data-srcset="https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png, https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png 1.5x, https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png"
+        title="https://i.loli.net/2020/02/29/bNr1CfasT6dRnPH.png" /></p>
 <p>这里不具体讨论香农定理了.</p>
-<h1 id="调制">调制<a hidden class="anchor" aria-hidden="true" href="#调制">#</a></h1>
-<h2 id="基带-通带">基带 通带<a hidden class="anchor" aria-hidden="true" href="#基带-通带">#</a></h2>
-<h3 id="基带-baseband">基带 (baseband)<a hidden class="anchor" aria-hidden="true" href="#基带-baseband">#</a></h3>
+<h1 id="调制">调制</h1>
+<h2 id="基带-通带">基带 通带</h2>
+<h3 id="基带-baseband">基带 (baseband)</h3>
 <blockquote>
 <p>以下的内容不不够严谨,是我个人的理解</p>
 </blockquote>
@@ -276,11 +245,18 @@ NRZ就不多说了,直接对应,Manchester是上升沿为0,下降沿为1</p>
 <p><strong>差分曼彻斯特编码</strong>:
 差分曼彻斯特编码在 每个时钟周期的中间都有一次电平跳变，这个跳变做同步之用。 在每个时钟周期的起始处：跳变则说明该比特是0，不跳变则说明该比特是1</p>
 <p><!-- raw HTML omitted --></p>
-<h4 id="一个问题">一个问题<a hidden class="anchor" aria-hidden="true" href="#一个问题">#</a></h4>
-<p><img src="C:%5CUsers%5CXYfuture%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200229220034807.png" alt="image-20200229220034807"></p>
+<h4 id="一个问题">一个问题</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="C:%5cUsers%5cXYfuture%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20200229220034807.png"
+        data-srcset="C:%5cUsers%5cXYfuture%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20200229220034807.png, C:%5cUsers%5cXYfuture%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20200229220034807.png 1.5x, C:%5cUsers%5cXYfuture%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20200229220034807.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\XYfuture\AppData\Roaming\Typora\typora-user-images\image-20200229220034807.png"
+        title="image-20200229220034807" /></p>
 <p>课本上这里的定义说他是从0开始的,这是因为这样的方波经过傅立叶变换后频率是从零开始的一直增大到一定的数值</p>
 <p>基带也是符合奈奎斯特定理的,其带宽也可以算出来.</p>
-<h3 id="通带">通带<a hidden class="anchor" aria-hidden="true" href="#通带">#</a></h3>
+<h3 id="通带">通带</h3>
 <p>基带有许多问题,因此我们提出了通带的方案</p>
 <p>通带最简单的理解就是首先我们有一个载波频率,这个波就是单纯的正弦波,不能传递信息,但是我们通过一些系列骚操作(针对 振幅,频率,相位),将信号调制到载波上使其能够传输信息.</p>
 <p>常见的调制方法(编码方法)</p>
@@ -289,119 +265,88 @@ NRZ就不多说了,直接对应,Manchester是上升沿为0,下降沿为1</p>
 <li>频移键控FSK(Frequency Shift Keying) 两个或更多的频率表示0,1</li>
 <li>相移键控PSK(Phase Shift Keying) 相邻的两个周期不同的相位+180表示0,1</li>
 </ul>
-<p><img src="https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png"
+        data-srcset="https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png, https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png 1.5x, https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png"
+        title="https://i.loli.net/2020/02/29/MIjWg4wkYXhFJU9.png" /></p>
 <p>这是三种最长常见的调制方式,这三种方式能组合形成更多的调制方式,使得一个码元能表达出更多的比特位</p>
-<p><img src="https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png" alt=""></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png"
+        data-srcset="https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png, https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png 1.5x, https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png"
+        title="https://i.loli.net/2020/03/05/dh3fLbWQYG62XKg.png" /></p>
 <p>星位图,前两个只是有相位变化(PSK),后两个是相位和振幅混合,能表示的更多一些.</p>
-<h4 id="一个问题-1">一个问题<a hidden class="anchor" aria-hidden="true" href="#一个问题-1">#</a></h4>
+<h4 id="一个问题-1">一个问题</h4>
 <p>为什么看着载波都是一个频率却能拥有带宽</p>
 <p>这个问题其实和前面的差不多,经过调制后已经不是单纯的正弦波了,经过傅立叶变换能分出很多正弦波,然后这些波的频率以载波的频率为中心左右扩散,因此通带也是拥有带宽的</p>
-<h1 id="复用multiplexing">复用(Multiplexing)<a hidden class="anchor" aria-hidden="true" href="#复用multiplexing">#</a></h1>
+<h1 id="复用multiplexing">复用(Multiplexing)</h1>
 <blockquote>
 <p>to be continued</p>
 </blockquote>
-<h2 id="频分复用fdm">频分复用FDM<a hidden class="anchor" aria-hidden="true" href="#频分复用fdm">#</a></h2>
-<h3 id="fdm">FDM<a hidden class="anchor" aria-hidden="true" href="#fdm">#</a></h3>
+<h2 id="频分复用fdm">频分复用FDM</h2>
+<h3 id="fdm">FDM</h3>
 <p>用载波区分</p>
-<h3 id="ofdm">OFDM<a hidden class="anchor" aria-hidden="true" href="#ofdm">#</a></h3>
+<h3 id="ofdm">OFDM</h3>
 <p>正交频分多路复用</p>
-<h2 id="时分复用tdm">时分复用TDM<a hidden class="anchor" aria-hidden="true" href="#时分复用tdm">#</a></h2>
+<h2 id="时分复用tdm">时分复用TDM</h2>
 <p>静态时分复用 STDM</p>
 <p>多条路,不管这条路有没有数据都分给他时间片段,时间片是固定死的</p>
 <p>统计时分复用</p>
 <p>没数据就不给有数据就给</p>
-<h2 id="码分复用cdma">码分复用CDMA<a hidden class="anchor" aria-hidden="true" href="#码分复用cdma">#</a></h2>
+<h2 id="码分复用cdma">码分复用CDMA</h2>
 <p>多个终端同时发送,根据码区分终端解码</p>
-<h1 id="奈奎斯特采样定律">奈奎斯特采样定律<a hidden class="anchor" aria-hidden="true" href="#奈奎斯特采样定律">#</a></h1>
+<h1 id="奈奎斯特采样定律">奈奎斯特采样定律</h1>
 <blockquote>
-<p>参考:<a href="https://baike.baidu.com/item/%E5%A5%88%E5%A5%8E%E6%96%AF%E7%89%B9%E9%87%87%E6%A0%B7%E5%AE%9A%E5%BE%8B">百度百科-奈奎斯特</a> <a href="https://baike.baidu.com/item/PCM/1568054">百度百科-PCM</a></p>
+<p>参考:<a href="https://baike.baidu.com/item/%e5%a5%88%e5%a5%8e%e6%96%af%e7%89%b9%e9%87%87%e6%a0%b7%e5%ae%9a%e5%be%8b" target="_blank" rel="noopener noreffer">百度百科-奈奎斯特</a> <a href="https://baike.baidu.com/item/PCM/1568054" target="_blank" rel="noopener noreffer">百度百科-PCM</a></p>
 </blockquote>
 <p>前面说过奈奎斯特提出的通信速率的定理,这里说一下奈奎斯特的采样定律</p>
 <p>采样是指将模拟信号转换成数字信号,比如声音的模拟信号转换成数字的电信号的过程,奈奎斯特提出只需要按照模拟信号的频率的两倍的速率仅从采样就能获取完整的保留原始信号的信息.</p>
 <p>就PCM方式而言,我们需要每隔一段时间就测量一下当前的电压,然后用ADC将这个电压转化成数字,每次间隔的时间必须小于模拟信号的周期的1/2.</p>
 <p>​</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-02-29</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%BD%91/">计网</a>,&nbsp;<a href="/tags/%E5%8E%9F%E7%90%86/">原理</a>,&nbsp;<a href="/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">通信原理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/esp8226%E5%88%B7micropython/" class="prev" rel="prev" title="esp8266刷micro python及串口通信"><i class="fas fa-angle-left fa-fw"></i>esp8266刷micro python及串口通信</a>
+            <a href="/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" class="next" rel="next" title="计组 四则运算">计组 四则运算<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://xyfuture.github.io/tags/%E8%AE%A1%E7%BD%91/">计网</a></li>
-      <li><a href="https://xyfuture.github.io/tags/%E5%8E%9F%E7%90%86/">原理</a></li>
-      <li><a href="https://xyfuture.github.io/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">通信原理</a></li>
-    </ul>
-  </footer>
-</article>
-    </main><footer class="footer">
-    <span>&copy; 2021 <a href="https://xyfuture.github.io/">My New Hugo Site</a></span>
-    <span>&middot;</span>
-    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
-    <span>&middot;</span>
-    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
 
-
-
-<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
-    onload="hljs.initHighlightingOnLoad();"></script>
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.replaceState(null, null, `#${id}`);
-            }
-        });
-    });
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

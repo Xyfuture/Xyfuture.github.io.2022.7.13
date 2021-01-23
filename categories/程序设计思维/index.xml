@@ -1,350 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>程序设计思维 on My New Hugo Site</title>
-    <link>https://xyfuture.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4/</link>
-    <description>Recent content in 程序设计思维 on My New Hugo Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jun 2020 14:37:00 +0000</lastBuildDate><atom:link href="https://xyfuture.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Progarm-optional-homework</title>
-      <link>https://xyfuture.github.io/posts/progarm-optional-homework/</link>
-      <pubDate>Thu, 11 Jun 2020 14:37:00 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/progarm-optional-homework/</guid>
-      <description>week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过
-解法 这道题可以直接按多重背包思路来理解,但是稍有不同,这个不需要价值最大,只需要满足要求
-ans[j]=1表示能提供j金额的现金,使用滚动数组优化,然后状态方程为
-对第t类钞票 ans[j] = ans[j-data[t]] (逆序)
-然后因为每类钞票数量都是有限制的,因此采取类似多重背包二进制拆分的方案,将钞票按量分开,作为一种新钞票
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int ans[100002]; int num[12]; int value[12]; int nnum[10002]; int nvalue[10002]; int split[12]; int ssum[12]; void init() { for(int i=0;i&amp;lt;12;i++) { split[i]=1&amp;lt;&amp;lt;i; if(i==0) ssum[i] = 1; else ssum[i] = ssum[i-1]+split[i]; } } int main() { int n,m,p; init();//初始化二进制拆分数组  while(scanf(&amp;#34;%d&amp;#34;,&amp;amp;n)!=EOF) { memset(ans,128,sizeof(ans)); scanf(&amp;#34;%d&amp;#34;,&amp;amp;m); for(int i=1;i&amp;lt;=m;i++) scanf(&amp;#34;%d%d&amp;#34;,num+i,value+i); p=1; for(int i=1;i&amp;lt;=m;i++) { int t=0; int temp=num[i];//将个数进行二进制拆分  while((temp&amp;gt;&amp;gt;1)&amp;gt;0){//最多是2^x  t++; temp = temp&amp;gt;&amp;gt;1; } for(int s=0;s&amp;lt;t;s++)//拆分  nnum[p]=split[s],nvalue[p++]=value[i]; if(t==0)//剩下的  nnum[p] = num[i]; else nnum[p]=num[i]-ssum[t-1]; nvalue[p++]=value[i]; } ans[0] = 1;//提供0是可以的  for(int i=1;i&amp;lt;=p-1;i++)//一个一个钞票类型来  { for(int j=n;j&amp;gt;=0;j--)//最多就是提供n  { // ans[j] = ans[j];  if(j-nnum[i]*nvalue[i]&amp;gt;=0)//大于0,避免负数现金  if(ans[j-nnum[i]*nvalue[i]] == 1)//子情况能提供  ans[j] = 1; } } int cur=0; for(int i=n;i&amp;gt;=0;i--) if(ans[i] == 1) { cur =i; break; } printf(&amp;#34;%d\n&amp;#34;,cur); } } 总结 这道题一开始使用的是朴素的多重背包，结果t了，然后使用二进制拆分过了，经过二进制拆分就把一个多重背包转换成了普通的背包问题，因为拆分后结果可以组合成多背包的每一种情况，但是对于拆开后的背包，每一个都是独立的，因此可以缩小复杂度把n转换为log（n）</description>
-    </item>
-    
-    <item>
-      <title>Program-month-simulate</title>
-      <link>https://xyfuture.github.io/posts/program-month-simulate/</link>
-      <pubDate>Tue, 09 Jun 2020 18:42:50 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-month-simulate/</guid>
-      <description>模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则
- 1个英雄 7个随从 一个回合三种操作 添加随从，随从死亡都是顺移的 攻击的规则是双方都掉血  然后看看最后的约定就可以了
-解法 这道题完全就是模拟，因此直接按照题意要求做就可以
-随从的存放使用vector，比较方便插入和删除随从
-随从根据血量和攻击力确定，使用pair存储，每次攻击时判断攻击后的血量，然后按要求删除
-英雄和随从放在一起，但是在数组的0号下标
-最后输赢判断就是看看谁的英雄hp是负的，负的（0）为输，都正为平
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;cstring&amp;gt;using namespace std; int n; vector&amp;lt;pair&amp;lt;int,int&amp;gt; &amp;gt; player[2];//0是先手，1是后手  void summon(int t)//加入随从 { int posi,hp,atk; cin&amp;gt;&amp;gt;posi&amp;gt;&amp;gt;atk&amp;gt;&amp;gt;hp; player[t].insert(player[t].begin()+posi,make_pair(hp,atk)); } void attack(int t)//攻击 { int attacker,defender; cin&amp;gt;&amp;gt;attacker&amp;gt;&amp;gt;defender; player[t][attacker].first -= player[t^1][defender].second; player[t^1][defender].first -= player[t][attacker].second; if(defender!=0&amp;amp;&amp;amp;player[t^1][defender].first&amp;lt;=0)//删除，不删英雄  player[t^1].erase(player[t^1].begin()+defender); if(player[t][attacker].first&amp;lt;=0) player[t].erase(player[t].begin()+attacker); } void process(int t,string temp) { if(temp == &amp;#34;summon&amp;#34;) summon(t); else if (temp == &amp;#34;attack&amp;#34; ) attack(t); } int main() { cin&amp;gt;&amp;gt;n; for(int i=0;i&amp;lt;=7;i++) if(i==0) { player[0].</description>
-    </item>
-    
-    <item>
-      <title>Program-week15-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week15-homework/</link>
-      <pubDate>Tue, 09 Jun 2020 18:34:28 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week15-homework/</guid>
-      <description>week15-homework B - ZJM 与生日礼物（选做） 题面 解法 </description>
-    </item>
-    
-    <item>
-      <title>Program-week16-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week16-homework/</link>
-      <pubDate>Thu, 04 Jun 2020 23:25:32 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week16-homework/</guid>
-      <description>week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数
-解法 直接把每一位分离,然后用个桶排就行了
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;cmath&amp;gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll temp)//统计 { memset(num,0,sizeof(num)); while(temp)//分离  { num[temp%10] ++; temp/=10; } int cnt=0; for(int i=0;i&amp;lt;10;i++) if(num[i]) cnt++;//只要有就计数  return cnt; } int main() { int cnt = 0; int n,k; ll cur; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;k); for(int i=0;i&amp;lt;n;i++) { scanf(&amp;#34;%lld&amp;#34;,&amp;amp;cur); if(getDif(cur)&amp;lt;k)//总个数  cnt++; } printf(&amp;#34;%d&amp;#34;,cnt); return 0; } 总结 题目难度不大,不过题目的描述有点坑,k本身最大就是10</description>
-    </item>
-    
-    <item>
-      <title>Program-week14-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week14-homework/</link>
-      <pubDate>Tue, 26 May 2020 23:46:32 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week14-homework/</guid>
-      <description>week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时这个时间可能是跨天的(一个循环),求取睡觉的策略
-解法 这道题的难点主要在于跨天的时间管理和题意理解(存在一种特殊情况)
-对于跨天的时间管理,我们采取模的策略,每天开始的时间不是0点,而是第一个出现的时间点.这样无论跨不跨天都是按24小时算.(相当于画了个圈,只不过把起始点换了一下)
-特殊情况:
-这个一开始没想到
-就是一天全部都要醒着,导致根本没有睡觉时间,应该输出个No,但是第一次的代码输出了Yes,然后没输出时间.
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;queue&amp;gt;using namespace std; //使用环 struct timeSeg { int s;//存分钟数  int e; bool operator &amp;lt; (timeSeg&amp;amp; op) const //优先队列  {return s&amp;lt;op.s;} bool operator &amp;gt;(const timeSeg&amp;amp; op) const {return s&amp;gt;op.s;} timeSeg() {s=0;e=0;} timeSeg(int a,int b):s(a),e(b) {} }; priority_queue&amp;lt;timeSeg,vector&amp;lt;timeSeg&amp;gt;,greater&amp;lt;timeSeg&amp;gt; &amp;gt; timeTable;//这个存必须醒着的时间,按顺序排 vector&amp;lt;timeSeg&amp;gt; sp;//存输出结果,睡觉的时间 int A,B,N;//初始需要的三个参数 int weekTime;//连续醒的时间  bool process() { timeSeg firstTime = timeTable.</description>
-    </item>
-    
-    <item>
-      <title>Program-week13-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week13-homework/</link>
-      <pubDate>Tue, 26 May 2020 23:46:05 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week13-homework/</guid>
-      <description>week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识.
-首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数
-然后还一个就是经常忘的情况,0是偶数,(虽然这个题要求从1开始)
-解题思路就是偶数情况,前k-1个数为2,最后一个数(n-2k+2)要求是偶数
-奇数情况前k-1个数是1,最后一个数(n-k+1)要求是奇数
-如果这两种情况都不能满足那么说明不能满足
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;cmath&amp;gt;using namespace std; int data; int k; int main() { int n; scanf(&amp;#34;%d&amp;#34;,&amp;amp;n); for(int i=0;i&amp;lt;n;i++) { scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;data,&amp;amp;k); if((data-2*k+2)&amp;gt;0&amp;amp;&amp;amp;(data-2*k+2)%2==0)//偶数情况,需要判断大于0  { printf(&amp;#34;YES\n&amp;#34;); for(int t=0;t&amp;lt;k-1;t++)//先输出2  printf(&amp;#34;2 &amp;#34;); printf(&amp;#34;%d\n&amp;#34;,(data-2*k+2));//最后一个偶数  } else if((data-k+1)&amp;gt;0&amp;amp;&amp;amp;(data-k+1)%2==1)//奇数情况  { printf(&amp;#34;YES\n&amp;#34;); for(int t=0;t&amp;lt;k-1;t++)//先输出1  printf(&amp;#34;1 &amp;#34;); printf(&amp;#34;%d\n&amp;#34;,data-k+1);//最后一个奇数  } else//不能满足  printf(&amp;#34;NO\n&amp;#34;); } } 总结 奇偶判断，感觉比较简单</description>
-    </item>
-    
-    <item>
-      <title>Program-week12-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week12-homework/</link>
-      <pubDate>Thu, 14 May 2020 23:31:30 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week12-homework/</guid>
-      <description>week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了
-解法 简单的计数就行了
-一定要注意指针超界问题,这次就是因为这个原因被RE了
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstring&amp;gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&amp;#34;%d&amp;#34;,&amp;amp;n); for(int i=0;i&amp;lt;n;i++) scanf(&amp;#34;%d&amp;#34;,data+i); int pre=data[0]; int cnt =0 ; for(int i=0;i&amp;lt;n;) { while(pre == data[i]) if(++i&amp;gt;n)//避免指针超界  break; cnt++; pre = data[i]; } printf(&amp;#34;%d&amp;#34;,cnt); } 下面这个实现更好一些
-#include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;cstring&amp;gt;using namespace std; int data [10000]; int main() { int n; memset(data,0,sizeof(data)); scanf(&amp;#34;%d&amp;#34;,&amp;amp;n); for(int i=0;i&amp;lt;n;i++) scanf(&amp;#34;%d&amp;#34;,data+i); int pre=data[0]; int cnt = 1;//因为最后一个不会被算入,提前+1  for(int i=0;i&amp;lt;n;i++)//保证不越界  { if(pre == data[i]) continue ; else { cnt++;//遇到新的+1  pre =data[i]; } } printf(&amp;#34;%d&amp;#34;,cnt); } 总结 这题真的是不该错,实在是太简单了,一开始写的是对的,后来瞎改,把i&amp;lt;n的条件给去掉了,导致一个点re</description>
-    </item>
-    
-    <item>
-      <title>Program-week10-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week11-homework/</link>
-      <pubDate>Thu, 14 May 2020 23:31:04 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week11-homework/</guid>
-      <description>week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年一年的模拟解出问题,也可以推一个的数学公式,直接算出来,这里采取模拟的方法
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;using namespace std; int main() { float n; float m=200; float k; scanf(&amp;#34;%f%f&amp;#34;,&amp;amp;n,&amp;amp;k);//浮点  k = k/100;//小数  int i=1; float total = m; float salary = 0; while(salary-total&amp;lt;0.000001) { salary =i*n;//收入  total = m*pow((1+k),i-1);//房价  if(i++&amp;gt;21)//大于20年  break; } if(i&amp;gt;21) printf(&amp;#34;Impossible&amp;#34;); else printf(&amp;#34;%d&amp;#34;,i-1); return 0; } 总结 难度不大,但是得理清楚年份之间的关系,第一年房价是原价
-B - 必做题11-2 题面 输入输出都是一个数字组成的矩阵
-解法 题目本身也是模拟,这个考察了数组的下标的运用,通过下标的转换实现数组的转换
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt; using namespace std; int n; int data[22][22]; int ans[22][22]; // int mid[22][22];  inline bool dec(int t,int i,int j) { if(t == 1) return data[i][j]!</description>
-    </item>
-    
-    <item>
-      <title>Program-week9-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week9-homework/</link>
-      <pubDate>Wed, 29 Apr 2020 21:28:23 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week9-homework/</guid>
-      <description>week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看
-解法 命令分为两种操作和询问,对于操作类型来说有一个undo 的操作,因此要使用一个栈来记录所有的操作型指令用于恢复.
-首先我们设计文件树的存储(为啥用树?题目直接说了文件树 &amp;hellip; )
-这个树肯定是多个孩子的,我们可以用类似孩子链表的形式使用vector nodes存储所有节点,我们要求孩子顺序是字典序,因此使用map&amp;lt;string,int&amp;gt;存储孩子,string是文件名,int是vector种的下标.为了溯源存储一个int father,表示父节点的下标
-剩下的几个变量都是为了题目实现而存储的信息.int allNodes代表的是以该节点为根的文件树的总节点数(每次插入或者删除节点向上溯源更新). string nodeName表示文件的当前节点的文件夹名.除此之外vector&amp;lt;string&amp;gt; ftree用来储存tree命令时前后的5个文件夹名.int change储存ftree是否应该发生改变,change=1表示文件结构被更新过,ftree不能用了.
-下面讲解各个命令:
-首先编写一个pushForward函数,用来从当前节点开始通过father向上更新整棵树,更新allNode和change.使用一个int curPosi记录当前操作的节点下标
-mkdir: 首先检查新的文件名是否在children中存在,存在输出ERR.,不存在就新建,插入到nodes中,同时更新children,调用pushForward,将该次命令和操作的两个节点下标插入到栈history
-rm: 首先检查children中有没有该文件,没有输出ERR,有就在children中删除(在nodes中不清除节点),调用pushForwad,将命令和操作的两个下标插入到history
-cd: 遇到&amp;quot;..&amp;ldquo;直接返回到father,如果father是0(根节点)输出ERR.否则检查孩子中有没有想到的文件名,如果可以没有输出ERR,最后将命令和操作的下标插入到history
-sz: 直接输出allNodes
-ls: 首先看孩子个数,小于10,全部输出,大于10,输出前5个和后5个
-tree: 该命令是比较难实现的,需要一定的记忆化 首先看当前节点的孩子个数,0个输出EMPTY,直接结束.其他情况首先递归实现以该节点为根的文件树通过先根遍历的方式更新ftree.更新时,更新过的节点change改为0表示无需再次更新.然后输出ftree前5个和后5个
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;map&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;stack&amp;gt;using namespace std; struct treeNode { string nodeName;//文件名  int father;//父节点下标  int allNodes;//总的孩子个数+1 sz使用  vector&amp;lt;string&amp;gt; ftree;//tree命令使用的数组,前5个和后5个  int change;//ftree是否发生改变  map&amp;lt;string,int&amp;gt; children;//按字典序存孩子节点的文件名和下标  treeNode(string name,int father,int allNodes,int change):nodeName(name),father(father),allNodes(allNodes),change(change) {} treeNode(){} }; struct cmd { string command; int pwd; int newDir; }; vector&amp;lt;treeNode&amp;gt; nodes;//所有节点的数组,下标就是这里的 stack&amp;lt;cmd&amp;gt; history;//操作命令历史记录 int curPosi;//当前操作的位置的下标  void pushForward(int posi,int num)//从posi开始上溯 { nodes[posi].</description>
-    </item>
-    
-    <item>
-      <title>Program-week10-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week10-homework/</link>
-      <pubDate>Wed, 29 Apr 2020 21:28:09 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week10-homework/</guid>
-      <description>week10-homework A - 签到题 题面 解法 直接m/n看看是不能整除,不整除,直接输出-1
-整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;string&amp;gt; using namespace std; int main() { int n,m; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); if(m%n!=0||n&amp;gt;m)//能整除  { printf(&amp;#34;-1\n&amp;#34;); return 0; } int t = m/n;//倍数  int i=0; while(t%2 == 0)//一直/2直到不能进行  { t/=2; i++; } while(t%3 == 0)//一直除3直到不能进行  { t/=3; i++; } if(t!=1)//除不尽  printf(&amp;#34;-1\n&amp;#34;); else //除尽  printf(&amp;#34;%d\n&amp;#34;,i); return 0; } 总结 问题不难,考虑除尽的情况即可
-B - LIS &amp;amp; LCS 题面 解法 这是一道DP的模板题</description>
-    </item>
-    
-    <item>
-      <title>Program-week8-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week8-homework/</link>
-      <pubDate>Wed, 15 Apr 2020 09:09:31 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week8-homework/</guid>
-      <description>homework A - 区间选点 II 题意 题面 题意很简单,就是给定一个区间,要求在每个区间内得取够给定个数的点(可以超过,但是不能少),问全局最少需要去多少个点
-解法 本道题要求使用差分约束来解
-差分约束首先要构建方程,找到用于一个表示X的量,这里使用一个数组dis,dis[i]代表从min到第i个点一共有多少个点(注意这里的min对应着题目中最小的区间端点),那么实际上我们求取的就是dis[max]的值(max代表给出的最大区间端点).
-下面开始构建约束
-对于给出的区间(i,j)要求k的点我们可以构建方程
-$dis[j]-dis[i-1]\geq k$
-除此之外为了使题目有意义我们得保证每个点只能被取0次或1次,因此需要方程约束
-$0\leq dis[t]-dis[t-1]\leq 1$s
-题目中使从0开的,我们给每个点都进行偏移,使整个数轴从1开始,那么我们还能知道$dis[0]=0\ or\ dis[min-1]=0$
-综上我们知道了如下信息 $$ dis[min-1] =0\
-dis[j]-dis[i]\geq k\
-dis[t]-dis[t-1]\geq 0\
-dis[t-1] - dis[t]\geq -1 $$ 我们要求的最少用多少个点,那么就是求取最大值最小,使用最长路求取,因为有负边权我们使用SPFA来求,鉴于本题一定有答案,不做负环的判断
-求出最长路只需要换一下啊松弛条件就可以了
-这道题复杂度同SPFA一样,O(KM)
-code #include&amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;vector&amp;gt;// #include &amp;lt;algorithm&amp;gt; #include &amp;lt;queue&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; vector&amp;lt;pair&amp;lt;int,int&amp;gt; &amp;gt; G[50005];//图 queue&amp;lt;int&amp;gt; q;//队列 int dis[50005];//最大值,差分数组 int inque[50005];//是否在队列中 int main() { memset(dis,-128,sizeof(dis)); memset(inque,0,sizeof(inque)); int n; scanf(&amp;#34;%d&amp;#34;,&amp;amp;n); int min = 50005,max = 0 ; for(int i=0;i&amp;lt;n;i++) { int a,b,c; scanf(&amp;#34;%d%d%d&amp;#34;,&amp;amp;a,&amp;amp;b,&amp;amp;c); a+=1,b+=1;//把从0开始改为从1开始  if(a&amp;lt;min) min = a;//起始位置  if(b&amp;gt;max) max = b;//结束位置  G[a-1].</description>
-    </item>
-    
-    <item>
-      <title>Program_week7_homework</title>
-      <link>https://xyfuture.github.io/posts/program-week7-homework/</link>
-      <pubDate>Mon, 13 Apr 2020 22:55:21 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week7-homework/</guid>
-      <description>week7-homework A - TT 的魔法猫 题意 题面 这道题就是求一个传递闭包,题目中给出胜负关系可以看成一对序偶,相互之间具有传递关系,给出基本的几个序偶,然后让求取改集合的传递闭包,然后看看闭包中有多少个元素
-解法 首先我们把这个输赢关系建成图,使用二维矩阵直接存储这个图,N个人代表矩阵大小是N*N,M个关系则代表图中有M条边,A B,代表A赢过B,建立一条A到B的边,如果B能到C则也有A到C的边
-将图按照给定的元素初始化后我们对这张图跑floyd-warshall.不过要把松弛条件改一下,不是最短路径了,而是只要能到达则将数组中对应的位置改为1.
-注意在这种情况下能够进行剪枝,如果在判断i经过j能能不能到达新节点时,若i直接不能到达j,则跳过.经过剪枝后时间复杂度会降低不少.
-最后计算未知的数量,首先使用组合的知识计算出多少场比赛$C^2_n$,减去矩阵中1的数量,这样就能得到未知的场数
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; // vector&amp;lt;int&amp;gt; G[502]; int G[502][502];//二维矩阵  int main() { int cnt; scanf(&amp;#34;%d&amp;#34;,&amp;amp;cnt); for (int i=0;i&amp;lt;cnt;i++) { int n,m; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); memset(G,0,sizeof(G));//初始化  for(int j=0;j&amp;lt;m;j++) { int a,b; scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;a,&amp;amp;b); G[a][b] = 1;//A赢B,A-&amp;gt;B的路  } for(int k=0;k&amp;lt;n+1;k++)//经过第k个  for(int t=0;t&amp;lt;n+1;t++) if(G[t][k]==1)//剪枝,不能到达就不继续了,正常floyd也可以有  for(int e=0;e&amp;lt;n+1;e++) if(G[k][e]==1)//更新,可能会重复,但不影响正确  G[t][e] = 1; int ans = 0; for(int p=0;p&amp;lt;n+1;p++) for(int q=0;q&amp;lt;n+1;q++) if(G[p][q] == 1) ans++;//统计已知场数  ans = ((n*(n-1))/2 ) - ans; printf(&amp;#34;%d\n&amp;#34;,ans); } } 总结 这道题一开始交的时候没有考虑剪枝的情况(虽然上课讲了),然后就T了,后来想起来可以剪枝降低复杂度,就加了剪枝,然后就过了,以后还是要写带剪枝的floyd.</description>
-    </item>
-    
-    <item>
-      <title>Program-week6-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week6-homework/</link>
-      <pubDate>Sat, 28 Mar 2020 22:38:31 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week6-homework/</guid>
-      <description>week6-csp A - 掌握魔法の东东 II 题意 给定一组扑克牌,每张牌拥有两个属性,花色和大小,不存在完全相同的两张牌.首先取两张,了解其花色和大小,然后再取三张牌,问问总共的5张牌,在9种情况中各有多少
-解法 这道题有两种解法,一种思路是搜索,用DFS搜索一遍,每次在5张牌时判断目前的五张牌是什么情况,对应的情况计数增加.第二种解法是直接用排列组合的方式直接计算出每种情况的个数.
-这道题我是用第二种方法做的,首先写一个用于计算组合数的函数,用它来计算组合数.设牌的大小是1-n,花色有m种
- 首先判断两张牌花色相同且相差不大于4,然后找到上下界,在上下界中找出大小为5的窗口有几个就行了 和上一个差不多,但是不判断花色了,然后后摸的三张牌颜色要进行组合最后要减去1的数量 判断两张牌的花色是否相同,相同的话,直接$C_{n-2}^3$就行了,最后减1中的 首先判断总的花色数,必须等于4,判断两张牌大小是否相等,相等的话只有一张牌是自由的,那么一共有(n-1)*m种可能,否则没有牌是自由的,只有两种可能 首先判断m是不是大于等于3,然后分成两类,一类是先摸的两张牌大小相同,这种情况下在分为先摸的牌为2和先摸的牌为3再次讨论,如果两张牌(A,B)大小不同则按A为2,B为3和A为3,B为2讨论,这两种情况是一样的,直接*2就行 这个也是先判断花色总数,然后分为先摸牌相等和不等两种情况,第二种情况下还要判断先摸的两张牌都是对,还是一个是1一个是对 注意这里的3张大小相同要求剩下的两张必须不同.同样先判断花色总数,之后分为先摸牌相等和不等讨论.在进一步的讨论中,还要分出3,1,1具体对应的是哪个 同样,2张相同的,3张不同的.剩下的方法也是相似的,看花色总数,分成先摸牌相等和不等讨论,进一步的讨论中分清楚2,1,1,1分别是那个 计算出总的情况数,减去上面的就行了  这种方法实在是太麻烦了,搜索的方法会简单很多,因为判断条件要比排列组合好写太多
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;iostream&amp;gt;using namespace std; int ans[10];//1 start int A,B;//A是牌的总大小,B是牌的花色数 pair&amp;lt;int,int&amp;gt; curCard[2];//记录先摸的两张牌 int comb(int a,int b)//计算组合数 { int answer = 1; for(int i=0;i&amp;lt;b;i++) answer*=(a-i); for(int i=0;i&amp;lt;b;i++) answer/=(i+1); if(answer&amp;lt;0) return 0; return answer; } void con1() { if(curCard[0].second!=curCard[1].second||abs(curCard[0].first-curCard[1].first)&amp;gt;4) return ; int max = curCard[0].first&amp;gt;curCard[1].first?curCard[0].first:curCard[1].first;//取出两张牌中大的和小的  int min = curCard[0].</description>
-    </item>
-    
-    <item>
-      <title>Program-week5-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week5-homework/</link>
-      <pubDate>Tue, 24 Mar 2020 21:39:07 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week5-homework/</guid>
-      <description>week5-homework A-最大矩形 题意 给定一个直方图,求取直方图中规则的矩形的最大面积,其中直方图中间隔都是1,每个间隔的高度都是现场给定的.
-解法 使用单调栈
-对于每个间隔p,我们都在左边和右边找到第一个小于该间隔高度的间隔(如果相等则继续,不停止),在这两个边界之中,高度取p的高度建立的矩形是以p为高度的最大矩形,遍历一遍所有间隔就能获得整个图形中的最大矩形面积
-求取左右的端点就是用单调栈实现,单调栈中保存的是从开始到现在所有的信息.对于一个出栈顺序是从小到大的单调栈而言,当一个元素弹出时,遇到的一定是第一个比他大的元素,因为假如之前遇到过比他的元素它早就被弹出了.反过来的顺序就是第一个它小的元素,我们大到小出栈顺序设计单调栈就可以实现我们上面的需求了.右边第一个是从0间隔到n间隔,左边第一个是从n间隔到0间隔 复杂度就是遍历一遍的大小$O(n)$
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;iostream&amp;gt;using namespace std; int data[100004];//所有间隔的高度 int s[100004];//栈 int top = -1;//栈顶 pair&amp;lt;int,int&amp;gt; arr[100004];//左边第一个和右边第一个的坐标 int main() { int n; memset(data,0,sizeof(data)); memset(s,0,sizeof(s)); memset(arr,0,sizeof(arr)); while(true) { scanf(&amp;#34;%d&amp;#34;,&amp;amp;n); if (n == 0) return 0; // data[0]=0,data[n+1]=0;  for(int i=0;i&amp;lt;n;i++) scanf(&amp;#34;%d&amp;#34;,data+i);//录入元素  for(int i=0;i&amp;lt;n;i++)//找到右边第一个小于的坐标  { while(top!=-1 &amp;amp;&amp;amp; data[s[top]]&amp;gt;data[i])//不满足条件就出栈,同时更新出栈元素的边界  arr[s[top--]].second = i; s[++top] = i;//新元素入栈  } while(top!=-1)//走到头把所有元素出栈  arr[s[top--]].second = n; top = -1;//重新开始栈  for(int i=n-1;i&amp;gt;=0;i--)//左边第一个元素坐标,操作相同  { while(top!</description>
-    </item>
-    
-    <item>
-      <title>Program-week4-homework</title>
-      <link>https://xyfuture.github.io/posts/program-week4-homework/</link>
-      <pubDate>Sun, 15 Mar 2020 11:06:08 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week4-homework/</guid>
-      <description>week3-CSP A-咕咕东的奇遇 题意 该题算是一个贪心问题,在一个环(26个数)上布置有序的数字,环上有一个指针,然后给定一个数字序列,要求转动圆环,使得指针指向给定的数字,要求总的转动的次数最少.题目中的不是数字而是字母,不过无所谓,ascii直接转换就行
-解法 我们使用贪心的方案,每一次都找到从当前位置到指定位置的最短路径,最短路径只有两种可能,顺时针转过去或者逆时针转过去.在环上本身就是mod26系统,因此让大数减小数是一种,小数加26减大数是另一种,那个小取那个
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;lt;cstring&amp;gt;using namespace std; int main() { char s [10002];//数组开大 	memset(s,0,sizeof(s)); scanf(&amp;#34;%s&amp;#34;,s); int count=0;//总和 	int i = 0; char temp; int posi = 0; int maxShift = 0; while((temp=s[i])!=&amp;#39;\0&amp;#39;)//判断截止 	{ int cur = temp-&amp;#39;a&amp;#39;; if(cur&amp;gt;posi) { int left = cur- posi;//一种方向 	int right = posi+26 -cur;//另一种方向 	count+=(left&amp;gt;right? right:left);//取最小 	} if(cur&amp;lt;=posi) { int left = cur+26 - posi; int right = posi-cur; count+= (left&amp;gt;right?</description>
-    </item>
-    
-    <item>
-      <title>Program-二分</title>
-      <link>https://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</link>
-      <pubDate>Fri, 13 Mar 2020 19:40:59 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-%E4%BA%8C%E5%88%86/</guid>
-      <description>二分算法是一种性能优秀的算法,常常用在有序的序列上
-二分分为三种,整数二分,浮点二分,答案二分
- 整数二分 整数二分类似找数问题,在数组中找到指定元素开始的位置和结束的位置
-上述代码是找到第一个大于等于x的点,也就是x开始的位置.(有好几个连续的x就是最先的x的下标)
-下面是镜像算法,找出x结束的位置
-当然这个写法比较麻烦,也可以第一种写法一样把&amp;lt;和=合在一起
-算法证明 这个证明有点意思,改天一定写写,用数学归纳法或者反正法都可以证明,把&amp;lt;和=结合起来也挺秒的
-一些思想 运用条件很简单,只要上线性的,然后有序就行
-浮点二分 浮点二分是数学上的问题,这里不讨论很多,可以去看看零点定理,连续的函数在一个区间中有正有负,那么就是有零点,确定两个边界用零点存在定理算就完事了,注意精度的问题,建议是用固定的运算次数来保证精度
-答案二分  结合一个题说一下,这个应该是用的比较多的
-题目原题:POJ 3579
- 答案如果是在一个区间内有序,我们就可以使用二分来查找
-题目 暴力肯定是不行,算出B全部值的复杂度是$n^2$数据范围不过
-但是我们注意到求中位数是从有序序列中找,因此可以二分找
-我们首先将这个X数组排序,排序之后生成的B和不排序的是等价的(因为绝对值),然后用这个X参与后续计算
-B的最小值肯定不小于0(不是B[1]-B[0]),最大值是B[n*(n-1)/2 -1]- B[0],因此我们就从这个区间中开始搜索,找到一个mid后问题就是判断和中位数关系,大于就缩小最大值,小于就提升最小值,一直这样下去直到最大值小于最小值(类似前面整数的操作,后面会再解释)
-问题来了,如何确定中位数,最简单的方法,两个for看看有多少个X[j]-X[i]小于等于mid(找出最后一个mid的位置),但是复杂度会超,因此用二分的方法看看有多少个元素.
-X[j]-X[i],对i的循环不变,对j用二分,从i+1到n-1二分,这个过程中用到了整数二分中算法
-cur是找的目标,找到最后一个cur的位置,e中存的是再B中cur的位置(从1开始算)
-这样话我们直到中位数的位置,也知道mid的位置,就能知道mid是不是中位数,让我们再回到第一个二分,即便我们知道是不是中位数,我们也不写第一个二分
-这时我们观察B数组情况
-我们把这个数组假想成如图所示,X位置是中位数我们可以不构造一个函数(check)让大于等于中位数的mid返回一个0,让小于中位数的mid返回一个1,正是图中数组,这个数组熟悉啊,用整数二分中的方法,找到第一个0就能找到中位数了.
-因此魔改一下这个
-把a[mid]&amp;gt;=x改为check函数,check(mid,target(中位数位置)),我们知道了怎么判断mid的位置,用它和中位数位置一比,大于返回个0,小于返回个1,这个就是check函数.
-最终max&amp;lt;min会退出第一层二分就结束了,整个复杂度是两个二分加一个遍历
-详细证明 这个证明和整数二分有相似之处,主要是针对为什么替换为check函数是对的,改天有写吧</description>
-    </item>
-    
-    <item>
-      <title>算法小结</title>
-      <link>https://xyfuture.github.io/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</link>
-      <pubDate>Mon, 09 Mar 2020 16:22:02 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/%E7%AE%97%E6%B3%95%E5%B0%8F%E7%BB%93/</guid>
-      <description>dijkstra 迪杰斯特拉算法是用于计算单点最短路,并且要求图是无负边权的.
-算法思路 从一个点开始,记录一个到其他所有点的数组,从这个数组中取出最近的一个点,更新那个数组,然后重复那个数组,每次取最短的点然后更新,直到所有点都被遍历.
-复杂度 节点数 v 边数 e
-邻接表
-$O(v^2)$ ($O(v^2+e)$)
-因为一共更新了n个点,每个点取的时候首先找最短的点(n的复杂度),同时取完了会找一遍所有的边
-邻接矩阵
-$O(v^2)$
-Prime Kruskal SPFA Floyd BFS BFS啥都能干&amp;hellip;
-算法思路 首先有一个vis数组,这个数组用来记录走过的点,然后开一个队列用来记录访问的元素.好了现在开始BFS,先将原点的vis标记,将这个点加入到队列,从队列中取出这个点,对这个点操作,然后访问这个点所有的邻接点,将没有被标记的点标记加入到队列中,重复队列的循环,直到队列空.
-复杂度 顶点数 v 边数 e
-邻接表
-$O(v+e)$
-每个点都被访问一次,访问时候v^2走一个函数,所有点就算v,然后有一个加入队列的for循环,这个循环总的合起来就是e,因此时v+e
-邻接矩阵
-$O(v^2)$
-两个for 都是v
-Question
-邻接表和邻接矩阵的复杂度看着似乎有点问题,不是一个量级,但是你要注意到e最大是v^2,所以还是一个量级的
-DFS 算法思想 DFS是递归的方法,首先标记自己,然后搜索所有没有被标记的点,对他们进行DFS,不能继续搜索就返回到上一级,直到所有都返回
-复杂度 和BFS相同
-邻接表
-$O(v+e)$
-注意点 DFS和BFS都需要注意剪枝的问题,不符合条件的情况一定不要继续访问,主要就是vis数组要标记好
-参考CSP卖菜问题</description>
-    </item>
-    
-    <item>
-      <title>Program_week3_homework</title>
-      <link>https://xyfuture.github.io/posts/program-week3-homework/</link>
-      <pubDate>Thu, 05 Mar 2020 22:40:33 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week3-homework/</guid>
-      <description>week3-homework  本次作业的主要内容是DFS和贪心算法,贪心算法看似简单但是证明存在一定难度
- A 选数问题  ZJM友情客串
- 题意 题面是英文,但是比较容易理解,就是说给了一堆正数,让你从正数中选出几个数,使得他们相加得到给定的数
-解法 解决方法就是DFS,感觉更像普通递归,递归函数 void dfs(int data[],int s,int l,int ans) 这个函数data是输入的数组,s是开始搜索的位置,s之前的都不能用,l是第几层,到达指定层之后就会停住,ans是上一层传来的答案.
-这样的话,如果当前层到了指定层就从s开始扫描,如果+ans能等于给定值计数增加,扫描结束则退出,如果不是指定层,则从s开始扫描,进行递归dfs(data,i,l+1,ans+data[i])进入下一层
-这样做的话能保证所有组合都是出现的,而且不会出现重复,为了优化性能,在到达指定层前,ans就超了指定答案时不进行递归.
-code #include &amp;lt;iostream&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; int n,k,m; int count = 0;//全局变量,总的次数 void dfs(int data[],int s,int l,int ans) { if(l == k)//最后一个数,不用向下dfs了  { for(int i=s;i&amp;lt;n;i++) if (ans+data[i] == m) count ++; return ; } else { for(int i=s;i&amp;lt;n;i++) if(ans+data[i]&amp;lt;m)//省下来的数还能支撑继续dfs  dfs(data,i+1,l+1,ans+data[i]); return ; } } int main() { // int n,k,m;  int c; int data[1000]; memset(data,0,sizeof(data)); scanf(&amp;#34;%d&amp;#34;,&amp;amp;c); for(int i=0;i&amp;lt;c;i++) { count = 0; scanf(&amp;#34;%d%d%d&amp;#34;,&amp;amp;n,&amp;amp;k,&amp;amp;m); for(int j=0;j&amp;lt;n;j++) scanf(&amp;#34;%d&amp;#34;,data+j); dfs(data,0,1,0); printf(&amp;#34;%d\n&amp;#34;,count); } } 总结 降低时间复杂度的一个重要的方法是剪枝,可行性剪枝,最优化剪枝,同时加入vis数组避免重复访问.</description>
-    </item>
-    
-    <item>
-      <title>Program_week3_class</title>
-      <link>https://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/</link>
-      <pubDate>Wed, 04 Mar 2020 18:37:35 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/</guid>
-      <description>DFS 记录节点状态
- 可行性 最优化 记忆化搜索(就是标记走过的路)  贪心算法 证明   贪心算法最优,其他都比他差.
-  贪心算法和其他一样优,其他算法的结果可以转化为贪心算法
-  </description>
-    </item>
-    
-    <item>
-      <title>Program_week2_homework</title>
-      <link>https://xyfuture.github.io/posts/program-week2-homework/</link>
-      <pubDate>Tue, 03 Mar 2020 20:39:59 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week2-homework/</guid>
-      <description>week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.
- A-化学  原题: Gym 270437A
- 题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]
-做法 ​	首先我们观察给出的分子的结构,可以发现,n-hexane中4个节点的度为2,其他分子式不具备这个特点,同理2,3-dimenthylbutane中2个节点度为3, 2,2-dimenthylbutane中1个节点的度为4,借助节点度的特征可以确定这几种结构,但是2-methylpentane和和3-methylpentane的节点的度的情况基本相同,1个3度,2个2度,3个1度,因此还要区分这两个. ​	区分的方法是从3度节点入手,查找它邻接的节点,如果有邻接节点中有两个1度节点则为2-methylpentane,否则就是3-methylpentane.
-​	我们需要一个数组存每个节点的度,除此之外使用一个多值字典(multimap)记录邻接情况(mp[i]的值是所有与i节点邻接的节点),这个字典是为了后两种情况,使用这两个手段就能区分所有情况.
-code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;map&amp;gt;using namespace std; int data[8]; multimap &amp;lt;int,int&amp;gt; mp; void check() { int count[10];//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个  memset(count,0,sizeof(count)); for(int i=0;i&amp;lt;8;i++) count[data[i]]++;//初始化  if(count[4] == 1){//前3种根据度直接判断  printf(&amp;#34;2,2-dimethylbutane\n&amp;#34;); return ; } else if (count[3] == 2){ printf(&amp;#34;2,3-dimethylbutane\n&amp;#34;); return ; } else if (count[2]==4){ printf(&amp;#34;n-hexane\n&amp;#34;); return ; } else{//后两种情况  int tar = 0;//找到度为3的节点  for (int i=0;i&amp;lt;8;i++) if (data[i] == 3) tar = i; int c = 0;//记录邻接点种度为1的节点个数  for (map&amp;lt;int,int&amp;gt;::iterator it = mp.</description>
-    </item>
-    
-    <item>
-      <title>Program-BFS</title>
-      <link>https://xyfuture.github.io/posts/program-week1-homework/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/program-week1-homework/</guid>
-      <description>程序设计思维 BFS 高维BFS csp2016 4 迷宫
-题目 问题描述 　小明在玩一个电脑游戏，游戏在一个n×m的方格图上进行，小明控制的角色开始的时候站在第一行第一列，目标是前往第n行第m列。 方格图上有一些方格是始终安全的，有一些在一段时间是危险的，如果小明控制的角色到达一个方格的时候方格是危险的，则小明输掉了游戏，如果小明的角色到达了第n行第m列，则小明过关。第一行第一列和第n行第m列永远都是安全的。 每个单位时间，小明的角色必须向上下左右四个方向相邻的方格中的一个移动一格。 经过很多次尝试，小明掌握了方格图的安全和危险的规律：每一个方格出现危险的时间一定是连续的。并且，小明还掌握了每个方格在哪段时间是危险的。 现在，小明想知道，自己最快经过几个时间单位可以达到第n行第m列过关。
-输入格式 　输入的第一行包含三个整数n, m, t，用一个空格分隔，表示方格图的行数n、列数m，以及方格图中有危险的方格数量。 接下来t行，每行4个整数r, c, a, b，表示第r行第c列的方格在第a个时刻到第b个时刻之间是危险的，包括a和b。游戏开始时的时刻为0。输入数据保证r和c不同时为1，而且当r为n时c不为m。一个方格只有一段时间是危险的（或者说不会出现两行拥有相同的r和c）。
-输出格式 　输出一个整数，表示小明最快经过几个时间单位可以过关。输入数据保证小明一定可以过关。
-样例输入 3 3 3 2 1 1 1 1 3 2 10 2 2 2 10
-样例输出 6
-样例说明 　第2行第1列时刻1是危险的，因此第一步必须走到第1行第2列。 第二步可以走到第1行第1列，第三步走到第2行第1列，后面经过第3行第1列、第3行第2列到达第3行第3列。
-评测用例规模与约定 前30%的评测用例满足：0 &amp;lt; n, m ≤ 10，0 ≤ t &amp;lt; 99。 所有评测用例满足：0 &amp;lt; n, m ≤ 100，0 ≤ t &amp;lt; 9999，1 ≤ r ≤ n，1 ≤ c ≤ m，0 ≤ a ≤ b ≤ 100。</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>程序设计思维 - 分类 - Xyfuture&#39;s Home</title>
+        <link>https://xyfuture.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4/</link>
+        <description>程序设计思维 - 分类 - Xyfuture&#39;s Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jun 2020 14:37:00 &#43;0000</lastBuildDate><atom:link href="https://xyfuture.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4/" rel="self" type="application/rss+xml" /><item>
+    <title>Progarm-optional-homework</title>
+    <link>https://xyfuture.github.io/posts/progarm-optional-homework/</link>
+    <pubDate>Thu, 11 Jun 2020 14:37:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/progarm-optional-homework/</guid>
+    <description><![CDATA[week11 E - 选做题11-1 东东与 ATM 题面 这道题是一道多重背包,而且需要使用二进制拆分进行优化才可过 解法 这道题可以直接按多重背包思路来理解,但是稍有不]]></description>
+</item><item>
+    <title>Program-month-simulate</title>
+    <link>https://xyfuture.github.io/posts/program-month-simulate/</link>
+    <pubDate>Tue, 09 Jun 2020 18:42:50 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-month-simulate/</guid>
+    <description><![CDATA[模拟 炉石传说201609-3 题面 完整题面非常长，前面都是介绍背景，没啥用，重点关注后面，基本规则 1个英雄 7个随从 一个回合三种操作 添加随从，随]]></description>
+</item><item>
+    <title>Program-week15-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week15-homework/</link>
+    <pubDate>Tue, 09 Jun 2020 18:34:28 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week15-homework/</guid>
+    <description><![CDATA[week15-homework B - ZJM 与生日礼物（选做） 题面 解法]]></description>
+</item><item>
+    <title>Program-week16-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week16-homework/</link>
+    <pubDate>Thu, 04 Jun 2020 23:25:32 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week16-homework/</guid>
+    <description><![CDATA[week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数 解法 直接把每一位分离,然后用个桶排就行了 code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll]]></description>
+</item><item>
+    <title>Program-week14-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week14-homework/</link>
+    <pubDate>Tue, 26 May 2020 23:46:32 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week14-homework/</guid>
+    <description><![CDATA[week14-模拟 A - 猫睡觉问题 题面 一天内有时间段必须醒着,其他时间可以睡觉也可以醒着,但是连续醒着时间有限制,连续睡觉有最短时间限制,同时]]></description>
+</item><item>
+    <title>Program-week13-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week13-homework/</link>
+    <pubDate>Tue, 26 May 2020 23:46:05 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week13-homework/</guid>
+    <description><![CDATA[week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识. 首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数 然后还一个就]]></description>
+</item><item>
+    <title>Program-week12-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week12-homework/</link>
+    <pubDate>Thu, 14 May 2020 23:31:30 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week12-homework/</guid>
+    <description><![CDATA[week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了 解法 简单的计数就行了 一定要注意指针超界问题,这次就是因为这个原因被RE了 code #include &lt;cstdio&gt;#include]]></description>
+</item><item>
+    <title>Program-week10-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week11-homework/</link>
+    <pubDate>Thu, 14 May 2020 23:31:04 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week11-homework/</guid>
+    <description><![CDATA[week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年]]></description>
+</item><item>
+    <title>Program-week9-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week9-homework/</link>
+    <pubDate>Wed, 29 Apr 2020 21:28:23 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week9-homework/</guid>
+    <description><![CDATA[week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看 解法 命令分为两种操作和询问,对于操作]]></description>
+</item><item>
+    <title>Program-week10-homework</title>
+    <link>https://xyfuture.github.io/posts/program-week10-homework/</link>
+    <pubDate>Wed, 29 Apr 2020 21:28:09 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/program-week10-homework/</guid>
+    <description><![CDATA[week10-homework A - 签到题 题面 解法 直接m/n看看是不能整除,不整除,直接输出-1 整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1 code #include]]></description>
+</item></channel>
 </rss>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program-BFS - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="Program-BFS" />
+<meta property="og:description" content="程序设计思维 BFS 高维BFS csp2016 4 迷宫 题目 问题描述 小明在玩一个电脑游戏，游戏在一个n×m的方格图上进行，小明控制的角色开始的时候站在第一行第一列，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/program-week1-homework/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-BFS"/>
+<meta name="twitter:description" content="程序设计思维 BFS 高维BFS csp2016 4 迷宫 题目 问题描述 小明在玩一个电脑游戏，游戏在一个n×m的方格图上进行，小明控制的角色开始的时候站在第一行第一列，"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/program-week1-homework/" /><link rel="prev" href="http://example.org/posts_back/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/" /><link rel="next" href="http://example.org/posts_back/hexo%E5%AE%89%E8%A3%85/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program-BFS",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/program-week1-homework\/"
+        },"genre": "posts_back","keywords": "BFS, 算法","wordcount":  1394 ,
+        "url": "http:\/\/example.org\/posts_back\/program-week1-homework\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Program-BFS</h1><div class="content" id="content"><h1 id="程序设计思维-bfs">程序设计思维 BFS</h1>
+<h2 id="高维bfs">高维BFS</h2>
+<p>csp2016 4 迷宫</p>
+<h3 id="题目">题目</h3>
+<h4 id="问题描述">问题描述</h4>
+<p>　　小明在玩一个电脑游戏，游戏在一个n×m的方格图上进行，小明控制的角色开始的时候站在第一行第一列，目标是前往第n行第m列。
+　　方格图上有一些方格是始终安全的，有一些在一段时间是危险的，如果小明控制的角色到达一个方格的时候方格是危险的，则小明输掉了游戏，如果小明的角色到达了第n行第m列，则小明过关。第一行第一列和第n行第m列永远都是安全的。
+　　每个单位时间，小明的角色必须向上下左右四个方向相邻的方格中的一个移动一格。
+　　经过很多次尝试，小明掌握了方格图的安全和危险的规律：每一个方格出现危险的时间一定是连续的。并且，小明还掌握了每个方格在哪段时间是危险的。
+　　现在，小明想知道，自己最快经过几个时间单位可以达到第n行第m列过关。</p>
+<h4 id="输入格式">输入格式</h4>
+<p>　　输入的第一行包含三个整数n, m, t，用一个空格分隔，表示方格图的行数n、列数m，以及方格图中有危险的方格数量。
+　　接下来t行，每行4个整数r, c, a, b，表示第r行第c列的方格在第a个时刻到第b个时刻之间是危险的，包括a和b。游戏开始时的时刻为0。输入数据保证r和c不同时为1，而且当r为n时c不为m。一个方格只有一段时间是危险的（或者说不会出现两行拥有相同的r和c）。</p>
+<h4 id="输出格式">输出格式</h4>
+<p>　　输出一个整数，表示小明最快经过几个时间单位可以过关。输入数据保证小明一定可以过关。</p>
+<h4 id="样例输入">样例输入</h4>
+<p>3 3 3
+2 1 1 1
+1 3 2 10
+2 2 2 10</p>
+<h4 id="样例输出">样例输出</h4>
+<p>6</p>
+<h4 id="样例说明">样例说明</h4>
+<p>　　第2行第1列时刻1是危险的，因此第一步必须走到第1行第2列。
+　　第二步可以走到第1行第1列，第三步走到第2行第1列，后面经过第3行第1列、第3行第2列到达第3行第3列。</p>
+<h4 id="评测用例规模与约定">评测用例规模与约定</h4>
+<p>前30%的评测用例满足：0 &lt; n, m ≤ 10，0 ≤ t &lt; 99。
+　　所有评测用例满足：0 &lt; n, m ≤ 100，0 ≤ t &lt; 9999，1 ≤ r ≤ n，1 ≤ c ≤ m，0 ≤ a ≤ b ≤ 100。</p>
+<h3 id="分析">分析</h3>
+<p>在一个方格上找终点是bfs问题,通过bfs搜索就可以找到终点.</p>
+<p>bfs搜索的过程类似一个多线程的过程,一个节点在能在一层扩展出多个点,但是这个多个点还是一个一个来的,因此会出现多次到达同一个点的问题,因此需要记录已经到过点的避免重复访问的问题.</p>
+<p>这个题有一个点很重要,因为障碍物是随时间出现的,因此会出现转圈的问题,就是经过一个点一段时间后又回到了这个点,因此记录visit的数组不能是二维的,需要多一维时间,这样的话不同的时间能都重复到这个点</p>
+<h4 id="关于记录visited数组">关于记录visited数组</h4>
+<p>记录visit最重要的目的是防止重复访问降低时间复杂度.</p>
+<p>假设队列中取出3,3-&gt;4,如果不把3标记,在遇到4的时候又会访问3,造成重复,同时1,2都能到达3,不记录的话也会出现重复</p>
+<p>带有时间的也一样,1时刻从a-&gt;b ,a-&gt;c,在2时刻b-&gt;d,这是c-&gt;d就不行了,因为在3时刻从d开始出发的情况已经被讨论了,因此避免重复访问,不过加了时间可以让节点走回来,在3时刻d-&gt;b是可以的.但是一般情况下不会让你回来的,因为这样意义不大,时间最短的一般都是不走回头路的.</p>
+<p>当然即便在正常的情况下(最普通bfs)你按照走回来的方法写能得到正确的路径,但是时间较差,因为最短的情况显然不走回头路,但是正常的情况也在你的bfs中讨论了,因此只输出最优的,不存在原理上的错误</p>
+<p><strong>小结</strong></p>
+<p>不管你记录不记录visit数组,应该都能得出答案,但是如果记录visit时间复杂度会大大降低,毕竟免去了重复的工作.</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

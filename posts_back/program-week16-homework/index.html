@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program-week16-homework - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="Program-week16-homework" />
+<meta property="og:description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数 解法 直接把每一位分离,然后用个桶排就行了 code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/program-week16-homework/" />
+<meta property="article:published_time" content="2020-06-04T23:25:32+00:00" />
+<meta property="article:modified_time" content="2020-06-04T23:25:32+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week16-homework"/>
+<meta name="twitter:description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数 解法 直接把每一位分离,然后用个桶排就行了 code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/program-week16-homework/" /><link rel="prev" href="http://example.org/posts_back/program-week14-homework/" /><link rel="next" href="http://example.org/posts_back/program-week15-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program-week16-homework",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/program-week16-homework\/"
+        },"genre": "posts_back","keywords": "Program, homework","wordcount":  1921 ,
+        "url": "http:\/\/example.org\/posts_back\/program-week16-homework\/","datePublished": "2020-06-04T23:25:32+00:00","dateModified": "2020-06-04T23:25:32+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Program-week16-homework</h1><div class="content" id="content"><h1 id="week16-csp">week16-CSP</h1>
+<h2 id="a---tt数鸭子">A - TT数鸭子</h2>
+<h3 id="题面">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png"
+        data-srcset="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png, https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png 1.5x, https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png"
+        title="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png" /></p>
+<p>数位计数,统计一个数中每一位上不同数字的个数</p>
+<h3 id="解法">解法</h3>
+<p>直接把每一位分离,然后用个桶排就行了</p>
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">getDif</span><span class="p">(</span><span class="n">ll</span> <span class="n">temp</span><span class="p">)</span><span class="c1">//统计
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">num</span><span class="p">));</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="c1">//分离
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">num</span><span class="p">[</span><span class="n">temp</span><span class="o">%</span><span class="mi">10</span><span class="p">]</span> <span class="o">++</span><span class="p">;</span>
+        <span class="n">temp</span><span class="o">/=</span><span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span><span class="c1">//只要有就计数
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>   
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">cur</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cur</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">getDif</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span><span class="c1">//总个数
+</span><span class="c1"></span>            <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">cnt</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>    
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
+<p>题目难度不大,不过题目的描述有点坑,k本身最大就是10</p>
+<h2 id="b---zjm要抵御宇宙射线">B - ZJM要抵御宇宙射线</h2>
+<h3 id="题面-1">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png"
+        data-srcset="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png, https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png 1.5x, https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png"
+        title="image-20200604233248190" /></p>
+<p>在一堆点中画一个圆,求出圆的最小半径的平方,圆心限制在给定的点上</p>
+<h3 id="解法-1">解法</h3>
+<p>复杂度为O(n^2^)</p>
+<p>每一个点都求与其他点的距离,然后找出最远的距离,然后从这些距离中找出最小的距离.</p>
+<p>注意要注意一点,求得都是平方</p>
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">posi</span><span class="p">;</span><span class="c1">//每一个点
+</span><span class="c1"></span><span class="kt">double</span> <span class="n">dis</span><span class="p">[</span><span class="mi">1005</span><span class="p">];</span><span class="c1">//每一个点的最大距离
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">cur_x</span><span class="p">,</span><span class="n">cur_y</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">temp_min</span><span class="o">=</span><span class="mf">4e18</span><span class="p">;</span><span class="c1">//这个一定要开大!!!!! 平方!!!!!
+</span><span class="c1"></span>    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lf%lf&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cur_x</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cur_y</span><span class="p">);</span>
+        <span class="n">posi</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">cur_x</span><span class="p">,</span><span class="n">cur_y</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">posi</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">posi</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="c1">//排序,因为输出要求从小到大
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">posi</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">cur_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//当前节点的最远距离
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">posi</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">!=</span><span class="n">j</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">double</span> <span class="n">x_dis</span> <span class="o">=</span> <span class="n">posi</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="o">-</span><span class="n">posi</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
+                <span class="kt">double</span> <span class="n">y_dis</span> <span class="o">=</span> <span class="n">posi</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span> <span class="o">-</span> <span class="n">posi</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+                <span class="kt">double</span> <span class="n">temp_dis</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">x_dis</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">pow</span><span class="p">(</span><span class="n">y_dis</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="c1">//勾股,直接半径平方
+</span><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">temp_dis</span><span class="o">&gt;</span><span class="n">cur_max</span><span class="p">)</span><span class="c1">//求最大
+</span><span class="c1"></span>                    <span class="n">cur_max</span> <span class="o">=</span> <span class="n">temp_dis</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_max</span><span class="p">;</span><span class="c1">//记录
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">ptr</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">temp_min</span><span class="p">)</span><span class="c1">//找最小的
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">ptr</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">temp_min</span> <span class="o">=</span> <span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.2f %.2f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">posi</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="n">posi</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">second</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.2f&#34;</span><span class="p">,</span><span class="n">temp_min</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
+<p>这道题本身非常简单,但是这次还是没有拿全分,主要原因是temp_min开小了.后几个点的数据范围算出的平方已经到了e10,但是一开始只开了e7,导致错误,double能开非常大,毕竟IEEE754</p>
+<h2 id="c---宇宙狗的危机">C - 宇宙狗的危机</h2>
+<h3 id="题面-2">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png"
+        data-srcset="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png, https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png 1.5x, https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png"
+        title="image-20200604234553328" /></p>
+<p>找一个二叉搜索树,满足gcd条件</p>
+<h3 id="解法-2">解法</h3>
+<blockquote>
+<p>讲道理,完全想不到</p>
+</blockquote>
+<p>首先给出的序列是有序的,而二叉搜索树中序遍历的结果也是有序的,因此我们要做的就是在给定序列上反向中序遍历,方法是使用区间dp</p>
+<p>最朴素的想法是dp[i][j][t],表示从i-j以t为根能建立满足条件的BST,但是这样做复杂度太高(大约O(n^4^)),因此需要压缩,这里给出的压缩方法是左右子树的方法.</p>
+<p>dp[i][j][0]表示从i-j可以作为左子树,而这个左子树的根必然是j+1,同理dp[i][j][1]是右子树,根是i-1,这样复杂度能降到O(n^3^)，每次只需要判断这个区间能不能成为左子树或者右子树就可以了。</p>
+<p>除此之外gcd的结果使用一个数组进行记录，这样能优化掉log n的复杂度。</p>
+<p>这次为了方便使用自上而下的方法（记忆化DFS），常数可能大一些，但是基本复杂度应该是可以的，这样就能过了。</p>
+<h3 id="code-2">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">705</span><span class="p">];</span><span class="c1">//原始数据
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">ans</span><span class="p">[</span><span class="mi">705</span><span class="p">][</span><span class="mi">705</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span><span class="c1">//左右子树
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">g</span><span class="p">[</span><span class="mi">705</span><span class="p">][</span><span class="mi">705</span><span class="p">];</span><span class="c1">//gcd结果
+</span><span class="c1"></span>
+<span class="kr">inline</span> <span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);}</span>
+
+<span class="kt">int</span> <span class="nf">dfs_check</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dir</span><span class="p">)</span><span class="c1">//0 左子树 1 右子树
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="n">dir</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>   <span class="k">return</span> <span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="n">dir</span><span class="p">];</span><span class="c1">//有结果直接返回
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">root</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dir</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//左子树还是右子树
+</span><span class="c1"></span>        <span class="n">root</span> <span class="o">=</span> <span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span> 
+        <span class="n">root</span> <span class="o">=</span> <span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//遍历区间，判断其是否是左(右)子树，两个条件，gcd&gt;1,区间本身是树
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">root</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="c1">//能连接
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">l</span><span class="p">)</span><span class="c1">//边界单独处理
+</span><span class="c1"></span>            <span class="p">{</span>   
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//已存在就继续了
+</span><span class="c1"></span>                    <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//能成为子树
+</span><span class="c1"></span>                    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//该区间本身能成为一棵树
+</span><span class="c1"></span>                    <span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfs_check</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//能成为树返回1
+</span><span class="c1"></span>                    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//不能成为左右子树
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">call_dfs</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//从最顶层开始，遍历一遍，只要返回1就满足题目条件
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//边界
+</span><span class="c1"></span>            <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span><span class="c1">//一边判断一边记忆化
+</span><span class="c1"></span>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+        <span class="k">else</span><span class="c1">//中间
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(((</span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">ans</span><span class="p">));</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">g</span><span class="p">));</span>
+        <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//初始化边界，似乎可以不用
+</span><span class="c1"></span>        <span class="n">ans</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//gcd情况
+</span><span class="c1"></span>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//初始化，区间只有一个的情况
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">else</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span> <span class="p">;</span>
+            <span class="k">else</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">call_dfs</span><span class="p">())</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Yes</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="k">else</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;No</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-2">总结</h3>
+<p>这道题在考场上没有想到使用dp的方法，我一直在想是不是先建一个图，然后在图上搜索一个二叉搜索树，然而这样根本行不通，甚至前几个暴力的分也弄到。比较核心的是二叉搜索树的中序遍历是有序的，给出的数据是有序的，因此应该从中序遍历的反过程去想。</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

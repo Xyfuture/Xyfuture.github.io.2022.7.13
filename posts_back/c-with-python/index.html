@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>c_with_python - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="c_with_python" />
+<meta property="og:description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Pyth" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/c-with-python/" />
+<meta property="article:published_time" content="2020-03-15T22:46:29+00:00" />
+<meta property="article:modified_time" content="2020-03-15T22:46:29+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="c_with_python"/>
+<meta name="twitter:description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Pyth"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/c-with-python/" /><link rel="prev" href="http://example.org/posts_back/program-week4-homework/" /><link rel="next" href="http://example.org/posts_back/program-week5-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "c_with_python",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/c-with-python\/"
+        },"genre": "posts_back","keywords": "python, cpp","wordcount":  1022 ,
+        "url": "http:\/\/example.org\/posts_back\/c-with-python\/","datePublished": "2020-03-15T22:46:29+00:00","dateModified": "2020-03-15T22:46:29+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">c_with_python</h1><div class="content" id="content"><blockquote>
+<p>最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用</p>
+</blockquote>
+<h1 id="c与python">C与python</h1>
+<p>python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中<code>include&lt;Python.h&gt;</code>就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译</p>
+<p>要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.</p>
+<p>python作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11</p>
+<h1 id="conda">conda</h1>
+<p>conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样</p>
+<h1 id="graphviz">graphviz</h1>
+<p>这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素</p>
+<h1 id="tkinter">tkinter</h1>
+<p>tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的</p>
+<p><strong>要注意的几点</strong></p>
+<p>tkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.</p>
+<p>tkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll</p>
+<h1 id="conda-base-powershell">conda base powershell</h1>
+<p>在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的</p>
+<h2 id="c调用python参考">C调用python参考</h2>
+<p><a href="https://docs.python.org/zh-cn/3.7/c-api/" target="_blank" rel="noopener noreffer">官方中文</a> 确实有中文,但是感觉写的不怎么好</p>
+<p><a href="https://blog.csdn.net/vampirem/article/details/12948955" target="_blank" rel="noopener noreffer">转化为python变量</a> 写的不错</p>
+<p><a href="https://zhuanlan.zhihu.com/p/25888215" target="_blank" rel="noopener noreffer">完整程序 </a> 给了不错的例子,包含大部分调用</p>
+<p><a href="https://www.jb51.net/article/64094.htm" target="_blank" rel="noopener noreffer">简介</a></p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

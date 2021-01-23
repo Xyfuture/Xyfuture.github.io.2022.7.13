@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program_week3_homework - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="Program_week3_homework" />
+<meta property="og:description" content="week3-homework 本次作业的主要内容是DFS和贪心算法,贪心算法看似简单但是证明存在一定难度 A 选数问题 ZJM友情客串 题意 题面是英文,但是比较容易理解,就是说" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/program-week3-homework/" />
+<meta property="article:published_time" content="2020-03-05T22:40:33+00:00" />
+<meta property="article:modified_time" content="2020-03-05T22:40:33+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program_week3_homework"/>
+<meta name="twitter:description" content="week3-homework 本次作业的主要内容是DFS和贪心算法,贪心算法看似简单但是证明存在一定难度 A 选数问题 ZJM友情客串 题意 题面是英文,但是比较容易理解,就是说"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/program-week3-homework/" /><link rel="prev" href="http://example.org/posts_back/%E7%A8%8B%E8%AE%BE-week3/" /><link rel="next" href="http://example.org/posts_back/%E8%AE%A1%E7%BB%84-%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program_week3_homework",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/program-week3-homework\/"
+        },"genre": "posts_back","keywords": "Program, homework","wordcount":  1896 ,
+        "url": "http:\/\/example.org\/posts_back\/program-week3-homework\/","datePublished": "2020-03-05T22:40:33+00:00","dateModified": "2020-03-05T22:40:33+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Program_week3_homework</h1><div class="content" id="content"><h1 id="week3-homework">week3-homework</h1>
+<blockquote>
+<p>本次作业的主要内容是DFS和贪心算法,贪心算法看似简单但是证明存在一定难度</p>
+</blockquote>
+<h2 id="a-选数问题">A 选数问题</h2>
+<blockquote>
+<p>ZJM友情客串</p>
+</blockquote>
+<h3 id="题意">题意</h3>
+<p>题面是英文,但是比较容易理解,就是说给了一堆正数,让你从正数中选出几个数,使得他们相加得到给定的数</p>
+<h3 id="解法">解法</h3>
+<p>解决方法就是DFS,感觉更像普通递归,递归函数 <code>void dfs(int data[],int s,int l,int ans)</code>
+这个函数data是输入的数组,s是开始搜索的位置,s之前的都不能用,l是第几层,到达指定层之后就会停住,ans是上一层传来的答案.</p>
+<p>这样的话,如果当前层到了指定层就从s开始扫描,如果+ans能等于给定值计数增加,扫描结束则退出,如果不是指定层,则从s开始扫描,进行递归<code>dfs(data,i,l+1,ans+data[i])</code>进入下一层</p>
+<p>这样做的话能保证所有组合都是出现的,而且不会出现重复,为了优化性能,在到达指定层前,ans就超了指定答案时不进行递归.</p>
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//全局变量,总的次数
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">data</span><span class="p">[],</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">ans</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span><span class="c1">//最后一个数,不用向下dfs了
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">s</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">m</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">++</span><span class="p">;</span>   
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">s</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="o">+</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">m</span><span class="p">)</span><span class="c1">//省下来的数还能支撑继续dfs
+</span><span class="c1"></span>                <span class="n">dfs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ans</span><span class="o">+</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// int n,k,m;
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">c</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">count</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
+<p>降低时间复杂度的一个重要的方法是剪枝,可行性剪枝,最优化剪枝,同时加入vis数组避免重复访问.</p>
+<h2 id="b-区间选点">B 区间选点</h2>
+<blockquote>
+<p>贪心</p>
+</blockquote>
+<h3 id="题意-1">题意</h3>
+<p>给定了多个区间,区间之间是有可能重合的,求至少需要多少点才能使每一个区间内能有一个点</p>
+<h3 id="解法-1">解法</h3>
+<p>这是一道贪心问题.首先我们进行排序,首先按照结束时间点,小的在前,如果结束时间点相同则按照开始时间点,小的在前.之后开始贪心,选取当前没有被标记的第一条线段,然后将点放在线段的结尾,更新标记情况,所有包含这个点的线段都被标记,然后重复循环,直到所有线段都被标记.最后输出标记的点数</p>
+<h4 id="证明">证明</h4>
+<p>假设现在存在一组最优解</p>
+<p>首先将所有的区间进行排序,然后按照点进行分组,一个点对应一组,组与组之间没有重复的区间,同时组与组之间满足规定的顺序.
+对于一组而言,总有一个最小的区间(按照上面的排序方法),这个这个区间的末端一定是最小的,然后放置的点一定在末端及其之前,同时组中的其他区间一定能与这个区间重合,那么显然其他的区间的起始点在这个区间的末端前面,那么我们把点放在末端上必然能覆盖组中所有的区间
+因此可以推证贪心能等效一个最优解因此贪心最优.</p>
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">block</span> <span class="c1">//记录线段
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">s</span><span class="p">;</span><span class="c1">//起点
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">e</span><span class="p">;</span><span class="c1">//终点
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">v</span><span class="p">;</span><span class="c1">//标记
+</span><span class="c1"></span>    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">block</span> <span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span><span class="c1">//重载&lt;,用sort
+</span><span class="c1"></span>    <span class="p">{</span>   
+        <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="o">&lt;</span><span class="n">op</span><span class="p">.</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">e</span> <span class="o">==</span> <span class="n">op</span><span class="p">.</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">&gt;</span><span class="n">op</span><span class="p">.</span><span class="n">s</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="c1">// return e&lt;op.e;
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">block</span> <span class="n">data</span><span class="p">[</span><span class="mi">102</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">e</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//被标记的线段数
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//用的点数
+</span><span class="c1"></span>    <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">n</span><span class="p">);</span><span class="c1">//排序
+</span><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="n">count</span><span class="o">!=</span><span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">count</span><span class="p">;</span><span class="c1">//因为是有序的,所以count之前的都被标记了
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">count</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">s</span><span class="o">&lt;=</span><span class="n">data</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">e</span><span class="o">&amp;&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">v</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span><span class="c1">//看看能去掉几个区间
+</span><span class="c1"></span>                <span class="n">count</span><span class="o">++</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">v</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="k">break</span><span class="p">;</span>  <span class="c1">//因为有序,可以用后面的覆盖,去了会TLE,但是我觉得去了时间复杂度也没有提升数量级
+</span><span class="c1"></span>        <span class="n">ans</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ans</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
+<p>贪心规则一开始我想的不对,我一开始想的是从重合部分最多的地方下手放点,但是这个很容易证明错误,但是居然过了OJ&hellip;后来怎么也证明不出来发现错了.</p>
+<p>贪心法证明还是感觉有点难,有点玄学的感觉,一般用反正或者转化最优解的方法,实在证不出来还是先交几发看看猜的对不对吧,虽然过了OJ不说明做的一定对</p>
+<h2 id="c-区间覆盖">C 区间覆盖</h2>
+<blockquote>
+<p>贪心</p>
+</blockquote>
+<h3 id="题意-2">题意</h3>
+<p>这个题是让我们选区间覆盖给定的区间,找到选取区间最少的情况,注意一点区间是离散的,就是说(1,2) (3,4)是能覆盖(1,4)的,是离散的数字区间.</p>
+<h3 id="解法-2">解法</h3>
+<p>解法还是贪心的原则,首先排序,按照区间起点从小到大排序,然后选出起点能与上一段接上的(起始时为0)的区间,然后从这些区间中选出终点最靠后的,然后用这个区间的终点为现在的长度,重复这个循环,如果能达到指定的长度则输出结果,如果长度不能被更新则输出-1</p>
+<h3 id="code-2">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="mi">26000</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">visited</span><span class="p">[</span><span class="mi">26000</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">visited</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">visited</span><span class="p">));</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">maxEnd</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">n</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span><span class="o">!=</span><span class="n">m</span><span class="p">)</span><span class="c1">//达到条件退出
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">t</span><span class="o">++</span> <span class="p">)</span>
+            <span class="p">{</span>            
+                <span class="k">if</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">first</span><span class="o">&lt;=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="c1">//满足当前区间能和总的区间连上
+</span><span class="c1"></span>                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span><span class="c1">//没有被访问
+</span><span class="c1"></span>                    <span class="p">{</span>
+                        <span class="n">visited</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//标记
+</span><span class="c1"></span>                        <span class="k">if</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">second</span><span class="o">&gt;</span><span class="n">maxEnd</span><span class="p">)</span><span class="c1">//贪心最优
+</span><span class="c1"></span>                            <span class="n">maxEnd</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">second</span><span class="p">;</span><span class="c1">//更新
+</span><span class="c1"></span>                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                    <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">&lt;</span><span class="n">maxEnd</span><span class="p">)</span><span class="c1">//更新下一步的起始点
+</span><span class="c1"></span>                <span class="n">j</span> <span class="o">=</span> <span class="n">maxEnd</span><span class="p">;</span>
+            <span class="k">else</span><span class="c1">//要是这次不能更新说明不能到达目标
+</span><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">maxEnd</span> <span class="o">==</span> <span class="n">m</span><span class="p">)</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">count</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;-1</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span><span class="c1">//无法覆盖
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

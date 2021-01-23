@@ -1,312 +1,205 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>vscode调试配置 | My New Hugo Site</title>
-
-<meta name="keywords" content="软件, 调试" />
-<meta name="description" content="vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。
- 下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧
-下载地址：mingw
-配置json json配置两个文件，一个是编译的tasks，一个是调试的launch,放在.vscode文件夹中
-这里有两个模板
-//tasks.json { &#34;version&#34;: &#34;2.0.0&#34;, &#34;tasks&#34;: [{ &#34;label&#34;: &#34;compile&#34;, &#34;command&#34;: &#34;g&#43;&#43;&#34;, &#34;args&#34;: [ &#34;-g&#34;, &#34;${file}&#34;, &#34;-o&#34;, &#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34; ], &#34;problemMatcher&#34;: { &#34;owner&#34;: &#34;cpp&#34;, &#34;fileLocation&#34;: [ &#34;relative&#34;, &#34;${workspaceRoot}&#34; ], &#34;pattern&#34;: { &#34;regexp&#34;: &#34;^(.*):(\\d&#43;):(\\d&#43;):\\s&#43;(warning|error):\\s&#43;(.*)$&#34;, &#34;file&#34;: 1, &#34;line&#34;: 2, &#34;column&#34;: 3, &#34;severity&#34;: 4, &#34;message&#34;: 5 } }, &#34;group&#34;: { &#34;kind&#34;: &#34;build&#34;, &#34;isDefault&#34;: true } } ] } //launch.json { &#34;version&#34;: &#34;0.2.0&#34;, &#34;configurations&#34;: [ { &#34;name&#34;: &#34;C/C&#43;&#43;&#34;, &#34;type&#34;: &#34;cppdbg&#34;, &#34;request&#34;: &#34;launch&#34;, &#34;program&#34;: &#34;${fileDirname}/${fileBasenameNoExtension}.">
-<meta name="author" content="">
-<link rel="canonical" href="https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/" />
-<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
-    as="style">
-
-<link rel="icon" href="https://xyfuture.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://xyfuture.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://xyfuture.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://xyfuture.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://xyfuture.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.80.0" />
-
-
-<meta property="og:title" content="vscode调试配置" />
-<meta property="og:description" content="vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。
- 下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧
-下载地址：mingw
-配置json json配置两个文件，一个是编译的tasks，一个是调试的launch,放在.vscode文件夹中
-这里有两个模板
-//tasks.json { &#34;version&#34;: &#34;2.0.0&#34;, &#34;tasks&#34;: [{ &#34;label&#34;: &#34;compile&#34;, &#34;command&#34;: &#34;g&#43;&#43;&#34;, &#34;args&#34;: [ &#34;-g&#34;, &#34;${file}&#34;, &#34;-o&#34;, &#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34; ], &#34;problemMatcher&#34;: { &#34;owner&#34;: &#34;cpp&#34;, &#34;fileLocation&#34;: [ &#34;relative&#34;, &#34;${workspaceRoot}&#34; ], &#34;pattern&#34;: { &#34;regexp&#34;: &#34;^(.*):(\\d&#43;):(\\d&#43;):\\s&#43;(warning|error):\\s&#43;(.*)$&#34;, &#34;file&#34;: 1, &#34;line&#34;: 2, &#34;column&#34;: 3, &#34;severity&#34;: 4, &#34;message&#34;: 5 } }, &#34;group&#34;: { &#34;kind&#34;: &#34;build&#34;, &#34;isDefault&#34;: true } } ] } //launch.json { &#34;version&#34;: &#34;0.2.0&#34;, &#34;configurations&#34;: [ { &#34;name&#34;: &#34;C/C&#43;&#43;&#34;, &#34;type&#34;: &#34;cppdbg&#34;, &#34;request&#34;: &#34;launch&#34;, &#34;program&#34;: &#34;${fileDirname}/${fileBasenameNoExtension}." />
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>vscode调试配置 - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="vscode调试配置" />
+<meta property="og:description" content="vscode 配置调试 vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="vscode调试配置"/>
-<meta name="twitter:description" content="vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。
- 下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧
-下载地址：mingw
-配置json json配置两个文件，一个是编译的tasks，一个是调试的launch,放在.vscode文件夹中
-这里有两个模板
-//tasks.json { &#34;version&#34;: &#34;2.0.0&#34;, &#34;tasks&#34;: [{ &#34;label&#34;: &#34;compile&#34;, &#34;command&#34;: &#34;g&#43;&#43;&#34;, &#34;args&#34;: [ &#34;-g&#34;, &#34;${file}&#34;, &#34;-o&#34;, &#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34; ], &#34;problemMatcher&#34;: { &#34;owner&#34;: &#34;cpp&#34;, &#34;fileLocation&#34;: [ &#34;relative&#34;, &#34;${workspaceRoot}&#34; ], &#34;pattern&#34;: { &#34;regexp&#34;: &#34;^(.*):(\\d&#43;):(\\d&#43;):\\s&#43;(warning|error):\\s&#43;(.*)$&#34;, &#34;file&#34;: 1, &#34;line&#34;: 2, &#34;column&#34;: 3, &#34;severity&#34;: 4, &#34;message&#34;: 5 } }, &#34;group&#34;: { &#34;kind&#34;: &#34;build&#34;, &#34;isDefault&#34;: true } } ] } //launch.json { &#34;version&#34;: &#34;0.2.0&#34;, &#34;configurations&#34;: [ { &#34;name&#34;: &#34;C/C&#43;&#43;&#34;, &#34;type&#34;: &#34;cppdbg&#34;, &#34;request&#34;: &#34;launch&#34;, &#34;program&#34;: &#34;${fileDirname}/${fileBasenameNoExtension}."/>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "vscode调试配置",
-  "name": "vscode调试配置",
-  "description": "vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。\n 下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧\n下载地址：mingw\n配 …",
-  "keywords": [
-    "软件", "调试"
-  ],
-  "articleBody": "vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。\n 下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧\n下载地址：mingw\n配置json json配置两个文件，一个是编译的tasks，一个是调试的launch,放在.vscode文件夹中\n这里有两个模板\n//tasks.json { \"version\": \"2.0.0\", \"tasks\": [{ \"label\": \"compile\", \"command\": \"g++\", \"args\": [ \"-g\", \"${file}\", \"-o\", \"${fileDirname}/${fileBasenameNoExtension}.exe\" ], \"problemMatcher\": { \"owner\": \"cpp\", \"fileLocation\": [ \"relative\", \"${workspaceRoot}\" ], \"pattern\": { \"regexp\": \"^(.*):(\\\\d+):(\\\\d+):\\\\s+(warning|error):\\\\s+(.*)$\", \"file\": 1, \"line\": 2, \"column\": 3, \"severity\": 4, \"message\": 5 } }, \"group\": { \"kind\": \"build\", \"isDefault\": true } } ] } //launch.json { \"version\": \"0.2.0\", \"configurations\": [ { \"name\": \"C/C++\", \"type\": \"cppdbg\", \"request\": \"launch\", \"program\": \"${fileDirname}/${fileBasenameNoExtension}.exe\", \"args\": [], \"stopAtEntry\": false, \"cwd\": \"${workspaceFolder}\", \"environment\": [], \"externalConsole\": true,//使用内部会出现问题 \"MIMode\": \"gdb\", \"miDebuggerPath\": \"C:/Program Files/mingw64/bin/gdb.exe\", \"preLaunchTask\": \"compile\",//要和tasks中的label一样 \"setupCommands\": [ { \"description\": \"Enable pretty-printing for gdb\", \"text\": \"-enable-pretty-printing\", \"ignoreFailures\": true } ], }, ] } 配置完后直接在调试界面点运行图标就行了，会自动打开一个新窗口，同dev cpp类似\n问题 主要问题就是如果使用内置的powershell就会出现调试时无法输入的问题，暂时不知道原因，只要把launch.json中的externalConsole选项改成true就可以调用外部console解决这个问题\n",
-  "wordCount" : "114",
-  "inLanguage": "en",
-  "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "0001-01-01T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "My New Hugo Site",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://xyfuture.github.io/favicon.ico"
+<meta name="twitter:description" content="vscode 配置调试 vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/" /><link rel="prev" href="https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/" /><link rel="next" href="https://xyfuture.github.io/posts/program-week1-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "vscode调试配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95\/"
+        },"genre": "posts","keywords": "软件, 调试","wordcount":  526 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
     }
-  }
-}
-</script>
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-
-
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        .theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://xyfuture.github.io/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
-            <span class="logo-switches">
-                <span class="theme-toggle" title="(Alt + T)">
-                    <a id="theme-toggle" accesskey="t">
-                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </a>
-                </span>
-                
-            </span>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
         </div>
-        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
-    </nav>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
 </header>
-
-    <main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">
-      vscode调试配置
-    </h1>
-    <div class="post-description">
-      
-    </div>
-    <div class="post-meta">
-
-    </div>
-  </header> 
-
-  <div class="post-content">
-<h1 id="vscode-配置调试">vscode 配置调试<a hidden class="anchor" aria-hidden="true" href="#vscode-配置调试">#</a></h1>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">vscode调试配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vscode%E4%BD%BF%E7%94%A8/"><i class="far fa-folder fa-fw"></i>vscode使用</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 526 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#下载mingw">下载mingw</a></li>
+    <li><a href="#配置json">配置json</a></li>
+    <li><a href="#问题">问题</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="vscode-配置调试">vscode 配置调试</h1>
 <blockquote>
 <p>vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。</p>
 </blockquote>
-<h2 id="下载mingw">下载mingw<a hidden class="anchor" aria-hidden="true" href="#下载mingw">#</a></h2>
+<h2 id="下载mingw">下载mingw</h2>
 <p>mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧</p>
-<p>下载地址：<a href="http://www.mingw.org/">mingw</a></p>
-<h2 id="配置json">配置json<a hidden class="anchor" aria-hidden="true" href="#配置json">#</a></h2>
+<p>下载地址：<a href="http://www.mingw.org/" target="_blank" rel="noopener noreffer">mingw</a></p>
+<h2 id="配置json">配置json</h2>
 <p>json配置两个文件，一个是编译的tasks，一个是调试的launch,放在.vscode文件夹中</p>
 <p>这里有两个模板</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//tasks.json</span>
-{
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>,
-    <span style="color:#f92672">&#34;tasks&#34;</span>: [{
-            <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;compile&#34;</span>,
-            <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;g++&#34;</span>,
-            <span style="color:#f92672">&#34;args&#34;</span>: [
-                <span style="color:#e6db74">&#34;-g&#34;</span>,
-                <span style="color:#e6db74">&#34;${file}&#34;</span>,
-                <span style="color:#e6db74">&#34;-o&#34;</span>,
-                <span style="color:#e6db74">&#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34;</span>
-            ],
-            <span style="color:#f92672">&#34;problemMatcher&#34;</span>: {
-                <span style="color:#f92672">&#34;owner&#34;</span>: <span style="color:#e6db74">&#34;cpp&#34;</span>,
-                <span style="color:#f92672">&#34;fileLocation&#34;</span>: [
-                    <span style="color:#e6db74">&#34;relative&#34;</span>,
-                    <span style="color:#e6db74">&#34;${workspaceRoot}&#34;</span>
-                ],
-                <span style="color:#f92672">&#34;pattern&#34;</span>: {
-                    <span style="color:#f92672">&#34;regexp&#34;</span>: <span style="color:#e6db74">&#34;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&#34;</span>,
-                    <span style="color:#f92672">&#34;file&#34;</span>: <span style="color:#ae81ff">1</span>,
-                    <span style="color:#f92672">&#34;line&#34;</span>: <span style="color:#ae81ff">2</span>,
-                    <span style="color:#f92672">&#34;column&#34;</span>: <span style="color:#ae81ff">3</span>,
-                    <span style="color:#f92672">&#34;severity&#34;</span>: <span style="color:#ae81ff">4</span>,
-                    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#ae81ff">5</span>
-                }
-            },
-            <span style="color:#f92672">&#34;group&#34;</span>: {
-                <span style="color:#f92672">&#34;kind&#34;</span>: <span style="color:#e6db74">&#34;build&#34;</span>,
-                <span style="color:#f92672">&#34;isDefault&#34;</span>: <span style="color:#66d9ef">true</span>
-            }
-        }
-    ]
-}
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">//launch.json</span>
-{
-    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.2.0&#34;</span>,
-    <span style="color:#f92672">&#34;configurations&#34;</span>: [
-        {
-            <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;C/C++&#34;</span>,
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;cppdbg&#34;</span>,
-            <span style="color:#f92672">&#34;request&#34;</span>: <span style="color:#e6db74">&#34;launch&#34;</span>,
-            <span style="color:#f92672">&#34;program&#34;</span>: <span style="color:#e6db74">&#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34;</span>,
-            <span style="color:#f92672">&#34;args&#34;</span>: [],
-            <span style="color:#f92672">&#34;stopAtEntry&#34;</span>: <span style="color:#66d9ef">false</span>,
-            <span style="color:#f92672">&#34;cwd&#34;</span>: <span style="color:#e6db74">&#34;${workspaceFolder}&#34;</span>,
-            <span style="color:#f92672">&#34;environment&#34;</span>: [],
-            <span style="color:#f92672">&#34;externalConsole&#34;</span>: <span style="color:#66d9ef">true</span>,<span style="color:#960050;background-color:#1e0010">//使用内部会出现问题</span>
-            <span style="color:#f92672">&#34;MIMode&#34;</span>: <span style="color:#e6db74">&#34;gdb&#34;</span>,
-            <span style="color:#f92672">&#34;miDebuggerPath&#34;</span>: <span style="color:#e6db74">&#34;C:/Program Files/mingw64/bin/gdb.exe&#34;</span>,
-            <span style="color:#f92672">&#34;preLaunchTask&#34;</span>: <span style="color:#e6db74">&#34;compile&#34;</span>,<span style="color:#960050;background-color:#1e0010">//要和tasks中的label一样</span>
-            <span style="color:#f92672">&#34;setupCommands&#34;</span>: [
-                {
-                    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Enable pretty-printing for gdb&#34;</span>,
-                    <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;-enable-pretty-printing&#34;</span>,
-                    <span style="color:#f92672">&#34;ignoreFailures&#34;</span>: <span style="color:#66d9ef">true</span>
-                }
-            ],
-        },
-    ]
-}
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//tasks.json</span>
+<span class="p">{</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;tasks&#34;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="nt">&#34;label&#34;</span><span class="p">:</span> <span class="s2">&#34;compile&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;g++&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;-g&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;${file}&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;-o&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34;</span>
+            <span class="p">],</span>
+            <span class="nt">&#34;problemMatcher&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;owner&#34;</span><span class="p">:</span> <span class="s2">&#34;cpp&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;fileLocation&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;relative&#34;</span><span class="p">,</span>
+                    <span class="s2">&#34;${workspaceRoot}&#34;</span>
+                <span class="p">],</span>
+                <span class="nt">&#34;pattern&#34;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">&#34;regexp&#34;</span><span class="p">:</span> <span class="s2">&#34;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="nt">&#34;line&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="nt">&#34;column&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                    <span class="nt">&#34;severity&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                    <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="mi">5</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;build&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;isDefault&#34;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//launch.json</span>
+<span class="p">{</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;C/C++&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;launch&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${fileDirname}/${fileBasenameNoExtension}.exe&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&#34;stopAtEntry&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceFolder}&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;environment&#34;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&#34;externalConsole&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span><span class="err">//使用内部会出现问题</span>
+            <span class="nt">&#34;MIMode&#34;</span><span class="p">:</span> <span class="s2">&#34;gdb&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;miDebuggerPath&#34;</span><span class="p">:</span> <span class="s2">&#34;C:/Program Files/mingw64/bin/gdb.exe&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;preLaunchTask&#34;</span><span class="p">:</span> <span class="s2">&#34;compile&#34;</span><span class="p">,</span><span class="err">//要和tasks中的label一样</span>
+            <span class="nt">&#34;setupCommands&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Enable pretty-printing for gdb&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;-enable-pretty-printing&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;ignoreFailures&#34;</span><span class="p">:</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div><p>配置完后直接在调试界面点运行图标就行了，会自动打开一个新窗口，同dev cpp类似</p>
-<h2 id="问题">问题<a hidden class="anchor" aria-hidden="true" href="#问题">#</a></h2>
+<h2 id="问题">问题</h2>
 <p>主要问题就是如果使用内置的powershell就会出现调试时无法输入的问题，暂时不知道原因，只要把launch.json中的externalConsole选项改成true就可以调用外部console解决这个问题</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a>,&nbsp;<a href="/tags/%E8%B0%83%E8%AF%95/">调试</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/" class="prev" rel="prev" title="计组-数字编码"><i class="fas fa-angle-left fa-fw"></i>计组-数字编码</a>
+            <a href="/posts/program-week1-homework/" class="next" rel="next" title="Program-BFS">Program-BFS<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://xyfuture.github.io/tags/%E8%BD%AF%E4%BB%B6/">软件</a></li>
-      <li><a href="https://xyfuture.github.io/tags/%E8%B0%83%E8%AF%95/">调试</a></li>
-    </ul>
-  </footer>
-</article>
-    </main><footer class="footer">
-    <span>&copy; 2021 <a href="https://xyfuture.github.io/">My New Hugo Site</a></span>
-    <span>&middot;</span>
-    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
-    <span>&middot;</span>
-    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
 
-
-
-<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
-    onload="hljs.initHighlightingOnLoad();"></script>
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.replaceState(null, null, `#${id}`);
-            }
-        });
-    });
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

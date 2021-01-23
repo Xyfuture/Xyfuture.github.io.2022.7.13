@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>计组-数字编码 - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="计组-数字编码" />
+<meta property="og:description" content="计组 数字编码 数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次 以下讨论的都是有符" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="计组-数字编码"/>
+<meta name="twitter:description" content="计组 数字编码 数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次 以下讨论的都是有符"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81/" /><link rel="next" href="http://example.org/posts_back/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计组-数字编码",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81\/"
+        },"genre": "posts_back","keywords": "进制转换, 补码原码","wordcount":  2706 ,
+        "url": "http:\/\/example.org\/posts_back\/%E8%AE%A1%E7%BB%84-%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81\/","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">计组-数字编码</h1><div class="content" id="content"><h1 id="计组-数字编码">计组 数字编码</h1>
+<blockquote>
+<p>数字编码在计算机组成中非常重要，但是之前看了许多次都没有建立起完整的概念，这次借助计组和数字逻辑的机会总结一次</p>
+<p>以下讨论的都是<strong>有符号数</strong>，无符号的数较为简单，不写了</p>
+</blockquote>
+<h2 id="概念">概念</h2>
+<p>真值 原码 补码 反码 移码 （机器数）</p>
+<p>定点数(定点整数 定点小数) 浮点数</p>
+<p>算数移位 逻辑移位</p>
+<h2 id="定点数">定点数</h2>
+<p>定点数就是小数点固定的数，要么是完全的整数，没有小数部分，要么是完全的小数，没有整数部分，很少见到小数点在中间的定点数。</p>
+<h3 id="真值">真值</h3>
+<p>真值就是数学中实际的值可以是十进制表示的（比如123，-321），也可以是完全的二进制表示的，最主要的是带有符号（+ -）,是我们人看到的最为直观的数据，不是给机器看的。</p>
+<p>定点整数： +123 ，-321</p>
+<p>定点小数：+0.123，-0.321</p>
+<p>正号一般省略，定点小数的0一定要带着，因为靠0和小数点来指明这个数小数</p>
+<h3 id="原码">原码</h3>
+<p>原码将真值的符号部分用数值表示了，这样的话相较于真值就多了一位。</p>
+<p>原码组成： 符号部分+数值部分</p>
+<p>这两部分是相对分离的，一般单独对这两部分操作，不会合在一起操作</p>
+<p>正数： 0+真值</p>
+<p>负数： 1+真值</p>
+<p>原码其实只解决了正负的二进制表示，但是没法解决运算问题，因此不能在机内直接使用，下面介绍的补码可以直接使用</p>
+<p>原码存在+0，-0一言，因为原码只管符号位所以数值部分全为0，符号位为1 or 0 都表示真值的0</p>
+<table>
+<thead>
+<tr>
+<th>真值</th>
+<th>原码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+1001</td>
+<td>01001</td>
+</tr>
+<tr>
+<td>- 1100</td>
+<td>11100</td>
+</tr>
+<tr>
+<td>+0.1101</td>
+<td>0.1101</td>
+</tr>
+<tr>
+<td>-0.1011</td>
+<td>1.1011</td>
+</tr>
+</tbody>
+</table>
+<h3 id="补码">补码</h3>
+<p>补码是非常重要的，补码采取了取模的方法使得正负之间能够通过加法进行运算，通常内存中的数都是用补码进行表达的。</p>
+<p>部分推导：</p>
+<p>首先我们要明白取模的概念（下面以10进制为例）</p>
+<p>我们要建立一个mod16的系统所有数都要模16，因此实际上就0-15这16个数字，其他的无论正数还是负数都可以转换为0-15(加减16即可得到)</p>
+<p>例如 -10 &ndash;&gt; -10+16 = 6     18&ndash;&gt;18-16 = 2</p>
+<p>那么正数和负数之间的<strong>加法</strong>都可以用0-15进行</p>
+<p>例如 -2 + 3 = 1</p>
+<p>首先把所有数转换为0-15，-2&ndash;&gt;14,然后让这两个数相加得到的数继续mod16得到结果，（14+3）%16 =1，就是正确结果</p>
+<p>这是一个简单的原理，但是还有许多问题需要解决，比如溢出，范围，正负号等等，下面转为为char的表示</p>
+<p>char是8位的，表示-128-127范围之间的数据，最高位是符号位，数值部分用到了7位，能表达$2^7$个数，因此我们采取mod $2^7$的方案,因为mod$2^7$正好是$0\sim2^7-1$这$2^7$个数，正好能用数值部分的7位表达，这样的话我们把原码的正数和负数的数值部分都转换为mod$2^7$的数。</p>
+<p>因为我们只表示-128-127，因此正数直接不变，负数数值部分取反加一就行了，负数的取反加一是因为1000，0000 + x(负数) =  想要的数，x(数值部分取反)+x（数值） = 0111，1111 再+1就成了 1 000，0000了。</p>
+<p>通过上述的步骤我们得到了数值部分，符号部分直接正数为0 负数为1就行了(这个1可以理解为经过转化(+1000,0000)的)，至此补码已经得到了。</p>
+<p>运算过程中直接相加就完事了，后7位(数值部分)一直是mod $2^7$，如果发生进位是最有意思的</p>
+<p>正+正 负+负 如果进到符号位说明溢出</p>
+<p>正+负 永远不会溢出，进位说明正数比较大，直接让这个数变成正数了（符号位改变），后面数值部分根据mod原理还是对的，如果没进位，说明负数大，符号位还是1，数是负的，数值部分还是mod 的值，反向mod回去是真值</p>
+<p>正 - 正 怎么操作？</p>
+<p>其实先将后面的正数转换为负数再执行上面的加法，转换过程是所有位(包括符号位)取反加一(原理自己想，相反数+自身 = 0)</p>
+<p>好了前面说了这么多，总结为一句话补码是为了加减操作而生的</p>
+<p><strong>转换</strong></p>
+<p>正数： 和原码相同</p>
+<p>负数： 符号位为1 ，数值部分原码的数值部分取反加一</p>
+<table>
+<thead>
+<tr>
+<th>真值</th>
+<th>原码</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+1001</td>
+<td>01001</td>
+<td>01001</td>
+</tr>
+<tr>
+<td>- 1100</td>
+<td>11100</td>
+<td>10100</td>
+</tr>
+<tr>
+<td>+0.1101</td>
+<td>0.1101</td>
+<td>0.1101</td>
+</tr>
+<tr>
+<td>-0.1011</td>
+<td>1.1011</td>
+<td>1.0101</td>
+</tr>
+</tbody>
+</table>
+<p><strong>补码没有正负0之分</strong>，只有0000，0000表示0，1000，0000表示-128，这是因为-128不mod值是0，能配上数值部分，1表示是负的，经过mod处理的，这个-128没法再原码和反码中表示的</p>
+<h3 id="反码">反码</h3>
+<p>反码平时用的比较少，转换也非常简单</p>
+<p>正数：同原码相同</p>
+<p>负数：符号位置1，数值部分取反</p>
+<h3 id="范围">范围</h3>
+<p>原码，反码，补码都用于表示数据但是表示的范围并不是一样大的，同时定点数表示小数也是离散的，因此需要记录一下他们的范围</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png"
+        data-srcset="https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png, https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png 1.5x, https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png"
+        title="https://i.loli.net/2020/02/24/k3w14lfEN5I9dYG.png" /></p>
+<p>如何计算？</p>
+<p>有两种方式，第一种是最简单的按照10进制的转换规则，计算一个等比数列的和。第二种是在1111的基础上加上1然后得到1，0000然后减去1就行了</p>
+<p>注意补码在负数上多一个，原码和补码中没有这个值</p>
+<h3 id="总结">总结</h3>
+<p>原码，补码，反码都是机器数，我们常用原码和补码，原码更加直观，补码方便计算机的运算，他们之间也有转换关系</p>
+<p>正数：原码，补码，反码完全相同</p>
+<p>负数：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png"
+        data-srcset="https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png, https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png 1.5x, https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png"
+        title="https://i.loli.net/2020/02/24/TL6OAECehiZNkFr.png" /></p>
+<h2 id="浮点数">浮点数</h2>
+<h3 id="朴素的数学表示">朴素的数学表示</h3>
+<p>浮点数是基于科学计数法的
+$$
+N = S*r^j
+$$
+N是实际的数，S是尾数，r是基数，j是阶数</p>
+<p>大致就这样，因为阶数可以变动所以小数点是不定位置的所以叫浮点数</p>
+<h3 id="朴素的浮点数表示">朴素的浮点数表示</h3>
+<p>朴素的浮点数比较随意，前半部是阶数，后半部分是尾数，都用上面说的定点数表示<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png"
+        data-srcset="https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png, https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png 1.5x, https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png"
+        title="https://i.loli.net/2020/02/24/1RNCr4UjyMK9nx3.png" /></p>
+<p>这里阶码和尾数可用原码，补码表示，比较乱，我盲猜机内统一用补码表示，不过现在应该没有这样的机器了，毕竟IEEE 754真香，一个注意的点是用补码范围会大一些，我们考试啥的用原码多</p>
+<h4 id="浮点数的范围">浮点数的范围</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png"
+        data-srcset="https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png, https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png 1.5x, https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png"
+        title="https://i.loli.net/2020/02/24/DScrEFM8GZotk7x.png" /></p>
+<p>看看就行</p>
+<h3 id="规范化的浮点数">规范化的浮点数</h3>
+<p>规范化要求尾数最高位必须是1，比如0.1xxx，这样的话统一了阶码，然后这样的话采取原码表示尾数，会缩小一定的范围。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png"
+        data-srcset="https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png, https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png 1.5x, https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png"
+        title="https://i.loli.net/2020/02/24/mIPKdtufgzrFqeT.png" /></p>
+<h3 id="ieee754">IEEE754</h3>
+<h4 id="移码">移码</h4>
+<p>移码用的比较少，主要是对阶</p>
+<p>操作所有数都加上一个统一的值，然后使所有负数都变成正数</p>
+<p>比如加上$2^{n-1}$, $2^{n-1}$有种简便方法，就是所有补码直接把符号位取反</p>
+<h4 id="标准">标准</h4>
+<blockquote>
+<p>参考：[百度百科]([https://baike.baidu.com/item/IEEE%20754/3869922](<a href="https://baike.baidu.com/item/IEEE">https://baike.baidu.com/item/IEEE</a> 754/3869922))</p>
+</blockquote>
+<p>1位符号8位阶码23位尾数</p>
+<p>尾数要求1.xxxx，1要省略，<strong>尾数用原码表示</strong></p>
+<p>阶码是移码，要加127（$2^7-1$）</p>
+<p>除此之外还有一堆特殊值的规定可以参考百科</p>
+<p>IEEE 754是现在较为通用的浮点数表示标准，用这个就行了</p>
+<h2 id="算数位移">算数位移</h2>
+<h3 id="一点点数学知识">一点点数学知识</h3>
+<p>算不上数学知识就是正数的二进制转换
+$$
+110010=1<em>2^5+1</em>2^4+0<em>2^3+0</em>2^2+1<em>2^1+0</em>2^0
+$$
+基于这个一位就相当于乘或除2，如果移除了1，就会丢失精度</p>
+<h3 id="移位操作">移位操作</h3>
+<p>算数位移是针对有符号的定点数的，一般是整数，算数位移可以理解为乘2和除2的操作，结合左右位移就能实现乘法和除法了</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png"
+        data-srcset="https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png, https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png 1.5x, https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png"
+        title="https://i.loli.net/2020/02/24/GtQd4cRBm1xWeH2.png" /></p>
+<p>这张图写的很好，注意一个点 <strong>符号位不变</strong>，正数永远是正数，负数永远是负数</p>
+<p>本身都是补0的，但是因为负数的反码和补码的规则导致会有变化。</p>
+<p>左移是*2，把1挤出去会发生溢出(原码)</p>
+<p>右移是÷，把1挤出去会丢失精度(原码)</p>
+<h2 id="逻辑移位">逻辑移位</h2>
+<p>逻辑移位针对无符号数，直接移动补零就ok了</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

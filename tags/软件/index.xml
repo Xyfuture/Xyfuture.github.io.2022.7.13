@@ -1,24 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>软件 on My New Hugo Site</title>
-    <link>https://xyfuture.github.io/tags/%E8%BD%AF%E4%BB%B6/</link>
-    <description>Recent content in 软件 on My New Hugo Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://xyfuture.github.io/tags/%E8%BD%AF%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>vscode调试配置</title>
-      <link>https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</guid>
-      <description>vscode 配置调试  vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配置，用powershell敲命令运行，虽然这样功能更为强大，但是轻度使用是不方便的。
- 下载mingw mingw是windows上比较好用的编译器，我们就用它作为我们的编译器吧
-下载地址：mingw
-配置json json配置两个文件，一个是编译的tasks，一个是调试的launch,放在.vscode文件夹中
-这里有两个模板
-//tasks.json { &amp;#34;version&amp;#34;: &amp;#34;2.0.0&amp;#34;, &amp;#34;tasks&amp;#34;: [{ &amp;#34;label&amp;#34;: &amp;#34;compile&amp;#34;, &amp;#34;command&amp;#34;: &amp;#34;g++&amp;#34;, &amp;#34;args&amp;#34;: [ &amp;#34;-g&amp;#34;, &amp;#34;${file}&amp;#34;, &amp;#34;-o&amp;#34;, &amp;#34;${fileDirname}/${fileBasenameNoExtension}.exe&amp;#34; ], &amp;#34;problemMatcher&amp;#34;: { &amp;#34;owner&amp;#34;: &amp;#34;cpp&amp;#34;, &amp;#34;fileLocation&amp;#34;: [ &amp;#34;relative&amp;#34;, &amp;#34;${workspaceRoot}&amp;#34; ], &amp;#34;pattern&amp;#34;: { &amp;#34;regexp&amp;#34;: &amp;#34;^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$&amp;#34;, &amp;#34;file&amp;#34;: 1, &amp;#34;line&amp;#34;: 2, &amp;#34;column&amp;#34;: 3, &amp;#34;severity&amp;#34;: 4, &amp;#34;message&amp;#34;: 5 } }, &amp;#34;group&amp;#34;: { &amp;#34;kind&amp;#34;: &amp;#34;build&amp;#34;, &amp;#34;isDefault&amp;#34;: true } } ] } //launch.json { &amp;#34;version&amp;#34;: &amp;#34;0.2.0&amp;#34;, &amp;#34;configurations&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;C/C++&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;cppdbg&amp;#34;, &amp;#34;request&amp;#34;: &amp;#34;launch&amp;#34;, &amp;#34;program&amp;#34;: &amp;#34;${fileDirname}/${fileBasenameNoExtension}.</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>软件 - 标签 - Xyfuture&#39;s Home</title>
+        <link>https://xyfuture.github.io/tags/%E8%BD%AF%E4%BB%B6/</link>
+        <description>软件 - 标签 - Xyfuture&#39;s Home</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="https://xyfuture.github.io/tags/%E8%BD%AF%E4%BB%B6/" rel="self" type="application/rss+xml" /><item>
+    <title>vscode调试配置</title>
+    <link>https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/vscode-%E9%85%8D%E7%BD%AE%E8%B0%83%E8%AF%95/</guid>
+    <description><![CDATA[vscode 配置调试 vscode是目前比较好用的编辑器，虽然好用但是配置还是比较麻烦的，这个主要原因是微软想让人用“科学”的方式使用，就是用json配]]></description>
+</item></channel>
 </rss>

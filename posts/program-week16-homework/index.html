@@ -1,261 +1,249 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Program-week16-homework | My New Hugo Site</title>
-
-<meta name="keywords" content="Program, homework" />
-<meta name="description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数
-解法 直接把每一位分离,然后用个桶排就行了
-code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll temp)//统计 { memset(num,0,sizeof(num)); while(temp)//分离  { num[temp%10] &#43;&#43;; temp/=10; } int cnt=0; for(int i=0;i&lt;10;i&#43;&#43;) if(num[i]) cnt&#43;&#43;;//只要有就计数  return cnt; } int main() { int cnt = 0; int n,k; ll cur; scanf(&#34;%d%d&#34;,&amp;n,&amp;k); for(int i=0;i&lt;n;i&#43;&#43;) { scanf(&#34;%lld&#34;,&amp;cur); if(getDif(cur)&lt;k)//总个数  cnt&#43;&#43;; } printf(&#34;%d&#34;,cnt); return 0; } 总结 题目难度不大,不过题目的描述有点坑,k本身最大就是10">
-<meta name="author" content="">
-<link rel="canonical" href="https://xyfuture.github.io/posts/program-week16-homework/" />
-<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
-    as="style">
-
-<link rel="icon" href="https://xyfuture.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://xyfuture.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://xyfuture.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://xyfuture.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://xyfuture.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.80.0" />
-
-
-<meta property="og:title" content="Program-week16-homework" />
-<meta property="og:description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数
-解法 直接把每一位分离,然后用个桶排就行了
-code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll temp)//统计 { memset(num,0,sizeof(num)); while(temp)//分离  { num[temp%10] &#43;&#43;; temp/=10; } int cnt=0; for(int i=0;i&lt;10;i&#43;&#43;) if(num[i]) cnt&#43;&#43;;//只要有就计数  return cnt; } int main() { int cnt = 0; int n,k; ll cur; scanf(&#34;%d%d&#34;,&amp;n,&amp;k); for(int i=0;i&lt;n;i&#43;&#43;) { scanf(&#34;%lld&#34;,&amp;cur); if(getDif(cur)&lt;k)//总个数  cnt&#43;&#43;; } printf(&#34;%d&#34;,cnt); return 0; } 总结 题目难度不大,不过题目的描述有点坑,k本身最大就是10" />
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program-week16-homework - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="Program-week16-homework" />
+<meta property="og:description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数 解法 直接把每一位分离,然后用个桶排就行了 code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xyfuture.github.io/posts/program-week16-homework/" />
 <meta property="article:published_time" content="2020-06-04T23:25:32+00:00" />
 <meta property="article:modified_time" content="2020-06-04T23:25:32+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Program-week16-homework"/>
-<meta name="twitter:description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数
-解法 直接把每一位分离,然后用个桶排就行了
-code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll temp)//统计 { memset(num,0,sizeof(num)); while(temp)//分离  { num[temp%10] &#43;&#43;; temp/=10; } int cnt=0; for(int i=0;i&lt;10;i&#43;&#43;) if(num[i]) cnt&#43;&#43;;//只要有就计数  return cnt; } int main() { int cnt = 0; int n,k; ll cur; scanf(&#34;%d%d&#34;,&amp;n,&amp;k); for(int i=0;i&lt;n;i&#43;&#43;) { scanf(&#34;%lld&#34;,&amp;cur); if(getDif(cur)&lt;k)//总个数  cnt&#43;&#43;; } printf(&#34;%d&#34;,cnt); return 0; } 总结 题目难度不大,不过题目的描述有点坑,k本身最大就是10"/>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Program-week16-homework",
-  "name": "Program-week16-homework",
-  "description": "week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数\n解法 直接把每一位分离,然后用个桶排就行了\ncode #include \u0026amp;lt;iostream\u0026amp;gt;#include \u0026amp;lt;cstdio\u0026amp;gt;#include \u0026amp;lt;cstring\u0026amp;gt;#include \u0026amp;lt;string\u0026amp;gt;#include …",
-  "keywords": [
-    "Program", "homework"
-  ],
-  "articleBody": "week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数\n解法 直接把每一位分离,然后用个桶排就行了\ncode #include #include #include #include #include #include using namespace std; typedef long long ll; int num[10]; int getDif(ll temp)//统计 { memset(num,0,sizeof(num)); while(temp)//分离  { num[temp%10] ++; temp/=10; } int cnt=0; for(int i=0;i10;i++) if(num[i]) cnt++;//只要有就计数  return cnt; } int main() { int cnt = 0; int n,k; ll cur; scanf(\"%d%d\",\u0026n,\u0026k); for(int i=0;in;i++) { scanf(\"%lld\",\u0026cur); if(getDif(cur)k)//总个数  cnt++; } printf(\"%d\",cnt); return 0; } 总结 题目难度不大,不过题目的描述有点坑,k本身最大就是10\nB - ZJM要抵御宇宙射线 题面 在一堆点中画一个圆,求出圆的最小半径的平方,圆心限制在给定的点上\n解法 复杂度为O(n^2^)\n每一个点都求与其他点的距离,然后找出最远的距离,然后从这些距离中找出最小的距离.\n注意要注意一点,求得都是平方\ncode #include #include #include #include #include #include #include using namespace std; vectorpairdouble,double  posi;//每一个点 double dis[1005];//每一个点的最大距离 int main() { int n; double cur_x,cur_y; double temp_min=4e18;//这个一定要开大!!!!! 平方!!!!!  scanf(\"%d\",\u0026n); for(int i=0;in;i++) { scanf(\"%lf%lf\",\u0026cur_x,\u0026cur_y); posi.push_back(make_pair(cur_x,cur_y)); } sort(posi.begin(),posi.end());//排序,因为输出要求从小到大  for(int i=0;iposi.size();i++) { double cur_max = 0;//当前节点的最远距离  for(int j=0;jposi.size();j++) if(i!=j) { double x_dis = posi[i].first-posi[j].first; double y_dis = posi[i].second - posi[j].second; double temp_dis = pow(x_dis,2)+pow(y_dis,2);//勾股,直接半径平方  if(temp_discur_max)//求最大  cur_max = temp_dis; } dis[i] = cur_max;//记录  } int ptr=0; for(int i=0;in;i++) if(dis[i]temp_min)//找最小的  { ptr = i; temp_min = dis[i]; } printf(\"%.2f %.2f\\n\",posi[ptr].first,posi[ptr].second); printf(\"%.2f\",temp_min); } 总结 这道题本身非常简单,但是这次还是没有拿全分,主要原因是temp_min开小了.后几个点的数据范围算出的平方已经到了e10,但是一开始只开了e7,导致错误,double能开非常大,毕竟IEEE754\nC - 宇宙狗的危机 题面 找一个二叉搜索树,满足gcd条件\n解法  讲道理,完全想不到\n 首先给出的序列是有序的,而二叉搜索树中序遍历的结果也是有序的,因此我们要做的就是在给定序列上反向中序遍历,方法是使用区间dp\n最朴素的想法是dp[i][j][t],表示从i-j以t为根能建立满足条件的BST,但是这样做复杂度太高(大约O(n^4^)),因此需要压缩,这里给出的压缩方法是左右子树的方法.\ndp[i][j][0]表示从i-j可以作为左子树,而这个左子树的根必然是j+1,同理dp[i][j][1]是右子树,根是i-1,这样复杂度能降到O(n^3^)，每次只需要判断这个区间能不能成为左子树或者右子树就可以了。\n除此之外gcd的结果使用一个数组进行记录，这样能优化掉log n的复杂度。\n这次为了方便使用自上而下的方法（记忆化DFS），常数可能大一些，但是基本复杂度应该是可以的，这样就能过了。\ncode #include #include #include #include #include #include #include using namespace std; int m,n; int data[705];//原始数据 int ans[705][705][2];//左右子树 int g[705][705];//gcd结果  inline int gcd(int a,int b){return b == 0 ? a : gcd(b,a%b);} int dfs_check(int l,int r, int dir)//0 左子树 1 右子树 { if(ans[l][r][dir]!=0) return ans[l][r][dir];//有结果直接返回  int root; if(dir == 0)//左子树还是右子树  root = r+1; else root = l-1; for(int i=l;ir;i++)//遍历区间，判断其是否是左(右)子树，两个条件，gcd1,区间本身是树  { if(g[i][root]1)//能连接  { if(i == l)//边界单独处理  { if(ans[i+1][r][1]==0)//已存在就继续了  ans[i+1][r][1]=dfs_check(i+1,r,1); if(ans[i+1][r][1]==1)//能成为子树  return 1; } else if(i == r) { if(ans[l][i-1][0]==0) ans[l][i-1][0]=dfs_check(l,i-1,0); if(ans[l][i-1][0]==1) return 1; } else { if(ans[l][i-1][0]==0)//该区间本身能成为一棵树  ans[l][i-1][0] = dfs_check(l,i-1,0); if(ans[i+1][r][1]==0) ans[i+1][r][1] = dfs_check(i+1,r,1); if(ans[l][i-1][0]==1\u0026\u0026ans[i+1][r][1]==1)//能成为树返回1  return 1; } } } return -1;//不能成为左右子树 } bool call_dfs() { int flag = 0; for(int i=1;in;i++)//从最顶层开始，遍历一遍，只要返回1就满足题目条件  { if(i==1)//边界  flag = (ans[i+1][n][1]=dfs_check(i+1,n,1));//一边判断一边记忆化  else if(i==n) flag = (ans[1][i-1][0]=dfs_check(1,i-1,0)); else//中间  { if(((ans[1][i-1][0]=dfs_check(1,i-1,0))+(ans[i+1][n][1]=dfs_check(i+1,n,1)))==2) flag = 1; } if(flag == 1) return true; } return false; } int main() { scanf(\"%d\",\u0026m); for(int i=0;im;i++) { scanf(\"%d\",\u0026n); for(int j=1;jn;j++) scanf(\"%d\",data+j); memset(ans,0,sizeof(ans)); memset(g,0,sizeof(g)); data[0]=data[1],data[n+1]=data[n]; ans[0][0][0] =1;//初始化边界，似乎可以不用  ans[n+1][n+1][1]=1; for(int j=0;jn+1;j++)//gcd情况  for(int t=0;tn+1;t++) g[j][t] = gcd(data[j],data[t]); for(int j=1;jn;j++)//初始化，区间只有一个的情况  { if(g[j][j+1]1) ans[j][j][0] =1; else ans[j][j][0] = -1; if(g[j][j-1]1) ans[j][j][1] =1 ; else ans[j][j][1] = -1; } if(call_dfs()) printf(\"Yes\\n\"); else printf(\"No\\n\"); } return 0; } 总结 这道题在考场上没有想到使用dp的方法，我一直在想是不是先建一个图，然后在图上搜索一个二叉搜索树，然而这样根本行不通，甚至前几个暴力的分也弄到。比较核心的是二叉搜索树的中序遍历是有序的，给出的数据是有序的，因此应该从中序遍历的反过程去想。\n",
-  "wordCount" : "367",
-  "inLanguage": "en",
-  "datePublished": "2020-06-04T23:25:32Z",
-  "dateModified": "2020-06-04T23:25:32Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://xyfuture.github.io/posts/program-week16-homework/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "My New Hugo Site",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://xyfuture.github.io/favicon.ico"
-    }
-  }
-}
-</script>
-
-
-
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        .theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://xyfuture.github.io/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
-            <span class="logo-switches">
-                <span class="theme-toggle" title="(Alt + T)">
-                    <a id="theme-toggle" accesskey="t">
-                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </a>
-                </span>
-                
-            </span>
-        </div>
-        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
-    </nav>
-</header>
-
-    <main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">
-      Program-week16-homework
-    </h1>
-    <div class="post-description">
-      
-    </div>
-    <div class="post-meta">June 4, 2020
-
-    </div>
-  </header> 
-
-  <div class="post-content">
-<h1 id="week16-csp">week16-CSP<a hidden class="anchor" aria-hidden="true" href="#week16-csp">#</a></h1>
-<h2 id="a---tt数鸭子">A - TT数鸭子<a hidden class="anchor" aria-hidden="true" href="#a---tt数鸭子">#</a></h2>
-<h3 id="题面">题面<a hidden class="anchor" aria-hidden="true" href="#题面">#</a></h3>
-<p><img src="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png" alt=""></p>
-<p>数位计数,统计一个数中每一位上不同数字的个数</p>
-<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
-<p>直接把每一位分离,然后用个桶排就行了</p>
-<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ll;
-<span style="color:#66d9ef">int</span> num[<span style="color:#ae81ff">10</span>];
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getDif</span>(ll temp)<span style="color:#75715e">//统计
-</span><span style="color:#75715e"></span>{
-    memset(num,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(num));
-    <span style="color:#66d9ef">while</span>(temp)<span style="color:#75715e">//分离
-</span><span style="color:#75715e"></span>    {
-        num[temp<span style="color:#f92672">%</span><span style="color:#ae81ff">10</span>] <span style="color:#f92672">++</span>;
-        temp<span style="color:#f92672">/=</span><span style="color:#ae81ff">10</span>;
-    }
-    <span style="color:#66d9ef">int</span> cnt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>)
-        <span style="color:#66d9ef">if</span>(num[i]) cnt<span style="color:#f92672">++</span>;<span style="color:#75715e">//只要有就计数
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> cnt;
-}   
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#66d9ef">int</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">int</span> n,k;
-    ll cur;
-    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>k);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+<meta name="twitter:description" content="week16-CSP A - TT数鸭子 题面 数位计数,统计一个数中每一位上不同数字的个数 解法 直接把每一位分离,然后用个桶排就行了 code #include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;string&gt;#include &lt;map&gt;#include &lt;cmath&gt;using namespace std; typedef long long ll; int num[10]; int getDif(ll"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/program-week16-homework/" /><link rel="prev" href="https://xyfuture.github.io/posts/program-week14-homework/" /><link rel="next" href="https://xyfuture.github.io/posts/program-week15-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
-        scanf(<span style="color:#e6db74">&#34;%lld&#34;</span>,<span style="color:#f92672">&amp;</span>cur);
-        <span style="color:#66d9ef">if</span>(getDif(cur)<span style="color:#f92672">&lt;</span>k)<span style="color:#75715e">//总个数
-</span><span style="color:#75715e"></span>            cnt<span style="color:#f92672">++</span>;
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program-week16-homework",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/program-week16-homework\/"
+        },"genre": "posts","keywords": "Program, homework","wordcount":  1921 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/program-week16-homework\/","datePublished": "2020-06-04T23:25:32+00:00","dateModified": "2020-06-04T23:25:32+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
     }
-    printf(<span style="color:#e6db74">&#34;%d&#34;</span>,cnt);
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;    
-}
-</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Program-week16-homework</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4/"><i class="far fa-folder fa-fw"></i>程序设计思维</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-04">2020-06-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1921 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#a---tt数鸭子">A - TT数鸭子</a>
+      <ul>
+        <li><a href="#题面">题面</a></li>
+        <li><a href="#解法">解法</a></li>
+        <li><a href="#code">code</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#b---zjm要抵御宇宙射线">B - ZJM要抵御宇宙射线</a>
+      <ul>
+        <li><a href="#题面-1">题面</a></li>
+        <li><a href="#解法-1">解法</a></li>
+        <li><a href="#code-1">code</a></li>
+        <li><a href="#总结-1">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#c---宇宙狗的危机">C - 宇宙狗的危机</a>
+      <ul>
+        <li><a href="#题面-2">题面</a></li>
+        <li><a href="#解法-2">解法</a></li>
+        <li><a href="#code-2">code</a></li>
+        <li><a href="#总结-2">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="week16-csp">week16-CSP</h1>
+<h2 id="a---tt数鸭子">A - TT数鸭子</h2>
+<h3 id="题面">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png"
+        data-srcset="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png, https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png 1.5x, https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png"
+        title="https://i.loli.net/2020/06/09/5kejCXzJ9HKmNVM.png" /></p>
+<p>数位计数,统计一个数中每一位上不同数字的个数</p>
+<h3 id="解法">解法</h3>
+<p>直接把每一位分离,然后用个桶排就行了</p>
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">num</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">getDif</span><span class="p">(</span><span class="n">ll</span> <span class="n">temp</span><span class="p">)</span><span class="c1">//统计
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">num</span><span class="p">));</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="c1">//分离
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">num</span><span class="p">[</span><span class="n">temp</span><span class="o">%</span><span class="mi">10</span><span class="p">]</span> <span class="o">++</span><span class="p">;</span>
+        <span class="n">temp</span><span class="o">/=</span><span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">cnt</span><span class="o">++</span><span class="p">;</span><span class="c1">//只要有就计数
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>   
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">cur</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lld&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cur</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">getDif</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span><span class="c1">//总个数
+</span><span class="c1"></span>            <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">cnt</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>    
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
 <p>题目难度不大,不过题目的描述有点坑,k本身最大就是10</p>
-<h2 id="b---zjm要抵御宇宙射线">B - ZJM要抵御宇宙射线<a hidden class="anchor" aria-hidden="true" href="#b---zjm要抵御宇宙射线">#</a></h2>
-<h3 id="题面-1">题面<a hidden class="anchor" aria-hidden="true" href="#题面-1">#</a></h3>
-<p><img src="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png" alt="image-20200604233248190"></p>
+<h2 id="b---zjm要抵御宇宙射线">B - ZJM要抵御宇宙射线</h2>
+<h3 id="题面-1">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png"
+        data-srcset="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png, https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png 1.5x, https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/04/QYmHrq5kciC3yu8.png"
+        title="image-20200604233248190" /></p>
 <p>在一堆点中画一个圆,求出圆的最小半径的平方,圆心限制在给定的点上</p>
-<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<h3 id="解法-1">解法</h3>
 <p>复杂度为O(n^2^)</p>
 <p>每一个点都求与其他点的距离,然后找出最远的距离,然后从这些距离中找出最小的距离.</p>
 <p>注意要注意一点,求得都是平方</p>
-<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-vector<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>,<span style="color:#66d9ef">double</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> posi;<span style="color:#75715e">//每一个点
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> dis[<span style="color:#ae81ff">1005</span>];<span style="color:#75715e">//每一个点的最大距离
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#66d9ef">int</span> n;
-    <span style="color:#66d9ef">double</span> cur_x,cur_y;
-    <span style="color:#66d9ef">double</span> temp_min<span style="color:#f92672">=</span><span style="color:#ae81ff">4e18</span>;<span style="color:#75715e">//这个一定要开大!!!!! 平方!!!!!
-</span><span style="color:#75715e"></span>    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
-    {
-        scanf(<span style="color:#e6db74">&#34;%lf%lf&#34;</span>,<span style="color:#f92672">&amp;</span>cur_x,<span style="color:#f92672">&amp;</span>cur_y);
-        posi.push_back(make_pair(cur_x,cur_y));
-    }
-    sort(posi.begin(),posi.end());<span style="color:#75715e">//排序,因为输出要求从小到大
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>posi.size();i<span style="color:#f92672">++</span>)
-    {
-        <span style="color:#66d9ef">double</span> cur_max <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//当前节点的最远距离
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>posi.size();j<span style="color:#f92672">++</span>)
-            <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">!=</span>j)
-            {
-                <span style="color:#66d9ef">double</span> x_dis <span style="color:#f92672">=</span> posi[i].first<span style="color:#f92672">-</span>posi[j].first;
-                <span style="color:#66d9ef">double</span> y_dis <span style="color:#f92672">=</span> posi[i].second <span style="color:#f92672">-</span> posi[j].second;
-                <span style="color:#66d9ef">double</span> temp_dis <span style="color:#f92672">=</span> pow(x_dis,<span style="color:#ae81ff">2</span>)<span style="color:#f92672">+</span>pow(y_dis,<span style="color:#ae81ff">2</span>);<span style="color:#75715e">//勾股,直接半径平方
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(temp_dis<span style="color:#f92672">&gt;</span>cur_max)<span style="color:#75715e">//求最大
-</span><span style="color:#75715e"></span>                    cur_max <span style="color:#f92672">=</span> temp_dis;
-            }
-        dis[i] <span style="color:#f92672">=</span> cur_max;<span style="color:#75715e">//记录
-</span><span style="color:#75715e"></span>    }
-    <span style="color:#66d9ef">int</span> ptr<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
-        <span style="color:#66d9ef">if</span>(dis[i]<span style="color:#f92672">&lt;</span>temp_min)<span style="color:#75715e">//找最小的
-</span><span style="color:#75715e"></span>        {
-            ptr <span style="color:#f92672">=</span> i;
-            temp_min <span style="color:#f92672">=</span> dis[i];
-        }
-    printf(<span style="color:#e6db74">&#34;%.2f %.2f</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,posi[ptr].first,posi[ptr].second);
-    printf(<span style="color:#e6db74">&#34;%.2f&#34;</span>,temp_min);
-}
-</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">posi</span><span class="p">;</span><span class="c1">//每一个点
+</span><span class="c1"></span><span class="kt">double</span> <span class="n">dis</span><span class="p">[</span><span class="mi">1005</span><span class="p">];</span><span class="c1">//每一个点的最大距离
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">cur_x</span><span class="p">,</span><span class="n">cur_y</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">temp_min</span><span class="o">=</span><span class="mf">4e18</span><span class="p">;</span><span class="c1">//这个一定要开大!!!!! 平方!!!!!
+</span><span class="c1"></span>    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%lf%lf&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cur_x</span><span class="p">,</span><span class="o">&amp;</span><span class="n">cur_y</span><span class="p">);</span>
+        <span class="n">posi</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">cur_x</span><span class="p">,</span><span class="n">cur_y</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">posi</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">posi</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="c1">//排序,因为输出要求从小到大
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">posi</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">cur_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//当前节点的最远距离
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">posi</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">!=</span><span class="n">j</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">double</span> <span class="n">x_dis</span> <span class="o">=</span> <span class="n">posi</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="o">-</span><span class="n">posi</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
+                <span class="kt">double</span> <span class="n">y_dis</span> <span class="o">=</span> <span class="n">posi</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span> <span class="o">-</span> <span class="n">posi</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">second</span><span class="p">;</span>
+                <span class="kt">double</span> <span class="n">temp_dis</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">x_dis</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">pow</span><span class="p">(</span><span class="n">y_dis</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="c1">//勾股,直接半径平方
+</span><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">temp_dis</span><span class="o">&gt;</span><span class="n">cur_max</span><span class="p">)</span><span class="c1">//求最大
+</span><span class="c1"></span>                    <span class="n">cur_max</span> <span class="o">=</span> <span class="n">temp_dis</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_max</span><span class="p">;</span><span class="c1">//记录
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">ptr</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">temp_min</span><span class="p">)</span><span class="c1">//找最小的
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">ptr</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">temp_min</span> <span class="o">=</span> <span class="n">dis</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.2f %.2f</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">posi</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">first</span><span class="p">,</span><span class="n">posi</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">second</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%.2f&#34;</span><span class="p">,</span><span class="n">temp_min</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
 <p>这道题本身非常简单,但是这次还是没有拿全分,主要原因是temp_min开小了.后几个点的数据范围算出的平方已经到了e10,但是一开始只开了e7,导致错误,double能开非常大,毕竟IEEE754</p>
-<h2 id="c---宇宙狗的危机">C - 宇宙狗的危机<a hidden class="anchor" aria-hidden="true" href="#c---宇宙狗的危机">#</a></h2>
-<h3 id="题面-2">题面<a hidden class="anchor" aria-hidden="true" href="#题面-2">#</a></h3>
-<p><img src="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png" alt="image-20200604234553328"></p>
+<h2 id="c---宇宙狗的危机">C - 宇宙狗的危机</h2>
+<h3 id="题面-2">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png"
+        data-srcset="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png, https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png 1.5x, https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/06/04/QeKlCTHaupUhzid.png"
+        title="image-20200604234553328" /></p>
 <p>找一个二叉搜索树,满足gcd条件</p>
-<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<h3 id="解法-2">解法</h3>
 <blockquote>
 <p>讲道理,完全想不到</p>
 </blockquote>
@@ -264,195 +252,151 @@ vector<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt
 <p>dp[i][j][0]表示从i-j可以作为左子树,而这个左子树的根必然是j+1,同理dp[i][j][1]是右子树,根是i-1,这样复杂度能降到O(n^3^)，每次只需要判断这个区间能不能成为左子树或者右子树就可以了。</p>
 <p>除此之外gcd的结果使用一个数组进行记录，这样能优化掉log n的复杂度。</p>
 <p>这次为了方便使用自上而下的方法（记忆化DFS），常数可能大一些，但是基本复杂度应该是可以的，这样就能过了。</p>
-<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<h3 id="code-2">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span style="color:#66d9ef">int</span> m,n;
-<span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">705</span>];<span style="color:#75715e">//原始数据
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> ans[<span style="color:#ae81ff">705</span>][<span style="color:#ae81ff">705</span>][<span style="color:#ae81ff">2</span>];<span style="color:#75715e">//左右子树
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> g[<span style="color:#ae81ff">705</span>][<span style="color:#ae81ff">705</span>];<span style="color:#75715e">//gcd结果
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">gcd</span>(<span style="color:#66d9ef">int</span> a,<span style="color:#66d9ef">int</span> b){<span style="color:#66d9ef">return</span> b <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> a : gcd(b,a<span style="color:#f92672">%</span>b);}
+<span class="kt">int</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">705</span><span class="p">];</span><span class="c1">//原始数据
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">ans</span><span class="p">[</span><span class="mi">705</span><span class="p">][</span><span class="mi">705</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span><span class="c1">//左右子树
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">g</span><span class="p">[</span><span class="mi">705</span><span class="p">][</span><span class="mi">705</span><span class="p">];</span><span class="c1">//gcd结果
+</span><span class="c1"></span>
+<span class="kr">inline</span> <span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);}</span>
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">dfs_check</span>(<span style="color:#66d9ef">int</span> l,<span style="color:#66d9ef">int</span> r, <span style="color:#66d9ef">int</span> dir)<span style="color:#75715e">//0 左子树 1 右子树
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">if</span>(ans[l][r][dir]<span style="color:#f92672">!=</span><span style="color:#ae81ff">0</span>)   <span style="color:#66d9ef">return</span> ans[l][r][dir];<span style="color:#75715e">//有结果直接返回
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> root;
-    <span style="color:#66d9ef">if</span>(dir <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)<span style="color:#75715e">//左子树还是右子树
-</span><span style="color:#75715e"></span>        root <span style="color:#f92672">=</span> r<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">else</span> 
-        root <span style="color:#f92672">=</span> l<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>l;i<span style="color:#f92672">&lt;=</span>r;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//遍历区间，判断其是否是左(右)子树，两个条件，gcd&gt;1,区间本身是树
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#66d9ef">if</span>(g[i][root]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//能连接
-</span><span style="color:#75715e"></span>        {
-            <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">==</span> l)<span style="color:#75715e">//边界单独处理
-</span><span style="color:#75715e"></span>            {   
-                <span style="color:#66d9ef">if</span>(ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//已存在就继续了
-</span><span style="color:#75715e"></span>                    ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>dfs_check(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,r,<span style="color:#ae81ff">1</span>);
-                <span style="color:#66d9ef">if</span>(ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//能成为子树
-</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-            }
-            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">==</span> r)
-            {
-                <span style="color:#66d9ef">if</span>(ans[l][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
-                    ans[l][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>dfs_check(l,i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>);
-                <span style="color:#66d9ef">if</span>(ans[l][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
-                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-            }
-            <span style="color:#66d9ef">else</span>
-            {
-                <span style="color:#66d9ef">if</span>(ans[l][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)<span style="color:#75715e">//该区间本身能成为一棵树
-</span><span style="color:#75715e"></span>                    ans[l][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> dfs_check(l,i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>);
-                <span style="color:#66d9ef">if</span>(ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
-                    ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> dfs_check(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,r,<span style="color:#ae81ff">1</span>);
-                <span style="color:#66d9ef">if</span>(ans[l][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&amp;&amp;</span>ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//能成为树返回1
-</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
-            }
-        }
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//不能成为左右子树
-</span><span style="color:#75715e"></span>}
+<span class="kt">int</span> <span class="nf">dfs_check</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dir</span><span class="p">)</span><span class="c1">//0 左子树 1 右子树
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="n">dir</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">)</span>   <span class="k">return</span> <span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="n">dir</span><span class="p">];</span><span class="c1">//有结果直接返回
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">root</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dir</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//左子树还是右子树
+</span><span class="c1"></span>        <span class="n">root</span> <span class="o">=</span> <span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span> 
+        <span class="n">root</span> <span class="o">=</span> <span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">l</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//遍历区间，判断其是否是左(右)子树，两个条件，gcd&gt;1,区间本身是树
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">root</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="c1">//能连接
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">l</span><span class="p">)</span><span class="c1">//边界单独处理
+</span><span class="c1"></span>            <span class="p">{</span>   
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//已存在就继续了
+</span><span class="c1"></span>                    <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//能成为子树
+</span><span class="c1"></span>                    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//该区间本身能成为一棵树
+</span><span class="c1"></span>                    <span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfs_check</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="o">&amp;&amp;</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//能成为树返回1
+</span><span class="c1"></span>                    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//不能成为左右子树
+</span><span class="c1"></span><span class="p">}</span>
 
-<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">call_dfs</span>()
-{
-    <span style="color:#66d9ef">int</span> flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//从最顶层开始，遍历一遍，只要返回1就满足题目条件
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//边界
-</span><span style="color:#75715e"></span>            flag <span style="color:#f92672">=</span> (ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][n][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>dfs_check(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,n,<span style="color:#ae81ff">1</span>));<span style="color:#75715e">//一边判断一边记忆化
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span>n)
-            flag <span style="color:#f92672">=</span> (ans[<span style="color:#ae81ff">1</span>][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>dfs_check(<span style="color:#ae81ff">1</span>,i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>));
-        <span style="color:#66d9ef">else</span><span style="color:#75715e">//中间
-</span><span style="color:#75715e"></span>        {
-            <span style="color:#66d9ef">if</span>(((ans[<span style="color:#ae81ff">1</span>][i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>dfs_check(<span style="color:#ae81ff">1</span>,i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>))<span style="color:#f92672">+</span>(ans[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][n][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>dfs_check(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,n,<span style="color:#ae81ff">1</span>)))<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>)
-                flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">if</span>(flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
-            <span style="color:#66d9ef">return</span> true;
-    }
-    <span style="color:#66d9ef">return</span> false;
-}
+<span class="kt">bool</span> <span class="nf">call_dfs</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//从最顶层开始，遍历一遍，只要返回1就满足题目条件
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//边界
+</span><span class="c1"></span>            <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span><span class="c1">//一边判断一边记忆化
+</span><span class="c1"></span>        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+        <span class="k">else</span><span class="c1">//中间
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(((</span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">dfs_check</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>m);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>m;i<span style="color:#f92672">++</span>)
-    {
-        scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;=</span>n;j<span style="color:#f92672">++</span>)
-            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,data<span style="color:#f92672">+</span>j);
-        memset(ans,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ans));
-        memset(g,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(g));
-        data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>data[<span style="color:#ae81ff">1</span>],data[n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span>data[n];
-        ans[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;<span style="color:#75715e">//初始化边界，似乎可以不用
-</span><span style="color:#75715e"></span>        ans[n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;=</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">++</span>)<span style="color:#75715e">//gcd情况
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;=</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;t<span style="color:#f92672">++</span>)
-                g[j][t] <span style="color:#f92672">=</span> gcd(data[j],data[t]);
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;=</span>n;j<span style="color:#f92672">++</span>)<span style="color:#75715e">//初始化，区间只有一个的情况
-</span><span style="color:#75715e"></span>        {
-            <span style="color:#66d9ef">if</span>(g[j][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>) ans[j][j][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">else</span> ans[j][j][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-            <span style="color:#66d9ef">if</span>(g[j][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>) ans[j][j][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ;
-            <span style="color:#66d9ef">else</span> ans[j][j][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-        }
-        <span style="color:#66d9ef">if</span>(call_dfs())
-            printf(<span style="color:#e6db74">&#34;Yes</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;No</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">ans</span><span class="p">));</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">g</span><span class="p">));</span>
+        <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//初始化边界，似乎可以不用
+</span><span class="c1"></span>        <span class="n">ans</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//gcd情况
+</span><span class="c1"></span>            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//初始化，区间只有一个的情况
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">else</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span> <span class="p">;</span>
+            <span class="k">else</span> <span class="n">ans</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">call_dfs</span><span class="p">())</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Yes</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="k">else</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;No</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-2">总结</h3>
 <p>这道题在考场上没有想到使用dp的方法，我一直在想是不是先建一个图，然后在图上搜索一个二叉搜索树，然而这样根本行不通，甚至前几个暴力的分也弄到。比较核心的是二叉搜索树的中序遍历是有序的，给出的数据是有序的，因此应该从中序遍历的反过程去想。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/program/">Program</a>,&nbsp;<a href="/tags/homework/">homework</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program-week14-homework/" class="prev" rel="prev" title="Program-week14-homework"><i class="fas fa-angle-left fa-fw"></i>Program-week14-homework</a>
+            <a href="/posts/program-week15-homework/" class="next" rel="next" title="Program-week15-homework">Program-week15-homework<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://xyfuture.github.io/tags/program/">Program</a></li>
-      <li><a href="https://xyfuture.github.io/tags/homework/">homework</a></li>
-    </ul>
-  </footer>
-</article>
-    </main><footer class="footer">
-    <span>&copy; 2021 <a href="https://xyfuture.github.io/">My New Hugo Site</a></span>
-    <span>&middot;</span>
-    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
-    <span>&middot;</span>
-    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
 
-
-
-<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
-    onload="hljs.initHighlightingOnLoad();"></script>
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.replaceState(null, null, `#${id}`);
-            }
-        });
-    });
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

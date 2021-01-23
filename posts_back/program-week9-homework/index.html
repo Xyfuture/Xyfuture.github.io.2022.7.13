@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program-week9-homework - 我的全新 Hugo 网站</title><meta name="Description" content=""><meta property="og:title" content="Program-week9-homework" />
+<meta property="og:description" content="week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看 解法 命令分为两种操作和询问,对于操作" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts_back/program-week9-homework/" />
+<meta property="article:published_time" content="2020-04-29T21:28:23+00:00" />
+<meta property="article:modified_time" content="2020-04-29T21:28:23+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Program-week9-homework"/>
+<meta name="twitter:description" content="week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看 解法 命令分为两种操作和询问,对于操作"/>
+<meta name="application-name" content="我的全新 Hugo 网站">
+<meta name="apple-mobile-web-app-title" content="我的全新 Hugo 网站"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts_back/program-week9-homework/" /><link rel="prev" href="http://example.org/posts_back/program-week10-homework/" /><link rel="next" href="http://example.org/posts_back/program-week11-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program-week9-homework",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts_back\/program-week9-homework\/"
+        },"genre": "posts_back","keywords": "Program, homework","wordcount":  4516 ,
+        "url": "http:\/\/example.org\/posts_back\/program-week9-homework\/","datePublished": "2020-04-29T21:28:23+00:00","dateModified": "2020-04-29T21:28:23+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 网站">我的全新 Hugo 网站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animated pulse faster">Program-week9-homework</h1><div class="content" id="content"><h1 id="week9-homework">week9-homework</h1>
+<h2 id="a---咕咕东的目录管理器httpsvjudgenetproblemkattis-directorymanagement"><a href="https://vjudge.net/problem/Kattis-directorymanagement" target="_blank" rel="noopener noreffer">A - 咕咕东的目录管理器</a></h2>
+<h3 id="题意">题意</h3>
+<h4 id="题面">题面</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/04/CG9PtmcWDFk8oEp.png"
+        data-srcset="https://i.loli.net/2020/05/04/CG9PtmcWDFk8oEp.png, https://i.loli.net/2020/05/04/CG9PtmcWDFk8oEp.png 1.5x, https://i.loli.net/2020/05/04/CG9PtmcWDFk8oEp.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/04/CG9PtmcWDFk8oEp.png"
+        title="https://i.loli.net/2020/05/04/CG9PtmcWDFk8oEp.png" /></p>
+<p>题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看</p>
+<h3 id="解法">解法</h3>
+<p>命令分为两种操作和询问,对于操作类型来说有一个undo 的操作,因此要使用一个栈来记录所有的操作型指令用于恢复.</p>
+<p>首先我们设计文件树的存储(为啥用树?题目直接说了文件树 &hellip; )</p>
+<p>这个树肯定是多个孩子的,我们可以用类似孩子链表的形式使用vector nodes存储所有节点,我们要求孩子顺序是字典序,因此使用map&lt;string,int&gt;存储孩子,string是文件名,int是vector种的下标.为了溯源存储一个int father,表示父节点的下标</p>
+<p>剩下的几个变量都是为了题目实现而存储的信息.int allNodes代表的是以该节点为根的文件树的总节点数(每次插入或者删除节点向上溯源更新). string nodeName表示文件的当前节点的文件夹名.除此之外vector&lt;string&gt; ftree用来储存tree命令时前后的5个文件夹名.int change储存ftree是否应该发生改变,change=1表示文件结构被更新过,ftree不能用了.</p>
+<p>下面讲解各个命令:</p>
+<p>首先编写一个pushForward函数,用来从当前节点开始通过father向上更新整棵树,更新allNode和change.使用一个int curPosi记录当前操作的节点下标</p>
+<p>mkdir: 首先检查新的文件名是否在children中存在,存在输出ERR.,不存在就新建,插入到nodes中,同时更新children,调用pushForward,将该次命令和操作的两个节点下标插入到栈history</p>
+<p>rm: 首先检查children中有没有该文件,没有输出ERR,有就在children中删除(在nodes中不清除节点),调用pushForwad,将命令和操作的两个下标插入到history</p>
+<p>cd: 遇到&quot;..&ldquo;直接返回到father,如果father是0(根节点)输出ERR.否则检查孩子中有没有想到的文件名,如果可以没有输出ERR,最后将命令和操作的下标插入到history</p>
+<p>sz: 直接输出allNodes</p>
+<p>ls: 首先看孩子个数,小于10,全部输出,大于10,输出前5个和后5个</p>
+<p>tree: 该命令是比较难实现的,需要一定的记忆化
+首先看当前节点的孩子个数,0个输出EMPTY,直接结束.其他情况首先递归实现以该节点为根的文件树通过先根遍历的方式更新ftree.更新时,更新过的节点change改为0表示无需再次更新.然后输出ftree前5个和后5个</p>
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">struct</span> <span class="nc">treeNode</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">nodeName</span><span class="p">;</span><span class="c1">//文件名
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">father</span><span class="p">;</span><span class="c1">//父节点下标
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">allNodes</span><span class="p">;</span><span class="c1">//总的孩子个数+1 sz使用
+</span><span class="c1"></span>    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ftree</span><span class="p">;</span><span class="c1">//tree命令使用的数组,前5个和后5个
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">change</span><span class="p">;</span><span class="c1">//ftree是否发生改变
+</span><span class="c1"></span>    <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">children</span><span class="p">;</span><span class="c1">//按字典序存孩子节点的文件名和下标
+</span><span class="c1"></span>    <span class="n">treeNode</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span><span class="kt">int</span> <span class="n">father</span><span class="p">,</span><span class="kt">int</span> <span class="n">allNodes</span><span class="p">,</span><span class="kt">int</span> <span class="n">change</span><span class="p">)</span><span class="o">:</span><span class="n">nodeName</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="n">father</span><span class="p">(</span><span class="n">father</span><span class="p">),</span><span class="n">allNodes</span><span class="p">(</span><span class="n">allNodes</span><span class="p">),</span><span class="n">change</span><span class="p">(</span><span class="n">change</span><span class="p">)</span>
+    <span class="p">{}</span>
+    <span class="n">treeNode</span><span class="p">(){}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">cmd</span> 
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">command</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">pwd</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">newDir</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">treeNode</span><span class="o">&gt;</span> <span class="n">nodes</span><span class="p">;</span><span class="c1">//所有节点的数组,下标就是这里的
+</span><span class="c1"></span><span class="n">stack</span><span class="o">&lt;</span><span class="n">cmd</span><span class="o">&gt;</span> <span class="n">history</span><span class="p">;</span><span class="c1">//操作命令历史记录
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">curPosi</span><span class="p">;</span><span class="c1">//当前操作的位置的下标
+</span><span class="c1"></span>
+<span class="kt">void</span> <span class="nf">pushForward</span><span class="p">(</span><span class="kt">int</span> <span class="n">posi</span><span class="p">,</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span><span class="c1">//从posi开始上溯
+</span><span class="c1"></span><span class="p">{</span>
+    
+    <span class="n">nodes</span><span class="p">[</span><span class="n">posi</span><span class="p">].</span><span class="n">allNodes</span> <span class="o">+=</span><span class="n">num</span><span class="p">;</span><span class="c1">//更新allNode
+</span><span class="c1"></span>    <span class="n">nodes</span><span class="p">[</span><span class="n">posi</span><span class="p">].</span><span class="n">change</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//ftree要重新改变
+</span><span class="c1"></span>    <span class="n">nodes</span><span class="p">[</span><span class="n">posi</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="c1">//清空(也可以不删)
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">posi</span><span class="p">].</span><span class="n">father</span> <span class="o">==</span> <span class="n">posi</span><span class="p">)</span><span class="c1">//到达根节点
+</span><span class="c1"></span>        <span class="k">return</span> <span class="p">;</span>
+    <span class="k">else</span> <span class="c1">//继续更新父节点
+</span><span class="c1"></span>        <span class="n">pushForward</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">posi</span><span class="p">].</span><span class="n">father</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">mkdir</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">newDirName</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">newDirName</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">newDirName</span><span class="p">)</span> <span class="o">!=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">nodes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">treeNode</span><span class="p">(</span><span class="n">newDirName</span><span class="p">,</span><span class="n">curPosi</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span><span class="c1">//插入新节点
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">newPosi</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">pushForward</span><span class="p">(</span><span class="n">curPosi</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="c1">//向上更新
+</span><span class="c1"></span>    <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">[</span><span class="n">newDirName</span><span class="p">]</span> <span class="o">=</span><span class="n">newPosi</span><span class="p">;</span><span class="c1">//孩子
+</span><span class="c1"></span>    <span class="n">history</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="s">&#34;mkdir&#34;</span><span class="p">,</span><span class="n">curPosi</span><span class="p">,</span><span class="n">newPosi</span><span class="p">});</span><span class="c1">//更新history
+</span><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;OK</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">rm</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">delDirName</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">delDirName</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">delDirName</span><span class="p">)</span> <span class="o">==</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">ptr</span> <span class="o">=</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">[</span><span class="n">delDirName</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">allNodes</span><span class="p">;</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">delDirName</span><span class="p">);</span><span class="c1">//只删除孩子,不删除nodes
+</span><span class="c1"></span>    <span class="n">history</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="s">&#34;rm&#34;</span><span class="p">,</span><span class="n">curPosi</span><span class="p">,</span><span class="n">ptr</span><span class="p">});</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;OK</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">cd</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">newDirName</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">newDirName</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">newDirName</span> <span class="o">==</span> <span class="s">&#34;..&#34;</span><span class="p">)</span><span class="c1">//father
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">father</span> <span class="o">==</span> <span class="n">curPosi</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">newPosi</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">father</span><span class="p">;</span>
+        <span class="n">history</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="s">&#34;cd&#34;</span><span class="p">,</span><span class="n">curPosi</span><span class="p">,</span><span class="n">newPosi</span><span class="p">});</span>
+        <span class="n">curPosi</span> <span class="o">=</span> <span class="n">newPosi</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;OK</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">newDirName</span><span class="p">)</span> <span class="o">==</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">newPosi</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">[</span><span class="n">newDirName</span><span class="p">];</span>
+    <span class="n">history</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="s">&#34;cd&#34;</span><span class="p">,</span><span class="n">curPosi</span><span class="p">,</span><span class="n">newPosi</span><span class="p">});</span>
+    <span class="n">curPosi</span> <span class="o">=</span> <span class="n">newPosi</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;OK</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">sz</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">allNodes</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">cnt</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">ls</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">childSize</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">childSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;EMPTY</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">childSize</span> <span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span><span class="c1">//10个之内
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">.</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+        <span class="c1">// cout&lt;&lt;&#34;\n&#34;;
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">front</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+        <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">front</span><span class="o">++</span><span class="p">)</span><span class="c1">//前5个
+</span><span class="c1"></span>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="o">*</span><span class="n">front</span><span class="p">).</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+        <span class="c1">// tail--;
+</span><span class="c1"></span>        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;...</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">tail</span><span class="o">--</span><span class="p">);</span><span class="c1">//后5个
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">tail</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="o">*</span><span class="n">tail</span><span class="p">).</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+        <span class="c1">// cout&lt;&lt;&#34;\n&#34;;
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">undo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">history</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ERR</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cmd</span> <span class="n">oldCmd</span> <span class="o">=</span> <span class="n">history</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+    <span class="n">history</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">command</span> <span class="o">==</span> <span class="s">&#34;mkdir&#34;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">pwd</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">newDir</span><span class="p">].</span><span class="n">nodeName</span><span class="p">);</span><span class="c1">//去除孩子
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">newDir</span><span class="p">].</span><span class="n">allNodes</span><span class="p">;</span>
+        <span class="n">pushForward</span><span class="p">(</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">pwd</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">cnt</span><span class="p">);</span><span class="c1">//更新allnNodes
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">command</span> <span class="o">==</span> <span class="s">&#34;rm&#34;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">pwd</span><span class="p">].</span><span class="n">children</span><span class="p">[</span><span class="n">nodes</span><span class="p">[</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">newDir</span><span class="p">].</span><span class="n">nodeName</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldCmd</span><span class="p">.</span><span class="n">newDir</span><span class="p">;</span><span class="c1">//加回孩子
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">newDir</span><span class="p">].</span><span class="n">allNodes</span><span class="p">;</span>
+        <span class="n">pushForward</span><span class="p">(</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">pwd</span><span class="p">,</span><span class="n">cnt</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">oldCmd</span><span class="p">.</span><span class="n">command</span> <span class="o">==</span> <span class="s">&#34;cd&#34;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">curPosi</span> <span class="o">=</span> <span class="n">oldCmd</span><span class="p">.</span><span class="n">pwd</span><span class="p">;</span><span class="c1">//直接回退
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;OK</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">firstRoot</span><span class="p">(</span><span class="kt">int</span> <span class="n">ptr</span><span class="p">,</span><span class="kt">int</span> <span class="n">cur</span><span class="p">)</span><span class="c1">//在allNodes小于10的时候直接先根遍历更新ftree就行了
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">nodeName</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">nodes</span><span class="p">[</span><span class="n">cur</span><span class="p">].</span><span class="n">children</span><span class="p">)</span>
+        <span class="n">firstRoot</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">begin_end</span><span class="p">(</span><span class="kt">int</span> <span class="n">ptr</span><span class="p">)</span><span class="c1">//更新ftree
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">change</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//已经更新过了
+</span><span class="c1"></span>        <span class="k">return</span> <span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">allNodes</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span><span class="c1">//10个节点及一下
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">firstRoot</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="n">ptr</span><span class="p">);</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">change</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">children</span><span class="p">)</span><span class="c1">//更新所有孩子的
+</span><span class="c1"></span>            <span class="n">begin_end</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">nodeName</span><span class="p">);</span><span class="c1">//先放入自己
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">children</span><span class="p">)</span><span class="c1">//前4个
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">)</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">++&lt;</span><span class="mi">4</span><span class="p">)</span>
+                    <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">.</span><span class="n">second</span><span class="p">].</span><span class="n">ftree</span><span class="p">[</span><span class="n">t</span><span class="p">]);</span>
+                <span class="k">else</span>
+                    <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">reverse_iterator</span> <span class="n">it</span><span class="o">=</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">rbegin</span><span class="p">();</span><span class="n">it</span><span class="o">!=</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">children</span><span class="p">.</span><span class="n">rend</span><span class="p">();</span><span class="n">it</span><span class="o">++</span><span class="p">)</span><span class="c1">//后5个
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">&gt;=</span><span class="mi">5</span><span class="p">)</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="n">nodes</span><span class="p">[(</span><span class="o">*</span><span class="n">it</span><span class="p">).</span><span class="n">second</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">t</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">--</span><span class="p">)</span><span class="c1">//倒着的
+</span><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="o">++&lt;</span><span class="mi">5</span><span class="p">)</span>
+                    <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">ftree</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">nodes</span><span class="p">[(</span><span class="o">*</span><span class="n">it</span><span class="p">).</span><span class="n">second</span><span class="p">].</span><span class="n">ftree</span><span class="p">[</span><span class="n">t</span><span class="p">]);</span>
+                <span class="k">else</span>
+                    <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">change</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">tree</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">childSize</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">allNodes</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">childSize</span><span class="o">==</span> <span class="mi">1</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;EMPTY</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span> 
+    <span class="n">begin_end</span><span class="p">(</span><span class="n">curPosi</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">childSize</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">i</span><span class="p">:</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">ftree</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="k">else</span> 
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">ftree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;...</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span><span class="c1">//输出... 仔细看提
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">nodes</span><span class="p">[</span><span class="n">curPosi</span><span class="p">].</span><span class="n">ftree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="p">}</span>   
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">treeNode</span> <span class="n">rootNode</span> <span class="p">(</span><span class="s">&#34;root&#34;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+
+    <span class="n">string</span> <span class="n">curCmd</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">t</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">t</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">q</span><span class="p">;</span>
+        <span class="n">nodes</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="c1">//空间释放!!!!
+</span><span class="c1"></span>        <span class="n">nodes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">rootNode</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">history</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+            <span class="n">history</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">curPosi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">q</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">q</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">curCmd</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;MKDIR&#34;</span><span class="p">)</span> <span class="n">mkdir</span><span class="p">();</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;RM&#34;</span><span class="p">)</span> <span class="n">rm</span><span class="p">();</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;CD&#34;</span><span class="p">)</span> <span class="n">cd</span><span class="p">();</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;SZ&#34;</span><span class="p">)</span> <span class="n">sz</span><span class="p">();</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;LS&#34;</span><span class="p">)</span> <span class="n">ls</span><span class="p">();</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;TREE&#34;</span><span class="p">)</span> <span class="n">tree</span><span class="p">();</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">curCmd</span> <span class="o">==</span> <span class="s">&#34;UNDO&#34;</span><span class="p">)</span> <span class="n">undo</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
+<p>把本次模拟较为复杂,难点主要集中在tree的实现上,因为数据规模的原因直接进行前序遍历复杂度会超时,因此采取记忆化的操作,这样只在插入删除新的节点后才进行更新,其他情况直接使用存储的tree信息.</p>
+<p>除此之外stl的map使用也值得一看,直接实现了有序的查找,复杂度还低</p>
+<h2 id="b---东东学打牌httpsvjudgenetproblem计蒜客-41408"><a href="https://vjudge.net/problem/%e8%ae%a1%e8%92%9c%e5%ae%a2-41408" target="_blank" rel="noopener noreffer">B - 东东学打牌</a></h2>
+<h3 id="题意-1">题意</h3>
+<p>和之前做过的那个发牌的题挺类似,使用类似搜索的方法</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/04/mj8enzuLZFfSGKM.png"
+        data-srcset="https://i.loli.net/2020/05/04/mj8enzuLZFfSGKM.png, https://i.loli.net/2020/05/04/mj8enzuLZFfSGKM.png 1.5x, https://i.loli.net/2020/05/04/mj8enzuLZFfSGKM.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/04/mj8enzuLZFfSGKM.png"
+        title="image-20200504185524882" /></p>
+<h3 id="解法-1">解法</h3>
+<p>首先使用个结构体来handCard记录一个人的姓名和手牌,姓名使用string手牌使用vector,手牌转换为数字.使用一个handCard数组记录有所人的手牌.</p>
+<p>然后开8个vector,分别表示8种情况下的人,然后写8个函数,分别判断一个人的手牌是哪一种情况,然后分配到对应的vector</p>
+<p>针对这个8种情况编写几个排序函数,实现题目中要求的顺序,有几个排序方法使能复用的.</p>
+<p>在8个判断函数中,使用map实现对同一数字手牌个数的判断.</p>
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span><span class="c1">//手牌和人名
+</span><span class="c1"></span>
+<span class="k">struct</span> <span class="nc">handCard</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cards</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">handCard</span> <span class="n">allCard</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span><span class="c1">//所有人的情况
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">exchanges</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="c1">//将ascii码转换为对应的数字
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">longshun</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">};</span><span class="c1">//龙顺判断
+</span><span class="c1">// priority_queue&lt;string,vector&lt;string&gt;,greater&lt;string&gt; &gt; ans[8];
+</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span><span class="c1">//8种类型
+</span><span class="c1"></span>
+<span class="kr">inline</span> <span class="kt">int</span> <span class="nf">getCardNum</span><span class="p">(</span><span class="kt">int</span> <span class="n">ptr</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="c1">//获取一张手牌
+</span><span class="c1"></span><span class="p">{</span><span class="k">return</span> <span class="n">allCard</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">];}</span>
+
+<span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">getCnt</span><span class="p">(</span><span class="kt">int</span> <span class="n">ptr</span><span class="p">)</span><span class="c1">//获得计数的字典
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">mp</span><span class="p">[</span><span class="n">allCard</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">mp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">distribute</span><span class="p">(</span><span class="kt">int</span> <span class="n">ptr</span><span class="p">)</span><span class="c1">//判断一套牌属于哪一个类型
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span> <span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="p">{</span><span class="c1">//龙顺
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">allCard</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">!=</span><span class="n">longshun</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ans</span><span class="p">[</span><span class="mi">7</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">{</span><span class="c1">//顺子
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">allCard</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="o">!=</span><span class="n">allCard</span><span class="p">[</span><span class="n">ptr</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ans</span><span class="p">[</span><span class="mi">6</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">{</span><span class="c1">//炸弹
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mp</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ans</span><span class="p">[</span><span class="mi">5</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">{</span><span class="c1">//三带二
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mp</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span><span class="o">!=</span><span class="mi">3</span><span class="o">&amp;&amp;</span><span class="n">t</span><span class="p">.</span><span class="n">second</span><span class="o">!=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ans</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">{</span><span class="c1">//三个
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mp</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ans</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">{</span><span class="c1">//两对
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mp</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">flag</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ans</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="p">{</span><span class="c1">//对子
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mp</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span><span class="c1">//大牌
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">nameOrder</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="c1">//比较大牌,实际上就是名字的字典序
+</span><span class="c1"></span><span class="p">{</span><span class="k">return</span> <span class="n">allCard</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">name</span><span class="o">&gt;</span><span class="n">allCard</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">name</span><span class="p">;}</span>
+
+<span class="kt">bool</span> <span class="nf">numOrder</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="c1">//所有手牌和的大小,顺子比较直接使用,大数也直接使用
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">al</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">bl</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">al</span><span class="o">+=</span><span class="n">allCard</span><span class="p">[</span><span class="n">a</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">bl</span><span class="o">+=</span><span class="n">allCard</span><span class="p">[</span><span class="n">b</span><span class="p">].</span><span class="n">cards</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="o">&lt;</span><span class="n">bl</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">al</span><span class="o">==</span><span class="n">bl</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nameOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span> <span class="nf">cmp6</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="c1">//炸弹
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">getCardNum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">&lt;</span><span class="n">getCardNum</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="c1">//炸弹大小
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">getCardNum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">getCardNum</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">numOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span><span class="c1">//比较剩下的一张牌
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span> <span class="nf">cmp5</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="c1">//三带二
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mpa</span> <span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mpb</span> <span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">al</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">bl</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mpa</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="n">al</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mpb</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="n">bl</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="o">&lt;</span><span class="n">bl</span><span class="p">)</span><span class="c1">//比较三
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="o">==</span><span class="n">bl</span><span class="p">)</span><span class="c1">//比较二
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">numOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//三个和三带二一样
+</span><span class="c1"></span><span class="kt">bool</span> <span class="nf">cmp3</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="c1">//两对
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">al</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">bl</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mpa</span> <span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mpb</span> <span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mpa</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="c1">//两个对子
+</span><span class="c1"></span>            <span class="n">al</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mpb</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">bl</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="n">bl</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">bl</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">bl</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">bl</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">numOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span><span class="c1">//比较剩下的那一个数
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">cmp2</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span><span class="c1">//对子
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mpa</span> <span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mpb</span><span class="o">=</span> <span class="n">getCnt</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">al</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">bl</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mpa</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>   <span class="n">al</span> <span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">t</span><span class="p">:</span><span class="n">mpb</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>   <span class="n">bl</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">al</span><span class="o">&lt;</span><span class="n">bl</span><span class="p">)</span> <span class="c1">//比较唯一的一个对子
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">al</span> <span class="o">==</span> <span class="n">bl</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">numOrder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span><span class="c1">//比较剩下的
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">output</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">numOrder</span><span class="p">);</span><span class="c1">//排序
+</span><span class="c1"></span>    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp2</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp3</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp5</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp5</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">5</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">5</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">cmp6</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">6</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">6</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">numOrder</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">7</span><span class="p">].</span><span class="n">begin</span><span class="p">(),</span><span class="n">ans</span><span class="p">[</span><span class="mi">7</span><span class="p">].</span><span class="n">end</span><span class="p">(),</span><span class="n">nameOrder</span><span class="p">);</span>
+    <span class="c1">// sort(ans[0].begin(),ans[0].end(),);
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="c1">//输出结果
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">reverse_iterator</span> <span class="n">it</span><span class="o">=</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rbegin</span><span class="p">();</span><span class="n">it</span><span class="o">!=</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rend</span><span class="p">();</span><span class="n">it</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">allCard</span><span class="p">[</span><span class="o">*</span><span class="n">it</span><span class="p">].</span><span class="n">name</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">readInt</span><span class="p">()</span><span class="c1">//读入一个ascii转换为int
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">getchar</span><span class="p">();</span>
+        <span class="k">return</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">change</span><span class="p">[</span><span class="n">temp</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">change</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">change</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">char</span> <span class="n">i</span><span class="o">=</span><span class="sc">&#39;2&#39;</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">s</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">change</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+    <span class="n">change</span><span class="p">[</span><span class="sc">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//初始化
+</span><span class="c1"></span>    <span class="n">change</span><span class="p">[</span><span class="sc">&#39;J&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="n">change</span><span class="p">[</span><span class="sc">&#39;Q&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="n">change</span><span class="p">[</span><span class="sc">&#39;K&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+    
+    <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">k</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// getchar();
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">allCard</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">clear</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">allCard</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">;</span>
+            <span class="n">getchar</span><span class="p">();</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">t</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">allCard</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cards</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">readInt</span><span class="p">());</span>
+            <span class="n">sort</span><span class="p">(</span><span class="n">allCard</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cards</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">allCard</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cards</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="c1">//将每张手牌排序
+</span><span class="c1"></span>        <span class="p">}</span>    
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">distribute</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="c1">//把每个人手牌的类型分类
+</span><span class="c1"></span>        <span class="n">output</span><span class="p">();</span><span class="c1">//输出
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
+<p>这道题不是很难,主要是就是考虑题目中给出的几个情况的判断,判断同一个大小的牌数是一个比较麻烦的部分,使用map复杂度能低一些.另一个重要的地方是函数结构的设计,尽量提高的代码的复用率</p>
+<h2 id="c---签到题独立思考哈httpsvjudgenetproblemcodeforces-1042a"><a href="https://vjudge.net/problem/CodeForces-1042A" target="_blank" rel="noopener noreffer">C - 签到题，独立思考哈</a></h2>
+<h3 id="题面-1">题面</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/05/04/MhjWDYoq5uE6TXR.png"
+        data-srcset="https://i.loli.net/2020/05/04/MhjWDYoq5uE6TXR.png, https://i.loli.net/2020/05/04/MhjWDYoq5uE6TXR.png 1.5x, https://i.loli.net/2020/05/04/MhjWDYoq5uE6TXR.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/05/04/MhjWDYoq5uE6TXR.png"
+        title="https://i.loli.net/2020/05/04/MhjWDYoq5uE6TXR.png" /></p>
+<p>这个题实际上就是一个分配的问题,如何分配使所有单位的最大值最大或者最小</p>
+<h3 id="解法-2">解法</h3>
+<p>首先最大值最小首先采取的方法就是平均值,一平均就是最小的,但是因为已经分配好的不能再懂了,如果现在的最大值比平均后的值大,说明加入y之后最小的最大值还是原来的最大值,如果最大值小于平均值,那么平均值就是最小最大值</p>
+<p>最大最大值就很简单了,直接在现在最大值的基础上加上y就行了</p>
+<h3 id="code-2">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">105</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span><span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">data</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//当前的总计,用于求平均数
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">Max</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//当前的最大值
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">x</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">sum</span><span class="o">+=</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="c1">//统计
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="n">Max</span><span class="p">)</span> <span class="n">Max</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="c1">//最大值
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">mn</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">((</span><span class="n">sum</span><span class="o">+</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mf">1.0</span><span class="p">));</span><span class="c1">//加上y的平均数
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">mn</span><span class="o">&lt;</span><span class="n">Max</span><span class="p">)</span><span class="c1">//当前最大值大于平均数
+</span><span class="c1"></span>        <span class="n">mn</span> <span class="o">=</span> <span class="n">Max</span><span class="p">;</span><span class="c1">//取当前最大值
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">mx</span> <span class="o">=</span> <span class="n">Max</span><span class="o">+</span><span class="n">y</span><span class="p">;</span><span class="c1">///最大的最大值
+</span><span class="c1"></span>    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d %d&#34;</span><span class="p">,</span><span class="n">mn</span><span class="p">,</span><span class="n">mx</span><span class="p">);</span> 
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-2">总结</h3>
+<p>这道题不难,主要是就把最小的最大值情况想全了就行</p>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,744 +1,691 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Program_week2_homework | My New Hugo Site</title>
-
-<meta name="keywords" content="Program, homework" />
-<meta name="description" content="week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.
- A-化学  原题: Gym 270437A
- 题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]
-做法 ​	首先我们观察给出的分子的结构,可以发现,n-hexane中4个节点的度为2,其他分子式不具备这个特点,同理2,3-dimenthylbutane中2个节点度为3, 2,2-dimenthylbutane中1个节点的度为4,借助节点度的特征可以确定这几种结构,但是2-methylpentane和和3-methylpentane的节点的度的情况基本相同,1个3度,2个2度,3个1度,因此还要区分这两个. ​	区分的方法是从3度节点入手,查找它邻接的节点,如果有邻接节点中有两个1度节点则为2-methylpentane,否则就是3-methylpentane.
-​	我们需要一个数组存每个节点的度,除此之外使用一个多值字典(multimap)记录邻接情况(mp[i]的值是所有与i节点邻接的节点),这个字典是为了后两种情况,使用这两个手段就能区分所有情况.
-code #include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;map&gt;using namespace std; int data[8]; multimap &lt;int,int&gt; mp; void check() { int count[10];//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个  memset(count,0,sizeof(count)); for(int i=0;i&lt;8;i&#43;&#43;) count[data[i]]&#43;&#43;;//初始化  if(count[4] == 1){//前3种根据度直接判断  printf(&#34;2,2-dimethylbutane\n&#34;); return ; } else if (count[3] == 2){ printf(&#34;2,3-dimethylbutane\n&#34;); return ; } else if (count[2]==4){ printf(&#34;n-hexane\n&#34;); return ; } else{//后两种情况  int tar = 0;//找到度为3的节点  for (int i=0;i&lt;8;i&#43;&#43;) if (data[i] == 3) tar = i; int c = 0;//记录邻接点种度为1的节点个数  for (map&lt;int,int&gt;::iterator it = mp.">
-<meta name="author" content="">
-<link rel="canonical" href="https://xyfuture.github.io/posts/program-week2-homework/" />
-<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
-    as="style">
-
-<link rel="icon" href="https://xyfuture.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://xyfuture.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://xyfuture.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://xyfuture.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://xyfuture.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.80.0" />
-
-
-<meta property="og:title" content="Program_week2_homework" />
-<meta property="og:description" content="week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.
- A-化学  原题: Gym 270437A
- 题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]
-做法 ​	首先我们观察给出的分子的结构,可以发现,n-hexane中4个节点的度为2,其他分子式不具备这个特点,同理2,3-dimenthylbutane中2个节点度为3, 2,2-dimenthylbutane中1个节点的度为4,借助节点度的特征可以确定这几种结构,但是2-methylpentane和和3-methylpentane的节点的度的情况基本相同,1个3度,2个2度,3个1度,因此还要区分这两个. ​	区分的方法是从3度节点入手,查找它邻接的节点,如果有邻接节点中有两个1度节点则为2-methylpentane,否则就是3-methylpentane.
-​	我们需要一个数组存每个节点的度,除此之外使用一个多值字典(multimap)记录邻接情况(mp[i]的值是所有与i节点邻接的节点),这个字典是为了后两种情况,使用这两个手段就能区分所有情况.
-code #include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;map&gt;using namespace std; int data[8]; multimap &lt;int,int&gt; mp; void check() { int count[10];//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个  memset(count,0,sizeof(count)); for(int i=0;i&lt;8;i&#43;&#43;) count[data[i]]&#43;&#43;;//初始化  if(count[4] == 1){//前3种根据度直接判断  printf(&#34;2,2-dimethylbutane\n&#34;); return ; } else if (count[3] == 2){ printf(&#34;2,3-dimethylbutane\n&#34;); return ; } else if (count[2]==4){ printf(&#34;n-hexane\n&#34;); return ; } else{//后两种情况  int tar = 0;//找到度为3的节点  for (int i=0;i&lt;8;i&#43;&#43;) if (data[i] == 3) tar = i; int c = 0;//记录邻接点种度为1的节点个数  for (map&lt;int,int&gt;::iterator it = mp." />
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Program_week2_homework - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="Program_week2_homework" />
+<meta property="og:description" content="week2-contest 本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间," />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xyfuture.github.io/posts/program-week2-homework/" />
 <meta property="article:published_time" content="2020-03-03T20:39:59+00:00" />
 <meta property="article:modified_time" content="2020-03-03T20:39:59+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Program_week2_homework"/>
-<meta name="twitter:description" content="week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.
- A-化学  原题: Gym 270437A
- 题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]
-做法 ​	首先我们观察给出的分子的结构,可以发现,n-hexane中4个节点的度为2,其他分子式不具备这个特点,同理2,3-dimenthylbutane中2个节点度为3, 2,2-dimenthylbutane中1个节点的度为4,借助节点度的特征可以确定这几种结构,但是2-methylpentane和和3-methylpentane的节点的度的情况基本相同,1个3度,2个2度,3个1度,因此还要区分这两个. ​	区分的方法是从3度节点入手,查找它邻接的节点,如果有邻接节点中有两个1度节点则为2-methylpentane,否则就是3-methylpentane.
-​	我们需要一个数组存每个节点的度,除此之外使用一个多值字典(multimap)记录邻接情况(mp[i]的值是所有与i节点邻接的节点),这个字典是为了后两种情况,使用这两个手段就能区分所有情况.
-code #include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;map&gt;using namespace std; int data[8]; multimap &lt;int,int&gt; mp; void check() { int count[10];//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个  memset(count,0,sizeof(count)); for(int i=0;i&lt;8;i&#43;&#43;) count[data[i]]&#43;&#43;;//初始化  if(count[4] == 1){//前3种根据度直接判断  printf(&#34;2,2-dimethylbutane\n&#34;); return ; } else if (count[3] == 2){ printf(&#34;2,3-dimethylbutane\n&#34;); return ; } else if (count[2]==4){ printf(&#34;n-hexane\n&#34;); return ; } else{//后两种情况  int tar = 0;//找到度为3的节点  for (int i=0;i&lt;8;i&#43;&#43;) if (data[i] == 3) tar = i; int c = 0;//记录邻接点种度为1的节点个数  for (map&lt;int,int&gt;::iterator it = mp."/>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Program_week2_homework",
-  "name": "Program_week2_homework",
-  "description": "week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.\n A-化学  原题: Gym 270437A\n 题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入 …",
-  "keywords": [
-    "Program", "homework"
-  ],
-  "articleBody": "week2-contest  本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.\n A-化学  原题: Gym 270437A\n 题意 本题的目的是给出化学分子式,然后输出它的名字. 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]\n做法 ​\t首先我们观察给出的分子的结构,可以发现,n-hexane中4个节点的度为2,其他分子式不具备这个特点,同理2,3-dimenthylbutane中2个节点度为3, 2,2-dimenthylbutane中1个节点的度为4,借助节点度的特征可以确定这几种结构,但是2-methylpentane和和3-methylpentane的节点的度的情况基本相同,1个3度,2个2度,3个1度,因此还要区分这两个. ​\t区分的方法是从3度节点入手,查找它邻接的节点,如果有邻接节点中有两个1度节点则为2-methylpentane,否则就是3-methylpentane.\n​\t我们需要一个数组存每个节点的度,除此之外使用一个多值字典(multimap)记录邻接情况(mp[i]的值是所有与i节点邻接的节点),这个字典是为了后两种情况,使用这两个手段就能区分所有情况.\ncode #include #include #include using namespace std; int data[8]; multimap int,int mp; void check() { int count[10];//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个  memset(count,0,sizeof(count)); for(int i=0;i8;i++) count[data[i]]++;//初始化  if(count[4] == 1){//前3种根据度直接判断  printf(\"2,2-dimethylbutane\\n\"); return ; } else if (count[3] == 2){ printf(\"2,3-dimethylbutane\\n\"); return ; } else if (count[2]==4){ printf(\"n-hexane\\n\"); return ; } else{//后两种情况  int tar = 0;//找到度为3的节点  for (int i=0;i8;i++) if (data[i] == 3) tar = i; int c = 0;//记录邻接点种度为1的节点个数  for (mapint,int::iterator it = mp.find(tar);it-first == tar;it++){//多值字典中查找邻接点  if (data[it-second]==1)//度为1增加  c++; } if(c == 1){//邻接点中度为1的节点个数是1个时  printf(\"3-methylpentane\\n\"); return ; } else if (c == 2){ printf(\"2-methylpentane\\n\"); return ; } } } int main() { int count=0; scanf(\"%d\",\u0026count); for (int i = 0; i  count; i++){ mp.clear();//初始化  memset(data,0,sizeof(data)); int a,b; for(int j=0;j5;j++){ scanf(\"%d%d\",\u0026a,\u0026b); data[a]++;//记录a的度  data[b]++;//记录b的度  mp.insert({a,b});//记录a的邻接点  mp.insert({b,a});//记录b的临界点  } check(); } } 总结 本题考察了观察能力,要能找到特点区分出不同的化学式\nB 大力出奇迹  原题: HDU 2093\n 题意 题意描述很简单就是算一个最终的成绩表,成绩表最重要的是AC数,再就是AC时间,时间由做对的时间和该题罚时组成,没做对的题不算罚时,最终按名字的字典序排.\n题目的输入就是答题情况,每个人名字和他答对或者答错题的情况,输出是名字AC数和AC时间,要求排好序.\n做法 首先观察输入,先录入名字,在录入答题情况,负数是WA的情况,因为在后面排序中用途可以不记录,正数首先录入答对的时间,之后用getchar()判断一下是不是'(‘决定是否记录罚时.\n每个人的成绩用结构体来存储,但是因为名字是字符串不方便存储因此开一个全局的字符串数组来记录各个名字,结构体内就记录个序号,除此之外记录AC数和AC时间.\n最后重载结构体的小于号,规则是先AC数在AC时间最后名字字典序,用sort直接排序,最后输出结果,注意格式,做好左右对齐.\ncode #include #include #include #include using namespace std; char stuName[1000][11];//记录名字的数组,开的大一些 struct Student { int name;//名字序号  int ac;//AC数  int all_time;//AC总时间,算上罚时  bool operator  (const Student \u0026 p) const{//重载小于  if(acp.ac)//因为输出是降序,所以是反的  return true; else if(ac==p.ac) { if (all_timep.all_time) return true; else if (all_time==p.all_time) { if(strcmp(stuName[name],stuName[p.name])0) return true; } } return false; } } stu[1000];//结构体数组,方便用sort排序 int m =0;//题的数量 int n = 0;//单位罚时 bool scoreRead(int i)//读入成绩 { char tempName[11];//暂存名字  memset (tempName,0,sizeof(tempName)); int ac=0,err=0,ac_time = 0; int temp; if(scanf(\"%s\",tempName) != EOF)//读入名字,最终是用EOF退出  { for(int j=0;jn;j++)//读入题的情况  { scanf(\"%d\",\u0026temp); if (temp0) continue;//WA的无意义  if(temp0) { ac++;//AC数  ac_time+=temp;//时间  if(getchar() == '(')//判断提交了几次  { scanf(\"%d\",\u0026temp); getchar(); err+=temp;//罚时次数  } continue; } } strcpy(stuName[i],tempName); stu[i].name = i; stu[i].ac = ac; stu[i].all_time = ac_time+err*m;//计算总的AC时间  return true; } else{ return false;//false退出  } return true; } int main() { cinnm; int i=0; memset(stu,0,sizeof(stu)); memset(stuName,0,sizeof(stuName)); while(scoreRead(i++)) { continue; //这里写的不好,应该直接把scoreRead展开😂  } sort(stu,stu+i-1);//排序,是降序  for(int j=0;ji-1;j++) { printf(\"%-10s %2d %4d\\n\", stuName[stu[j].name],stu[j].ac,stu[j].all_time);//输出对齐  } } 总结 这个题要记录名字,但是名字用char的话没有办法直接用sort,面临浅复制的问题,因此可以用数组解决,结构体用string也不是非常方便,以后就这么用了.\nC-桥牌  这题题面的dalao都tql w(ﾟДﾟ)w\n 题意 本题是模拟一个发牌过程,按照给定的牌序和发牌顺序给4个人发牌,然后将牌排序排序再输出,难点主要在发牌顺序和排序上了.\n解法 首先要解决记录牌的情况,这里使用结构体解决,结构体内记录颜色和数字,因为有字母所以使用char,之后重载开一个4*13的二维数组记录每一个人的手牌.发牌阶段用for控制,因为4人一个循环符合mod4系统.可以开一个变量,通过自加和取模的方式解决这张牌该发给谁的问题,于此同时用除法记录是那张手牌.要注意一点,这个变量的初始化是题目现场给定的,因此要现场指定变量初始值.这会引起一个问题,除4的结果不对(就是会少发一张手牌),因此用一个量来修正这个结果(比如初始化为3,则第一轮发到3+3 = 6,6/4和3/4不同,而6-3/4才是正确答案).\n最后输出结果,先将每个人的手牌进行排序,然后按照给定格式和顺序输出就ok了\ncode #include #include #include #include #include #include using namespace std; char name[4][10]={\"North\",\"East\",\"South\",\"West\"};//输出使用 mapchar,int mp; struct poke//记录一张扑克 { char number; char color; bool operator  (const poke \u0026 p) const{ if (mp[color]mp[p.color]) return true; else if (mp[color] == mp[p.color]) if (mp[number]mp[p.number]) return true; return false; } }player[4][13];//记录每个人的手牌 void print(int i)//打印输出,一定要看题目格式!!! { printf(\"%s player:\\n\",name[i]); printf(\"+---+---+---+---+---+---+---+---+---+---+---+---+---+\\n\"); sort(player[i],player[i]+13); printf(\"|\"); for(int j=0;j13;j++) printf(\"%c %c|\",player[i][j].number,player[i][j].number); putchar('\\n'); printf(\"|\"); for(int j=0;j13;j++) printf(\" %c |\",player[i][j].color); putchar('\\n'); printf(\"|\"); for(int j=0;j13;j++) printf(\"%c %c|\",player[i][j].number,player[i][j].number); putchar('\\n'); printf(\"+---+---+---+---+---+---+---+---+---+---+---+---+---+\\n\"); } int main() { int first =0;//起始从谁开始发牌  char tempDir; for(int i=0;i8;i++)//下面都是为了结构体比较初始化字典  { mp[i+'2'] = i; } mp['C'] = 1; mp['D'] = 2; mp['S'] = 3; mp['H'] = 4; mp['T'] = 8; mp['J'] = 9; mp['Q'] = 10; mp['K'] = 11; mp['A'] = 12; while(scanf(\"%c\",\u0026tempDir)!=EOF)//读入发牌人  { memset (player,0,sizeof(player)); if (tempDir == 'N') first = 1; else if (tempDir == 'E') first =2; else if (tempDir == 'S') first = 3; else if(tempDir == 'W') first =0; else if (tempDir == '#')//结束标志  return 0; getchar();//过滤回车  int pf =first;//修除法正量  for (int i=0;i52;i++) { scanf(\"%c%c\",\u0026player[first%4][(first-pf)/4].color,\u0026player[first%4][(first-pf)/4].number);//读入每个人的手牌  first++; if(i==25)//输入中是隔开的  getchar(); } getchar();//过滤回车  //getchar();  int c =2;//输出顺序初始化  for(int t=0;t4;t++ ) { print(c); c = (c+1)%4; } putchar('\\n');//最后多的一个回车  } return 0; } 总结 说实话这个题不难,但是输入输出太麻烦了,一定要看清输入和输出的格式,结束符是什么,要不要多个回车,因为格式WA,PE了好几次😂\nweek2-homework A - Maze 题意 本题描述较为简单,就是一个矩阵中找到起点到终点的最短路径,图的规模给定了,就是5*5的,0代表可以走,1代表不可以走,最终要求输出一个路径\n解法 这个题用BFS就可以了.首先将(0,0)放入队列,并且标记(0,0),之后每次从队列中取出元素,取出来之后看看上下左右能到那个点,还要保证不能越界,如果可以到就把那个点标记并且入队,同时在一个vis中记录新的点是由当前点经过的,重复这个过程直到找到终点.\n最后用递归(因为存储的方式是反的)的方式输出路径\ncode #include#include#include using namespace std; struct posi { int x; int y; }; struct vis//存访问的情况和上一个坐标是啥 { int x; int y; int v; }; int moveX[]={1,-1,0,0};//转移数组 int moveY[]={0,0,1,-1}; int block[5][5] ; vis visited[5][5]; bool check(posi\u0026 cur,int dirct) { posi np = {cur.x+moveX[dirct],cur.y+moveY[dirct]}; if (np.x=0\u0026\u0026np.x5\u0026\u0026np.y=0\u0026\u0026np.y5)//检查边界  if (block[np.x][np.y]!=1) if (visited[np.x][np.y].v == 0) return true; return false; } posi bfs() { queueposi q; posi start = {0,0}; q.push(start); visited[0][0] = {0,0,1}; while(!q.empty()) { posi temp = q.front(); q.pop(); for (int i=0;i4;i++) { if (check(temp,i)) { q.push({temp.x+moveX[i],temp.y+moveY[i]});//入队  visited[temp.x+moveX[i]][temp.y+moveY[i]] = {temp.x,temp.y,1};//标记  if (temp.x+moveX[i]==4 \u0026\u0026 temp.y+moveY[i]==4)//找到终点,退出  return {temp.x+moveX[i],temp.y+moveY[i]}; } } } return {0,0}; } void print(posi last)//输出结果 递归函数 因为存的就是上一个节点 { if (last.x == 0 \u0026\u0026last.y== 0)//找到起点时退出  printf(\"(%d, %d)\\n\",last.x,last.y); else { posi before = {visited[last.x][last.y].x,visited[last.x][last.y].y}; print(before); printf(\"(%d, %d)\\n\",last.x,last.y); } } int main() { memset(\u0026block,0,sizeof(block)); memset(\u0026visited,0,sizeof(visited)); for (int i=0;i5;i++) for (int j=0;j5;j++) scanf(\"%d\",block[i]+j); print(bfs());//bfs同时打印结果  return 0 ; } 总结 结果输出可以使用递归的方式进行,因为vis数组存的都是上一个节点的情况,因此需要用栈结构,使用递归比较好写.\nB - Pour Water 题意 本题是一个隐式图问题,转移的路径一共有六种,A/B 空/满,A-B,B-A,通过这个六种转移的方法将(0,0)转换出一种满足C的状态\n解法 解决方案还是BFS,BFS的六条路径都给了,首先将(0,0)标记入队,然后取队首元素,分别走六条路,将新结果标记,同时记录历史路径,然后将新结果入队.重复这个过程直到出现要求的情况,然后用递归的方式输出路径\ncode #include #include #include  using namespace std; int maxA=0; int maxB=0; int C=0; struct situ { int a; int b; }; struct vis//访问情况 { int a;int b;int v; }visited[1002][1002]; situ changeSitu (const situ\u0026 cur,int i)//改变状态一共6条路 { situ ns={cur.a,cur.b}; if (i==1) ns.a = 0; else if (i==2) ns.a = maxA; else if (i==3) ns.b=0; else if (i==4) ns.b=maxB; else if (i==5)//A-B  { if(cur.amaxB-cur.b) ns.b= maxB,ns.a = cur.a - (maxB-cur.b); else ns.b = cur.b+cur.a,ns.a = 0; } else if (i==6)//B-A  { if(cur.bmaxA-cur.a) ns.a = maxA,ns.b = cur.b - (maxA-cur.a); else ns.a = cur.a+cur.b,ns.b = 0; } return ns; } situ bfs() { situ start = {0,0}; queuesitu q; q.push(start); visited[0][0] = {0,0,10}; while(!q.empty()) { situ temp = q.front(); q.pop(); for (int i=1;i6;i++) { situ ns = changeSitu(temp,i); if (visited[ns.a][ns.b].v == 0) { q.push(ns); visited[ns.a][ns.b] = {temp.a,temp.b,i};//标记访问,把新状态的上一个状态存起来  } if (ns.a == C||ns.b==C) return ns; } } return {0,0}; } void print(int i)//输出文字 { if (i==2) printf(\"fill A\\n\"); if (i==1) printf(\"empty A\\n\"); if (i==4) printf(\"fill B\\n\"); if (i==3) printf(\"empty B\\n\"); if (i==5) printf(\"pour A B\\n\"); if (i==6) printf(\"pour B A\\n\"); } void printAll(situ ns)//递归函数输出结果 { if (ns.a==0\u0026\u0026ns.b==0) return ; else { printAll({visited[ns.a][ns.b].a,visited[ns.a][ns.b].b}); print(visited[ns.a][ns.b].v); } } int main() { while(scanf(\"%d%d%d\",\u0026maxA,\u0026maxB,\u0026C)!=EOF) { memset (visited,0,sizeof(visited)); situ last = bfs(); printAll(last); printf(\"success\\n\"); } } 总结 隐式图问题最重要的是分清楚不同的路,得把所有的路都找出来,同时把路原子化,每条路都是不可以再分的,这样才可能找出最佳路径.\n",
-  "wordCount" : "865",
-  "inLanguage": "en",
-  "datePublished": "2020-03-03T20:39:59Z",
-  "dateModified": "2020-03-03T20:39:59Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://xyfuture.github.io/posts/program-week2-homework/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "My New Hugo Site",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://xyfuture.github.io/favicon.ico"
+<meta name="twitter:description" content="week2-contest 本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/program-week2-homework/" /><link rel="prev" href="https://xyfuture.github.io/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" /><link rel="next" href="https://xyfuture.github.io/posts/%E7%A8%8B%E8%AE%BE-week3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Program_week2_homework",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/program-week2-homework\/"
+        },"genre": "posts","keywords": "Program, homework","wordcount":  4450 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/program-week2-homework\/","datePublished": "2020-03-03T20:39:59+00:00","dateModified": "2020-03-03T20:39:59+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
     }
-  }
-}
-</script>
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-
-
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        .theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://xyfuture.github.io/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
-            <span class="logo-switches">
-                <span class="theme-toggle" title="(Alt + T)">
-                    <a id="theme-toggle" accesskey="t">
-                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </a>
-                </span>
-                
-            </span>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
         </div>
-        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
-    </nav>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
 </header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Program_week2_homework</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%80%9D%E7%BB%B4/"><i class="far fa-folder fa-fw"></i>程序设计思维</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-03">2020-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4450 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-化学">A-化学</a>
+      <ul>
+        <li><a href="#题意">题意</a></li>
+        <li><a href="#做法">做法</a></li>
+        <li><a href="#code">code</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#b-大力出奇迹">B 大力出奇迹</a>
+      <ul>
+        <li><a href="#题意-1">题意</a></li>
+        <li><a href="#做法-1">做法</a></li>
+        <li><a href="#code-1">code</a></li>
+        <li><a href="#总结-1">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#c-桥牌">C-桥牌</a>
+      <ul>
+        <li><a href="#题意-2">题意</a></li>
+        <li><a href="#解法">解法</a></li>
+        <li><a href="#code-2">code</a></li>
+        <li><a href="#总结-2">总结</a></li>
+      </ul>
+    </li>
+  </ul>
 
-    <main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">
-      Program_week2_homework
-    </h1>
-    <div class="post-description">
-      
-    </div>
-    <div class="post-meta">March 3, 2020
-
-    </div>
-  </header> 
-
-  <div class="post-content">
-<h1 id="week2-contest">week2-contest<a hidden class="anchor" aria-hidden="true" href="#week2-contest">#</a></h1>
+  <ul>
+    <li><a href="#a---maze">A - Maze</a>
+      <ul>
+        <li><a href="#题意-3">题意</a></li>
+        <li><a href="#解法-1">解法</a></li>
+        <li><a href="#code-3">code</a></li>
+        <li><a href="#总结-3">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#b---pour-water">B - Pour Water</a>
+      <ul>
+        <li><a href="#题意-4">题意</a></li>
+        <li><a href="#解法-2">解法</a></li>
+        <li><a href="#code-4">code</a></li>
+        <li><a href="#总结-4">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="week2-contest">week2-contest</h1>
 <blockquote>
 <p>本次题目全是基础的模拟题,虽然看着简单,但是实际操作起来会发现还是有很多问题,主要是题意的理解和输出格式,除此之外模拟题不能浪费太多时间,coding的速度一定要练上去.</p>
 </blockquote>
-<h2 id="a-化学">A-化学<a hidden class="anchor" aria-hidden="true" href="#a-化学">#</a></h2>
+<h2 id="a-化学">A-化学</h2>
 <blockquote>
-<p>原题: <a href="https://vjudge.net/problem/3168416/origin">Gym 270437A</a></p>
+<p>原题: <a href="https://vjudge.net/problem/3168416/origin" target="_blank" rel="noopener noreffer">Gym 270437A</a></p>
 </blockquote>
-<h3 id="题意">题意<a hidden class="anchor" aria-hidden="true" href="#题意">#</a></h3>
+<h3 id="题意">题意</h3>
 <p>本题的目的是给出化学分子式,然后输出它的名字.
 化学分子式的输入类似图结构,分子式有几个分子是确定,输入的是分子之间的连接情况,两个分子之间有连线就输入一个数对,代表这俩相连.当然因为分子不和数字直接对应因此一个分子式有多种数对表示.[(1,2)可以理解为1号分子和2号分子连接]</p>
-<h3 id="做法">做法<a hidden class="anchor" aria-hidden="true" href="#做法">#</a></h3>
-<p><img src="https://espresso.codeforces.com/40fbd94c6282f47ed4c3040ecd1b29b610a0a032.png" alt="img"></p>
+<h3 id="做法">做法</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://espresso.codeforces.com/40fbd94c6282f47ed4c3040ecd1b29b610a0a032.png"
+        data-srcset="https://espresso.codeforces.com/40fbd94c6282f47ed4c3040ecd1b29b610a0a032.png, https://espresso.codeforces.com/40fbd94c6282f47ed4c3040ecd1b29b610a0a032.png 1.5x, https://espresso.codeforces.com/40fbd94c6282f47ed4c3040ecd1b29b610a0a032.png 2x"
+        data-sizes="auto"
+        alt="https://espresso.codeforces.com/40fbd94c6282f47ed4c3040ecd1b29b610a0a032.png"
+        title="img" /></p>
 <p>​		首先我们观察给出的分子的结构,可以发现,n-hexane中4个节点的度为2,其他分子式不具备这个特点,同理2,3-dimenthylbutane中2个节点度为3, 2,2-dimenthylbutane中1个节点的度为4,借助节点度的特征可以确定这几种结构,但是2-methylpentane和和3-methylpentane的节点的度的情况基本相同,1个3度,2个2度,3个1度,因此还要区分这两个.
 ​		区分的方法是从3度节点入手,查找它邻接的节点,如果有邻接节点中有两个1度节点则为2-methylpentane,否则就是3-methylpentane.</p>
 <p>​		我们需要一个数组存每个节点的度,除此之外使用一个多值字典(multimap)记录邻接情况(mp[i]的值是所有与i节点邻接的节点),这个字典是为了后两种情况,使用这两个手段就能区分所有情况.</p>
-<h3 id="code">code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<h3 id="code">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span style="color:#66d9ef">int</span> data[<span style="color:#ae81ff">8</span>];
-multimap <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> mp;
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">check</span>()
-{
-    <span style="color:#66d9ef">int</span> count[<span style="color:#ae81ff">10</span>];<span style="color:#75715e">//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个
-</span><span style="color:#75715e"></span>    memset(count,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(count));
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>;i<span style="color:#f92672">++</span>)
-        count[data[i]]<span style="color:#f92672">++</span>;<span style="color:#75715e">//初始化
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(count[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){<span style="color:#75715e">//前3种根据度直接判断
-</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74">&#34;2,2-dimethylbutane</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span> ;
-    }
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (count[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>){
-        printf(<span style="color:#e6db74">&#34;2,3-dimethylbutane</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span> ;  
-    }
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (count[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>){
-        printf(<span style="color:#e6db74">&#34;n-hexane</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-        <span style="color:#66d9ef">return</span> ;
-    }
-    <span style="color:#66d9ef">else</span>{<span style="color:#75715e">//后两种情况
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> tar <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//找到度为3的节点
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>;i<span style="color:#f92672">++</span>)
-            <span style="color:#66d9ef">if</span> (data[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>)
-                tar <span style="color:#f92672">=</span> i;
-        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//记录邻接点种度为1的节点个数
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;::</span>iterator it <span style="color:#f92672">=</span> mp.find(tar);it<span style="color:#f92672">-&gt;</span>first <span style="color:#f92672">==</span> tar;it<span style="color:#f92672">++</span>){<span style="color:#75715e">//多值字典中查找邻接点
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (data[it<span style="color:#f92672">-&gt;</span>second]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)<span style="color:#75715e">//度为1增加
-</span><span style="color:#75715e"></span>                c<span style="color:#f92672">++</span>;
-        }
-        <span style="color:#66d9ef">if</span>(c <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){<span style="color:#75715e">//邻接点中度为1的节点个数是1个时
-</span><span style="color:#75715e"></span>            printf(<span style="color:#e6db74">&#34;3-methylpentane</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-            <span style="color:#66d9ef">return</span> ;
-        }
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (c <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>){
-            printf(<span style="color:#e6db74">&#34;2-methylpentane</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-            <span style="color:#66d9ef">return</span> ;
-        }
-    }
-}
+<span class="kt">int</span> <span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="n">multimap</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">check</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">count</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="c1">//多开一点,用于记录不同度的节点个数count[i]代表度为i的节点有几个
+</span><span class="c1"></span>    <span class="n">memset</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">count</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span><span class="c1">//初始化
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">count</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span><span class="c1">//前3种根据度直接判断
+</span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;2,2-dimethylbutane</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">count</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;2,3-dimethylbutane</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">;</span>  
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">count</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="mi">4</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;n-hexane</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span><span class="c1">//后两种情况
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">tar</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//找到度为3的节点
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="n">tar</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//记录邻接点种度为1的节点个数
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">tar</span><span class="p">);</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">==</span> <span class="n">tar</span><span class="p">;</span><span class="n">it</span><span class="o">++</span><span class="p">){</span><span class="c1">//多值字典中查找邻接点
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="c1">//度为1增加
+</span><span class="c1"></span>                <span class="n">c</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span><span class="c1">//邻接点中度为1的节点个数是1个时
+</span><span class="c1"></span>            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;3-methylpentane</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;2-methylpentane</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
     
-    <span style="color:#66d9ef">int</span> count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>count);
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> count; i<span style="color:#f92672">++</span>){
-        mp.clear();<span style="color:#75715e">//初始化
-</span><span style="color:#75715e"></span>        memset(data,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(data));
-        <span style="color:#66d9ef">int</span> a,b;
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">5</span>;j<span style="color:#f92672">++</span>){
-            scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>a,<span style="color:#f92672">&amp;</span>b);
-            data[a]<span style="color:#f92672">++</span>;<span style="color:#75715e">//记录a的度
-</span><span style="color:#75715e"></span>            data[b]<span style="color:#f92672">++</span>;<span style="color:#75715e">//记录b的度
-</span><span style="color:#75715e"></span>            mp.insert({a,b});<span style="color:#75715e">//记录a的邻接点
-</span><span style="color:#75715e"></span>            mp.insert({b,a});<span style="color:#75715e">//记录b的临界点
-</span><span style="color:#75715e"></span>        }
-        check();
-    }
-}
-</code></pre></div><h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+    <span class="kt">int</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">count</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">mp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="c1">//初始化
+</span><span class="c1"></span>        <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+        <span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">++</span><span class="p">;</span><span class="c1">//记录a的度
+</span><span class="c1"></span>            <span class="n">data</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">++</span><span class="p">;</span><span class="c1">//记录b的度
+</span><span class="c1"></span>            <span class="n">mp</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">});</span><span class="c1">//记录a的邻接点
+</span><span class="c1"></span>            <span class="n">mp</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">});</span><span class="c1">//记录b的临界点
+</span><span class="c1"></span>        <span class="p">}</span>
+        <span class="n">check</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结">总结</h3>
 <p>本题考察了观察能力,要能找到特点区分出不同的化学式</p>
-<h2 id="b-大力出奇迹">B 大力出奇迹<a hidden class="anchor" aria-hidden="true" href="#b-大力出奇迹">#</a></h2>
+<h2 id="b-大力出奇迹">B 大力出奇迹</h2>
 <blockquote>
-<p>原题: <a href="https://vjudge.net/problem/16428/origin">HDU 2093</a></p>
+<p>原题: <a href="https://vjudge.net/problem/16428/origin" target="_blank" rel="noopener noreffer">HDU 2093</a></p>
 </blockquote>
-<h3 id="题意-1">题意<a hidden class="anchor" aria-hidden="true" href="#题意-1">#</a></h3>
+<h3 id="题意-1">题意</h3>
 <p>题意描述很简单就是算一个最终的成绩表,成绩表最重要的是AC数,再就是AC时间,时间由做对的时间和该题罚时组成,没做对的题不算罚时,最终按名字的字典序排.</p>
 <p>题目的输入就是答题情况,每个人名字和他答对或者答错题的情况,输出是名字AC数和AC时间,要求排好序.</p>
-<h3 id="做法-1">做法<a hidden class="anchor" aria-hidden="true" href="#做法-1">#</a></h3>
-<p><img src="https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png" alt=""></p>
+<h3 id="做法-1">做法</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png"
+        data-srcset="https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png, https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png 1.5x, https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png"
+        title="https://i.loli.net/2020/03/03/wjlJgyWukTrx76q.png" /></p>
 <p>首先观察输入,先录入名字,在录入答题情况,负数是WA的情况,因为在后面排序中用途可以不记录,正数首先录入答对的时间,之后用getchar()判断一下是不是'(&lsquo;决定是否记录罚时.</p>
 <p>每个人的成绩用结构体来存储,但是因为名字是字符串不方便存储因此开一个全局的字符串数组来记录各个名字,结构体内就记录个序号,除此之外记录AC数和AC时间.</p>
 <p>最后重载结构体的小于号,规则是先AC数在AC时间最后名字字典序,用sort直接排序,最后输出结果,注意格式,做好左右对齐.</p>
-<h3 id="code-1">code<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span>  <span style="color:#66d9ef">namespace</span> std;
+<h3 id="code-1">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span>  <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span style="color:#66d9ef">char</span> stuName[<span style="color:#ae81ff">1000</span>][<span style="color:#ae81ff">11</span>];<span style="color:#75715e">//记录名字的数组,开的大一些
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Student</span>
-{
-    <span style="color:#66d9ef">int</span> name;<span style="color:#75715e">//名字序号
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ac;<span style="color:#75715e">//AC数
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> all_time;<span style="color:#75715e">//AC总时间,算上罚时
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">const</span> Student <span style="color:#f92672">&amp;</span> p) <span style="color:#66d9ef">const</span>{<span style="color:#75715e">//重载小于
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(ac<span style="color:#f92672">&gt;</span>p.ac)<span style="color:#75715e">//因为输出是降序,所以是反的
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> true;
-        <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>(ac<span style="color:#f92672">==</span>p.ac)
-        {
-            <span style="color:#66d9ef">if</span> (all_time<span style="color:#f92672">&lt;</span>p.all_time)
-                <span style="color:#66d9ef">return</span> true;
-            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (all_time<span style="color:#f92672">==</span>p.all_time)
-            {
-                <span style="color:#66d9ef">if</span>(strcmp(stuName[name],stuName[p.name])<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>)
-                    <span style="color:#66d9ef">return</span> true;
-            }
-        }
-        <span style="color:#66d9ef">return</span> false;
+<span class="kt">char</span> <span class="n">stuName</span><span class="p">[</span><span class="mi">1000</span><span class="p">][</span><span class="mi">11</span><span class="p">];</span><span class="c1">//记录名字的数组,开的大一些
+</span><span class="c1"></span><span class="k">struct</span> <span class="nc">Student</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">name</span><span class="p">;</span><span class="c1">//名字序号
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">ac</span><span class="p">;</span><span class="c1">//AC数
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">all_time</span><span class="p">;</span><span class="c1">//AC总时间,算上罚时
+</span><span class="c1"></span>    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">Student</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span><span class="c1">//重载小于
+</span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">ac</span><span class="o">&gt;</span><span class="n">p</span><span class="p">.</span><span class="n">ac</span><span class="p">)</span><span class="c1">//因为输出是降序,所以是反的
+</span><span class="c1"></span>            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">ac</span><span class="o">==</span><span class="n">p</span><span class="p">.</span><span class="n">ac</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">all_time</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">all_time</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">all_time</span><span class="o">==</span><span class="n">p</span><span class="p">.</span><span class="n">all_time</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">stuName</span><span class="p">[</span><span class="n">name</span><span class="p">],</span><span class="n">stuName</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">])</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
         
-    }
-} stu[<span style="color:#ae81ff">1000</span>];<span style="color:#75715e">//结构体数组,方便用sort排序
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//题的数量
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;<span style="color:#75715e">//单位罚时
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">scoreRead</span>(<span style="color:#66d9ef">int</span> i)<span style="color:#75715e">//读入成绩
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">char</span> tempName[<span style="color:#ae81ff">11</span>];<span style="color:#75715e">//暂存名字
-</span><span style="color:#75715e"></span>    memset (tempName,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(tempName));
-    <span style="color:#66d9ef">int</span> ac<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,err<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,ac_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">int</span> temp;
-    <span style="color:#66d9ef">if</span>(scanf(<span style="color:#e6db74">&#34;%s&#34;</span>,tempName) <span style="color:#f92672">!=</span> EOF)<span style="color:#75715e">//读入名字,最终是用EOF退出
-</span><span style="color:#75715e"></span>    {   
-        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>n;j<span style="color:#f92672">++</span>)<span style="color:#75715e">//读入题的情况
-</span><span style="color:#75715e"></span>        {
-            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>temp);
-            <span style="color:#66d9ef">if</span> (temp<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>)
-                <span style="color:#66d9ef">continue</span>;<span style="color:#75715e">//WA的无意义
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(temp<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>)
-            {
-                ac<span style="color:#f92672">++</span>;<span style="color:#75715e">//AC数
-</span><span style="color:#75715e"></span>                ac_time<span style="color:#f92672">+=</span>temp;<span style="color:#75715e">//时间
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span>(getchar() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;(&#39;</span>)<span style="color:#75715e">//判断提交了几次
-</span><span style="color:#75715e"></span>                {
-                    scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>temp);
-                    getchar();
-                    err<span style="color:#f92672">+=</span>temp;<span style="color:#75715e">//罚时次数
-</span><span style="color:#75715e"></span>                }
-                <span style="color:#66d9ef">continue</span>;
-            }
-        }
-        strcpy(stuName[i],tempName);
-        stu[i].name <span style="color:#f92672">=</span> i;
-        stu[i].ac <span style="color:#f92672">=</span> ac;
-        stu[i].all_time <span style="color:#f92672">=</span> ac_time<span style="color:#f92672">+</span>err<span style="color:#f92672">*</span>m;<span style="color:#75715e">//计算总的AC时间
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> true;
-    }
-    <span style="color:#66d9ef">else</span>{
-        <span style="color:#66d9ef">return</span> false;<span style="color:#75715e">//false退出
-</span><span style="color:#75715e"></span>    }
-    <span style="color:#66d9ef">return</span> true;
-}
+    <span class="p">}</span>
+<span class="p">}</span> <span class="n">stu</span><span class="p">[</span><span class="mi">1000</span><span class="p">];</span><span class="c1">//结构体数组,方便用sort排序
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">m</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//题的数量
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//单位罚时
+</span><span class="c1"></span><span class="kt">bool</span> <span class="nf">scoreRead</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="c1">//读入成绩
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">tempName</span><span class="p">[</span><span class="mi">11</span><span class="p">];</span><span class="c1">//暂存名字
+</span><span class="c1"></span>    <span class="n">memset</span> <span class="p">(</span><span class="n">tempName</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">tempName</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">ac</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">err</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ac_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span><span class="n">tempName</span><span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span><span class="c1">//读入名字,最终是用EOF退出
+</span><span class="c1"></span>    <span class="p">{</span>   
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//读入题的情况
+</span><span class="c1"></span>        <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">continue</span><span class="p">;</span><span class="c1">//WA的无意义
+</span><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ac</span><span class="o">++</span><span class="p">;</span><span class="c1">//AC数
+</span><span class="c1"></span>                <span class="n">ac_time</span><span class="o">+=</span><span class="n">temp</span><span class="p">;</span><span class="c1">//时间
+</span><span class="c1"></span>                <span class="k">if</span><span class="p">(</span><span class="n">getchar</span><span class="p">()</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span><span class="p">)</span><span class="c1">//判断提交了几次
+</span><span class="c1"></span>                <span class="p">{</span>
+                    <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span>
+                    <span class="n">getchar</span><span class="p">();</span>
+                    <span class="n">err</span><span class="o">+=</span><span class="n">temp</span><span class="p">;</span><span class="c1">//罚时次数
+</span><span class="c1"></span>                <span class="p">}</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">stuName</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">tempName</span><span class="p">);</span>
+        <span class="n">stu</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">stu</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ac</span> <span class="o">=</span> <span class="n">ac</span><span class="p">;</span>
+        <span class="n">stu</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">all_time</span> <span class="o">=</span> <span class="n">ac_time</span><span class="o">+</span><span class="n">err</span><span class="o">*</span><span class="n">m</span><span class="p">;</span><span class="c1">//计算总的AC时间
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span><span class="c1">//false退出
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
 
 
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
     
-    cin<span style="color:#f92672">&gt;&gt;</span>n<span style="color:#f92672">&gt;&gt;</span>m;
-    <span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-    memset(stu,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(stu));
-    memset(stuName,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(stuName));
-    <span style="color:#66d9ef">while</span>(scoreRead(i<span style="color:#f92672">++</span>))
-    {
-        <span style="color:#66d9ef">continue</span>; <span style="color:#75715e">//这里写的不好,应该直接把scoreRead展开😂
-</span><span style="color:#75715e"></span>    }
-    sort(stu,stu<span style="color:#f92672">+</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);<span style="color:#75715e">//排序,是降序
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">++</span>)
-    {
-        printf(<span style="color:#e6db74">&#34;%-10s %2d %4d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,
-        	stuName[stu[j].name],stu[j].ac,stu[j].all_time);<span style="color:#75715e">//输出对齐
-</span><span style="color:#75715e"></span>    }
-}
-</code></pre></div><h3 id="总结-1">总结<a hidden class="anchor" aria-hidden="true" href="#总结-1">#</a></h3>
+    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">stu</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">stu</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">stuName</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">stuName</span><span class="p">));</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">scoreRead</span><span class="p">(</span><span class="n">i</span><span class="o">++</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">continue</span><span class="p">;</span> <span class="c1">//这里写的不好,应该直接把scoreRead展开😂
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">stu</span><span class="p">,</span><span class="n">stu</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="c1">//排序,是降序
+</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%-10s %2d %4d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+        	<span class="n">stuName</span><span class="p">[</span><span class="n">stu</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">name</span><span class="p">],</span><span class="n">stu</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">ac</span><span class="p">,</span><span class="n">stu</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">all_time</span><span class="p">);</span><span class="c1">//输出对齐
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-1">总结</h3>
 <p>这个题要记录名字,但是名字用char的话没有办法直接用sort,面临浅复制的问题,因此可以用数组解决,结构体用string也不是非常方便,以后就这么用了.</p>
-<h2 id="c-桥牌">C-桥牌<a hidden class="anchor" aria-hidden="true" href="#c-桥牌">#</a></h2>
+<h2 id="c-桥牌">C-桥牌</h2>
 <blockquote>
 <p>这题题面的dalao都tql  w(ﾟДﾟ)w</p>
 </blockquote>
-<h3 id="题意-2">题意<a hidden class="anchor" aria-hidden="true" href="#题意-2">#</a></h3>
+<h3 id="题意-2">题意</h3>
 <p>本题是模拟一个发牌过程,按照给定的牌序和发牌顺序给4个人发牌,然后将牌排序排序再输出,难点主要在发牌顺序和排序上了.</p>
-<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<h3 id="解法">解法</h3>
 <p>首先要解决记录牌的情况,这里使用结构体解决,结构体内记录颜色和数字,因为有字母所以使用char,之后重载&lt;方便排序,因为顺序是特定的,因此用map对应一下顺序,解决字符之间不能直接比较的问题.</p>
 <p>开一个4*13的二维数组记录每一个人的手牌.发牌阶段用for控制,因为4人一个循环符合mod4系统.可以开一个变量,通过自加和取模的方式解决这张牌该发给谁的问题,于此同时用除法记录是那张手牌.要注意一点,这个变量的初始化是题目现场给定的,因此要现场指定变量初始值.这会引起一个问题,除4的结果不对(就是会少发一张手牌),因此用一个量来修正这个结果(比如初始化为3,则第一轮发到3+3 = 6,6/4和3/4不同,而6-3/4才是正确答案).</p>
 <p>最后输出结果,先将每个人的手牌进行排序,然后按照给定格式和顺序输出就ok了</p>
-<h3 id="code-2">code<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span>  <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">char</span> name[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">10</span>]<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;North&#34;</span>,<span style="color:#e6db74">&#34;East&#34;</span>,<span style="color:#e6db74">&#34;South&#34;</span>,<span style="color:#e6db74">&#34;West&#34;</span>};<span style="color:#75715e">//输出使用
-</span><span style="color:#75715e"></span>map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> mp;
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">poke</span><span style="color:#75715e">//记录一张扑克
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">char</span> number;
-    <span style="color:#66d9ef">char</span> color;
-    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">const</span> poke <span style="color:#f92672">&amp;</span> p) <span style="color:#66d9ef">const</span>{
-        <span style="color:#66d9ef">if</span> (mp[color]<span style="color:#f92672">&lt;</span>mp[p.color])
-            <span style="color:#66d9ef">return</span> true;
-        <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span> (mp[color] <span style="color:#f92672">==</span> mp[p.color])
-            <span style="color:#66d9ef">if</span> (mp[number]<span style="color:#f92672">&lt;</span>mp[p.number])
-                <span style="color:#66d9ef">return</span> true;
-        <span style="color:#66d9ef">return</span> false;
-    }
+<h3 id="code-2">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span>  <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">10</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="s">&#34;North&#34;</span><span class="p">,</span><span class="s">&#34;East&#34;</span><span class="p">,</span><span class="s">&#34;South&#34;</span><span class="p">,</span><span class="s">&#34;West&#34;</span><span class="p">};</span><span class="c1">//输出使用
+</span><span class="c1"></span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+<span class="k">struct</span> <span class="nc">poke</span><span class="c1">//记录一张扑克
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">number</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">color</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">poke</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">color</span><span class="p">]</span><span class="o">&lt;</span><span class="n">mp</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">color</span><span class="p">])</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">color</span><span class="p">]</span> <span class="o">==</span> <span class="n">mp</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">color</span><span class="p">])</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">mp</span><span class="p">[</span><span class="n">number</span><span class="p">]</span><span class="o">&lt;</span><span class="n">mp</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">number</span><span class="p">])</span>
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
 
-}player[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">13</span>];<span style="color:#75715e">//记录每个人的手牌
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span>(<span style="color:#66d9ef">int</span> i)<span style="color:#75715e">//打印输出,一定要看题目格式!!!
-</span><span style="color:#75715e"></span>{
-    printf(<span style="color:#e6db74">&#34;%s player:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,name[i]);
-    printf(<span style="color:#e6db74">&#34;+---+---+---+---+---+---+---+---+---+---+---+---+---+</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    sort(player[i],player[i]<span style="color:#f92672">+</span><span style="color:#ae81ff">13</span>);
-    printf(<span style="color:#e6db74">&#34;|&#34;</span>);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">13</span>;j<span style="color:#f92672">++</span>)
-        printf(<span style="color:#e6db74">&#34;%c %c|&#34;</span>,player[i][j].number,player[i][j].number);
-    putchar(<span style="color:#e6db74">&#39;\n&#39;</span>);
-    printf(<span style="color:#e6db74">&#34;|&#34;</span>);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">13</span>;j<span style="color:#f92672">++</span>)
-        printf(<span style="color:#e6db74">&#34; %c |&#34;</span>,player[i][j].color);
-    putchar(<span style="color:#e6db74">&#39;\n&#39;</span>);
-    printf(<span style="color:#e6db74">&#34;|&#34;</span>);
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">13</span>;j<span style="color:#f92672">++</span>)
-        printf(<span style="color:#e6db74">&#34;%c %c|&#34;</span>,player[i][j].number,player[i][j].number);
-    putchar(<span style="color:#e6db74">&#39;\n&#39;</span>);
-    printf(<span style="color:#e6db74">&#34;+---+---+---+---+---+---+---+---+---+---+---+---+---+</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-}
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
+<span class="p">}</span><span class="n">player</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">13</span><span class="p">];</span><span class="c1">//记录每个人的手牌
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="c1">//打印输出,一定要看题目格式!!!
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s player:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;+---+---+---+---+---+---+---+---+---+---+---+---+---+</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">13</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;|&#34;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">13</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%c %c|&#34;</span><span class="p">,</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">number</span><span class="p">,</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">number</span><span class="p">);</span>
+    <span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;|&#34;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">13</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34; %c |&#34;</span><span class="p">,</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">color</span><span class="p">);</span>
+    <span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;|&#34;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">13</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%c %c|&#34;</span><span class="p">,</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">number</span><span class="p">,</span><span class="n">player</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">number</span><span class="p">);</span>
+    <span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;+---+---+---+---+---+---+---+---+---+---+---+---+---+</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
     
-    <span style="color:#66d9ef">int</span> first <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//起始从谁开始发牌
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">char</span> tempDir;
-    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>;i<span style="color:#f92672">++</span>)<span style="color:#75715e">//下面都是为了结构体比较初始化字典
-</span><span style="color:#75715e"></span>    {
-        mp[i<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;2&#39;</span>] <span style="color:#f92672">=</span> i;
-    }
-    mp[<span style="color:#e6db74">&#39;C&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-    mp[<span style="color:#e6db74">&#39;D&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-    mp[<span style="color:#e6db74">&#39;S&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
-    mp[<span style="color:#e6db74">&#39;H&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
-    mp[<span style="color:#e6db74">&#39;T&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
-    mp[<span style="color:#e6db74">&#39;J&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;
-    mp[<span style="color:#e6db74">&#39;Q&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-    mp[<span style="color:#e6db74">&#39;K&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>;
-    mp[<span style="color:#e6db74">&#39;A&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>;
+    <span class="kt">int</span> <span class="n">first</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//起始从谁开始发牌
+</span><span class="c1"></span>    <span class="kt">char</span> <span class="n">tempDir</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//下面都是为了结构体比较初始化字典
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="sc">&#39;2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;C&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;D&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;S&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;H&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;J&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;Q&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;K&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="n">mp</span><span class="p">[</span><span class="sc">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
 
-    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%c&#34;</span>,<span style="color:#f92672">&amp;</span>tempDir)<span style="color:#f92672">!=</span>EOF)<span style="color:#75715e">//读入发牌人
-</span><span style="color:#75715e"></span>    {
-        memset (player,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(player));
-        <span style="color:#66d9ef">if</span> (tempDir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;N&#39;</span>)
-            first <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (tempDir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;E&#39;</span>)
-            first <span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (tempDir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;S&#39;</span>)
-            first <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(tempDir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;W&#39;</span>)
-            first <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (tempDir <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;#&#39;</span>)<span style="color:#75715e">//结束标志
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-        getchar();<span style="color:#75715e">//过滤回车
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> pf <span style="color:#f92672">=</span>first;<span style="color:#75715e">//修除法正量
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">52</span>;i<span style="color:#f92672">++</span>)
-        {
-            scanf(<span style="color:#e6db74">&#34;%c%c&#34;</span>,<span style="color:#f92672">&amp;</span>player[first<span style="color:#f92672">%</span><span style="color:#ae81ff">4</span>][(first<span style="color:#f92672">-</span>pf)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>].color,<span style="color:#f92672">&amp;</span>player[first<span style="color:#f92672">%</span><span style="color:#ae81ff">4</span>][(first<span style="color:#f92672">-</span>pf)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>].number);<span style="color:#75715e">//读入每个人的手牌
-</span><span style="color:#75715e"></span>            first<span style="color:#f92672">++</span>;
-            <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">==</span><span style="color:#ae81ff">25</span>)<span style="color:#75715e">//输入中是隔开的
-</span><span style="color:#75715e"></span>                getchar();
-        }
-        getchar();<span style="color:#75715e">//过滤回车
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">//getchar();
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;<span style="color:#75715e">//输出顺序初始化
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;t<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;t<span style="color:#f92672">++</span> )
-        {
-            print(c);
-            c <span style="color:#f92672">=</span> (c<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span><span style="color:#ae81ff">4</span>;
-        }
-        putchar(<span style="color:#e6db74">&#39;\n&#39;</span>);<span style="color:#75715e">//最后多的一个回车
-</span><span style="color:#75715e"></span>    }
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><h3 id="总结-2">总结<a hidden class="anchor" aria-hidden="true" href="#总结-2">#</a></h3>
+    <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%c&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempDir</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">)</span><span class="c1">//读入发牌人
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="n">memset</span> <span class="p">(</span><span class="n">player</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">player</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">tempDir</span> <span class="o">==</span> <span class="sc">&#39;N&#39;</span><span class="p">)</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tempDir</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="p">)</span>
+            <span class="n">first</span> <span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tempDir</span> <span class="o">==</span> <span class="sc">&#39;S&#39;</span><span class="p">)</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">tempDir</span> <span class="o">==</span> <span class="sc">&#39;W&#39;</span><span class="p">)</span>
+            <span class="n">first</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">tempDir</span> <span class="o">==</span> <span class="sc">&#39;#&#39;</span><span class="p">)</span><span class="c1">//结束标志
+</span><span class="c1"></span>            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">getchar</span><span class="p">();</span><span class="c1">//过滤回车
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">pf</span> <span class="o">=</span><span class="n">first</span><span class="p">;</span><span class="c1">//修除法正量
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">52</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%c%c&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">player</span><span class="p">[</span><span class="n">first</span><span class="o">%</span><span class="mi">4</span><span class="p">][(</span><span class="n">first</span><span class="o">-</span><span class="n">pf</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">].</span><span class="n">color</span><span class="p">,</span><span class="o">&amp;</span><span class="n">player</span><span class="p">[</span><span class="n">first</span><span class="o">%</span><span class="mi">4</span><span class="p">][(</span><span class="n">first</span><span class="o">-</span><span class="n">pf</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">].</span><span class="n">number</span><span class="p">);</span><span class="c1">//读入每个人的手牌
+</span><span class="c1"></span>            <span class="n">first</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">25</span><span class="p">)</span><span class="c1">//输入中是隔开的
+</span><span class="c1"></span>                <span class="n">getchar</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">getchar</span><span class="p">();</span><span class="c1">//过滤回车
+</span><span class="c1"></span>        <span class="c1">//getchar();
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="c1">//输出顺序初始化
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">t</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">t</span><span class="o">++</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">print</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">putchar</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span><span class="c1">//最后多的一个回车
+</span><span class="c1"></span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-2">总结</h3>
 <p>说实话这个题不难,但是输入输出太麻烦了,<strong>一定要看清输入和输出的格式</strong>,结束符是什么,要不要多个回车,因为格式WA,PE了好几次😂</p>
-<h1 id="week2-homework">week2-homework<a hidden class="anchor" aria-hidden="true" href="#week2-homework">#</a></h1>
-<h2 id="a---maze">A - Maze<a hidden class="anchor" aria-hidden="true" href="#a---maze">#</a></h2>
-<h3 id="题意-3">题意<a hidden class="anchor" aria-hidden="true" href="#题意-3">#</a></h3>
+<h1 id="week2-homework">week2-homework</h1>
+<h2 id="a---maze">A - Maze</h2>
+<h3 id="题意-3">题意</h3>
 <p>本题描述较为简单,就是一个矩阵中找到起点到终点的最短路径,图的规模给定了,就是5*5的,0代表可以走,1代表不可以走,最终要求输出一个路径</p>
-<h3 id="解法-1">解法<a hidden class="anchor" aria-hidden="true" href="#解法-1">#</a></h3>
+<h3 id="解法-1">解法</h3>
 <p>这个题用BFS就可以了.首先将(0,0)放入队列,并且标记(0,0),之后每次从队列中取出元素,取出来之后看看上下左右能到那个点,还要保证不能越界,如果可以到就把那个点标记并且入队,同时在一个vis中记录新的点是由当前点经过的,重复这个过程直到找到终点.</p>
 <p>最后用递归(因为存储的方式是反的)的方式输出路径</p>
-<h3 id="code-3">code<a hidden class="anchor" aria-hidden="true" href="#code-3">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<h3 id="code-3">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span><span class="cpf">&lt;queue&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">posi</span>
-{
-    <span style="color:#66d9ef">int</span> x;
-    <span style="color:#66d9ef">int</span> y;
-};
+<span class="k">struct</span> <span class="nc">posi</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">vis</span><span style="color:#75715e">//存访问的情况和上一个坐标是啥
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">int</span> x;
-    <span style="color:#66d9ef">int</span> y;
-    <span style="color:#66d9ef">int</span> v;
-};
+<span class="k">struct</span> <span class="nc">vis</span><span class="c1">//存访问的情况和上一个坐标是啥
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span style="color:#66d9ef">int</span> moveX[]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};<span style="color:#75715e">//转移数组
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> moveY[]<span style="color:#f92672">=</span>{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
-<span style="color:#66d9ef">int</span> block[<span style="color:#ae81ff">5</span>][<span style="color:#ae81ff">5</span>] ;
-vis visited[<span style="color:#ae81ff">5</span>][<span style="color:#ae81ff">5</span>];
+<span class="kt">int</span> <span class="n">moveX</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span><span class="c1">//转移数组
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">moveY</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">block</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span> <span class="p">;</span>
+<span class="n">vis</span> <span class="n">visited</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">5</span><span class="p">];</span>
 
-<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">check</span>(posi<span style="color:#f92672">&amp;</span> cur,<span style="color:#66d9ef">int</span> dirct)
-{
-    posi np <span style="color:#f92672">=</span> {cur.x<span style="color:#f92672">+</span>moveX[dirct],cur.y<span style="color:#f92672">+</span>moveY[dirct]};
-    <span style="color:#66d9ef">if</span> (np.x<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>np.x<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">5</span><span style="color:#f92672">&amp;&amp;</span>np.y<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>np.y<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">5</span>)<span style="color:#75715e">//检查边界
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (block[np.x][np.y]<span style="color:#f92672">!=</span><span style="color:#ae81ff">1</span>)
-            <span style="color:#66d9ef">if</span> (visited[np.x][np.y].v <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)   
-                <span style="color:#66d9ef">return</span> true;
-    <span style="color:#66d9ef">return</span> false;
-}
+<span class="kt">bool</span> <span class="nf">check</span><span class="p">(</span><span class="n">posi</span><span class="o">&amp;</span> <span class="n">cur</span><span class="p">,</span><span class="kt">int</span> <span class="n">dirct</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">posi</span> <span class="n">np</span> <span class="o">=</span> <span class="p">{</span><span class="n">cur</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">moveX</span><span class="p">[</span><span class="n">dirct</span><span class="p">],</span><span class="n">cur</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">moveY</span><span class="p">[</span><span class="n">dirct</span><span class="p">]};</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">x</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">np</span><span class="p">.</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&amp;&amp;</span><span class="n">np</span><span class="p">.</span><span class="n">y</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">np</span><span class="p">.</span><span class="n">y</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">)</span><span class="c1">//检查边界
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">x</span><span class="p">][</span><span class="n">np</span><span class="p">.</span><span class="n">y</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">x</span><span class="p">][</span><span class="n">np</span><span class="p">.</span><span class="n">y</span><span class="p">].</span><span class="n">v</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>   
+                <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
 
-posi <span style="color:#a6e22e">bfs</span>()
-{
-    queue<span style="color:#f92672">&lt;</span>posi<span style="color:#f92672">&gt;</span> q;
-    posi start <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
-    q.push(start);
-    visited[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>};
-    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>q.empty())
-    {
-        posi temp <span style="color:#f92672">=</span> q.front();
-        q.pop();
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>;i<span style="color:#f92672">++</span>)
-        {
-            <span style="color:#66d9ef">if</span> (check(temp,i))
-            {
-                q.push({temp.x<span style="color:#f92672">+</span>moveX[i],temp.y<span style="color:#f92672">+</span>moveY[i]});<span style="color:#75715e">//入队
-</span><span style="color:#75715e"></span>                visited[temp.x<span style="color:#f92672">+</span>moveX[i]][temp.y<span style="color:#f92672">+</span>moveY[i]] <span style="color:#f92672">=</span> {temp.x,temp.y,<span style="color:#ae81ff">1</span>};<span style="color:#75715e">//标记
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (temp.x<span style="color:#f92672">+</span>moveX[i]<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;&amp;</span> temp.y<span style="color:#f92672">+</span>moveY[i]<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>)<span style="color:#75715e">//找到终点,退出 
-</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">return</span> {temp.x<span style="color:#f92672">+</span>moveX[i],temp.y<span style="color:#f92672">+</span>moveY[i]};
-            }
-        }
-    }
-    <span style="color:#66d9ef">return</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
-}
+<span class="n">posi</span> <span class="nf">bfs</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">queue</span><span class="o">&lt;</span><span class="n">posi</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+    <span class="n">posi</span> <span class="n">start</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+    <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">posi</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">temp</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">moveX</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">temp</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">moveY</span><span class="p">[</span><span class="n">i</span><span class="p">]});</span><span class="c1">//入队
+</span><span class="c1"></span>                <span class="n">visited</span><span class="p">[</span><span class="n">temp</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">moveX</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">temp</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">moveY</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="n">temp</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">temp</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span><span class="c1">//标记
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">moveX</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">moveY</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span><span class="c1">//找到终点,退出 
+</span><span class="c1"></span>                    <span class="k">return</span> <span class="p">{</span><span class="n">temp</span><span class="p">.</span><span class="n">x</span><span class="o">+</span><span class="n">moveX</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">temp</span><span class="p">.</span><span class="n">y</span><span class="o">+</span><span class="n">moveY</span><span class="p">[</span><span class="n">i</span><span class="p">]};</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span>(posi last)<span style="color:#75715e">//输出结果 递归函数 因为存的就是上一个节点
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">if</span> (last.x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span>last.y<span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)<span style="color:#75715e">//找到起点时退出
-</span><span style="color:#75715e"></span>        printf(<span style="color:#e6db74">&#34;(%d, %d)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,last.x,last.y);
-    <span style="color:#66d9ef">else</span>
-    {
-        posi before <span style="color:#f92672">=</span> {visited[last.x][last.y].x,visited[last.x][last.y].y};
-        print(before);
-        printf(<span style="color:#e6db74">&#34;(%d, %d)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,last.x,last.y);
-    }
+<span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="n">posi</span> <span class="n">last</span><span class="p">)</span><span class="c1">//输出结果 递归函数 因为存的就是上一个节点
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">last</span><span class="p">.</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span><span class="n">last</span><span class="p">.</span><span class="n">y</span><span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="c1">//找到起点时退出
+</span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;(%d, %d)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">last</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">last</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">posi</span> <span class="n">before</span> <span class="o">=</span> <span class="p">{</span><span class="n">visited</span><span class="p">[</span><span class="n">last</span><span class="p">.</span><span class="n">x</span><span class="p">][</span><span class="n">last</span><span class="p">.</span><span class="n">y</span><span class="p">].</span><span class="n">x</span><span class="p">,</span><span class="n">visited</span><span class="p">[</span><span class="n">last</span><span class="p">.</span><span class="n">x</span><span class="p">][</span><span class="n">last</span><span class="p">.</span><span class="n">y</span><span class="p">].</span><span class="n">y</span><span class="p">};</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">before</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;(%d, %d)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">last</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">last</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="p">}</span>
     
-}
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    memset(<span style="color:#f92672">&amp;</span>block,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(block));
-    memset(<span style="color:#f92672">&amp;</span>visited,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(visited));
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">block</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">visited</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">visited</span><span class="p">));</span>
     
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">5</span>;i<span style="color:#f92672">++</span>)
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">5</span>;j<span style="color:#f92672">++</span>)
-            scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,block[i]<span style="color:#f92672">+</span>j);
-    print(bfs());<span style="color:#75715e">//bfs同时打印结果
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> ;
-}
-</code></pre></div><h3 id="总结-3">总结<a hidden class="anchor" aria-hidden="true" href="#总结-3">#</a></h3>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">block</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">j</span><span class="p">);</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">bfs</span><span class="p">());</span><span class="c1">//bfs同时打印结果
+</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-3">总结</h3>
 <p>结果输出可以使用递归的方式进行,因为vis数组存的都是上一个节点的情况,因此需要用栈结构,使用递归比较好写.</p>
-<h2 id="b---pour-water">B - Pour Water<a hidden class="anchor" aria-hidden="true" href="#b---pour-water">#</a></h2>
-<h3 id="题意-4">题意<a hidden class="anchor" aria-hidden="true" href="#题意-4">#</a></h3>
+<h2 id="b---pour-water">B - Pour Water</h2>
+<h3 id="题意-4">题意</h3>
 <p>本题是一个隐式图问题,转移的路径一共有六种,A/B 空/满,A-&gt;B,B-&gt;A,通过这个六种转移的方法将(0,0)转换出一种满足C的状态</p>
-<h3 id="解法-2">解法<a hidden class="anchor" aria-hidden="true" href="#解法-2">#</a></h3>
+<h3 id="解法-2">解法</h3>
 <p>解决方案还是BFS,BFS的六条路径都给了,首先将(0,0)标记入队,然后取队首元素,分别走六条路,将新结果标记,同时记录历史路径,然后将新结果入队.重复这个过程直到出现要求的情况,然后用递归的方式输出路径</p>
-<h3 id="code-4">code<a hidden class="anchor" aria-hidden="true" href="#code-4">#</a></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<h3 id="code-4">code</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;queue&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span style="color:#66d9ef">int</span> maxA<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> maxB<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> C<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+<span class="kt">int</span> <span class="n">maxA</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">maxB</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">C</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">situ</span>
-{
-    <span style="color:#66d9ef">int</span> a;
-    <span style="color:#66d9ef">int</span> b;
-};
+<span class="k">struct</span> <span class="nc">situ</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">vis</span><span style="color:#75715e">//访问情况
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">int</span> a;<span style="color:#66d9ef">int</span> b;<span style="color:#66d9ef">int</span> v;
-}visited[<span style="color:#ae81ff">1002</span>][<span style="color:#ae81ff">1002</span>];
+<span class="k">struct</span> <span class="nc">vis</span><span class="c1">//访问情况
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span><span class="kt">int</span> <span class="n">b</span><span class="p">;</span><span class="kt">int</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span><span class="n">visited</span><span class="p">[</span><span class="mi">1002</span><span class="p">][</span><span class="mi">1002</span><span class="p">];</span>
 
-situ <span style="color:#a6e22e">changeSitu</span> (<span style="color:#66d9ef">const</span> situ<span style="color:#f92672">&amp;</span> cur,<span style="color:#66d9ef">int</span> i)<span style="color:#75715e">//改变状态一共6条路
-</span><span style="color:#75715e"></span>{
-    situ ns<span style="color:#f92672">=</span>{cur.a,cur.b};
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
-        ns.a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>)
-        ns.a <span style="color:#f92672">=</span> maxA;
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>)
-        ns.b<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>)
-        ns.b<span style="color:#f92672">=</span>maxB;
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">5</span>)<span style="color:#75715e">//A-&gt;B
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#66d9ef">if</span>(cur.a<span style="color:#f92672">&gt;</span>maxB<span style="color:#f92672">-</span>cur.b)
-            ns.b<span style="color:#f92672">=</span> maxB,ns.a <span style="color:#f92672">=</span> cur.a <span style="color:#f92672">-</span> (maxB<span style="color:#f92672">-</span>cur.b);
-        <span style="color:#66d9ef">else</span>
-            ns.b <span style="color:#f92672">=</span> cur.b<span style="color:#f92672">+</span>cur.a,ns.a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    } 
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span>)<span style="color:#75715e">//B-&gt;A
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#66d9ef">if</span>(cur.b<span style="color:#f92672">&gt;</span>maxA<span style="color:#f92672">-</span>cur.a)
-            ns.a <span style="color:#f92672">=</span> maxA,ns.b <span style="color:#f92672">=</span> cur.b <span style="color:#f92672">-</span> (maxA<span style="color:#f92672">-</span>cur.a);
-        <span style="color:#66d9ef">else</span>
-            ns.a <span style="color:#f92672">=</span> cur.a<span style="color:#f92672">+</span>cur.b,ns.b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    }
+<span class="n">situ</span> <span class="nf">changeSitu</span> <span class="p">(</span><span class="k">const</span> <span class="n">situ</span><span class="o">&amp;</span> <span class="n">cur</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="c1">//改变状态一共6条路
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="n">situ</span> <span class="n">ns</span><span class="o">=</span><span class="p">{</span><span class="n">cur</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="n">cur</span><span class="p">.</span><span class="n">b</span><span class="p">};</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">maxA</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="o">=</span><span class="n">maxB</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span><span class="c1">//A-&gt;B
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">a</span><span class="o">&gt;</span><span class="n">maxB</span><span class="o">-</span><span class="n">cur</span><span class="p">.</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="o">=</span> <span class="n">maxB</span><span class="p">,</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">a</span> <span class="o">-</span> <span class="p">(</span><span class="n">maxB</span><span class="o">-</span><span class="n">cur</span><span class="p">.</span><span class="n">b</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">ns</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">b</span><span class="o">+</span><span class="n">cur</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> 
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span><span class="c1">//B-&gt;A
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="n">b</span><span class="o">&gt;</span><span class="n">maxA</span><span class="o">-</span><span class="n">cur</span><span class="p">.</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">maxA</span><span class="p">,</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="n">maxA</span><span class="o">-</span><span class="n">cur</span><span class="p">.</span><span class="n">a</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">a</span><span class="o">+</span><span class="n">cur</span><span class="p">.</span><span class="n">b</span><span class="p">,</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span style="color:#66d9ef">return</span> ns;
-}
+    <span class="k">return</span> <span class="n">ns</span><span class="p">;</span>
+<span class="p">}</span>
 
-situ <span style="color:#a6e22e">bfs</span>()
-{
-    situ start <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
-    queue<span style="color:#f92672">&lt;</span>situ<span style="color:#f92672">&gt;</span> q;
-    q.push(start);
-    visited[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>};
-    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>q.empty())
-    {
-        situ temp <span style="color:#f92672">=</span> q.front();
-        q.pop();
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">6</span>;i<span style="color:#f92672">++</span>)
-        {
-            situ ns <span style="color:#f92672">=</span> changeSitu(temp,i);
-            <span style="color:#66d9ef">if</span> (visited[ns.a][ns.b].v <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
-            {
-                q.push(ns);
-                visited[ns.a][ns.b] <span style="color:#f92672">=</span> {temp.a,temp.b,i};<span style="color:#75715e">//标记访问,把新状态的上一个状态存起来
-</span><span style="color:#75715e"></span>            }
-            <span style="color:#66d9ef">if</span> (ns.a <span style="color:#f92672">==</span> C<span style="color:#f92672">||</span>ns.b<span style="color:#f92672">==</span>C)
-                <span style="color:#66d9ef">return</span> ns;
-        }
-    }
-    <span style="color:#66d9ef">return</span> {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>};
-}
+<span class="n">situ</span> <span class="nf">bfs</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">situ</span> <span class="n">start</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+    <span class="n">queue</span><span class="o">&lt;</span><span class="n">situ</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+    <span class="n">visited</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">};</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">situ</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">situ</span> <span class="n">ns</span> <span class="o">=</span> <span class="n">changeSitu</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span><span class="p">][</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="p">].</span><span class="n">v</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">ns</span><span class="p">);</span>
+                <span class="n">visited</span><span class="p">[</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span><span class="p">][</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">temp</span><span class="p">.</span><span class="n">a</span><span class="p">,</span><span class="n">temp</span><span class="p">.</span><span class="n">b</span><span class="p">,</span><span class="n">i</span><span class="p">};</span><span class="c1">//标记访问,把新状态的上一个状态存起来
+</span><span class="c1"></span>            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span> <span class="o">==</span> <span class="n">C</span><span class="o">||</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="o">==</span><span class="n">C</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">ns</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span>(<span style="color:#66d9ef">int</span> i)<span style="color:#75715e">//输出文字
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>)
-        printf(<span style="color:#e6db74">&#34;fill A</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
-        printf(<span style="color:#e6db74">&#34;empty A</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>)
-        printf(<span style="color:#e6db74">&#34;fill B</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>)
-        printf(<span style="color:#e6db74">&#34;empty B</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">5</span>)
-        printf(<span style="color:#e6db74">&#34;pour A B</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">==</span><span style="color:#ae81ff">6</span>)
-        printf(<span style="color:#e6db74">&#34;pour B A</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-}
+<span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="c1">//输出文字
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;fill A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;empty A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;fill B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;empty B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;pour A B</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;pour B A</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printAll</span>(situ ns)<span style="color:#75715e">//递归函数输出结果
-</span><span style="color:#75715e"></span>{
-    <span style="color:#66d9ef">if</span> (ns.a<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&amp;&amp;</span>ns.b<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
-        <span style="color:#66d9ef">return</span> ;
-    <span style="color:#66d9ef">else</span>
-    {
-        printAll({visited[ns.a][ns.b].a,visited[ns.a][ns.b].b});
-        print(visited[ns.a][ns.b].v);        
-    }
+<span class="kt">void</span> <span class="nf">printAll</span><span class="p">(</span><span class="n">situ</span> <span class="n">ns</span><span class="p">)</span><span class="c1">//递归函数输出结果
+</span><span class="c1"></span><span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span><span class="o">==</span><span class="mi">0</span><span class="o">&amp;&amp;</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">;</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">printAll</span><span class="p">({</span><span class="n">visited</span><span class="p">[</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span><span class="p">][</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="p">].</span><span class="n">a</span><span class="p">,</span><span class="n">visited</span><span class="p">[</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span><span class="p">][</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="p">].</span><span class="n">b</span><span class="p">});</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">ns</span><span class="p">.</span><span class="n">a</span><span class="p">][</span><span class="n">ns</span><span class="p">.</span><span class="n">b</span><span class="p">].</span><span class="n">v</span><span class="p">);</span>        
+    <span class="p">}</span>
     
-}
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-    <span style="color:#66d9ef">while</span>(scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>maxA,<span style="color:#f92672">&amp;</span>maxB,<span style="color:#f92672">&amp;</span>C)<span style="color:#f92672">!=</span>EOF)
-    {
-        memset (visited,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(visited));
-        situ last <span style="color:#f92672">=</span> bfs();
-        printAll(last);
-        printf(<span style="color:#e6db74">&#34;success</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-    }
-}
-</code></pre></div><h3 id="总结-4">总结<a hidden class="anchor" aria-hidden="true" href="#总结-4">#</a></h3>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d%d%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">maxA</span><span class="p">,</span><span class="o">&amp;</span><span class="n">maxB</span><span class="p">,</span><span class="o">&amp;</span><span class="n">C</span><span class="p">)</span><span class="o">!=</span><span class="n">EOF</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">memset</span> <span class="p">(</span><span class="n">visited</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">visited</span><span class="p">));</span>
+        <span class="n">situ</span> <span class="n">last</span> <span class="o">=</span> <span class="n">bfs</span><span class="p">();</span>
+        <span class="n">printAll</span><span class="p">(</span><span class="n">last</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;success</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="总结-4">总结</h3>
 <p>隐式图问题最重要的是分清楚不同的路,得把所有的路都找出来,同时把路原子化,每条路都是不可以再分的,这样才可能找出最佳路径.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-03-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/program/">Program</a>,&nbsp;<a href="/tags/homework/">homework</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%BB%84-%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97/" class="prev" rel="prev" title="计组 四则运算"><i class="fas fa-angle-left fa-fw"></i>计组 四则运算</a>
+            <a href="/posts/%E7%A8%8B%E8%AE%BE-week3/" class="next" rel="next" title="Program_week3_class">Program_week3_class<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://xyfuture.github.io/tags/program/">Program</a></li>
-      <li><a href="https://xyfuture.github.io/tags/homework/">homework</a></li>
-    </ul>
-  </footer>
-</article>
-    </main><footer class="footer">
-    <span>&copy; 2021 <a href="https://xyfuture.github.io/">My New Hugo Site</a></span>
-    <span>&middot;</span>
-    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
-    <span>&middot;</span>
-    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
 
-
-
-<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
-    onload="hljs.initHighlightingOnLoad();"></script>
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.replaceState(null, null, `#${id}`);
-            }
-        });
-    });
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

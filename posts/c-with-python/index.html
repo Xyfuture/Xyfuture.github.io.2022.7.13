@@ -1,289 +1,153 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>c_with_python | My New Hugo Site</title>
-
-<meta name="keywords" content="python, cpp" />
-<meta name="description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用
- C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include&lt;Python.h&gt;就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译
-要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.
-python作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11
-conda conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样
-graphviz 这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素
-tkinter tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的
-要注意的几点
-tkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.
-tkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll
-conda base powershell 在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的
-C调用python参考 官方中文 确实有中文,但是感觉写的不怎么好
-转化为python变量 写的不错
-完整程序  给了不错的例子,包含大部分调用
-简介">
-<meta name="author" content="">
-<link rel="canonical" href="https://xyfuture.github.io/posts/c-with-python/" />
-<link href="/assets/css/stylesheet.min.5c4f6d85b7abfcfea458637c672d16a7a9c38c37f002753cfdc7f314b6d3c8f2.css" integrity="sha256-XE9thber/P6kWGN8Zy0Wp6nDjDfwAnU8/cfzFLbTyPI=" rel="preload stylesheet"
-    as="style">
-
-<link rel="icon" href="https://xyfuture.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://xyfuture.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://xyfuture.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://xyfuture.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://xyfuture.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.80.0" />
-
-
-<meta property="og:title" content="c_with_python" />
-<meta property="og:description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用
- C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include&lt;Python.h&gt;就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译
-要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.
-python作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11
-conda conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样
-graphviz 这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素
-tkinter tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的
-要注意的几点
-tkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.
-tkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll
-conda base powershell 在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的
-C调用python参考 官方中文 确实有中文,但是感觉写的不怎么好
-转化为python变量 写的不错
-完整程序  给了不错的例子,包含大部分调用
-简介" />
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>c_with_python - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="c_with_python" />
+<meta property="og:description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Pyth" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://xyfuture.github.io/posts/c-with-python/" />
 <meta property="article:published_time" content="2020-03-15T22:46:29+00:00" />
 <meta property="article:modified_time" content="2020-03-15T22:46:29+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="c_with_python"/>
-<meta name="twitter:description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用
- C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include&lt;Python.h&gt;就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译
-要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.
-python作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11
-conda conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样
-graphviz 这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素
-tkinter tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的
-要注意的几点
-tkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.
-tkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll
-conda base powershell 在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的
-C调用python参考 官方中文 确实有中文,但是感觉写的不怎么好
-转化为python变量 写的不错
-完整程序  给了不错的例子,包含大部分调用
-简介"/>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "c_with_python",
-  "name": "c_with_python",
-  "description": "最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用\n C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp …",
-  "keywords": [
-    "python", "cpp"
-  ],
-  "articleBody": " 最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用\n C与python python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中include就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译\n要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.\npython作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11\nconda conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样\ngraphviz 这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素\ntkinter tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的\n要注意的几点\ntkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.\ntkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll\nconda base powershell 在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的\nC调用python参考 官方中文 确实有中文,但是感觉写的不怎么好\n转化为python变量 写的不错\n完整程序  给了不错的例子,包含大部分调用\n简介\n",
-  "wordCount" : "28",
-  "inLanguage": "en",
-  "datePublished": "2020-03-15T22:46:29Z",
-  "dateModified": "2020-03-15T22:46:29Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://xyfuture.github.io/posts/c-with-python/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "My New Hugo Site",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://xyfuture.github.io/favicon.ico"
+<meta name="twitter:description" content="最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Pyth"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/c-with-python/" /><link rel="prev" href="https://xyfuture.github.io/posts/program-week4-homework/" /><link rel="next" href="https://xyfuture.github.io/posts/program-week5-homework/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "c_with_python",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/c-with-python\/"
+        },"genre": "posts","keywords": "python, cpp","wordcount":  1022 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/c-with-python\/","datePublished": "2020-03-15T22:46:29+00:00","dateModified": "2020-03-15T22:46:29+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
     }
-  }
-}
-</script>
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-
-
-</head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-<noscript>
-    <style type="text/css">
-        .theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://xyfuture.github.io/" accesskey="h" title="My New Hugo Site (Alt + H)">My New Hugo Site</a>
-            <span class="logo-switches">
-                <span class="theme-toggle" title="(Alt + T)">
-                    <a id="theme-toggle" accesskey="t">
-                        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                        <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                        </svg>
-                    </a>
-                </span>
-                
-            </span>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
         </div>
-        <ul class="menu" id="menu" onscroll="menu_on_scroll()"></ul>
-    </nav>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
 </header>
-
-    <main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">
-      c_with_python
-    </h1>
-    <div class="post-description">
-      
-    </div>
-    <div class="post-meta">March 15, 2020
-
-    </div>
-  </header> 
-
-  <div class="post-content">
-<blockquote>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">c_with_python</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/others/"><i class="far fa-folder fa-fw"></i>others</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-15">2020-03-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1022 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#c调用python参考">C调用python参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>最近在写数据结构课设,需要许多图形化的内容,然后cpp直接写GUI会比较麻烦,即便使用MFC,QT,工程量仍旧是很大,所有想到了C和Python之间相互调用</p>
 </blockquote>
-<h1 id="c与python">C与python<a hidden class="anchor" aria-hidden="true" href="#c与python">#</a></h1>
+<h1 id="c与python">C与python</h1>
 <p>python是一种脚本语言,实现有多种方式,常见的python实现方式是用c实现cpython,这样的方式.既然是用c实现,cpp自然能调用python,在cpp中<code>include&lt;Python.h&gt;</code>就可以实现对python的调用,除此之外要把需要的库和dll连接上,否则无法编译</p>
 <p>要注意c调用python时主要架构,要求双方位数一样,建议都是64,用mingw w64和python3.7 64位,位数不一致无法运行.</p>
 <p>python作为胶水语言也可以调用cpp,这种调用方式一般是将cpp编译为python的包,然后在python中import这个模块,使用其中的函数,速度是cpp的原生速度.我们有很多这样的封装工具,boost库,pybind11,swig都可以实现封装操作,比较建议pybind11,这个库只需要头文件,不过其只支持c11</p>
-<h1 id="conda">conda<a hidden class="anchor" aria-hidden="true" href="#conda">#</a></h1>
+<h1 id="conda">conda</h1>
 <p>conda是python的一种包管理器,同时允许你有多个虚拟的python环境,在一个console中只能同时处于一个环境,这个环境中python的版本是指定的,包也是属于这个环境的,实现的原理主要是建一个单独的文件夹存放python完整的文件,在不同的环境中将命令指向不同的文件夹,大致上是这样</p>
-<h1 id="graphviz">graphviz<a hidden class="anchor" aria-hidden="true" href="#graphviz">#</a></h1>
+<h1 id="graphviz">graphviz</h1>
 <p>这个是一个好东西,能够方便我们我们画图,语言是dot语言,可以直接用python生成dot代码,每次根据代码生成图像或者pdf,方便显示,缺点是不是动态的,不能删除元素</p>
-<h1 id="tkinter">tkinter<a hidden class="anchor" aria-hidden="true" href="#tkinter">#</a></h1>
+<h1 id="tkinter">tkinter</h1>
 <p>tkinter是python自带的GUI,方便使用,本次也是调用这个实现GUI的渲染,doc可以参考网上的</p>
 <p><strong>要注意的几点</strong></p>
 <p>tkinter本身实际上cpp,只不过是给了python接口,但是python接口是真的简单.</p>
 <p>tkinter在cpp中调用要设置sys.argv,因为tkinter中会读取命令行参数,除此之外编译时需要链接他的一个dll</p>
-<h1 id="conda-base-powershell">conda base powershell<a hidden class="anchor" aria-hidden="true" href="#conda-base-powershell">#</a></h1>
+<h1 id="conda-base-powershell">conda base powershell</h1>
 <p>在base环境中powershell会出现问题,cpp的exe无法正常运行if和argv,不知道是什么原因,建议退出base,因为原始环境和base的python基本上是等价的</p>
-<h2 id="c调用python参考">C调用python参考<a hidden class="anchor" aria-hidden="true" href="#c调用python参考">#</a></h2>
-<p><a href="https://docs.python.org/zh-cn/3.7/c-api/">官方中文</a> 确实有中文,但是感觉写的不怎么好</p>
-<p><a href="https://blog.csdn.net/vampirem/article/details/12948955">转化为python变量</a> 写的不错</p>
-<p><a href="https://zhuanlan.zhihu.com/p/25888215">完整程序 </a> 给了不错的例子,包含大部分调用</p>
-<p><a href="https://www.jb51.net/article/64094.htm">简介</a></p>
+<h2 id="c调用python参考">C调用python参考</h2>
+<p><a href="https://docs.python.org/zh-cn/3.7/c-api/" target="_blank" rel="noopener noreffer">官方中文</a> 确实有中文,但是感觉写的不怎么好</p>
+<p><a href="https://blog.csdn.net/vampirem/article/details/12948955" target="_blank" rel="noopener noreffer">转化为python变量</a> 写的不错</p>
+<p><a href="https://zhuanlan.zhihu.com/p/25888215" target="_blank" rel="noopener noreffer">完整程序 </a> 给了不错的例子,包含大部分调用</p>
+<p><a href="https://www.jb51.net/article/64094.htm" target="_blank" rel="noopener noreffer">简介</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-03-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/python/">python</a>,&nbsp;<a href="/tags/cpp/">cpp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program-week4-homework/" class="prev" rel="prev" title="Program-week4-homework"><i class="fas fa-angle-left fa-fw"></i>Program-week4-homework</a>
+            <a href="/posts/program-week5-homework/" class="next" rel="next" title="Program-week5-homework">Program-week5-homework<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://xyfuture.github.io/tags/python/">python</a></li>
-      <li><a href="https://xyfuture.github.io/tags/cpp/">cpp</a></li>
-    </ul>
-  </footer>
-</article>
-    </main><footer class="footer">
-    <span>&copy; 2021 <a href="https://xyfuture.github.io/">My New Hugo Site</a></span>
-    <span>&middot;</span>
-    <span>Powered by <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a></span>
-    <span>&middot;</span>
-    <span>Theme <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a></span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
-</a>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
 
-
-
-<script defer src="/assets/js/highlight.min.27cd435cc9ed6abb4b496581b151804f79f366c412620272bb94e2f5f598ebcc.js" integrity="sha256-J81DXMntartLSWWBsVGAT3nzZsQSYgJyu5Ti9fWY68w="
-    onload="hljs.initHighlightingOnLoad();"></script>
-<script>
-    window.onload = function () {
-        if (localStorage.getItem("menu-scroll-position")) {
-            document.getElementById('menu').scrollLeft = localStorage.getItem("menu-scroll-position");
-        }
-    }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.replaceState(null, null, `#${id}`);
-            }
-        });
-    });
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-    function menu_on_scroll() {
-        localStorage.setItem("menu-scroll-position", document.getElementById('menu').scrollLeft);
-    }
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>
