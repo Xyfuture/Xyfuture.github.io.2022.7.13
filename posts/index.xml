@@ -3,7 +3,14 @@
         <title>所有文章 - Xyfuture&#39;s Home</title>
         <link>https://xyfuture.github.io/posts/</link>
         <description>所有文章 | Xyfuture&#39;s Home</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 11 Jun 2020 14:37:00 &#43;0000</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 23 Jan 2021 21:55:08 &#43;0800</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo体验</title>
+    <link>https://xyfuture.github.io/posts/hugo%E4%BD%93%E9%AA%8C/</link>
+    <pubDate>Sat, 23 Jan 2021 21:55:08 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/hugo%E4%BD%93%E9%AA%8C/</guid>
+    <description><![CDATA[Hugo 使用体验 前言 之前因为换了电脑,博客的原始文件虽然在,但是node的环境没有配置,hexo没有办法直接使用,博客的事情就放下来了.寒假开始没]]></description>
+</item><item>
     <title>Progarm-optional-homework</title>
     <link>https://xyfuture.github.io/posts/progarm-optional-homework/</link>
     <pubDate>Thu, 11 Jun 2020 14:37:00 &#43;0000</pubDate>
@@ -66,12 +73,5 @@
     <author>作者</author>
     <guid>https://xyfuture.github.io/posts/program-week9-homework/</guid>
     <description><![CDATA[week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看 解法 命令分为两种操作和询问,对于操作]]></description>
-</item><item>
-    <title>Program-week10-homework</title>
-    <link>https://xyfuture.github.io/posts/program-week10-homework/</link>
-    <pubDate>Wed, 29 Apr 2020 21:28:09 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://xyfuture.github.io/posts/program-week10-homework/</guid>
-    <description><![CDATA[week10-homework A - 签到题 题面 解法 直接m/n看看是不能整除,不整除,直接输出-1 整除的话将得到的商先除2再除3,如果能够整除,就输出次数,不行输出-1 code #include]]></description>
 </item></channel>
 </rss>
