@@ -3,9 +3,16 @@
         <title>Xyfuture&#39;s Home</title>
         <link>https://xyfuture.github.io/</link>
         <description>Xyfuture&#39;s Home</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 23 Jan 2021 21:55:08 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 25 Jan 2021 20:16:42 &#43;0800</lastBuildDate>
             <atom:link href="https://xyfuture.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Trade Off_in_ReRAM</title>
+    <link>https://xyfuture.github.io/posts/trade-off_in_reram/</link>
+    <pubDate>Mon, 25 Jan 2021 20:16:42 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/trade-off_in_reram/</guid>
+    <description><![CDATA[ReRAM中的Trade-off ReRAM作为一种新兴的存储元器件,能够同时支持存储和计算功能,在后摩尔定律时代可能会发挥重要作用,解决&q]]></description>
+</item><item>
     <title>Hugo体验</title>
     <link>https://xyfuture.github.io/posts/hugo%E4%BD%93%E9%AA%8C/</link>
     <pubDate>Sat, 23 Jan 2021 21:55:08 &#43;0800</pubDate>
@@ -68,12 +75,5 @@
     <author>作者</author>
     <guid>https://xyfuture.github.io/posts/program-week11-homework/</guid>
     <description><![CDATA[week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年]]></description>
-</item><item>
-    <title>Program-week9-homework</title>
-    <link>https://xyfuture.github.io/posts/program-week9-homework/</link>
-    <pubDate>Wed, 29 Apr 2020 21:28:23 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://xyfuture.github.io/posts/program-week9-homework/</guid>
-    <description><![CDATA[week9-homework A - 咕咕东的目录管理器 题意 题面 题目要求实现一个简单的目录管理器,主要是实现几个命令,建议还是去原题看看 解法 命令分为两种操作和询问,对于操作]]></description>
 </item></channel>
 </rss>
