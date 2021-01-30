@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Nachos_design_lab1 - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="Nachos_design_lab1" />
+<meta property="og:description" content="操作系统实验一 nachos环境配置 前言 最烦的事就是配置环境了,虽然配置了这么多次,但是每次配环境还是要花上很长时间,这里简单的总结一下使用W" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xyfuture.github.io/posts/nachos_design_lab1/" />
+<meta property="article:published_time" content="2021-01-29T19:11:21+08:00" />
+<meta property="article:modified_time" content="2021-01-29T19:11:21+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nachos_design_lab1"/>
+<meta name="twitter:description" content="操作系统实验一 nachos环境配置 前言 最烦的事就是配置环境了,虽然配置了这么多次,但是每次配环境还是要花上很长时间,这里简单的总结一下使用W"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/nachos_design_lab1/" /><link rel="prev" href="https://xyfuture.github.io/posts/trade-off_in_reram/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nachos_design_lab1",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/nachos_design_lab1\/"
+        },"genre": "posts","keywords": "nachos","wordcount":  1015 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/nachos_design_lab1\/","datePublished": "2021-01-29T19:11:21+08:00","dateModified": "2021-01-29T19:11:21+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Nachos_design_lab1</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-29">2021-01-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1015 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#wsl2-安装">WSL2 安装</a></li>
+    <li><a href="#ubuntu配置">Ubuntu配置</a></li>
+    <li><a href="#nachos安装">nachos安装</a></li>
+    <li><a href="#vscode-调试指南">vscode 调试指南</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="操作系统实验一--nachos环境配置">操作系统实验一  nachos环境配置</h1>
+<h2 id="前言">前言</h2>
+<p>最烦的事就是配置环境了,虽然配置了这么多次,但是每次配环境还是要花上很长时间,这里简单的总结一下使用WSL2+vscode搭建nachos实验环境的过程.</p>
+<h2 id="wsl2-安装">WSL2 安装</h2>
+<p>WSL2和WSL相比有着许多的变化,主要是在网络性能上有了一定的提升,同时使用了Hyper-V技术,linux内核实现上有了一定的差别.在本实验中使用WSL和WSL2区别应该不大,但是为了以后的方便,这里直接安装了WSL2.</p>
+<p>安装WSL2需要windows版本在1909之上,低于该版本的系统只能安装WSL1.</p>
+<p>安装过程可以从网上找,这里就简单总结一下</p>
+<blockquote>
+<p>参考链接: <a href="https://www.jianshu.com/p/72aada169e92">https://www.jianshu.com/p/72aada169e92</a></p>
+</blockquote>
+<p>首先启用WSL功能</p>
+<div class="highlight"><pre class="chroma"><code class="language-cmd" data-lang="cmd">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+</code></pre></div><p>对于WSL2来说还要启用Hyper-V功能,这个功能可能和虚拟机有冲突,建议先了解一下自己装的虚拟机软件是否支持与Hyper-V共存.如果想继续使用虚拟机可以安装WSL1,或者换一个支持Hyper-V的虚拟机软件.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cmd" data-lang="cmd">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</code></pre></div><p>接下来将WSL默认版本换为WSL2</p>
+<div class="highlight"><pre class="chroma"><code class="language-cmd" data-lang="cmd">wsl --set-default-version 2
+</code></pre></div><p>如果之间没有使用过WSL2可能会报错,按照提示的信息去对应网站网站下载一个内核,安装即可,然后重新设置一下默认版本.</p>
+<p>上述完成了基本WSL的配置,但是这还没完,这仅仅提供了基础环境,还需要安装一个linux系统,才能使用.这里推荐Ubuntu,至于版本看自己的喜好吧.</p>
+<p>安装Ubuntu首先要到Microsoft Store中搜索Ubuntu,然后下载.下载结束后点击启动,此时会出现一个命令窗口,等一段时间后会让你创建一个用户.创建结束后安装就彻底完成了.在cmd中输入wsl,就会进入到Ubuntu中.</p>
+<h2 id="ubuntu配置">Ubuntu配置</h2>
+<p>由于某些原因,我们还需要对Ubuntu的软件源进行配置.</p>
+<p>首先进入wsl.然后更改默认的软件源.软件源有很多,这里推荐使用清华的和山大的镜像站(山大镜像站,仅限山大校园网的范围,速度较快).更换方法很简单</p>
+<p>首先备份原有的软件源</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo mv /etc/apt/sources.list /etc/apt/sources.list.back
+</code></pre></div><p>然后创建新的软件源</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo nano /etc/apt/sources.list
+</code></pre></div><p>这其中复制镜像站提供的地址,具体可以参考镜像站的帮助网页 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener noreffer">清华</a>  (注意选对你Ubuntu对应的版本)</p>
+<blockquote>
+<p>nano是一个简单的文本编辑器,使用crtl+X可以退出</p>
+</blockquote>
+<p>替换后更新一下就可以了</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get update
+</code></pre></div><h2 id="nachos安装">nachos安装</h2>
+<p>上述linux环境基本配置结束了,但是还需要配置nachos相应的环境.</p>
+<p>这一步在课设指南上详尽的描述了,这里只需要注意一点,WSL是64位的,因此需要对源文件进行一定的更改,按照课设指南的步骤进行即可</p>
+<h2 id="vscode-调试指南">vscode 调试指南</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-29</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nachos/">nachos</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/trade-off_in_reram/" class="prev" rel="prev" title="Trade Off_in_ReRAM"><i class="fas fa-angle-left fa-fw"></i>Trade Off_in_ReRAM</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

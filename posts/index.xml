@@ -3,7 +3,14 @@
         <title>所有文章 - Xyfuture&#39;s Home</title>
         <link>https://xyfuture.github.io/posts/</link>
         <description>所有文章 | Xyfuture&#39;s Home</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 25 Jan 2021 20:16:42 &#43;0800</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 29 Jan 2021 19:11:21 &#43;0800</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Nachos_design_lab1</title>
+    <link>https://xyfuture.github.io/posts/nachos_design_lab1/</link>
+    <pubDate>Fri, 29 Jan 2021 19:11:21 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/nachos_design_lab1/</guid>
+    <description><![CDATA[操作系统实验一 nachos环境配置 前言 最烦的事就是配置环境了,虽然配置了这么多次,但是每次配环境还是要花上很长时间,这里简单的总结一下使用W]]></description>
+</item><item>
     <title>Trade Off_in_ReRAM</title>
     <link>https://xyfuture.github.io/posts/trade-off_in_reram/</link>
     <pubDate>Mon, 25 Jan 2021 20:16:42 &#43;0800</pubDate>
@@ -66,12 +73,5 @@
     <author>作者</author>
     <guid>https://xyfuture.github.io/posts/program-week12-homework/</guid>
     <description><![CDATA[week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了 解法 简单的计数就行了 一定要注意指针超界问题,这次就是因为这个原因被RE了 code #include &lt;cstdio&gt;#include]]></description>
-</item><item>
-    <title>Program-week10-homework</title>
-    <link>https://xyfuture.github.io/posts/program-week11-homework/</link>
-    <pubDate>Thu, 14 May 2020 23:31:04 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://xyfuture.github.io/posts/program-week11-homework/</guid>
-    <description><![CDATA[week11-homework A - 必做题11-1 题面 解法 这是一道简单的模拟题,首先得了解高中学的概率知识,明白$(1+k)^t$这样一个增长公式然后可以用模拟的方法一年]]></description>
 </item></channel>
 </rss>
