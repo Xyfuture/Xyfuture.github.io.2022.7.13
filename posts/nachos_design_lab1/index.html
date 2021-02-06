@@ -17,7 +17,7 @@
 <meta name="application-name" content="Xyfuture&#39;s Home">
 <meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/nachos_design_lab1/" /><link rel="prev" href="https://xyfuture.github.io/posts/trade-off_in_reram/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/nachos_design_lab1/" /><link rel="prev" href="https://xyfuture.github.io/posts/trade-off_in_reram/" /><link rel="next" href="https://xyfuture.github.io/posts/nachos_threads/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/xyfuture.github.io\/posts\/nachos_design_lab1\/"
-        },"genre": "posts","keywords": "nachos","wordcount":  1015 ,
+        },"genre": "posts","keywords": "nachos","wordcount":  1652 ,
         "url": "https:\/\/xyfuture.github.io\/posts\/nachos_design_lab1\/","datePublished": "2021-01-29T19:11:21+08:00","dateModified": "2021-01-29T19:11:21+08:00","publisher": {
             "@type": "Organization",
             "name": "作者"},"author": {
@@ -76,8 +76,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Nachos_design_lab1</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-29">2021-01-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1015 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-29">2021-01-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1652 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -89,7 +89,11 @@
     <li><a href="#wsl2-安装">WSL2 安装</a></li>
     <li><a href="#ubuntu配置">Ubuntu配置</a></li>
     <li><a href="#nachos安装">nachos安装</a></li>
-    <li><a href="#vscode-调试指南">vscode 调试指南</a></li>
+    <li><a href="#vscode-调试指南">vscode 调试指南</a>
+      <ul>
+        <li><a href="#调试配置">调试配置</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="操作系统实验一--nachos环境配置">操作系统实验一  nachos环境配置</h1>
@@ -128,7 +132,84 @@
 <p>上述linux环境基本配置结束了,但是还需要配置nachos相应的环境.</p>
 <p>这一步在课设指南上详尽的描述了,这里只需要注意一点,WSL是64位的,因此需要对源文件进行一定的更改,按照课设指南的步骤进行即可</p>
 <h2 id="vscode-调试指南">vscode 调试指南</h2>
-</div><div class="post-footer" id="post-footer">
+<p>配置完毕上述环境,接下来可以配置调试环境.指导书中默认使用的是gdb的命令行,虽然效率比较高,但是交互性差,这里使用vscode来代替.vscode本质上也是使用gdb对程序进行调试,但是vscode可以将gdb提供的信息进行可视化,比较方便.</p>
+<p>使用gdb进行调试首先在编译时要添加调试信息,好在nachos默认的makefile中已经在编译时添加了开启调试功能的flag,因此这一块不需要太多关注.</p>
+<p>首先我们在vscode中连接上我们的wsl环境,只需要安装一个Remote-WSL插件即可,详细过程可以参考<a href="https://blog.csdn.net/qq_44486439/article/details/109389737" target="_blank" rel="noopener noreffer">Remote-WSL</a></p>
+<p>连接上之后可以在vscode中打开<code>nachos-3.4-SDU/code</code>文件夹,然后在WSL中安装与C/CPP有关的插件</p>
+<h3 id="调试配置">调试配置</h3>
+<p>vscode的调试规则是根据用户编写的规则来的,需要自己配置json文件(在<code>./vscode</code>目录下),实现配置,这里给出我的配置,至于文件中各个条目的说明可以看vscode官方的doc</p>
+<p>以下给出的文件可以实现在threads文件夹下实现对nachos的调试</p>
+<h4 id="taskjson">task.json</h4>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;tasks&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppbuild&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;label&#34;</span><span class="p">:</span> <span class="s2">&#34;C/C++: g++ build active file&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;/usr/bin/g++&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;-g&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;${file}&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;-o&#34;</span><span class="p">,</span>
+                <span class="s2">&#34;${fileDirname}/${fileBasenameNoExtension}&#34;</span>
+            <span class="p">],</span>
+            <span class="nt">&#34;options&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceFolder}&#34;</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;problemMatcher&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&#34;$gcc&#34;</span>
+            <span class="p">],</span>
+            <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;build&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;isDefault&#34;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;detail&#34;</span><span class="p">:</span> <span class="s2">&#34;Task generated by Debugger.&#34;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;shell&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;label&#34;</span><span class="p">:</span> <span class="s2">&#34;make threads&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;make&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;options&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceFolder}/threads/&#34;</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;problemMatcher&#34;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&#34;detail&#34;</span><span class="p">:</span> <span class="s2">&#34;make in threads folder.&#34;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;2.0.0&#34;</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="launchjson">launch.json</h4>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="err">//</span> <span class="err">使用</span> <span class="err">IntelliSense</span> <span class="err">了解相关属性。</span> 
+    <span class="err">//</span> <span class="err">悬停以查看现有属性的描述。</span>
+    <span class="err">//</span> <span class="err">欲了解更多信息，请访问:</span> <span class="err">https://go.microsoft.com/fwlink/?linkid=830387</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.2.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;configurations&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;debug in thread folder&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;cppdbg&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;request&#34;</span><span class="p">:</span> <span class="s2">&#34;launch&#34;</span><span class="p">,</span>
+            <span class="err">//</span><span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${fileDirname}/${fileBasenameNoExtension}&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;program&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceFolder}/threads/arch/unknown-i386-linux/bin/nachos&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&#34;stopAtEntry&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&#34;cwd&#34;</span><span class="p">:</span> <span class="s2">&#34;${workspaceFolder}&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;environment&#34;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&#34;externalConsole&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&#34;MIMode&#34;</span><span class="p">:</span> <span class="s2">&#34;gdb&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;setupCommands&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;为 gdb 启用整齐打印&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;-enable-pretty-printing&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;ignoreFailures&#34;</span><span class="p">:</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="err">//</span><span class="nt">&#34;preLaunchTask&#34;</span><span class="p">:</span> <span class="s2">&#34;C/C++: g++ build active file&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;preLaunchTask&#34;</span><span class="p">:</span> <span class="s2">&#34;make threads&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;miDebuggerPath&#34;</span><span class="p">:</span> <span class="s2">&#34;/usr/bin/gdb&#34;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -151,7 +232,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/trade-off_in_reram/" class="prev" rel="prev" title="Trade Off_in_ReRAM"><i class="fas fa-angle-left fa-fw"></i>Trade Off_in_ReRAM</a></div>
+    <div class="post-nav"><a href="/posts/trade-off_in_reram/" class="prev" rel="prev" title="Trade Off_in_ReRAM"><i class="fas fa-angle-left fa-fw"></i>Trade Off_in_ReRAM</a>
+            <a href="/posts/nachos_threads/" class="next" rel="next" title="Nachos_threads">Nachos_threads<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

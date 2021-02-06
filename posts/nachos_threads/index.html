@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Nachos_threads - Xyfuture&#39;s Home</title><meta name="Description" content=""><meta property="og:title" content="Nachos_threads" />
+<meta property="og:description" content="操作系统实验 nachos线程实现 前言 这几天一直在看有关nachos中线程中的实现,总结一下收获.首先不得不说nachos这个东西写的还是非常" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xyfuture.github.io/posts/nachos_threads/" />
+<meta property="article:published_time" content="2021-02-06T14:45:47+08:00" />
+<meta property="article:modified_time" content="2021-02-06T14:45:47+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nachos_threads"/>
+<meta name="twitter:description" content="操作系统实验 nachos线程实现 前言 这几天一直在看有关nachos中线程中的实现,总结一下收获.首先不得不说nachos这个东西写的还是非常"/>
+<meta name="application-name" content="Xyfuture&#39;s Home">
+<meta name="apple-mobile-web-app-title" content="Xyfuture&#39;s Home"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://xyfuture.github.io/posts/nachos_threads/" /><link rel="prev" href="https://xyfuture.github.io/posts/nachos_design_lab1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nachos_threads",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xyfuture.github.io\/posts\/nachos_threads\/"
+        },"genre": "posts","wordcount":  2243 ,
+        "url": "https:\/\/xyfuture.github.io\/posts\/nachos_threads\/","datePublished": "2021-02-06T14:45:47+08:00","dateModified": "2021-02-06T14:45:47+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Xyfuture&#39;s Home">Xyfuture&#39;s Home</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Nachos_threads</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-06">2021-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2243 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#有关资料">有关资料</a></li>
+    <li><a href="#线程实现">线程实现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="操作系统实验--nachos线程实现">操作系统实验  nachos线程实现</h1>
+<h2 id="前言">前言</h2>
+<p>这几天一直在看有关nachos中线程中的实现,总结一下收获.首先不得不说nachos这个东西写的还是非常好的,虽然年代久远,但是代码组织的不错.配置好nachos的环境,首先跑的就是nachos给的例程,如果能够理解例程的运行逻辑基本上就能明白nachos的线程调度有关实现,这里也就以nachos提供的例程为例,简单总结一下nachos线程的实现流程.</p>
+<h2 id="有关资料">有关资料</h2>
+<p>nachos是在上世纪90年代由UC, Berkeley的教授Thomas创建的,创建这个系统的目的是为了方便教学,之后这套系统在许多大学都被应用于教学,这里我主要参考了杜克大学的课程教程.以下是有关nachos有关的资料</p>
+<blockquote>
+<p><a href="https://users.cs.duke.edu/~narten/110/nachos/main.save/main.html" target="_blank" rel="noopener noreffer">Duke University</a></p>
+<p><a href="https://www.cs.rochester.edu/u/kshen/csc256-spring2007/assignments/nachos.html" target="_blank" rel="noopener noreffer">University of Rochester</a></p>
+<p><a href="https://cseweb.ucsd.edu/classes/sp09/cse120/projects/" target="_blank" rel="noopener noreffer">UCSD</a></p>
+</blockquote>
+<h2 id="线程实现">线程实现</h2>
+<p>配置环境后我们直接运行一遍例程,也就是默认的ThreadTest程序.输出如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2021/02/06/VapeBl1LUszZxR9.png"
+        data-srcset="https://i.loli.net/2021/02/06/VapeBl1LUszZxR9.png, https://i.loli.net/2021/02/06/VapeBl1LUszZxR9.png 1.5x, https://i.loli.net/2021/02/06/VapeBl1LUszZxR9.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2021/02/06/VapeBl1LUszZxR9.png"
+        title="image-20210206150320171" /></p>
+<p>有两个thread交替进行,这两个进程出了标号不同,执行的内容是一样的.我们直接看到ThreadTest,看看这个函数做了些什么</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span>
+<span class="nf">ThreadTest</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">DEBUG</span><span class="p">(</span><span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#34;Entering SimpleTest&#34;</span><span class="p">);</span>
+
+    <span class="n">Thread</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="s">&#34;forked thread&#34;</span><span class="p">);</span>
+
+    <span class="n">t</span><span class="o">-&gt;</span><span class="n">Fork</span><span class="p">(</span><span class="n">SimpleThread</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">SimpleThread</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>忽略掉DEBUG相关的信息,这个函数干了两件事,创建了一个新的线程,新线程Fork了SimpleThread,然后自身调用SimpleThread.我们看看Fork中干了什么</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> 
+<span class="n">Thread</span><span class="o">::</span><span class="n">Fork</span><span class="p">(</span><span class="n">VoidFunctionPtr</span> <span class="n">func</span><span class="p">,</span> <span class="n">_int</span> <span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#ifdef HOST_ALPHA
+</span><span class="cp"></span>    <span class="n">DEBUG</span><span class="p">(</span><span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#34;Forking thread </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s"> with func = 0x%lx, arg = %ld</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+	  <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span> <span class="n">func</span><span class="p">,</span> <span class="n">arg</span><span class="p">);</span>
+<span class="cp">#else
+</span><span class="cp"></span>    <span class="n">DEBUG</span><span class="p">(</span><span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#34;Forking thread </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s"> with func = 0x%x, arg = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+	  <span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">func</span><span class="p">,</span> <span class="n">arg</span><span class="p">);</span>
+<span class="cp">#endif
+</span><span class="cp"></span>    
+    <span class="n">StackAllocate</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">arg</span><span class="p">);</span>
+
+    <span class="n">IntStatus</span> <span class="n">oldLevel</span> <span class="o">=</span> <span class="n">interrupt</span><span class="o">-&gt;</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">IntOff</span><span class="p">);</span>
+    <span class="n">scheduler</span><span class="o">-&gt;</span><span class="n">ReadyToRun</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>	<span class="c1">// ReadyToRun assumes that interrupts 
+</span><span class="c1"></span>					<span class="c1">// are disabled!
+</span><span class="c1"></span>    <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">interrupt</span><span class="o">-&gt;</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">oldLevel</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>Fork就是分配了栈空间,然后把新的线程放入到了就绪队列中,注意这里并没有调用新的线程,新的线程在Fork之后还不能执行.回到ThreadTest中,Fork之后应该还是在ThreadTest中执行,也就是调用SimpleThread.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span>
+<span class="nf">SimpleThread</span><span class="p">(</span><span class="n">_int</span> <span class="n">which</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">num</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&#34;*** thread %d looped %d times</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">which</span><span class="p">,</span> <span class="n">num</span><span class="p">);</span>
+        <span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">Yield</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>此时传入的参数which是0,然后第一遍循环输出了一个 <code>*** thread 0 looped 0 times</code>,这和我们看到的输出是相符合的.输出之后调用<code>currentThread-&gt;Yield()</code>,这个时候有意思的事情就开始发生了</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span>
+<span class="n">Thread</span><span class="o">::</span><span class="n">Yield</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Thread</span> <span class="o">*</span><span class="n">nextThread</span><span class="p">;</span>
+    <span class="n">IntStatus</span> <span class="n">oldLevel</span> <span class="o">=</span> <span class="n">interrupt</span><span class="o">-&gt;</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">IntOff</span><span class="p">);</span>
+    
+    <span class="n">ASSERT</span><span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">currentThread</span><span class="p">);</span>
+    
+    <span class="n">DEBUG</span><span class="p">(</span><span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#34;Yielding thread </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">getName</span><span class="p">());</span>
+    
+    <span class="n">nextThread</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">-&gt;</span><span class="n">FindNextToRun</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">nextThread</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+	<span class="n">scheduler</span><span class="o">-&gt;</span><span class="n">ReadyToRun</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+	<span class="n">scheduler</span><span class="o">-&gt;</span><span class="n">Run</span><span class="p">(</span><span class="n">nextThread</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">interrupt</span><span class="o">-&gt;</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">oldLevel</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>这个函数的作用是将调用的进程从running状态转换为ready状态,交出CPU的使用权.首先关中断,然后取出就绪队列中下一个被调度的线程,之后调用<code>scheduler</code>的<code>ReadToRun</code>方法将当前的进程放入到就绪队列中,并调用<code>Run</code>方法将CPU权限给予新的线程.我们继续进入<code>Run</code>方法一探究竟.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span>
+<span class="n">Scheduler</span><span class="o">::</span><span class="n">Run</span> <span class="p">(</span><span class="n">Thread</span> <span class="o">*</span><span class="n">nextThread</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Thread</span> <span class="o">*</span><span class="n">oldThread</span> <span class="o">=</span> <span class="n">currentThread</span><span class="p">;</span>
+    
+<span class="cp">#ifdef USER_PROGRAM			</span><span class="c1">// ignore until running user programs 
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">space</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>	<span class="c1">// if this thread is a user program,
+</span><span class="c1"></span>        <span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">SaveUserState</span><span class="p">();</span> <span class="c1">// save the user&#39;s CPU registers
+</span><span class="c1"></span>	<span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">space</span><span class="o">-&gt;</span><span class="n">SaveState</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="cp">#endif
+</span><span class="cp"></span>    
+    <span class="n">oldThread</span><span class="o">-&gt;</span><span class="n">CheckOverflow</span><span class="p">();</span>		    <span class="c1">// check if the old thread
+</span><span class="c1"></span>					    <span class="c1">// had an undetected stack overflow
+</span><span class="c1"></span>
+    <span class="n">currentThread</span> <span class="o">=</span> <span class="n">nextThread</span><span class="p">;</span>		    <span class="c1">// switch to the next thread
+</span><span class="c1"></span>    <span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">setStatus</span><span class="p">(</span><span class="n">RUNNING</span><span class="p">);</span>      <span class="c1">// nextThread is now running
+</span><span class="c1"></span>    
+    <span class="n">DEBUG</span><span class="p">(</span><span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#34;Switching from thread </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s"> to thread </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;\n</span><span class="s">&#34;</span><span class="p">,</span>
+	  <span class="n">oldThread</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">(),</span> <span class="n">nextThread</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">());</span>
+    
+    <span class="c1">// This is a machine-dependent assembly language routine defined 
+</span><span class="c1"></span>    <span class="c1">// in switch.s.  You may have to think
+</span><span class="c1"></span>    <span class="c1">// a bit to figure out what happens after this, both from the point
+</span><span class="c1"></span>    <span class="c1">// of view of the thread and from the perspective of the &#34;outside world&#34;.
+</span><span class="c1"></span>
+    <span class="n">SWITCH</span><span class="p">(</span><span class="n">oldThread</span><span class="p">,</span> <span class="n">nextThread</span><span class="p">);</span>
+    
+    <span class="n">DEBUG</span><span class="p">(</span><span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#34;Now in thread </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">());</span>
+
+    <span class="c1">// If the old thread gave up the processor because it was finishing,
+</span><span class="c1"></span>    <span class="c1">// we need to delete its carcass.  Note we cannot delete the thread
+</span><span class="c1"></span>    <span class="c1">// before now (for example, in Thread::Finish()), because up to this
+</span><span class="c1"></span>    <span class="c1">// point, we were still running on the old thread&#39;s stack!
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">threadToBeDestroyed</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">delete</span> <span class="n">threadToBeDestroyed</span><span class="p">;</span>
+	<span class="n">threadToBeDestroyed</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+<span class="cp">#ifdef USER_PROGRAM
+</span><span class="cp"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">space</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>		<span class="c1">// if there is an address space
+</span><span class="c1"></span>        <span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">RestoreUserState</span><span class="p">();</span>     <span class="c1">// to restore, do it.
+</span><span class="c1"></span>	<span class="n">currentThread</span><span class="o">-&gt;</span><span class="n">space</span><span class="o">-&gt;</span><span class="n">RestoreState</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="cp">#endif
+</span><span class="cp"></span><span class="p">}</span>
+</code></pre></div><p>这个函数明显复杂多了,我们首先忽略掉一堆DEBUG的信息和USER_PROGRAM这个宏,这样程序就会简单的很多.注释写的还算详细,前面内容基本上都是准备操作,关键点在<code>SWITCH</code>这个&rsquo;函数'.这个函数使用用汇编写的,位于switch.s文件中.汇编与底层硬件直接相关,而nachos是多平台的(nachos在90年代是在Sun的Solaris机器上跑的),因此switch.s中有多种架构的汇编代码.由于作者汇编知识了解的比较少,就以MIPS为例研究了以下SWITCH的实现,理论上来说不同的平台的汇编代码不同但是实现的功能是相同的.</p>
+<div class="highlight"><pre class="chroma"><code class="language-asm" data-lang="asm"><span class="c"># MIPS style
+</span><span class="c"># actually you should read i386 part code
+</span><span class="c"></span><span class="nl">SWITCH:</span>
+	<span class="nf">sw</span>	<span class="no">sp</span><span class="p">,</span> <span class="no">SP</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>		<span class="c"># save new stack pointer
+</span><span class="c"></span>	<span class="no">sw</span>	<span class="no">s0</span><span class="p">,</span> <span class="no">S0</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>		<span class="c"># save all the callee-save registers
+</span><span class="c"></span>	<span class="no">sw</span>	<span class="no">s1</span><span class="p">,</span> <span class="no">S1</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">s2</span><span class="p">,</span> <span class="no">S2</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">s3</span><span class="p">,</span> <span class="no">S3</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">s4</span><span class="p">,</span> <span class="no">S4</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">s5</span><span class="p">,</span> <span class="no">S5</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">s6</span><span class="p">,</span> <span class="no">S6</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">s7</span><span class="p">,</span> <span class="no">S7</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>
+	<span class="nf">sw</span>	<span class="no">fp</span><span class="p">,</span> <span class="no">FP</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>		<span class="c"># save frame pointer
+</span><span class="c"></span>	<span class="no">sw</span>	<span class="no">ra</span><span class="p">,</span> <span class="no">PC</span><span class="p">(</span><span class="no">a0</span><span class="p">)</span>		<span class="c"># save return address
+</span><span class="c"></span>	
+	<span class="no">lw</span>	<span class="no">sp</span><span class="p">,</span> <span class="no">SP</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>			<span class="c"># load the new stack pointer
+</span><span class="c"></span>	<span class="no">lw</span>	<span class="no">s0</span><span class="p">,</span> <span class="no">S0</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>		<span class="c"># load the callee-save registers
+</span><span class="c"></span>	<span class="no">lw</span>	<span class="no">s1</span><span class="p">,</span> <span class="no">S1</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">s2</span><span class="p">,</span> <span class="no">S2</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">s3</span><span class="p">,</span> <span class="no">S3</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">s4</span><span class="p">,</span> <span class="no">S4</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">s5</span><span class="p">,</span> <span class="no">S5</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">s6</span><span class="p">,</span> <span class="no">S6</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">s7</span><span class="p">,</span> <span class="no">S7</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">fp</span><span class="p">,</span> <span class="no">FP</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>
+	<span class="nf">lw</span>	<span class="no">ra</span><span class="p">,</span> <span class="no">PC</span><span class="p">(</span><span class="no">a1</span><span class="p">)</span>		<span class="c"># load the return address	
+</span><span class="c"></span>
+	<span class="nf">j</span>	<span class="no">ra</span>
+	<span class="na">.end</span> <span class="no">SWITCH</span>
+</code></pre></div><p>从注释中我们可以得知<code>SWITCH</code>实现的是上下文切换的功能.根据我们所学的知识,上下文切换需要保存上一个进程的PC,寄存器等内容,然后恢复下一个进程的PC,寄存器.MIPS的代码也很直接,<code>sw</code>部分存储了上一个进程的信息,<code>lw</code>部分恢复了下一个进程的信息.那么这些信息存到了哪里,又从哪里恢复呢?通过<code>SWITCH</code>函数需要的两个参数就可以看出来,是通过类<code>Thread</code>中的变量获取的.经过猜测和不严谨的验证,栈地址会保存在<code>Thread</code>的<code>stackTop</code>变量下,<code>machineState</code>数组则保存一系列的寄存器,包括PC等等.说到PC就有一个重要的问题,PC应该保存为哪一个地址.作者给出的答案是<code>SWITCH</code>之后的语句,在<code>Run</code>这个函数中就是<code>DEBUG</code>这个函数.这样做其实我们就可以把<code>SWITCH</code>这个设计到上下文切换的特殊函数当成传统的函数了,他的行为和正常的函数是一致的.只不过这个函数执行的上下文切换,会换到另一个程序上执行,再次切换回来时相当于<code>SWITCH</code>函数执行了一次.</p>
+<p>上述描述了很多预备知识,现在我们能大致清晰的知道例程是如何执行的了.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.loli.net/2021/02/06/MJfnBtiGxbmoXa3.png"
+        data-srcset="https://i.loli.net/2021/02/06/MJfnBtiGxbmoXa3.png, https://i.loli.net/2021/02/06/MJfnBtiGxbmoXa3.png 1.5x, https://i.loli.net/2021/02/06/MJfnBtiGxbmoXa3.png 2x"
+        data-sizes="auto"
+        alt="https://i.loli.net/2021/02/06/MJfnBtiGxbmoXa3.png"
+        title="func" /></p>
+<p>流程可以参考上图,一开始currentThread是初始化的创建&quot;main&quot;这个线程,这个线程并没有绑定对应的程序,也可以认定为就是一开始执行的那一些程序,因为经过一次SWITCH就会把最外面程序的PC存起来,作为main的PC.经过一次Yield就会切换一次线程,因为中间有SWITCH函数,会把程序给换过去.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-02-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/nachos_design_lab1/" class="prev" rel="prev" title="Nachos_design_lab1"><i class="fas fa-angle-left fa-fw"></i>Nachos_design_lab1</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

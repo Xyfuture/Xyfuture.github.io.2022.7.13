@@ -3,7 +3,14 @@
         <title>所有文章 - Xyfuture&#39;s Home</title>
         <link>https://xyfuture.github.io/posts/</link>
         <description>所有文章 | Xyfuture&#39;s Home</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 29 Jan 2021 19:11:21 &#43;0800</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 06 Feb 2021 14:45:47 &#43;0800</lastBuildDate><atom:link href="https://xyfuture.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Nachos_threads</title>
+    <link>https://xyfuture.github.io/posts/nachos_threads/</link>
+    <pubDate>Sat, 06 Feb 2021 14:45:47 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xyfuture.github.io/posts/nachos_threads/</guid>
+    <description><![CDATA[操作系统实验 nachos线程实现 前言 这几天一直在看有关nachos中线程中的实现,总结一下收获.首先不得不说nachos这个东西写的还是非常]]></description>
+</item><item>
     <title>Nachos_design_lab1</title>
     <link>https://xyfuture.github.io/posts/nachos_design_lab1/</link>
     <pubDate>Fri, 29 Jan 2021 19:11:21 &#43;0800</pubDate>
@@ -66,12 +73,5 @@
     <author>作者</author>
     <guid>https://xyfuture.github.io/posts/program-week13-homework/</guid>
     <description><![CDATA[week13-homework A - TT 的神秘任务1（必做） 题面 解法 这道题考察了一些基本的数学知识. 首先核心就是 奇数+奇数=偶数 偶数+偶数=奇数 奇数+偶数=奇数 然后还一个就]]></description>
-</item><item>
-    <title>Program-week12-homework</title>
-    <link>https://xyfuture.github.io/posts/program-week12-homework/</link>
-    <pubDate>Thu, 14 May 2020 23:31:30 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://xyfuture.github.io/posts/program-week12-homework/</guid>
-    <description><![CDATA[week12-CSP A - csp-m3-t1 题面 这个求相同元素区间的个数,之前做过,但是还是做错了 解法 简单的计数就行了 一定要注意指针超界问题,这次就是因为这个原因被RE了 code #include &lt;cstdio&gt;#include]]></description>
 </item></channel>
 </rss>
